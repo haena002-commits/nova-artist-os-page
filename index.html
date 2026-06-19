@@ -6321,136 +6321,7 @@
       line-height: 1.1 !important;
       font-weight: 620 !important;
     }
-  
-    /* 2026-06-19 mobile focus micro-tuning: running clarity, tactile controls, compact subtask timers */
-    body.mobile-focus-mode .mobile-task.is-running:not(.done) {
-      border-color: rgba(24,24,24,0.92) !important;
-      background: rgba(250,249,245,0.98) !important;
-      box-shadow: 0 9px 20px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.70) !important;
-    }
-
-    body.mobile-focus-mode .mobile-task.is-running:not(.done)::before {
-      width: 5px !important;
-      opacity: 1 !important;
-    }
-
-    body.mobile-focus-mode .mobile-task.is-running.portfolio:not(.done)::before { background: rgba(201,120,127,0.88) !important; }
-    body.mobile-focus-mode .mobile-task.is-running.beacon:not(.done)::before { background: rgba(138,143,207,0.88) !important; }
-    body.mobile-focus-mode .mobile-task.is-running.income:not(.done)::before { background: rgba(199,161,90,0.88) !important; }
-
-    body.mobile-focus-mode .mobile-running-badge {
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 4px !important;
-      margin-left: 6px !important;
-      padding: 2px 6px !important;
-      border: 1px solid rgba(36,36,36,0.12) !important;
-      border-radius: 999px !important;
-      background: rgba(255,255,255,0.62) !important;
-      color: #5d5a55 !important;
-      font-size: 9.5px !important;
-      font-weight: 820 !important;
-      line-height: 1 !important;
-      vertical-align: 2px !important;
-      white-space: nowrap !important;
-    }
-
-    body.mobile-focus-mode .mobile-running-badge::before {
-      content: "" !important;
-      width: 5px !important;
-      height: 5px !important;
-      border-radius: 50% !important;
-      background: #c9787f !important;
-      box-shadow: 0 0 0 3px rgba(201,120,127,0.14) !important;
-    }
-
-    body.mobile-focus-mode .mobile-timer.is-live:not(.paused):not(.exceeded) {
-      animation: novaMobileTimerBreath 1.8s ease-in-out infinite !important;
-      box-shadow: 0 5px 13px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.12) !important;
-    }
-
-    @keyframes novaMobileTimerBreath {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.07); }
-    }
-
-    body.mobile-focus-mode .mobile-mini-btn,
-    body.mobile-focus-mode .mobile-pin,
-    body.mobile-focus-mode .mobile-target,
-    body.mobile-focus-mode .mobile-timer,
-    body.mobile-focus-mode .mobile-add-open,
-    body.mobile-focus-mode .mobile-add-save,
-    body.mobile-focus-mode .mobile-minute-preset {
-      -webkit-tap-highlight-color: transparent !important;
-      box-shadow: 0 3px 9px rgba(0,0,0,0.075), inset 0 1px 0 rgba(255,255,255,0.72), inset 0 -1px 0 rgba(0,0,0,0.045) !important;
-      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease !important;
-    }
-
-    body.mobile-focus-mode .mobile-mini-btn:active,
-    body.mobile-focus-mode .mobile-pin:active,
-    body.mobile-focus-mode .mobile-target:active,
-    body.mobile-focus-mode .mobile-timer:active,
-    body.mobile-focus-mode .mobile-add-open:active,
-    body.mobile-focus-mode .mobile-add-save:active,
-    body.mobile-focus-mode .mobile-minute-preset:active {
-      transform: translateY(1px) !important;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08), inset 0 1px 2px rgba(0,0,0,0.08) !important;
-    }
-
-    body.mobile-focus-mode .mobile-parent-group .mobile-task-title {
-      font-weight: 820 !important;
-    }
-
-    body.mobile-focus-mode .mobile-parent-group .mobile-task-actions.mobile-parent-actions {
-      grid-template-columns: 42px 50px !important;
-      justify-content: start !important;
-      width: max-content !important;
-      max-width: 100% !important;
-    }
-
-    body.mobile-focus-mode .mobile-subtask {
-      grid-template-columns: 19px minmax(0,1fr) 42px 58px !important;
-      gap: 4px !important;
-    }
-
-    body.mobile-focus-mode .mobile-subtask.is-running {
-      border-color: rgba(24,24,24,0.20) !important;
-      background: rgba(255,255,255,0.72) !important;
-      box-shadow: 0 3px 9px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.74) !important;
-    }
-
-    body.mobile-focus-mode .mobile-subtask .mobile-target {
-      width: 42px !important;
-      min-width: 42px !important;
-      padding: 0 !important;
-    }
-
-    body.mobile-focus-mode .mobile-subtask .mobile-timer {
-      width: 58px !important;
-      min-width: 58px !important;
-      justify-self: end !important;
-      padding: 0 5px !important;
-      font-size: 10.5px !important;
-    }
-
-    body.mobile-focus-mode .mini-done-head strong {
-      display: none !important;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      body.mobile-focus-mode .mobile-timer.is-live:not(.paused):not(.exceeded) {
-        animation: none !important;
-      }
-      body.mobile-focus-mode .mobile-mini-btn,
-      body.mobile-focus-mode .mobile-pin,
-      body.mobile-focus-mode .mobile-target,
-      body.mobile-focus-mode .mobile-timer,
-      body.mobile-focus-mode .mobile-add-open,
-      body.mobile-focus-mode .mobile-add-save,
-      body.mobile-focus-mode .mobile-minute-preset {
-        transition: none !important;
-      }
-    }</style>
+  </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
@@ -11975,16 +11846,17 @@ for update using (true) with check (true);</pre>
 
     function mobileMiniDoneLogHtml() {
       const doneEntries = getClearEntries();
+      const visibleEntries = doneEntries.slice(0, 3);
       if (!doneEntries.length) return "";
 
-      return `<section class="mini-done-log" aria-label="today completed tasks">
-        <div class="mini-done-head"><span>오늘 완료 · ${escapeHtml(String(doneEntries.length))}개</span></div>
+      return `<section class="mini-done-log" aria-label="오늘 완료한 할일">
+        <div class="mini-done-head"><span>오늘 완료 · ${escapeHtml(String(doneEntries.length))}개</span>${doneEntries.length > visibleEntries.length ? `<strong>+${escapeHtml(String(doneEntries.length - visibleEntries.length))}개 더 완료</strong>` : ""}</div>
         <div class="mini-done-list">
-          ${doneEntries.map(entry => {
+          ${visibleEntries.map(entry => {
             const seconds = Number(entry.actualSeconds) > 0 ? Number(entry.actualSeconds) : Number(entry.estimateSeconds) || 0;
             const action = entry.subtaskId ? "restoreSubtask" : "restoreTask";
             return `<div class="mini-done-row ${escapeHtml(entry.area)}" title="${escapeHtml(entry.parentTitle ? entry.parentTitle + " / " + entry.title : entry.title)}">
-              <button class="mini-done-check" type="button" data-mobile-action="${action}" data-area="${attrValue(entry.area)}" data-taskid="${attrValue(entry.taskId)}" data-subtaskid="${attrValue(entry.subtaskId || "")}" aria-label="restore completed item">✓</button>
+              <button class="mini-done-check" type="button" data-mobile-action="${action}" data-area="${attrValue(entry.area)}" data-taskid="${attrValue(entry.taskId)}" data-subtaskid="${attrValue(entry.subtaskId || "")}" aria-label="완료 항목 되돌리기">✓</button>
               <div class="mini-done-text">
                 <div class="mini-done-title">${escapeHtml(entry.title)} <span>· ${escapeHtml(formatCompactLoadDuration(seconds))}</span></div>
                 ${entry.parentTitle ? `<div class="mini-done-parent">${escapeHtml(entry.parentTitle)}</div>` : ""}
@@ -11994,6 +11866,7 @@ for update using (true) with check (true);</pre>
         </div>
       </section>`;
     }
+
     function shouldSkipMobileRender() {
       if (document.body.classList.contains("mobile-quick-add-open")) return true;
       const active = document.activeElement;
@@ -12110,9 +11983,8 @@ for update using (true) with check (true);</pre>
     }
 
     function mobileTaskHtml(area, task, fallback = false) {
-      const taskTimerRunning = timerMatches(area, task.id, null);
-      const activeSubtaskRunning = Boolean(state.activeTimer && state.activeTimer.area === area && state.activeTimer.taskId === task.id && state.activeTimer.subtaskId);
-      const taskRunning = taskTimerRunning || activeSubtaskRunning;
+      const taskRunning = state.activeTimer && state.activeTimer.area === area && state.activeTimer.taskId === task.id;
+      const isTaskTimerRunning = timerMatches(area, task.id, null);
       const taskTimerState = getSubjectTimerState(area, task, null);
       const isPaused = taskTimerState.paused || (!taskRunning && isTaskInPausedCountdown(task));
       const timerButtonText = getSubjectButtonClock(area, task, null);
@@ -12121,34 +11993,30 @@ for update using (true) with check (true);</pre>
       const timerLeftPercent = getSubjectTimerLeftPercent(area, task, null);
       const taskTotalText = formatDuration(getTaskTotalFocusSeconds(area, task));
       const taskEstimatedText = formatEstimatedDuration(getTaskEstimatedSeconds(task));
-      const childSubtasks = task.subtasks || [];
-      const hasChildSubtasks = childSubtasks.length > 0;
-      const remainingSubtasks = childSubtasks.filter(subtask => !subtask.done);
-      const runningBadge = taskRunning && !state.activeTimer?.paused ? `<span class="mobile-running-badge">집중중</span>` : "";
-      const actionsClass = hasChildSubtasks ? "mobile-task-actions mobile-parent-actions" : "mobile-task-actions";
-      const timerButtonHtml = hasChildSubtasks ? "" : `<button class="mobile-timer ${timerButtonClass} ${taskTimerRunning && !state.activeTimer?.paused ? "is-live" : ""} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>`;
+      const remainingSubtasks = (task.subtasks || []).filter(subtask => !subtask.done);
       const subtasksHtml = remainingSubtasks.length
         ? `<div class="mobile-subtasks">${remainingSubtasks.map(subtask => mobileSubtaskHtml(area, task, subtask)).join("")}</div>`
         : "";
 
       return `
-        <article class="mobile-task ${hasChildSubtasks ? "mobile-parent-group" : ""} ${escapeHtml(area)} ${taskRunning ? "running is-running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
+        <article class="mobile-task ${escapeHtml(area)} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
           <div class="mobile-task-main">
             <button class="mobile-check" data-mobile-action="toggleTask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">✓</button>
             <div>
               <div class="mobile-tag ${escapeHtml(area)}">${escapeHtml(AREA_LABELS[area] || area)}</div>
-              <div class="mobile-task-title" contenteditable="true" data-mobile-edit="task" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">${escapeHtml(task.title)}${runningBadge}</div>
-              <div class="mobile-task-meta">소요 ${escapeHtml(taskTotalText)} · 총 예상 ${escapeHtml(taskEstimatedText)}${fallback ? " · 대기 후보" : ""}</div>
+              <div class="mobile-task-title" contenteditable="true" data-mobile-edit="task" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">${escapeHtml(task.title)}</div>
+              <div class="mobile-task-meta">소요 ${escapeHtml(taskTotalText)} · 총 예상 ${escapeHtml(taskEstimatedText)}${fallback ? " · 핀 후보" : ""}</div>
             </div>
           </div>
-          <div class="${actionsClass}">
+          <div class="mobile-task-actions">
             <button class="mobile-pin ${task.pinned ? "active" : ""}" data-mobile-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">PIN</button>
             <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" title="${hasSubtaskTargets(task) ? "하위항목 시간 합계" : "목표 시간 수정"}">${escapeHtml(formatTaskTargetMinutes(task))}</button>
-            ${timerButtonHtml}
+            <button class="mobile-timer ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>
           </div>
           ${subtasksHtml}
         </article>`;
     }
+
     function mobileSubtaskFocusHtml(area, task, subtask, fallback = false) {
       const subtaskRunning = state.activeTimer && state.activeTimer.area === area && state.activeTimer.taskId === task.id && state.activeTimer.subtaskId === subtask.id;
       const subtaskTimerState = getSubjectTimerState(area, task, subtask);
@@ -12159,40 +12027,38 @@ for update using (true) with check (true);</pre>
       const subTimerLeftPercent = getSubjectTimerLeftPercent(area, task, subtask);
       const subTotalText = formatDuration(getSubtaskTotalFocusSeconds(area, task, subtask));
       const subEstimatedText = formatEstimatedDuration(getSubtaskEstimatedSeconds(subtask));
-      const runningBadge = subtaskRunning && !state.activeTimer?.paused ? `<span class="mobile-running-badge">집중중</span>` : "";
       return `
-        <article class="mobile-task mobile-subtask-focus ${escapeHtml(area)} ${subtaskRunning ? "running is-running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
+        <article class="mobile-task mobile-subtask-focus ${escapeHtml(area)} ${subtaskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
           <div class="mobile-task-main">
             <button class="mobile-check" data-mobile-action="toggleSubtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">✓</button>
             <div>
-              <div class="mobile-parent-title">상위: ${escapeHtml(task.title)}</div>
-              <div class="mobile-task-title" contenteditable="true" data-mobile-edit="subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}${runningBadge}</div>
-              <div class="mobile-task-meta">소요 ${escapeHtml(subTotalText)} · 예상 ${escapeHtml(subEstimatedText)}${fallback ? " · 대기 후보" : ""}</div>
+              <div class="mobile-parent-title">${escapeHtml("상위: " + task.title)}</div>
+              <div class="mobile-task-title" contenteditable="true" data-mobile-edit="subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}</div>
+              <div class="mobile-task-meta">소요 ${escapeHtml(subTotalText)} · 예상 ${escapeHtml(subEstimatedText)}${fallback ? " · 핀 후보" : ""}</div>
             </div>
           </div>
           <div class="mobile-task-actions">
             <button class="mobile-pin active" data-mobile-action="toggleSubtaskPin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">PIN</button>
             <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
-            <button class="mobile-timer ${subButtonClass} ${subtaskRunning && !state.activeTimer?.paused ? "is-live" : ""} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
+            <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
           </div>
         </article>`;
     }
+
     function mobileSubtaskHtml(area, task, subtask) {
-      const subtaskRunning = timerMatches(area, task.id, subtask.id);
-      const subtaskTimerState = getSubjectTimerState(area, task, subtask);
-      const isPaused = subtaskTimerState.paused || (!subtaskRunning && hasPausedCountdown(subtask));
       const subButtonText = getSubjectButtonClock(area, task, subtask);
       const subButtonClass = getSubjectButtonClass(area, task, subtask);
       const subButtonExceeded = String(subButtonText).startsWith("+");
       const subTimerLeftPercent = getSubjectTimerLeftPercent(area, task, subtask);
       return `
-        <div class="mobile-subtask ${subtaskRunning ? "is-running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
+        <div class="mobile-subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
           <button class="mobile-check" data-mobile-action="toggleSubtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">✓</button>
           <div class="mobile-subtask-title" contenteditable="true" data-mobile-edit="subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}</div>
           <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
-          <button class="mobile-timer ${subButtonClass} ${subtaskRunning && !state.activeTimer?.paused ? "is-live" : ""} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
+          <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
         </div>`;
     }
+
     function handleFocusWindowMessage(event) {
       const message = event.data || {};
       if (message.source !== "NOVA_FOCUS_WINDOW" && message.source !== "NOVA_MINI_FOCUS_WINDOW") return;
