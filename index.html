@@ -7191,6 +7191,16 @@
     }
   </style>
 
+
+  <style id="today-load-clarity-patch">
+    .load-overrun-value {
+      font-size: 30px !important;
+      letter-spacing: -0.04em !important;
+      white-space: nowrap !important;
+    }
+    .today-load-panel.red .load-overrun-value { color: #8f4149 !important; }
+  </style>
+
 </head>
 
 <body>
@@ -9054,25 +9064,11 @@ for update using (true) with check (true);</pre>
       return summary;
     }
 
-    function getTodayCompletedFocusSeconds(area) {
-      return (state.tasks[area] || []).reduce((sum, task) => {
-        const subtasks = Array.isArray(task.subtasks) ? task.subtasks : [];
-        if (subtasks.length) {
-          const completedTodaySubtasks = subtasks.filter(subtask => subtask.done && isCompletedToday(subtask.completedAt));
-          if (!completedTodaySubtasks.length && !(task.done && isCompletedToday(task.completedAt))) return sum;
-          const subtaskSeconds = completedTodaySubtasks.reduce((subSum, subtask) => subSum + (Number(subtask.focusSeconds) || 0), 0);
-          return sum + subtaskSeconds + (Number(task.focusSeconds) || 0);
-        }
-        if (!task.done || !isCompletedToday(task.completedAt)) return sum;
-        return sum + (Number(task.focusSeconds) || 0);
-      }, 0);
-    }
-
     function summarizeTodayClearFold(area) {
       const entries = getClearEntries(area);
       const units = getTodayAreaUnits(area);
       const total = Math.max(entries.length, units.length);
-      const focusSeconds = getTodayCompletedFocusSeconds(area);
+      const focusSeconds = entries.reduce((sum, entry) => sum + (Number(entry.actualSeconds) || 0), 0);
       return { entries, done: entries.length, total, focusSeconds };
     }
 
@@ -17215,6 +17211,129 @@ for update using (true) with check (true);</pre>
         mobileFocusMode,
         syncStatus
       };
+    }
+
+
+
+    /* Today Load clarity patch: avoid meaningless 999% when available work time is 0. */
+    function getTodayLoadState() {
+      const items = getFocusedTasks();
+      const requiredRaw = items.reduce((sum, item) => sum + getFocusItemLoadSeconds(item), 0);
+      const transition = items.length * 4 * 60;
+      const required = Math.round(requiredRaw * 1.12 + transition);
+      const availableInfo = getAvailableTimeBreakdown();
+      const available = availableInfo.totalSeconds;
+      const hasAvailableTime = available > 0;
+      const percent = hasAvailableTime ? Math.round((required / available) * 100) : 0;
+      const portfolioItems = items.filter(item => item.area === "portfolio");
+      const portfolioRequiredRaw = portfolioItems.reduce((sum, item) => sum + getFocusItemLoadSeconds(item), 0);
+      const portfolioRequired = Math.round(portfolioRequiredRaw * 1.12 + portfolioItems.length * 4 * 60);
+      const portfolioPercent = hasAvailableTime ? Math.round((portfolioRequired / available) * 100) : 0;
+      const noAvailableTime = !hasAvailableTime && required > 0;
+
+      let status = "green";
+      let label = "가능";
+      if (noAvailableTime) {
+        status = "red";
+        label = "시간 없음";
+      } else if (percent > 95 && portfolioPercent <= 95) {
+        status = "yellow";
+        label = "전체 조정";
+      } else if (percent > 95) {
+        status = "red";
+        label = "과부하";
+      } else if (percent > 70) {
+        status = "yellow";
+        label = "빡빡";
+      } else if (required <= 0) {
+        label = "여유";
+      }
+
+      let portfolioLabel = "Portfolio PIN 없음";
+      if (portfolioItems.length) {
+        if (noAvailableTime && portfolioRequired > 0) portfolioLabel = "Portfolio 남은 시간 없음";
+        else portfolioLabel = portfolioPercent > 95 ? "Portfolio도 위험" : "Portfolio 가능";
+      }
+
+      let nudge = "다른 작업 여유 있음";
+      if (noAvailableTime) nudge = "내일로 넘기거나 PIN 줄이기 권장";
+      else if (status === "red") nudge = "Portfolio 일부도 줄이기 권장";
+      else if (percent > 95) nudge = "Portfolio 외 작업 Later 권장";
+      else if (status === "yellow") nudge = "Portfolio 먼저 진행 권장";
+
+      return {
+        items,
+        required,
+        available,
+        availableText: availableInfo.text,
+        percent,
+        status,
+        label,
+        noAvailableTime,
+        portfolioItems,
+        portfolioRequired,
+        portfolioPercent,
+        portfolioLabel,
+        nudge
+      };
+    }
+
+    function renderTodayLoadGauge(load) {
+      const noAvailableTime = Boolean(load?.noAvailableTime);
+      const required = Math.max(0, Number(load?.required) || 0);
+      if (noAvailableTime && required > 0) {
+        return `<span class="load-percent-value load-overrun-value">초과</span><span class="today-load-gauge" title="오늘 남은 작업 가능 시간이 없습니다"><span class="today-load-gauge-fill" style="--load-width:100%"></span><span class="today-load-gauge-line"></span></span>`;
+      }
+      const percent = Math.max(0, Number(load?.percent) || 0);
+      const visualPercent = Math.min(130, percent);
+      const width = Math.round((visualPercent / 130) * 100);
+      return `<span class="load-percent-value">${Math.min(130, Math.round(percent))}%</span><span class="today-load-gauge" title="100% 기준선 · 현재 ${Math.round(percent)}%"><span class="today-load-gauge-fill" style="--load-width:${width}%"></span><span class="today-load-gauge-line"></span></span>`;
+    }
+
+    function renderTodayLoadPanel() {
+      const panel = document.getElementById("todayLoadPanel");
+      if (!panel) return;
+      const load = getTodayLoadState();
+      const clearEntries = getClearEntries();
+      const clear = summarizeClearEntries(clearEntries);
+      const forward = summarizePortfolioForward(clearEntries);
+      const matrix = getWeeklyFlowMatrix();
+      const portfolioFlow = matrix.find(row => row.area === "portfolio") || { count: 0, total: 5 };
+
+      panel.className = `today-load-panel ${load.status === "green" ? "" : load.status}`;
+      panel.title = `가능 시간 계산: ${load.availableText}`;
+      document.getElementById("todayLoadTitle").textContent = `오늘 작업량 · ${load.label}`;
+      const detail = document.getElementById("todayLoadDetail");
+      if (detail) {
+        detail.textContent = load.noAvailableTime
+          ? `남은 필요 ${formatLoadDuration(load.required)} · 작업 가능 시간 없음`
+          : `필요 ${formatLoadDuration(load.required)} / 가능 ${formatLoadDuration(load.available)}`;
+        detail.title = `가능 시간 계산: ${load.availableText}`;
+      }
+      document.getElementById("todayLoadVerdict").textContent = `${load.portfolioLabel} · ${load.nudge}`;
+      document.getElementById("todayLoadPercent").innerHTML = renderTodayLoadGauge(load);
+      document.getElementById("todayLoadPortfolio").innerHTML = `
+        <div class="load-side-line"><span>오늘 포폴 전진</span><strong>${escapeHtml(formatLoadDuration(forward.weightedSeconds))}</strong></div>
+        <div class="load-side-line done"><span>오늘 완료</span><strong>${escapeHtml(String(clear.total))}개 · ${escapeHtml(formatLoadDuration(clear.seconds))}</strong></div>
+      `;
+
+      const strip = document.getElementById("achievementStrip");
+      if (strip) strip.innerHTML = renderWeeklyFlowMatrix(matrix);
+
+      const portfolioAchievement = document.getElementById("todayPortfolioAchievement");
+      const clearAchievement = document.getElementById("todayClearAchievement");
+      const flowText = document.getElementById("weeklyPortfolioFlowText");
+      const globalSummary = document.getElementById("globalClearSummary");
+      const globalList = document.getElementById("globalClearList");
+
+      if (portfolioAchievement) portfolioAchievement.textContent = formatLoadDuration(forward.weightedSeconds);
+      if (clearAchievement) clearAchievement.textContent = `${clear.total}개 · ${formatLoadDuration(clear.seconds)}`;
+      if (flowText) flowText.textContent = `${portfolioFlow.count}/${portfolioFlow.total}일`;
+      if (globalSummary) {
+        globalSummary.innerHTML = `<span class="clear-summary-main"><span class="clear-summary-title">오늘 완료 기록 · ${clear.total}개 · ${formatLoadDuration(clear.seconds)}</span><span class="clear-summary-sub">포폴 ${clear.portfolio}개 · 비콘 ${clear.beacon}개 · Etsy ${clear.income}개</span></span>`;
+      }
+      if (globalList) globalList.innerHTML = renderClearEntryRows(clearEntries);
+      refreshAreaClearStacks();
     }
 
     window.undoLastAction = undoLastAction;
