@@ -6391,6 +6391,50 @@
     }
   </style>
 
+  <style id="mobile-subtask-timer-compact-patch">
+    /* Mobile focus subtasks: keep layout intact, shorten play/countdown pill so titles have more room. */
+    body.mobile-focus-mode .mobile-subtask {
+      grid-template-columns: 19px minmax(0, 1fr) 42px 56px !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask .mobile-target {
+      width: 42px !important;
+      min-width: 42px !important;
+      max-width: 42px !important;
+      padding: 0 !important;
+      justify-self: end !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask .mobile-timer {
+      width: 56px !important;
+      min-width: 56px !important;
+      max-width: 56px !important;
+      padding: 0 !important;
+      justify-self: end !important;
+      overflow: hidden !important;
+      text-overflow: clip !important;
+    }
+
+    @media (max-width: 380px) {
+      body.mobile-focus-mode .mobile-subtask {
+        grid-template-columns: 18px minmax(0, 1fr) 40px 52px !important;
+      }
+
+      body.mobile-focus-mode .mobile-subtask .mobile-target {
+        width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
+      }
+
+      body.mobile-focus-mode .mobile-subtask .mobile-timer {
+        width: 52px !important;
+        min-width: 52px !important;
+        max-width: 52px !important;
+      }
+    }
+  </style>
+
+
 </head>
 
 <body>
@@ -11984,12 +12028,15 @@ for update using (true) with check (true);</pre>
     }
 
     function mobileSubtaskHtml(area, task, subtask) {
+      const subtaskRunning = timerMatches(area, task.id, subtask.id);
+      const subtaskTimerState = getSubjectTimerState(area, task, subtask);
+      const isPaused = subtaskTimerState.paused || (!subtaskRunning && hasPausedCountdown(subtask));
       const subButtonText = getSubjectButtonClock(area, task, subtask);
       const subButtonClass = getSubjectButtonClass(area, task, subtask);
       const subButtonExceeded = String(subButtonText).startsWith("+");
       const subTimerLeftPercent = getSubjectTimerLeftPercent(area, task, subtask);
       return `
-        <div class="mobile-subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
+        <div class="mobile-subtask ${escapeHtml(area)} ${subtaskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
           <button class="mobile-check" data-mobile-action="toggleSubtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">✓</button>
           <div class="mobile-subtask-title" contenteditable="true" data-mobile-edit="subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}</div>
           <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
@@ -15327,6 +15374,115 @@ for update using (true) with check (true);</pre>
     .mini-nightly-btn.snooze {
       background: rgba(221,236,238,0.95);
       color: #3f5359;
+    }
+  </style>
+
+
+  <style id="mobile-running-signal-patch">
+    /* Mobile focus: make the active countdown visually readable without changing layout. */
+    body.mobile-focus-mode .mobile-task.running {
+      border-color: rgba(24,24,24,0.92) !important;
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.68),
+        0 0 0 2px rgba(36,36,36,0.08) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.running.portfolio {
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.12),
+        inset 4px 0 0 rgba(201,120,127,0.70),
+        inset 0 1px 0 rgba(255,255,255,0.68),
+        0 0 0 2px rgba(201,120,127,0.16) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.running.beacon {
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.12),
+        inset 4px 0 0 rgba(138,143,207,0.72),
+        inset 0 1px 0 rgba(255,255,255,0.68),
+        0 0 0 2px rgba(138,143,207,0.18) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.running.income {
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.12),
+        inset 4px 0 0 rgba(199,161,90,0.76),
+        inset 0 1px 0 rgba(255,255,255,0.68),
+        0 0 0 2px rgba(199,161,90,0.18) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running {
+      position: relative !important;
+      border-color: rgba(24,24,24,0.34) !important;
+      background: rgba(255,255,255,0.82) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.78),
+        0 3px 9px rgba(0,0,0,0.075),
+        0 0 0 2px rgba(36,36,36,0.045) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running.portfolio { border-color: rgba(201,120,127,0.54) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.beacon { border-color: rgba(138,143,207,0.56) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.income { border-color: rgba(199,161,90,0.58) !important; }
+
+    body.mobile-focus-mode .mobile-subtask.running::after {
+      content: "집중중" !important;
+      position: absolute !important;
+      left: 34px !important;
+      top: -8px !important;
+      height: 15px !important;
+      padding: 0 6px !important;
+      border-radius: 999px !important;
+      background: #242424 !important;
+      color: #fff !important;
+      font-size: 8.5px !important;
+      font-weight: 820 !important;
+      line-height: 15px !important;
+      letter-spacing: 0 !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.13) !important;
+      pointer-events: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.13),
+        inset 0 1px 0 rgba(255,255,255,0.18) !important;
+      animation: mobileTimerBreath 1.6s ease-in-out infinite !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 6px !important;
+      height: 6px !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      opacity: 0.94 !important;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.42) !important;
+      animation: mobileLiveDot 1.15s ease-out infinite !important;
+      flex: 0 0 auto !important;
+    }
+
+    @keyframes mobileTimerBreath {
+      0%, 100% { transform: translateZ(0) scale(1); }
+      50% { transform: translateZ(0) scale(1.018); }
+    }
+
+    @keyframes mobileLiveDot {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.42); opacity: 1; }
+      70% { box-shadow: 0 0 0 6px rgba(255,255,255,0); opacity: 0.82; }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+      body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
+        animation: none !important;
+      }
     }
   </style>
 </head>
