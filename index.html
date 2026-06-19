@@ -1554,6 +1554,8 @@
       grid-template-columns: 1.08fr 0.98fr 0.94fr;
       gap: 18px;
       min-height: 0;
+      margin-bottom: 34px;
+      padding-bottom: 18px;
     }
 
     .bottom-report-shell {
@@ -1565,6 +1567,7 @@
       flex-direction: column;
       gap: 14px;
       min-height: 320px;
+      padding-bottom: 18px;
     }
 
     .report-card-head {
@@ -1572,6 +1575,13 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .report-card-head > div:first-child,
+    .variance-card-head > div:first-child {
+      flex: 1 1 240px;
+      min-width: 0;
     }
 
     .report-card-head h3 {
@@ -1580,7 +1590,7 @@
 
     .report-card-head .note {
       margin: 0;
-      max-width: 340px;
+      max-width: 420px;
     }
 
     .report-kpi {
@@ -1810,31 +1820,44 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .variance-filter {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 5px;
+      padding: 5px 6px;
       border-radius: 999px;
       background: rgba(255,255,255,0.5);
       border: 1px solid rgba(255,255,255,0.76);
+      margin-left: auto;
+      flex: 0 0 auto;
+      min-height: 42px;
     }
 
     .variance-pill {
-      padding: 7px 10px;
+      padding: 8px 11px;
       border-radius: 999px;
       color: #807970;
       font-size: 11px;
       font-weight: 820;
       line-height: 1;
+      white-space: nowrap;
     }
 
     .variance-pill.active {
       background: rgba(255,255,255,0.88);
       color: #35312d;
       box-shadow: 0 2px 7px rgba(72,68,60,0.07);
+    }
+
+    .variance-filter-meta {
+      color: #8a837a;
+      font-size: 11px;
+      font-weight: 760;
+      white-space: nowrap;
+      padding: 0 6px 0 2px;
     }
 
     .variance-table-wrap {
@@ -1942,6 +1965,12 @@
     .report-delta.up { color: #cf6c4f; }
     .report-delta.down { color: #4f9e76; }
     .report-delta.flat { color: #857f77; }
+
+    @media (max-width: 1320px) {
+      .variance-filter {
+        margin-left: 0;
+      }
+    }
 
     @media (max-width: 1120px) {
       .bottom-report-grid {
@@ -18376,6 +18405,7 @@ for update using (true) with check (true);</pre>
         .slice()
         .sort((a, b) => Math.abs(Number(b.varianceSeconds) || 0) - Math.abs(Number(a.varianceSeconds) || 0))
         .slice(0, 6);
+      const varianceSampleCount = varianceSource.rows.length;
       const weekTrend = weekKeys.map(dateKey => ({
         dateKey,
         shortLabel: formatReportShortDate(dateKey),
@@ -18398,6 +18428,9 @@ for update using (true) with check (true);</pre>
           ? `${topVariance.parentTitle ? `${topVariance.parentTitle} · ` : ""}${topVariance.title}에서 예상보다 시간이 더 길게 걸렸습니다.`
           : `${topVariance.parentTitle ? `${topVariance.parentTitle} · ` : ""}${topVariance.title}는 예상보다 빠르게 마감됐습니다.`;
       }
+      const varianceMeta = varianceSampleCount >= 3
+        ? `${varianceSource.label} 완료 ${varianceSampleCount}개 기준`
+        : `${varianceSource.label} 완료 ${varianceSampleCount}개로 표본 적음`;
       return {
         report,
         todayKey,
@@ -18411,6 +18444,7 @@ for update using (true) with check (true);</pre>
         weekTrend,
         varianceRows,
         varianceLabel: varianceSource.label,
+        varianceMeta,
         insight,
         varianceInsight,
         totalOpen: AREA_ORDER.reduce((sum, area) => sum + (openByArea[area] || 0), 0)
@@ -18601,8 +18635,7 @@ for update using (true) with check (true);</pre>
             </div>
             <div class="variance-filter">
               <span class="variance-pill active">${escapeHtml(model.varianceLabel)}</span>
-              <span class="variance-pill">이번 주</span>
-              <span class="variance-pill">누적</span>
+              <span class="variance-filter-meta">${escapeHtml(model.varianceMeta)}</span>
             </div>
           </div>
           <div class="variance-table-wrap">${renderVarianceRows(model)}</div>
