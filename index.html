@@ -6592,6 +6592,330 @@
     }
   </style>
 
+
+
+  <style id="mobile-running-signal-matte-boost-patch">
+    /* Mobile focus: matte stronger running signal, readable with blurred vision. Layout/spacing unchanged. */
+    body.mobile-focus-mode .mobile-task.has-running-subtask {
+      border-color: rgba(18,18,18,0.98) !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(36,36,36,0.12) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.has-running-subtask.portfolio {
+      background: #fbf2f3 !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 7px 0 0 #c9787f,
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(201,120,127,0.28) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.has-running-subtask.beacon {
+      background: #f3f4fb !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 7px 0 0 #8a8fcf,
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(138,143,207,0.30) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.has-running-subtask.income {
+      background: #fbf6e9 !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 7px 0 0 #c7a15a,
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(199,161,90,0.30) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.has-running-subtask::after {
+      height: 24px !important;
+      top: 10px !important;
+      padding: 0 10px !important;
+      font-size: 10.5px !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.01em !important;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.22) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) {
+      border-width: 2.2px !important;
+      border-color: rgba(24,24,24,0.36) !important;
+      background: #f5f2ef !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.84),
+        0 8px 16px rgba(0,0,0,0.15),
+        0 0 0 4px rgba(36,36,36,0.09) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
+      top: 5px !important;
+      bottom: 5px !important;
+      width: 7px !important;
+      opacity: 1 !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) {
+      border-color: #c9787f !important;
+      background: #f4d9dc !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.78),
+        0 8px 16px rgba(0,0,0,0.15),
+        0 0 0 4px rgba(201,120,127,0.22) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) {
+      border-color: #8a8fcf !important;
+      background: #dcdef3 !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.78),
+        0 8px 16px rgba(0,0,0,0.15),
+        0 0 0 4px rgba(138,143,207,0.24) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
+      border-color: #c7a15a !important;
+      background: #f1e2bd !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.78),
+        0 8px 16px rgba(0,0,0,0.15),
+        0 0 0 4px rgba(199,161,90,0.24) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-subtask-title {
+      color: #111 !important;
+      font-weight: 950 !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
+      transform-origin: center !important;
+      border-color: rgba(255,255,255,0.28) !important;
+      box-shadow:
+        0 8px 17px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 0 0 3px rgba(24,24,24,0.10) !important;
+      animation: mobileMatteTimerBreath 1.15s ease-in-out infinite !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
+      background: #8f4149 !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
+      background: #545aa3 !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
+      background: #806838 !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      width: 8px !important;
+      height: 8px !important;
+      animation: mobileMatteLiveDot 0.95s ease-out infinite !important;
+    }
+
+    @keyframes mobileMatteTimerBreath {
+      0%, 100% { transform: translateZ(0) scale(1); }
+      50% { transform: translateZ(0) scale(1.055); }
+    }
+
+    @keyframes mobileMatteLiveDot {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.75); opacity: 1; }
+      70% { box-shadow: 0 0 0 9px rgba(255,255,255,0); opacity: 0.84; }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+      body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
+        animation: none !important;
+      }
+    }
+  </style>
+
+
+
+  <style id="mobile-single-task-running-and-pin-patch">
+    /* Mobile focus: apply the same matte running signal and top-right PIN to standalone tasks. */
+    body.mobile-focus-mode .mobile-task.mobile-single-task,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus {
+      padding-top: 10px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-main,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-main {
+      padding-right: 54px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions {
+      display: grid !important;
+      grid-template-columns: 50px minmax(76px, 1fr) !important;
+      align-items: center !important;
+      gap: 6px !important;
+      margin-top: 7px !important;
+      padding-left: 22px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-pin,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-pin {
+      position: absolute !important;
+      top: 9px !important;
+      right: 9px !important;
+      z-index: 4 !important;
+      width: 42px !important;
+      min-width: 42px !important;
+      height: 24px !important;
+      min-height: 24px !important;
+      padding: 0 6px !important;
+      font-size: 9.5px !important;
+      justify-self: auto !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-target,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-target {
+      grid-column: 1 !important;
+      width: 50px !important;
+      min-width: 50px !important;
+      justify-self: start !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-timer,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-timer {
+      grid-column: 2 !important;
+      width: 100% !important;
+      justify-self: stretch !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) {
+      border-color: rgba(18,18,18,0.98) !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(36,36,36,0.12) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused) {
+      background: #fbf2f3 !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 7px 0 0 #c9787f,
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(201,120,127,0.28) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused) {
+      background: #f3f4fb !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 7px 0 0 #8a8fcf,
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(138,143,207,0.30) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused) {
+      background: #fbf6e9 !important;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.17),
+        inset 7px 0 0 #c7a15a,
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        0 0 0 4px rgba(199,161,90,0.30) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused)::after,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused)::after {
+      content: "● 집중중" !important;
+      position: absolute !important;
+      right: 60px !important;
+      top: 10px !important;
+      z-index: 3 !important;
+      height: 24px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      padding: 0 10px !important;
+      border-radius: 999px !important;
+      background: #242424 !important;
+      color: #fff !important;
+      font-size: 10.5px !important;
+      font-weight: 900 !important;
+      line-height: 1 !important;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.22) !important;
+      pointer-events: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused)::after,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused)::after { background: #8f4149 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused)::after,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused)::after { background: #545aa3 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused)::after,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused)::after { background: #806838 !important; }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-task-title,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-task-title {
+      color: #111 !important;
+      font-weight: 950 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      transform-origin: center !important;
+      border-color: rgba(255,255,255,0.28) !important;
+      box-shadow:
+        0 8px 17px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 0 0 3px rgba(24,24,24,0.10) !important;
+      animation: mobileMatteTimerBreath 1.15s ease-in-out infinite !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #8f4149 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #545aa3 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #806838 !important; }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      animation: mobileMatteLiveDot 0.95s ease-out infinite !important;
+      flex: 0 0 auto !important;
+    }
+
+    @media (max-width: 380px) {
+      body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused)::after,
+      body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused)::after {
+        right: 56px !important;
+        padding: 0 8px !important;
+        font-size: 10px !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+      body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before,
+      body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+      body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
+        animation: none !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -12123,6 +12447,7 @@ for update using (true) with check (true);</pre>
       const hasSubtasks = (task.subtasks || []).length > 0;
       const remainingSubtasks = (task.subtasks || []).filter(subtask => !subtask.done);
       const hasRunningSubtask = remainingSubtasks.some(subtask => timerMatches(area, task.id, subtask.id) && !getSubjectTimerState(area, task, subtask).paused);
+      const hasRunningSingleTask = !hasSubtasks && isTaskTimerRunning && !isPaused;
       const remainingEstimateSeconds = hasSubtasks
         ? remainingSubtasks.reduce((sum, subtask) => sum + getSubtaskEstimatedSeconds(subtask), 0)
         : getTaskEstimatedSeconds(task);
@@ -12136,14 +12461,14 @@ for update using (true) with check (true);</pre>
         : `소요 ${escapeHtml(taskTotalText)} · 총 예상 ${escapeHtml(taskEstimatedText)}${fallback ? " · 핀 후보" : ""}`;
       const actionsHtml = hasSubtasks
         ? `<div class="mobile-task-actions mobile-parent-actions"><button class="mobile-pin ${task.pinned ? "active" : ""}" data-mobile-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">PIN</button></div>`
-        : `<div class="mobile-task-actions">
+        : `<div class="mobile-task-actions mobile-single-actions">
             <button class="mobile-pin ${task.pinned ? "active" : ""}" data-mobile-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">PIN</button>
             <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" title="${hasSubtaskTargets(task) ? "하위항목 시간 합계" : "목표 시간 수정"}">${escapeHtml(formatTaskTargetMinutes(task))}</button>
             ${parentTimerHtml}
           </div>`;
 
       return `
-        <article class="mobile-task ${escapeHtml(area)} ${hasSubtasks ? "mobile-parent-group" : ""} ${hasRunningSubtask ? "has-running-subtask" : ""} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
+        <article class="mobile-task ${escapeHtml(area)} ${hasSubtasks ? "mobile-parent-group" : "mobile-single-task"} ${hasRunningSubtask ? "has-running-subtask" : ""} ${hasRunningSingleTask ? "has-running-single" : ""} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
           <div class="mobile-task-main">
             <button class="mobile-check" data-mobile-action="toggleTask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">✓</button>
             <div>
@@ -12177,7 +12502,7 @@ for update using (true) with check (true);</pre>
               <div class="mobile-task-meta">소요 ${escapeHtml(subTotalText)} · 예상 ${escapeHtml(subEstimatedText)}${fallback ? " · 핀 후보" : ""}</div>
             </div>
           </div>
-          <div class="mobile-task-actions">
+          <div class="mobile-task-actions mobile-subtask-focus-actions">
             <button class="mobile-pin active" data-mobile-action="toggleSubtaskPin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">PIN</button>
             <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
             <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
