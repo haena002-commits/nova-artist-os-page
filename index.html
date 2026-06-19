@@ -7075,6 +7075,122 @@
     }
   </style>
 
+
+
+  <style id="pc-main-remaining-clear-fold-patch">
+    /* PC main board: show remaining estimate for parent tasks and keep today's clear summary at the top. */
+    .task-list {
+      grid-template-rows: auto minmax(0, 1fr) auto auto !important;
+    }
+
+    .task-remaining-estimate {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 4px;
+      border: 1px solid rgba(24,24,24,0.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.44);
+      color: #5f615f;
+      padding: 4px 8px;
+      font-size: 12.8px;
+      font-weight: 560;
+      line-height: 1.1;
+      white-space: nowrap;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.58);
+    }
+
+    .task-card.pinned .task-remaining-estimate {
+      border-color: rgba(24,24,24,0.14);
+      color: #393b39;
+      background: rgba(255,255,255,0.58);
+    }
+
+    .today-clear-fold {
+      position: relative;
+      z-index: 4;
+      margin: 0 4px 8px 0;
+      border: 1px solid rgba(24,24,24,0.10);
+      border-radius: 15px;
+      background: rgba(238,238,235,0.66);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.045), inset 0 1px 0 rgba(255,255,255,0.62);
+      overflow: hidden;
+    }
+
+    .today-clear-fold summary {
+      list-style: none;
+      cursor: pointer;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 10px 13px;
+      color: #373938;
+      font-size: 16px;
+      font-weight: 640;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      user-select: none;
+    }
+
+    .today-clear-fold summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .today-clear-fold summary::after {
+      content: "⌄";
+      margin-left: auto;
+      color: #6b6d69;
+      font-size: 13px;
+      font-weight: 780;
+      transform: translateY(-1px);
+      transition: transform 0.14s ease;
+    }
+
+    .today-clear-fold[open] summary::after {
+      transform: rotate(180deg) translateY(1px);
+    }
+
+    .today-clear-fold.empty-completed summary {
+      color: rgba(55,57,56,0.62);
+    }
+
+    .today-clear-fold-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      max-height: 132px;
+      overflow: auto;
+      padding: 0 10px 10px;
+      opacity: 0.86;
+    }
+
+    .today-clear-fold.empty-completed .today-clear-fold-list {
+      display: none;
+    }
+
+    .today-clear-fold .clear-row {
+      grid-template-columns: auto minmax(0, 1fr) auto auto;
+      background: rgba(248,248,245,0.66) !important;
+      border-color: rgba(0,0,0,0.07) !important;
+      box-shadow: none !important;
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .task-list {
+        grid-template-rows: auto auto auto auto !important;
+      }
+      body:not(.mobile-focus-mode) .today-clear-fold summary {
+        font-size: 14.5px !important;
+        min-height: 40px !important;
+      }
+      body:not(.mobile-focus-mode) .task-remaining-estimate {
+        white-space: normal !important;
+        font-size: 12.5px !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -8938,6 +9054,43 @@ for update using (true) with check (true);</pre>
       return summary;
     }
 
+    function getTodayCompletedFocusSeconds(area) {
+      return (state.tasks[area] || []).reduce((sum, task) => {
+        const subtasks = Array.isArray(task.subtasks) ? task.subtasks : [];
+        if (subtasks.length) {
+          const completedTodaySubtasks = subtasks.filter(subtask => subtask.done && isCompletedToday(subtask.completedAt));
+          if (!completedTodaySubtasks.length && !(task.done && isCompletedToday(task.completedAt))) return sum;
+          const subtaskSeconds = completedTodaySubtasks.reduce((subSum, subtask) => subSum + (Number(subtask.focusSeconds) || 0), 0);
+          return sum + subtaskSeconds + (Number(task.focusSeconds) || 0);
+        }
+        if (!task.done || !isCompletedToday(task.completedAt)) return sum;
+        return sum + (Number(task.focusSeconds) || 0);
+      }, 0);
+    }
+
+    function summarizeTodayClearFold(area) {
+      const entries = getClearEntries(area);
+      const units = getTodayAreaUnits(area);
+      const total = Math.max(entries.length, units.length);
+      const focusSeconds = getTodayCompletedFocusSeconds(area);
+      return { entries, done: entries.length, total, focusSeconds };
+    }
+
+    function formatFoldFocusDuration(seconds) {
+      const totalMinutes = Math.max(0, Math.round((Number(seconds) || 0) / 60));
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      return `${hours}h${String(minutes).padStart(2, "0")}m`;
+    }
+
+    function getTaskRemainingEstimatedSeconds(task) {
+      const subtasks = Array.isArray(task?.subtasks) ? task.subtasks : [];
+      if (!subtasks.length) return getTaskEstimatedSeconds(task);
+      return subtasks
+        .filter(subtask => !subtask.done)
+        .reduce((sum, subtask) => sum + getSubtaskEstimatedSeconds(subtask), 0);
+    }
+
     function renderTodayLoadPanel() {
       const panel = document.getElementById("todayLoadPanel");
       if (!panel) return;
@@ -9951,6 +10104,12 @@ for update using (true) with check (true);</pre>
         titleLine.appendChild(title);
 
         content.appendChild(titleLine);
+        if (!task.done && totalSubtasks > 0) {
+          const remainingEstimate = document.createElement("div");
+          remainingEstimate.className = "task-remaining-estimate";
+          remainingEstimate.textContent = `남은 예상 시간 ${formatEstimatedDuration(getTaskRemainingEstimatedSeconds(task))}`;
+          content.appendChild(remainingEstimate);
+        }
         content.appendChild(meta);
 
         let leftActionRow = null;
@@ -10398,27 +10557,26 @@ for update using (true) with check (true);</pre>
         activeTasks.forEach(task => activeList.appendChild(createTaskCard(task)));
       }
 
-      list.appendChild(activeList);
-
-      const clearEntries = getClearEntries(area);
-      const clearSummary = summarizeClearEntries(clearEntries);
+      const clearFold = summarizeTodayClearFold(area);
       const clearSection = document.createElement("details");
-      clearSection.className = `completed-section clear-stack ${clearEntries.length ? "" : "empty-completed"}`;
+      clearSection.className = `today-clear-fold ${clearFold.entries.length ? "" : "empty-completed"}`;
       const clearSummaryEl = document.createElement("summary");
-      clearSummaryEl.innerHTML = `<span class="clear-summary-main"><span class="clear-summary-title">CLEARED TODAY · ${clearSummary.total} · ${formatLoadDuration(clearSummary.seconds)}</span><span class="clear-summary-sub">Portfolio ${clearSummary.portfolio} · Beacon ${clearSummary.beacon} · Income ${clearSummary.income}</span></span><span class="clear-summary-chips"><span class="clear-chip">Portfolio Clear ${clearSummary.portfolio}</span><span class="clear-chip">Portfolio Time ${formatLoadDuration(clearSummary.portfolioSeconds)}</span><span class="clear-chip">Core +${clearSummary.portfolioProgress}%</span></span>`;
+      clearSummaryEl.textContent = `오늘 완료한 할 일 ${clearFold.done}/${clearFold.total}개 · 총 ${formatFoldFocusDuration(clearFold.focusSeconds)} 집중`;
       clearSection.appendChild(clearSummaryEl);
       const clearList = document.createElement("div");
-      clearList.className = "completed-list";
-      clearEntries.forEach(entry => {
+      clearList.className = "today-clear-fold-list";
+      clearFold.entries.forEach(entry => {
         const row = document.createElement("div");
         row.className = `clear-row ${entry.area}`;
-        const seconds = Number(entry.actualSeconds) > 0 ? Number(entry.actualSeconds) : Number(entry.estimateSeconds) || 0;
+        const seconds = Number(entry.actualSeconds) || 0;
         const typeLabel = entry.area === "portfolio" ? "Portfolio" : entry.area === "beacon" ? "Beacon" : "Etsy";
-        row.innerHTML = `<span>&#10003;</span><span class="clear-row-title" title="${escapeHtml(entry.parentTitle ? entry.parentTitle + " / " + entry.title : entry.title)}">${escapeHtml(entry.title)}</span><span class="clear-row-type ${entry.area}">${escapeHtml(typeLabel)}</span><span class="clear-row-time">${escapeHtml(formatLoadDuration(seconds))}</span>`;
+        row.innerHTML = `<span>&#10003;</span><span class="clear-row-title" title="${escapeHtml(entry.parentTitle ? entry.parentTitle + " / " + entry.title : entry.title)}">${escapeHtml(entry.title)}</span><span class="clear-row-type ${entry.area}">${escapeHtml(typeLabel)}</span><span class="clear-row-time">${escapeHtml(formatFoldFocusDuration(seconds))}</span>`;
         clearList.appendChild(row);
       });
       clearSection.appendChild(clearList);
       list.appendChild(clearSection);
+
+      list.appendChild(activeList);
 
       if (completedTasks.length > 0) {
         const completedSection = document.createElement("details");
