@@ -9360,6 +9360,103 @@
     }
   </style>
 
+
+
+  <style id="report-variance-time-full-width-patch">
+    /* NOVA bottom report: keep duration / variance values fully visible; let task titles wrap instead. */
+    #focusReportDashboard .variance-table {
+      table-layout: auto !important;
+      width: 100% !important;
+      border-collapse: collapse !important;
+    }
+
+    #focusReportDashboard .variance-table th,
+    #focusReportDashboard .variance-table td {
+      overflow: visible !important;
+      text-overflow: clip !important;
+      vertical-align: top !important;
+    }
+
+    #focusReportDashboard .variance-table th:first-child,
+    #focusReportDashboard .variance-table td:first-child {
+      width: auto !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .variance-table th:nth-child(2),
+    #focusReportDashboard .variance-table td:nth-child(2),
+    #focusReportDashboard .variance-table th:nth-child(3),
+    #focusReportDashboard .variance-table td:nth-child(3) {
+      width: 70px !important;
+      min-width: 70px !important;
+      max-width: 70px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    #focusReportDashboard .variance-table th:nth-child(4),
+    #focusReportDashboard .variance-table td:nth-child(4) {
+      width: 84px !important;
+      min-width: 84px !important;
+      max-width: 84px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    #focusReportDashboard .variance-num {
+      display: table-cell !important;
+      white-space: nowrap !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+      font-size: 12px !important;
+      line-height: 1.35 !important;
+      text-align: left !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    #focusReportDashboard .variance-task-cell {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow: visible !important;
+    }
+
+    #focusReportDashboard .variance-task-text,
+    #focusReportDashboard .variance-task-title,
+    #focusReportDashboard .variance-task-parent {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      white-space: normal !important;
+      overflow-wrap: anywhere !important;
+      word-break: keep-all !important;
+    }
+
+    #focusReportDashboard .variance-table-wrap {
+      overflow: hidden !important;
+    }
+
+    @media (max-width: 1320px) {
+      #focusReportDashboard .variance-table th:nth-child(2),
+      #focusReportDashboard .variance-table td:nth-child(2),
+      #focusReportDashboard .variance-table th:nth-child(3),
+      #focusReportDashboard .variance-table td:nth-child(3) {
+        width: 72px !important;
+        min-width: 72px !important;
+        max-width: 72px !important;
+      }
+
+      #focusReportDashboard .variance-table th:nth-child(4),
+      #focusReportDashboard .variance-table td:nth-child(4) {
+        width: 88px !important;
+        min-width: 88px !important;
+        max-width: 88px !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -19518,10 +19615,10 @@ for update using (true) with check (true);</pre>
         <table class="variance-table">
           <thead>
             <tr>
-              <th style="width:52%;">할일</th>
-              <th style="width:16%;">예상</th>
-              <th style="width:16%;">실제</th>
-              <th style="width:16%;">오차</th>
+              <th style="width:42%;">할일</th>
+              <th style="width:18%;">예상</th>
+              <th style="width:18%;">실제</th>
+              <th style="width:22%;">오차</th>
             </tr>
           </thead>
           <tbody>
