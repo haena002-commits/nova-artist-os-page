@@ -1550,6 +1550,409 @@
       letter-spacing: -0.02em;
     }
 
+    .bottom-report-grid {
+      grid-template-columns: 1.08fr 0.98fr 0.94fr;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .bottom-report-shell {
+      display: contents;
+    }
+
+    .report-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 320px;
+    }
+
+    .report-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .report-card-head h3 {
+      margin-bottom: 5px;
+    }
+
+    .report-card-head .note {
+      margin: 0;
+      max-width: 340px;
+    }
+
+    .report-kpi {
+      flex: 0 0 auto;
+      min-width: 74px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.76);
+      background: rgba(255,255,255,0.44);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.52);
+      text-align: right;
+    }
+
+    .report-kpi strong {
+      display: block;
+      color: #242424;
+      font-size: 24px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+    }
+
+    .report-kpi span {
+      display: block;
+      margin-top: 3px;
+      color: #777068;
+      font-size: 11px;
+      font-weight: 780;
+      white-space: nowrap;
+    }
+
+    .report-trend-wrap {
+      padding: 10px 12px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.8);
+      background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(244,239,232,0.72));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.58);
+    }
+
+    .report-trend-svg {
+      display: block;
+      width: 100%;
+      height: 156px;
+    }
+
+    .report-trend-labels {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .report-trend-label {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .report-trend-label strong {
+      display: block;
+      color: #3b3631;
+      font-size: 12px;
+      font-weight: 860;
+      letter-spacing: -0.02em;
+    }
+
+    .report-trend-label span {
+      display: block;
+      margin-top: 3px;
+      color: #8a847c;
+      font-size: 10px;
+      font-weight: 720;
+    }
+
+    .report-area-bars,
+    .report-open-bars,
+    .report-compare-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .report-area-row,
+    .report-open-row,
+    .report-compare-row {
+      display: grid;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .report-area-row {
+      grid-template-columns: 78px minmax(0, 1fr) auto;
+    }
+
+    .report-open-row {
+      grid-template-columns: 70px minmax(0, 1fr) auto;
+    }
+
+    .report-compare-row {
+      grid-template-columns: 72px minmax(0, 1fr) auto;
+    }
+
+    .report-area-name,
+    .report-open-name,
+    .report-compare-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+      color: #494540;
+      font-size: 12px;
+      font-weight: 860;
+    }
+
+    .report-area-dot,
+    .variance-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      flex: 0 0 8px;
+    }
+
+    .report-bar-track,
+    .report-open-track,
+    .report-compare-track {
+      position: relative;
+      overflow: hidden;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.56);
+      box-shadow: inset 0 1px 2px rgba(108,100,91,0.10);
+    }
+
+    .report-bar-fill,
+    .report-open-fill,
+    .report-compare-prev,
+    .report-compare-current {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: inherit;
+    }
+
+    .report-bar-fill.portfolio,
+    .report-open-fill.portfolio,
+    .report-compare-current.portfolio { background: linear-gradient(90deg, rgba(201,120,127,0.56), rgba(201,120,127,0.88)); }
+    .report-bar-fill.beacon,
+    .report-open-fill.beacon,
+    .report-compare-current.beacon { background: linear-gradient(90deg, rgba(138,143,207,0.54), rgba(138,143,207,0.88)); }
+    .report-bar-fill.income,
+    .report-open-fill.income,
+    .report-compare-current.income { background: linear-gradient(90deg, rgba(199,161,90,0.54), rgba(199,161,90,0.86)); }
+
+    .report-compare-prev {
+      background: rgba(114,109,103,0.18);
+      border: 1px solid rgba(114,109,103,0.12);
+    }
+
+    .report-area-meta,
+    .report-open-meta,
+    .report-compare-meta {
+      text-align: right;
+      white-space: nowrap;
+      color: #59544e;
+      font-size: 12px;
+      font-weight: 860;
+    }
+
+    .report-area-meta span,
+    .report-compare-meta span {
+      color: #8b857d;
+      font-size: 10px;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    .report-footer-note,
+    .variance-footer {
+      margin-top: auto;
+      padding: 11px 13px;
+      border-radius: 16px;
+      background: rgba(240,245,252,0.72);
+      color: #66707e;
+      font-size: 12px;
+      font-weight: 720;
+      line-height: 1.45;
+    }
+
+    .report-mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .report-mini-stat {
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.44);
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.54);
+    }
+
+    .report-mini-stat .label {
+      color: #8a847c;
+      font-size: 10px;
+      font-weight: 780;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .report-mini-stat .value {
+      margin-top: 4px;
+      color: #262626;
+      font-size: 20px;
+      font-weight: 930;
+      letter-spacing: -0.04em;
+    }
+
+    .report-mini-stat .sub {
+      margin-top: 3px;
+      color: #7d776f;
+      font-size: 11px;
+      font-weight: 720;
+    }
+
+    .variance-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .variance-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.76);
+    }
+
+    .variance-pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #807970;
+      font-size: 11px;
+      font-weight: 820;
+      line-height: 1;
+    }
+
+    .variance-pill.active {
+      background: rgba(255,255,255,0.88);
+      color: #35312d;
+      box-shadow: 0 2px 7px rgba(72,68,60,0.07);
+    }
+
+    .variance-table-wrap {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.78);
+      background: rgba(255,251,245,0.74);
+      overflow: hidden;
+    }
+
+    .variance-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .variance-table thead th {
+      padding: 12px 12px 10px;
+      color: #8d867e;
+      font-size: 11px;
+      font-weight: 820;
+      text-align: left;
+      border-bottom: 1px solid rgba(229,217,202,0.72);
+    }
+
+    .variance-table tbody td {
+      padding: 11px 12px;
+      border-bottom: 1px solid rgba(229,217,202,0.54);
+      color: #36322f;
+      font-size: 12px;
+      font-weight: 760;
+      vertical-align: middle;
+    }
+
+    .variance-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .variance-task-cell {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .variance-task-text {
+      min-width: 0;
+    }
+
+    .variance-task-title,
+    .variance-task-parent {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .variance-task-title {
+      color: #34312d;
+      font-weight: 840;
+    }
+
+    .variance-task-parent {
+      margin-top: 2px;
+      color: #8b847b;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .variance-num {
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .variance-num.delta.plus { color: #d96d49; }
+    .variance-num.delta.minus { color: #4f9e76; }
+    .variance-num.delta.zero { color: #807970; }
+
+    .variance-empty {
+      padding: 22px 16px;
+      color: #857f77;
+      font-size: 12px;
+      font-weight: 720;
+      text-align: center;
+    }
+
+    .report-section-title {
+      margin: 0 0 8px;
+      color: #4a4641;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .report-weekly-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      color: #7e786f;
+      font-size: 11px;
+      font-weight: 760;
+    }
+
+    .report-delta.up { color: #cf6c4f; }
+    .report-delta.down { color: #4f9e76; }
+    .report-delta.flat { color: #857f77; }
+
+    @media (max-width: 1120px) {
+      .bottom-report-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .report-card {
+        min-height: 0;
+      }
+    }
+
     .season-inputs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -8077,56 +8480,8 @@
       </article>
     </section>
 
-    <section class="bottom-grid">
-      <div class="log-card">
-        <h3>SUMMER ARC · 전체 진척 HUD</h3>
-        <p class="note">여기는 당일 성공률과 별개로 전체 시즌 감각을 잃지 않기 위한 보조 지표입니다. 숫자는 직접 수정할 수 있습니다.</p>
-
-        <div class="season-inputs" style="margin-top: 14px;">
-          <div class="field"><label>Portfolio Total</label><input type="number" min="0" max="100" id="seasonPortfolio" /></div>
-          <div class="field"><label>Beacon Total</label><input type="number" min="0" max="100" id="seasonBeacon" /></div>
-          <div class="field"><label>Etsy Total</label><input type="number" min="0" max="100" id="seasonIncome" /></div>
-          <div class="mini-stat"><div class="name">Weighted Total</div><div class="value" id="seasonTotal">0%</div></div>
-        </div>
-
-        <details class="weekly-history">
-          <summary>Weekly Run History <span id="weeklyHistoryCount">0</span></summary>
-          <div class="weekly-history-list" id="weeklyHistoryList"></div>
-        </details>
-      </div>
-
-      <div class="log-card">
-        <div class="time-log-head">
-          <h3 style="margin:0;">Time Investment Log</h3>
-          <span class="eyebrow" id="timeLogTotal">0m</span>
-        </div>
-        <p class="note">Portfolio / Beacon 개인작 / 상품화에 실제 투입한 시간을 날짜별로 확인합니다.</p>
-        <div class="time-date-row">
-          <button class="ghost-btn" onclick="shiftTimeLogDate(-1)">◀</button>
-          <input type="date" id="timeLogDate" />
-          <button class="ghost-btn" onclick="shiftTimeLogDate(1)">▶</button>
-        </div>
-        <div class="time-summary-grid">
-          <div class="time-chip"><div class="label">Portfolio</div><div class="time" id="timePortfolio">0m</div></div>
-          <div class="time-chip"><div class="label">Beacon</div><div class="time" id="timeBeacon">0m</div></div>
-          <div class="time-chip"><div class="label">상품화</div><div class="time" id="timeIncome">0m</div></div>
-        </div>
-        <div class="session-list" id="sessionList"></div>
-      </div>
-
-      <div class="log-card">
-        <h3>Daily Operating Rule</h3>
-        <p class="note">
-          1. Portfolio는 수업 전까지 남은 시간 기준 오늘치 분량을 끝내면 100%입니다.<br>
-          2. Beacon은 어떤 항목이든 오늘 1개 수행하면 당일 100%입니다.<br>
-          3. Etsy도 상품 제작, 상점 개선, 브랜드 이미지 정리, 업로드 중 오늘 1개 수행하면 당일 100%입니다.
-        </p>
-
-        <div class="reset-row">
-          <button class="ghost-btn" onclick="startNewWeek()">새 주 시작</button>
-          <button class="ghost-btn danger" onclick="resetAll()">전체 초기화</button>
-        </div>
-      </div>
+    <section class="bottom-grid bottom-report-grid">
+      <div id="focusReportDashboard" class="bottom-report-shell"></div>
     </section>
   </main>
 
@@ -11407,9 +11762,12 @@ for update using (true) with check (true);</pre>
         const input = document.getElementById(inputId);
         if (input && document.activeElement !== input) input.value = phraseNotes[noteKey] || "";
       });
-      document.getElementById("seasonPortfolio").value = state.seasonPortfolio;
-      document.getElementById("seasonBeacon").value = state.seasonBeacon;
-      document.getElementById("seasonIncome").value = state.seasonIncome;
+      const seasonPortfolioInput = document.getElementById("seasonPortfolio");
+      const seasonBeaconInput = document.getElementById("seasonBeacon");
+      const seasonIncomeInput = document.getElementById("seasonIncome");
+      if (seasonPortfolioInput) seasonPortfolioInput.value = state.seasonPortfolio;
+      if (seasonBeaconInput) seasonBeaconInput.value = state.seasonBeacon;
+      if (seasonIncomeInput) seasonIncomeInput.value = state.seasonIncome;
 
       AREA_ORDER.forEach(area => {
         const progress = getTodayAreaProgress(area);
@@ -11441,12 +11799,14 @@ for update using (true) with check (true);</pre>
       document.getElementById("weeklyScore").textContent = `${weeklyScore}%`;
       const weeklyFill = document.getElementById("weeklyFill");
       if (weeklyFill) weeklyFill.style.width = `${weeklyScore}%`;
-      document.getElementById("seasonTotal").textContent = `${getSeasonTotal()}%`;
+      const seasonTotalEl = document.getElementById("seasonTotal");
+      if (seasonTotalEl) seasonTotalEl.textContent = `${getSeasonTotal()}%`;
 
       updateDeadlineStatus();
       renderTimeLog();
       renderTopTimeLog();
       renderWeeklyHistory();
+      renderFocusReportDashboard();
       renderSyncStatus();
       if (mobileFocusMode) renderMobileFocus();
       renderFocusWindowPopup();
@@ -11510,7 +11870,9 @@ for update using (true) with check (true);</pre>
       }
 
       ["seasonPortfolio", "seasonBeacon", "seasonIncome"].forEach(id => {
-        document.getElementById(id).addEventListener("input", event => {
+        const input = document.getElementById(id);
+        if (!input) return;
+        input.addEventListener("input", event => {
           state[id] = clampPercent(event.target.value);
           saveState();
           render();
@@ -17922,6 +18284,355 @@ for update using (true) with check (true);</pre>
         weeklyScoreHistory: clone(targetState.weeklyScoreHistory || []),
         activeTimer
       };
+    }
+
+    function formatReportShortDate(dateKey) {
+      if (!dateKey || !/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) return dateKey || "";
+      return dateKey.slice(5).replace("-", "/");
+    }
+
+    function formatReportHours(seconds) {
+      const safe = Math.max(0, Number(seconds) || 0);
+      if (!safe) return "0h";
+      const hours = safe / 3600;
+      return `${hours >= 10 ? hours.toFixed(1) : hours.toFixed(1)}h`;
+    }
+
+    function formatVarianceDelta(seconds) {
+      const safe = Number(seconds) || 0;
+      if (!safe) return "0m";
+      return `${safe > 0 ? "+" : "-"}${formatDuration(Math.abs(safe))}`;
+    }
+
+    function sumReportDailyArea(report, dateKeys, area, field) {
+      return dateKeys.reduce((sum, dateKey) => sum + (Number(report?.daily?.[dateKey]?.byArea?.[area]?.[field]) || 0), 0);
+    }
+
+    function sumReportDailyTotal(report, dateKeys, field) {
+      return dateKeys.reduce((sum, dateKey) => sum + (Number(report?.daily?.[dateKey]?.totals?.[field]) || 0), 0);
+    }
+
+    function getReportDateRange(endKey, days) {
+      const end = new Date(`${endKey}T00:00:00`);
+      return Array.from({ length: days }, (_, index) => getTodayKey(addDays(end, index - days + 1)));
+    }
+
+    function getAreaDotStyle(area) {
+      return area === "portfolio"
+        ? "background:var(--portfolio);"
+        : area === "beacon"
+          ? "background:var(--beacon);"
+          : "background:var(--income);";
+    }
+
+    function getAreaShare(total, value) {
+      if (!total) return 0;
+      return Math.round((value / total) * 100);
+    }
+
+    function getVarianceRows(report, weekKeys) {
+      const todayRows = Array.isArray(report?.today?.completed) ? report.today.completed : [];
+      if (todayRows.length) {
+        return { label: "오늘", rows: todayRows };
+      }
+      const weeklyRows = weekKeys
+        .flatMap(dateKey => Array.isArray(report?.daily?.[dateKey]?.completed) ? report.daily[dateKey].completed : [])
+        .sort((a, b) => Math.abs(Number(b.varianceSeconds) || 0) - Math.abs(Number(a.varianceSeconds) || 0));
+      return { label: "이번 주", rows: weeklyRows };
+    }
+
+    function buildFocusReportModel() {
+      const report = createNovaReportPayload({ recentDays: 21 });
+      const todayKey = report.generatedDate || getTodayKey();
+      const weekKeys = getReportDateRange(todayKey, 7);
+      const prevWeekKeys = getReportDateRange(getTodayKey(addDays(new Date(`${todayKey}T00:00:00`), -7)), 7);
+      const weekTotal = sumReportDailyTotal(report, weekKeys, "loggedSeconds");
+      const prevWeekTotal = sumReportDailyTotal(report, prevWeekKeys, "loggedSeconds");
+      const weekCompleted = sumReportDailyTotal(report, weekKeys, "completedCount");
+      const todayTotal = Number(report?.today?.totals?.loggedSeconds) || 0;
+      const openByArea = AREA_ORDER.reduce((acc, area) => {
+        acc[area] = Array.isArray(report?.openWork) ? report.openWork.filter(item => item.area === area && !item.later).length : 0;
+        return acc;
+      }, {});
+      const weekByArea = AREA_ORDER.reduce((acc, area) => {
+        const loggedSeconds = sumReportDailyArea(report, weekKeys, area, "loggedSeconds");
+        const prevLoggedSeconds = sumReportDailyArea(report, prevWeekKeys, area, "loggedSeconds");
+        const completedCount = sumReportDailyArea(report, weekKeys, area, "completedCount");
+        const varianceSeconds = sumReportDailyArea(report, weekKeys, area, "varianceSeconds");
+        acc[area] = {
+          area,
+          label: AREA_LABELS[area] || area,
+          loggedSeconds,
+          prevLoggedSeconds,
+          completedCount,
+          varianceSeconds,
+          openCount: openByArea[area] || 0,
+          share: getAreaShare(weekTotal, loggedSeconds)
+        };
+        return acc;
+      }, {});
+      const varianceSource = getVarianceRows(report, weekKeys);
+      const varianceRows = varianceSource.rows
+        .slice()
+        .sort((a, b) => Math.abs(Number(b.varianceSeconds) || 0) - Math.abs(Number(a.varianceSeconds) || 0))
+        .slice(0, 6);
+      const weekTrend = weekKeys.map(dateKey => ({
+        dateKey,
+        shortLabel: formatReportShortDate(dateKey),
+        seconds: Number(report?.daily?.[dateKey]?.totals?.loggedSeconds) || 0,
+        completedCount: Number(report?.daily?.[dateKey]?.totals?.completedCount) || 0
+      }));
+      const portfolioShare = weekByArea.portfolio?.share || 0;
+      let insight = "포트폴리오 중심 흐름은 유지하되, 다른 축이 완전히 비지 않는지만 확인하면 됩니다.";
+      if ((weekByArea.beacon?.loggedSeconds || 0) === 0) {
+        insight = "포트폴리오 집중 자체는 문제없습니다. 다만 Beacon 바닥 루틴이 이번 주에는 비어 있습니다.";
+      } else if ((weekByArea.income?.loggedSeconds || 0) === 0) {
+        insight = "포트폴리오 중심 흐름은 안정적입니다. Etsy는 최소 유지 액션만 끊기지 않게 보강하면 됩니다.";
+      } else if (portfolioShare >= 60) {
+        insight = "이번 주는 포트폴리오 비중이 높습니다. 의도된 집중 흐름으로 보이며, Beacon과 Etsy는 끊김만 방지하면 됩니다.";
+      }
+      const topVariance = varianceRows[0] || null;
+      let varianceInsight = "완료된 할일이 아직 적어 오차 패턴이 충분히 모이지 않았습니다.";
+      if (topVariance) {
+        varianceInsight = (Number(topVariance.varianceSeconds) || 0) > 0
+          ? `${topVariance.parentTitle ? `${topVariance.parentTitle} · ` : ""}${topVariance.title}에서 예상보다 시간이 더 길게 걸렸습니다.`
+          : `${topVariance.parentTitle ? `${topVariance.parentTitle} · ` : ""}${topVariance.title}는 예상보다 빠르게 마감됐습니다.`;
+      }
+      return {
+        report,
+        todayKey,
+        weekKeys,
+        prevWeekKeys,
+        weekTotal,
+        prevWeekTotal,
+        todayTotal,
+        weekCompleted,
+        weekByArea,
+        weekTrend,
+        varianceRows,
+        varianceLabel: varianceSource.label,
+        insight,
+        varianceInsight,
+        totalOpen: AREA_ORDER.reduce((sum, area) => sum + (openByArea[area] || 0), 0)
+      };
+    }
+
+    function renderReportTrendSvg(series) {
+      const width = 360;
+      const height = 156;
+      const padX = 18;
+      const padY = 18;
+      const values = series.map(item => Number(item.seconds) || 0);
+      const max = Math.max(...values, 1);
+      const innerWidth = width - padX * 2;
+      const innerHeight = height - padY * 2;
+      const step = series.length > 1 ? innerWidth / (series.length - 1) : 0;
+      const points = series.map((item, index) => {
+        const value = Number(item.seconds) || 0;
+        const x = padX + step * index;
+        const y = padY + innerHeight - ((value / max) * innerHeight);
+        return { ...item, value, x, y };
+      });
+      const polyline = points.map(point => `${point.x},${point.y}`).join(" ");
+      const areaPath = points.length
+        ? `M ${points[0].x} ${height - padY} L ${points.map(point => `${point.x} ${point.y}`).join(" L ")} L ${points[points.length - 1].x} ${height - padY} Z`
+        : "";
+      const grid = [0.25, 0.5, 0.75].map(level => {
+        const y = padY + innerHeight - innerHeight * level;
+        return `<line x1="${padX}" y1="${y}" x2="${width - padX}" y2="${y}" stroke="rgba(142,133,123,0.16)" stroke-width="1" />`;
+      }).join("");
+      const dots = points.map(point => `
+        <circle cx="${point.x}" cy="${point.y}" r="4.5" fill="#fffaf4" stroke="var(--portfolio)" stroke-width="2.2"></circle>
+        <text x="${point.x}" y="${Math.max(13, point.y - 11)}" text-anchor="middle" fill="#7e7268" font-size="10.5" font-weight="760">${escapeHtml(formatReportHours(point.value))}</text>
+      `).join("");
+      const labels = series.map(item => `
+        <div class="report-trend-label">
+          <strong>${escapeHtml(formatReportHours(item.seconds))}</strong>
+          <span>${escapeHtml(item.shortLabel)}</span>
+        </div>
+      `).join("");
+      return `
+        <svg class="report-trend-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="최근 7일 집중 추이">
+          ${grid}
+          <path d="${areaPath}" fill="rgba(201,120,127,0.12)"></path>
+          <polyline points="${polyline}" fill="none" stroke="var(--portfolio)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          ${dots}
+        </svg>
+        <div class="report-trend-labels">${labels}</div>
+      `;
+    }
+
+    function renderReportAreaRows(model) {
+      const max = Math.max(...AREA_ORDER.map(area => model.weekByArea[area]?.loggedSeconds || 0), 1);
+      return AREA_ORDER.map(area => {
+        const item = model.weekByArea[area];
+        const width = Math.max(4, Math.round((item.loggedSeconds / max) * 100));
+        return `
+          <div class="report-area-row">
+            <div class="report-area-name"><span class="report-area-dot" style="${getAreaDotStyle(area)}"></span>${escapeHtml(item.label)}</div>
+            <div class="report-bar-track"><span class="report-bar-fill ${attrValue(area)}" style="width:${width}%"></span></div>
+            <div class="report-area-meta">${escapeHtml(formatDuration(item.loggedSeconds))}<span>${escapeHtml(String(item.share))}%</span></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderVarianceRows(model) {
+      if (!model.varianceRows.length) {
+        return `<div class="variance-empty">완료된 할일이 아직 없어 예상 오차 분석을 표시할 수 없습니다.</div>`;
+      }
+      return `
+        <table class="variance-table">
+          <thead>
+            <tr>
+              <th style="width:52%;">할일</th>
+              <th style="width:16%;">예상</th>
+              <th style="width:16%;">실제</th>
+              <th style="width:16%;">오차</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${model.varianceRows.map(row => {
+              const delta = Number(row.varianceSeconds) || 0;
+              const deltaClass = delta > 0 ? "plus" : delta < 0 ? "minus" : "zero";
+              const taskTitle = row.type === "subtask" && row.parentTitle ? `${row.parentTitle} - ${row.title}` : row.title;
+              return `
+                <tr>
+                  <td>
+                    <div class="variance-task-cell">
+                      <span class="variance-dot" style="${getAreaDotStyle(row.area)}"></span>
+                      <div class="variance-task-text">
+                        <span class="variance-task-title">${escapeHtml(taskTitle)}</span>
+                        <span class="variance-task-parent">${escapeHtml(AREA_LABELS[row.area] || row.area)}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="variance-num">${escapeHtml(formatDuration(row.estimatedSeconds))}</td>
+                  <td class="variance-num">${escapeHtml(formatDuration(row.actualSecondsTotal))}</td>
+                  <td class="variance-num delta ${deltaClass}">${escapeHtml(formatVarianceDelta(delta))}</td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderWeeklyCompareRows(model) {
+      const max = Math.max(...AREA_ORDER.flatMap(area => [model.weekByArea[area]?.loggedSeconds || 0, model.weekByArea[area]?.prevLoggedSeconds || 0]), 1);
+      return AREA_ORDER.map(area => {
+        const item = model.weekByArea[area];
+        const currentWidth = Math.max(item.loggedSeconds ? 6 : 0, Math.round((item.loggedSeconds / max) * 100));
+        const prevWidth = Math.max(item.prevLoggedSeconds ? 6 : 0, Math.round((item.prevLoggedSeconds / max) * 100));
+        const delta = item.loggedSeconds - item.prevLoggedSeconds;
+        const deltaClass = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
+        return `
+          <div class="report-compare-row">
+            <div class="report-compare-name"><span class="report-area-dot" style="${getAreaDotStyle(area)}"></span>${escapeHtml(item.label)}</div>
+            <div class="report-compare-track">
+              <span class="report-compare-prev" style="width:${prevWidth}%"></span>
+              <span class="report-compare-current ${attrValue(area)}" style="width:${currentWidth}%"></span>
+            </div>
+            <div class="report-compare-meta">${escapeHtml(formatDuration(item.loggedSeconds))}<span class="report-delta ${deltaClass}">${delta === 0 ? "±0" : `${delta > 0 ? "+" : "-"}${escapeHtml(formatDuration(Math.abs(delta)))}`}</span></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderOpenWorkRows(model) {
+      const max = Math.max(...AREA_ORDER.map(area => model.weekByArea[area]?.openCount || 0), 1);
+      return AREA_ORDER.map(area => {
+        const item = model.weekByArea[area];
+        const width = Math.max(item.openCount ? 8 : 0, Math.round((item.openCount / max) * 100));
+        return `
+          <div class="report-open-row">
+            <div class="report-open-name"><span class="report-area-dot" style="${getAreaDotStyle(area)}"></span>${escapeHtml(item.label)}</div>
+            <div class="report-open-track"><span class="report-open-fill ${attrValue(area)}" style="width:${width}%"></span></div>
+            <div class="report-open-meta">${escapeHtml(String(item.openCount))}개</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderFocusReportDashboard() {
+      const root = document.getElementById("focusReportDashboard");
+      if (!root) return;
+      const model = buildFocusReportModel();
+      const weeklyDelta = model.weekTotal - model.prevWeekTotal;
+      const deltaClass = weeklyDelta > 0 ? "up" : weeklyDelta < 0 ? "down" : "flat";
+      root.innerHTML = `
+        <div class="log-card report-card report-card-overview">
+          <div class="report-card-head">
+            <div>
+              <h3>운영 진단</h3>
+              <p class="note">포트폴리오 중심 흐름은 유지하되, 최근 7일 집중 추이와 프로젝트별 체감 비중을 함께 봅니다.</p>
+            </div>
+            <div class="report-kpi">
+              <strong>${escapeHtml(formatReportHours(model.weekTotal))}</strong>
+              <span>이번 주 집중</span>
+            </div>
+          </div>
+          <div class="report-trend-wrap">${renderReportTrendSvg(model.weekTrend)}</div>
+          <div class="report-mini-stats">
+            <div class="report-mini-stat">
+              <div class="label">Today</div>
+              <div class="value">${escapeHtml(formatReportHours(model.todayTotal))}</div>
+              <div class="sub">오늘 누적 집중</div>
+            </div>
+            <div class="report-mini-stat">
+              <div class="label">Week Delta</div>
+              <div class="value">${weeklyDelta === 0 ? "0h" : escapeHtml(formatReportHours(Math.abs(weeklyDelta)))}</div>
+              <div class="sub report-delta ${deltaClass}">${weeklyDelta === 0 ? "전주와 동일" : weeklyDelta > 0 ? "전주 대비 증가" : "전주 대비 감소"}</div>
+            </div>
+            <div class="report-mini-stat">
+              <div class="label">Completed</div>
+              <div class="value">${escapeHtml(String(model.weekCompleted))}</div>
+              <div class="sub">이번 주 완료 수</div>
+            </div>
+          </div>
+          <div class="report-area-bars">${renderReportAreaRows(model)}</div>
+          <div class="report-footer-note">${escapeHtml(model.insight)}</div>
+        </div>
+        <div class="log-card report-card report-card-variance">
+          <div class="variance-card-head">
+            <div>
+              <h3>예상 오차 분석</h3>
+              <p class="note">무엇이 예상보다 지체됐는지, 무엇이 생각보다 빨리 끝났는지만 한 번에 보이게 정리했습니다.</p>
+            </div>
+            <div class="variance-filter">
+              <span class="variance-pill active">${escapeHtml(model.varianceLabel)}</span>
+              <span class="variance-pill">이번 주</span>
+              <span class="variance-pill">누적</span>
+            </div>
+          </div>
+          <div class="variance-table-wrap">${renderVarianceRows(model)}</div>
+          <div class="variance-footer">${escapeHtml(model.varianceInsight)}</div>
+        </div>
+        <div class="log-card report-card report-card-weekly">
+          <div class="report-card-head">
+            <div>
+              <h3>주간 비교</h3>
+              <p class="note">전주 대비 흐름과 현재 남아 있는 작업량을 같이 봅니다.</p>
+            </div>
+            <div class="report-kpi">
+              <strong>${escapeHtml(String(model.totalOpen))}</strong>
+              <span>열린 할일</span>
+            </div>
+          </div>
+          <div>
+            <div class="report-section-title">전주 대비 집중 시간</div>
+            <div class="report-compare-list">${renderWeeklyCompareRows(model)}</div>
+          </div>
+          <div>
+            <div class="report-weekly-meta">
+              <div class="report-section-title" style="margin:0;">현재 열린 작업</div>
+              <span>미완료 기준</span>
+            </div>
+            <div class="report-open-bars">${renderOpenWorkRows(model)}</div>
+          </div>
+          <div class="report-footer-note">포트폴리오 비중이 높아도 괜찮습니다. 대신 Beacon과 Etsy가 완전히 비는 주만 바로 보이게 구성했습니다.</div>
+        </div>
+      `;
     }
 
     function downloadJsonFile(payload, filename) {
