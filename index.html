@@ -6936,6 +6936,145 @@
     }
   </style>
 
+
+  <style id="mobile-target-picker-patch">
+    /* Mobile target picker: 15/25/35/45/60/70/90 presets for existing task duration buttons. */
+    body.mobile-focus-mode .mobile-target-picker-backdrop {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 150 !important;
+      display: none !important;
+      align-items: end !important;
+      padding: 8px 8px calc(env(safe-area-inset-bottom) + 16px) !important;
+      background: rgba(36,36,34,0.22) !important;
+      overscroll-behavior: contain !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-backdrop.open {
+      display: flex !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker {
+      width: min(364px, 100%) !important;
+      margin: 0 auto !important;
+      border: 1px solid rgba(24,24,24,0.14) !important;
+      border-radius: 16px !important;
+      background: rgba(248,248,245,0.97) !important;
+      box-shadow: 0 -12px 30px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.72) !important;
+      padding: 12px !important;
+      display: grid !important;
+      gap: 10px !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-head {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 10px !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-title {
+      min-width: 0 !important;
+      display: grid !important;
+      gap: 2px !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-title b {
+      color: #242424 !important;
+      font-size: 15px !important;
+      font-weight: 820 !important;
+      line-height: 1.2 !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-title span {
+      color: #777772 !important;
+      font-size: 10.5px !important;
+      font-weight: 640 !important;
+      line-height: 1.25 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-close {
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
+      border: 1px solid rgba(24,24,24,0.10) !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,0.70) !important;
+      color: #777772 !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7) !important;
+      font-size: 18px !important;
+      font-weight: 900 !important;
+      cursor: pointer !important;
+      touch-action: manipulation !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-input-row {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 70px !important;
+      gap: 7px !important;
+      align-items: center !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-input {
+      width: 100% !important;
+      min-height: 40px !important;
+      border: 1px solid rgba(24,24,24,0.10) !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,0.72) !important;
+      color: #242424 !important;
+      padding: 8px 13px !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72) !important;
+      font-size: 13px !important;
+      font-weight: 760 !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-save {
+      height: 40px !important;
+      min-height: 40px !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      background: #242424 !important;
+      color: #fff !important;
+      font-size: 12px !important;
+      font-weight: 820 !important;
+      cursor: pointer !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-presets {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 6px !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-preset {
+      min-height: 34px !important;
+      border: 1px solid rgba(46,41,35,0.18) !important;
+      border-radius: 999px !important;
+      background: rgba(255,250,242,0.92) !important;
+      color: #34332f !important;
+      font-size: 12px !important;
+      font-weight: 850 !important;
+      cursor: pointer !important;
+      touch-action: manipulation !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-preset.active {
+      background: #242424 !important;
+      border-color: #242424 !important;
+      color: #fff !important;
+    }
+
+    body.mobile-focus-mode .mobile-target-picker-hint {
+      color: #777772 !important;
+      font-size: 10.5px !important;
+      font-weight: 620 !important;
+      line-height: 1.35 !important;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -6953,6 +7092,7 @@
             <button class="sync-btn cloud-pull-btn" type="button" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">↻</button>
             <button class="sync-btn" onclick="openSyncPanel()">모바일 연동</button>
             <button class="sync-btn" onclick="downloadBackupFile()">백업</button>
+            <button class="sync-btn" onclick="downloadReportFile()">리포트</button>
             <button class="sync-btn" onclick="document.getElementById('backupRestoreInput')?.click()">불러오기</button>
             <input type="file" id="backupRestoreInput" accept="application/json,.json" hidden onchange="restoreBackupFile(event)" />
             <span class="sync-status-pill" id="syncStatusPill">Local only</span>
@@ -12011,6 +12151,102 @@ for update using (true) with check (true);</pre>
       return `<div class="mobile-minute-presets">${TIMER_TARGET_PRESETS.map(minutes => `<button class="mobile-minute-preset" type="button" data-mobile-action="${action}" data-minutes="${minutes}">${minutes}분</button>`).join("")}</div>`;
     }
 
+    function mobileTargetPresetButtonsHtml(currentMinutes) {
+      const current = normalizeTargetMinutes(currentMinutes);
+      return `<div class="mobile-target-picker-presets">${TIMER_TARGET_PRESETS.map(minutes => `<button class="mobile-target-picker-preset ${current === minutes ? "active" : ""}" type="button" data-mobile-action="targetMinutePreset" data-minutes="${minutes}">${minutes}분</button>`).join("")}</div>`;
+    }
+
+    function ensureMobileTargetPicker(root = document.getElementById("mobileFocusRoot")) {
+      if (!root) return null;
+      let picker = root.querySelector("#mobileTargetPicker");
+      if (picker) return picker;
+      picker = document.createElement("div");
+      picker.id = "mobileTargetPicker";
+      picker.className = "mobile-target-picker-backdrop";
+      picker.dataset.mobileAction = "closeTargetPicker";
+      picker.setAttribute("aria-hidden", "true");
+      picker.innerHTML = `
+        <section class="mobile-target-picker" role="dialog" aria-modal="true" aria-labelledby="mobileTargetPickerTitle">
+          <div class="mobile-target-picker-head">
+            <div class="mobile-target-picker-title">
+              <b id="mobileTargetPickerTitle">예상시간 설정</b>
+              <span id="mobileTargetPickerSubtitle">프리셋을 누르면 바로 적용됩니다.</span>
+            </div>
+            <button class="mobile-target-picker-close" type="button" data-mobile-action="closeTargetPicker">×</button>
+          </div>
+          <div class="mobile-target-picker-input-row">
+            <input id="mobileTargetPickerInput" class="mobile-target-picker-input" type="tel" inputmode="numeric" pattern="[0-9]*" min="1" max="240" autocomplete="off" aria-label="예상시간 직접 입력">
+            <button class="mobile-target-picker-save" type="button" data-mobile-action="saveTargetPicker">저장</button>
+          </div>
+          <div id="mobileTargetPickerPresets"></div>
+          <div class="mobile-target-picker-hint">직접 입력은 1~240분까지 가능합니다.</div>
+        </section>
+      `;
+      root.appendChild(picker);
+      return picker;
+    }
+
+    function closeMobileTargetPicker(root = document.getElementById("mobileFocusRoot")) {
+      const picker = root?.querySelector("#mobileTargetPicker");
+      if (!picker) return;
+      picker.classList.remove("open");
+      picker.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("mobile-target-picker-open");
+    }
+
+    function openMobileTargetPicker(root, area, taskId, subtaskId = null, currentMinutes = 25) {
+      const info = getTimerSubject(area, taskId, subtaskId);
+      if (!info || info.task.later) return;
+      if (!info.isSubtask && hasSubtaskTargets(info.task)) {
+        alert("이 할일의 목표 시간은 하위항목 시간 합계로 자동 계산됩니다. 각 하위항목의 목표 시간을 수정해 주세요.");
+        return;
+      }
+      const picker = ensureMobileTargetPicker(root);
+      if (!picker) return;
+      const current = normalizeTargetMinutes(currentMinutes || info.subject.targetMinutes);
+      picker.dataset.area = area || "";
+      picker.dataset.taskid = taskId || "";
+      picker.dataset.subtaskid = subtaskId || "";
+      const title = picker.querySelector("#mobileTargetPickerTitle");
+      const subtitle = picker.querySelector("#mobileTargetPickerSubtitle");
+      const input = picker.querySelector("#mobileTargetPickerInput");
+      const presets = picker.querySelector("#mobileTargetPickerPresets");
+      if (title) title.textContent = info.isSubtask ? "하위할일 예상시간" : "할일 예상시간";
+      if (subtitle) subtitle.textContent = info.isSubtask ? `상위: ${info.task.title || "할일"}` : (info.subject.title || "일반 할일");
+      if (input) input.value = String(current);
+      if (presets) presets.innerHTML = mobileTargetPresetButtonsHtml(current);
+      picker.classList.add("open");
+      picker.setAttribute("aria-hidden", "false");
+      document.body.classList.add("mobile-target-picker-open");
+      setTimeout(() => {
+        if (input && document.body.classList.contains("mobile-target-picker-open")) {
+          input.focus();
+          input.select?.();
+        }
+      }, 40);
+    }
+
+    function applyMobileTargetPickerValue(root, rawValue) {
+      const picker = root?.querySelector("#mobileTargetPicker");
+      if (!picker) return;
+      const input = picker.querySelector("#mobileTargetPickerInput");
+      const rawNumber = Number(rawValue);
+      if (!Number.isFinite(rawNumber) || rawNumber <= 0) {
+        alert("1~240 사이의 분 단위 숫자로 입력해 주세요.");
+        if (input) {
+          input.focus();
+          input.select?.();
+        }
+        return;
+      }
+      const area = picker.dataset.area;
+      const taskId = picker.dataset.taskid;
+      const subtaskId = picker.dataset.subtaskid || null;
+      closeMobileTargetPicker(root);
+      applyTaskTargetMinutes(area, taskId, rawValue, subtaskId);
+      pushMobileFocusChangeNow();
+    }
+
     function setMobileFocusCloudGate(phase, message = "", options = {}) {
       if (!mobileFocusMode) return;
       mobileFocusCloudGate = {
@@ -12221,6 +12457,25 @@ for update using (true) with check (true);</pre>
           if (input) input.value = target.dataset.minutes || "25";
           return;
         }
+        if (action === "closeTargetPicker") {
+          const picker = root.querySelector("#mobileTargetPicker");
+          const isBackdropClick = target.id === "mobileTargetPicker" && event.target === target;
+          const isExplicitClose = target.classList.contains("mobile-target-picker-close");
+          if (!isBackdropClick && !isExplicitClose) return;
+          closeMobileTargetPicker(root);
+          return;
+        }
+        if (action === "targetMinutePreset") {
+          event.preventDefault();
+          applyMobileTargetPickerValue(root, target.dataset.minutes || "25");
+          return;
+        }
+        if (action === "saveTargetPicker") {
+          event.preventDefault();
+          const input = root.querySelector("#mobileTargetPickerInput");
+          applyMobileTargetPickerValue(root, input?.value || "25");
+          return;
+        }
         if (action === "toggleTask") { toggleTask(area, taskId); didCloudPushChange = true; }
         if (action === "toggleSubtask") { toggleSubtask(area, taskId, subtaskId); didCloudPushChange = true; }
         if (action === "restoreTask") { toggleTask(area, taskId); pushMobileFocusChangeNow(); return; }
@@ -12230,11 +12485,8 @@ for update using (true) with check (true);</pre>
         if (action === "toggleTimer") toggleTimer(area, taskId, subtaskId);
         if (action === "setTarget") {
           const current = (target.textContent || "25").replace(/[^0-9]/g, "") || "25";
-          const raw = prompt(subtaskId ? "이 하위항목의 예상 집중 시간을 몇 분으로 설정할까요?" : "이 할일의 예상 집중 시간을 몇 분으로 설정할까요?", current);
-          if (raw !== null) {
-            applyTaskTargetMinutes(area, taskId, raw, subtaskId);
-            didCloudPushChange = true;
-          }
+          openMobileTargetPicker(root, area, taskId, subtaskId, current);
+          return;
         }
         if (didCloudPushChange) pushMobileFocusChangeNow();
       }, true);
@@ -12266,6 +12518,16 @@ for update using (true) with check (true);</pre>
       });
 
       root.addEventListener("keydown", event => {
+        if (event.key === "Escape" && document.body.classList.contains("mobile-target-picker-open")) {
+          event.preventDefault();
+          closeMobileTargetPicker(root);
+          return;
+        }
+        if (event.key === "Enter" && event.target?.id === "mobileTargetPickerInput") {
+          event.preventDefault();
+          applyMobileTargetPickerValue(root, event.target.value || "25");
+          return;
+        }
         if (event.key === "Enter" && event.target?.isContentEditable) {
           event.preventDefault();
           event.target.blur();
@@ -16340,6 +16602,338 @@ for update using (true) with check (true);</pre>
       return `NOVA_ARTIST_OS_BACKUP_${date}_${time}.json`;
     }
 
+    function getReportFilename() {
+      const now = new Date();
+      const date = getTodayKey(now).replaceAll("-", "");
+      const time = [now.getHours(), now.getMinutes(), now.getSeconds()]
+        .map(value => String(value).padStart(2, "0"))
+        .join("");
+      return `NOVA_ARTIST_OS_REPORT_${date}_${time}.json`;
+    }
+
+    function reportSeconds(value) {
+      const number = Math.floor(Number(value) || 0);
+      return Number.isFinite(number) && number > 0 ? number : 0;
+    }
+
+    function reportDateKey(value) {
+      if (!value) return "";
+      const date = value instanceof Date ? value : new Date(value);
+      if (Number.isNaN(date.getTime())) return "";
+      return getTodayKey(date);
+    }
+
+    function reportEstimateSecondsForSubject(subject, fallback = 25) {
+      const completedEstimate = reportSeconds(subject?.completedEstimateSeconds);
+      if (completedEstimate > 0) return completedEstimate;
+      return normalizeTargetMinutes(subject?.targetMinutes || fallback) * 60;
+    }
+
+    function reportEstimateSecondsForTask(task) {
+      const completedEstimate = reportSeconds(task?.completedEstimateSeconds);
+      if (completedEstimate > 0) return completedEstimate;
+      const subtasks = Array.isArray(task?.subtasks) ? task.subtasks : [];
+      if (subtasks.length) {
+        return subtasks.reduce((sum, subtask) => sum + reportEstimateSecondsForSubject(subtask), 0);
+      }
+      return reportEstimateSecondsForSubject(task);
+    }
+
+    function reportSessionMatchesUnit(session, unit) {
+      if (!session || !unit) return false;
+      if (session.area !== unit.area || session.taskId !== unit.taskId) return false;
+      if (unit.type === "subtask") return (session.subtaskId || null) === unit.subtaskId;
+      if (unit.rollup) return true;
+      return !session.subtaskId;
+    }
+
+    function collectReportTaskUnits(targetState = state) {
+      const units = [];
+      AREA_ORDER.forEach(area => {
+        (targetState?.tasks?.[area] || []).forEach(task => {
+          const subtasks = Array.isArray(task.subtasks) ? task.subtasks : [];
+          const hasSubtasks = subtasks.length > 0;
+          const taskEstimateSeconds = reportEstimateSecondsForTask(task);
+          const subtaskEstimateEntries = subtasks.map(subtask => ({
+            subtask,
+            estimatedSeconds: reportEstimateSecondsForSubject(subtask)
+          }));
+          const subtaskEstimateTotal = subtaskEstimateEntries.reduce((sum, entry) => sum + entry.estimatedSeconds, 0);
+          const subtaskFocusSeconds = subtasks.reduce((sum, subtask) => sum + reportSeconds(subtask.focusSeconds), 0);
+          units.push({
+            id: `${area}:${task.id}`,
+            area,
+            areaLabel: AREA_LABELS[area] || area,
+            type: "task",
+            rollup: hasSubtasks,
+            leaf: !hasSubtasks,
+            taskId: task.id,
+            subtaskId: null,
+            title: task.title || "",
+            parentTitle: "",
+            done: Boolean(task.done),
+            later: Boolean(task.later),
+            pinned: Boolean(task.pinned),
+            scheduledDay: task.scheduledDay || "unscheduled",
+            completedAt: task.completedAt || null,
+            completedDate: reportDateKey(task.completedAt),
+            estimatedSeconds: taskEstimateSeconds,
+            actualSecondsTotal: reportSeconds(task.focusSeconds) + subtaskFocusSeconds,
+            focusSeconds: reportSeconds(task.focusSeconds),
+            targetMinutes: Math.round(taskEstimateSeconds / 60)
+          });
+
+          subtaskEstimateEntries.forEach(({ subtask, estimatedSeconds }) => {
+            const parentFocusShareSeconds = subtaskEstimateTotal > 0
+              ? Math.round(reportSeconds(task.focusSeconds) * (estimatedSeconds / subtaskEstimateTotal))
+              : 0;
+            units.push({
+              id: `${area}:${task.id}:${subtask.id}`,
+              area,
+              areaLabel: AREA_LABELS[area] || area,
+              type: "subtask",
+              rollup: false,
+              leaf: true,
+              taskId: task.id,
+              subtaskId: subtask.id,
+              title: subtask.title || "",
+              parentTitle: task.title || "",
+              done: Boolean(subtask.done),
+              later: Boolean(task.later),
+              pinned: Boolean(subtask.pinned || task.pinned),
+              scheduledDay: task.scheduledDay || "unscheduled",
+              completedAt: subtask.completedAt || null,
+              completedDate: reportDateKey(subtask.completedAt),
+              estimatedSeconds,
+              actualSecondsTotal: reportSeconds(subtask.focusSeconds) + parentFocusShareSeconds,
+              focusSeconds: reportSeconds(subtask.focusSeconds),
+              parentFocusShareSeconds,
+              targetMinutes: Math.round(estimatedSeconds / 60)
+            });
+          });
+        });
+      });
+      return units;
+    }
+
+    function collectReportDateKeys(targetState, units) {
+      const keys = new Set([getTodayKey()]);
+      Object.keys(targetState?.timeLogs || {}).forEach(key => {
+        if (/^\d{4}-\d{2}-\d{2}$/.test(key)) keys.add(key);
+      });
+      units.forEach(unit => {
+        if (unit.completedDate) keys.add(unit.completedDate);
+      });
+      Object.keys(targetState?.weeklyRun?.days || {}).forEach(key => {
+        if (/^\d{4}-\d{2}-\d{2}$/.test(key)) keys.add(key);
+      });
+      return [...keys].sort();
+    }
+
+    function summarizeReportAreaForDate(targetState, units, dateKey, area) {
+      const log = targetState?.timeLogs?.[dateKey] || {};
+      const sessions = (log.sessions || []).filter(session => session.area === area);
+      const completed = units.filter(unit => unit.leaf && unit.area === area && unit.completedDate === dateKey);
+      const estimatedCompletedSeconds = completed.reduce((sum, unit) => sum + unit.estimatedSeconds, 0);
+      const actualCompletedSeconds = completed.reduce((sum, unit) => sum + unit.actualSecondsTotal, 0);
+      const activeOpen = units.filter(unit => unit.leaf && unit.area === area && !unit.done && !unit.later && (unit.pinned || unit.scheduledDay !== "unscheduled"));
+      return {
+        area,
+        label: AREA_LABELS[area] || area,
+        loggedSeconds: reportSeconds(log[area]),
+        sessionCount: sessions.length,
+        completedCount: completed.length,
+        estimatedCompletedSeconds,
+        actualCompletedSeconds,
+        varianceSeconds: actualCompletedSeconds - estimatedCompletedSeconds,
+        activeOpenCount: activeOpen.length
+      };
+    }
+
+    function createReportDailySummary(targetState, units, dateKey) {
+      const log = targetState?.timeLogs?.[dateKey] || {};
+      const sessions = (log.sessions || []).map(session => ({
+        id: session.id || "",
+        area: session.area || "",
+        areaLabel: AREA_LABELS[session.area] || session.area || "",
+        taskId: session.taskId || "",
+        subtaskId: session.subtaskId || null,
+        title: session.title || "",
+        startedAt: session.startedAt || null,
+        endedAt: session.endedAt || null,
+        seconds: reportSeconds(session.seconds)
+      })).sort((a, b) => String(a.startedAt || "").localeCompare(String(b.startedAt || "")));
+
+      const completed = units
+        .filter(unit => unit.leaf && unit.completedDate === dateKey)
+        .map(unit => {
+          const directSessionSeconds = sessions
+            .filter(session => reportSessionMatchesUnit(session, unit))
+            .reduce((sum, session) => sum + session.seconds, 0);
+          let parentSessionShareSeconds = 0;
+          if (unit.type === "subtask") {
+            const siblingUnits = units.filter(item => item.type === "subtask" && item.area === unit.area && item.taskId === unit.taskId);
+            const siblingEstimateTotal = siblingUnits.reduce((sum, item) => sum + item.estimatedSeconds, 0);
+            const parentSessionSeconds = sessions
+              .filter(session => session.area === unit.area && session.taskId === unit.taskId && !session.subtaskId)
+              .reduce((sum, session) => sum + session.seconds, 0);
+            parentSessionShareSeconds = siblingEstimateTotal > 0
+              ? Math.round(parentSessionSeconds * (unit.estimatedSeconds / siblingEstimateTotal))
+              : 0;
+          }
+          const sessionSeconds = directSessionSeconds + parentSessionShareSeconds;
+          return {
+            id: unit.id,
+            area: unit.area,
+            areaLabel: unit.areaLabel,
+            type: unit.type,
+            title: unit.title,
+            parentTitle: unit.parentTitle,
+            completedAt: unit.completedAt,
+            estimatedSeconds: unit.estimatedSeconds,
+            actualSecondsTotal: unit.actualSecondsTotal,
+            actualSecondsOnDate: sessionSeconds,
+            directSessionSeconds,
+            parentSessionShareSeconds,
+            varianceSeconds: unit.actualSecondsTotal - unit.estimatedSeconds,
+            varianceRatio: unit.estimatedSeconds > 0 ? Number((unit.actualSecondsTotal / unit.estimatedSeconds).toFixed(2)) : null
+          };
+        })
+        .sort((a, b) => String(a.completedAt || "").localeCompare(String(b.completedAt || "")));
+
+      const byArea = {};
+      AREA_ORDER.forEach(area => {
+        byArea[area] = summarizeReportAreaForDate(targetState, units, dateKey, area);
+      });
+      const loggedTotalSeconds = AREA_ORDER.reduce((sum, area) => sum + byArea[area].loggedSeconds, 0);
+      const completedEstimatedSeconds = completed.reduce((sum, item) => sum + item.estimatedSeconds, 0);
+      const completedActualSeconds = completed.reduce((sum, item) => sum + item.actualSecondsTotal, 0);
+      const underServedAreas = AREA_ORDER.filter(area => byArea[area].loggedSeconds === 0 && byArea[area].completedCount === 0);
+
+      return {
+        date: dateKey,
+        byArea,
+        totals: {
+          loggedSeconds: loggedTotalSeconds,
+          sessionCount: sessions.length,
+          completedCount: completed.length,
+          completedEstimatedSeconds,
+          completedActualSeconds,
+          varianceSeconds: completedActualSeconds - completedEstimatedSeconds
+        },
+        sessions,
+        completed,
+        flags: {
+          noTimerCompletions: completed.filter(item => item.actualSecondsTotal < 60 && item.estimatedSeconds >= 5 * 60),
+          underestimated: completed.filter(item => item.estimatedSeconds >= 5 * 60 && item.varianceSeconds >= 5 * 60 && item.actualSecondsTotal >= item.estimatedSeconds * 1.25),
+          overestimated: completed.filter(item => item.estimatedSeconds >= 5 * 60 && item.varianceSeconds <= -5 * 60 && item.actualSecondsTotal <= item.estimatedSeconds * 0.75),
+          timeWithoutCompletion: loggedTotalSeconds >= 10 * 60 && completed.length === 0,
+          underServedAreas
+        }
+      };
+    }
+
+    function createReportCumulativeSummary(targetState, units, dateKeys) {
+      const byArea = {};
+      AREA_ORDER.forEach(area => {
+        const areaUnits = units.filter(unit => unit.leaf && unit.area === area);
+        const completed = areaUnits.filter(unit => unit.done);
+        const loggedSeconds = dateKeys.reduce((sum, dateKey) => sum + reportSeconds(targetState?.timeLogs?.[dateKey]?.[area]), 0);
+        const estimatedCompletedSeconds = completed.reduce((sum, unit) => sum + unit.estimatedSeconds, 0);
+        const actualCompletedSeconds = completed.reduce((sum, unit) => sum + unit.actualSecondsTotal, 0);
+        byArea[area] = {
+          area,
+          label: AREA_LABELS[area] || area,
+          loggedSeconds,
+          completedCount: completed.length,
+          openCount: areaUnits.filter(unit => !unit.done && !unit.later).length,
+          laterCount: areaUnits.filter(unit => !unit.done && unit.later).length,
+          estimatedCompletedSeconds,
+          actualCompletedSeconds,
+          varianceSeconds: actualCompletedSeconds - estimatedCompletedSeconds,
+          varianceRatio: estimatedCompletedSeconds > 0 ? Number((actualCompletedSeconds / estimatedCompletedSeconds).toFixed(2)) : null
+        };
+      });
+      return {
+        byArea,
+        totals: {
+          loggedSeconds: AREA_ORDER.reduce((sum, area) => sum + byArea[area].loggedSeconds, 0),
+          completedCount: AREA_ORDER.reduce((sum, area) => sum + byArea[area].completedCount, 0),
+          openCount: AREA_ORDER.reduce((sum, area) => sum + byArea[area].openCount, 0),
+          estimatedCompletedSeconds: AREA_ORDER.reduce((sum, area) => sum + byArea[area].estimatedCompletedSeconds, 0),
+          actualCompletedSeconds: AREA_ORDER.reduce((sum, area) => sum + byArea[area].actualCompletedSeconds, 0)
+        }
+      };
+    }
+
+    function createNovaReportPayload(options = {}) {
+      const targetState = options.state ? normalizeState(options.state) : state;
+      const units = collectReportTaskUnits(targetState);
+      const allDateKeys = collectReportDateKeys(targetState, units);
+      const recentDays = Math.max(1, Math.min(60, Math.floor(Number(options.recentDays) || 14)));
+      const today = getTodayKey();
+      const recentDateKeys = Array.from({ length: recentDays }, (_, index) => getTodayKey(addDays(new Date(`${today}T00:00:00`), index - recentDays + 1)));
+      const selectedDateKeys = [...new Set([...recentDateKeys, ...allDateKeys])].sort();
+      const daily = Object.fromEntries(selectedDateKeys.map(dateKey => [dateKey, createReportDailySummary(targetState, units, dateKey)]));
+      const completedLeafUnits = units.filter(unit => unit.leaf && unit.done);
+      const activeTimer = targetState.activeTimer ? {
+        area: targetState.activeTimer.area || "",
+        areaLabel: AREA_LABELS[targetState.activeTimer.area] || targetState.activeTimer.area || "",
+        taskId: targetState.activeTimer.taskId || "",
+        subtaskId: targetState.activeTimer.subtaskId || null,
+        startedAt: targetState.activeTimer.startedAt || null,
+        dateKey: targetState.activeTimer.dateKey || reportDateKey(targetState.activeTimer.startedAt),
+        unloggedSeconds: typeof getActiveUnloggedSeconds === "function" ? reportSeconds(getActiveUnloggedSeconds()) : 0
+      } : null;
+
+      return {
+        schema: 1,
+        app: "NOVA_ARTIST_OS",
+        kind: "codex_daily_focus_report_source",
+        generatedAt: new Date().toISOString(),
+        generatedDate: today,
+        storageKey: STORAGE_KEY,
+        dateKeys: selectedDateKeys,
+        today: daily[today] || createReportDailySummary(targetState, units, today),
+        daily,
+        cumulative: createReportCumulativeSummary(targetState, units, allDateKeys),
+        variance: {
+          underestimated: completedLeafUnits
+            .filter(unit => unit.estimatedSeconds >= 5 * 60 && unit.actualSecondsTotal - unit.estimatedSeconds >= 5 * 60 && unit.actualSecondsTotal >= unit.estimatedSeconds * 1.25)
+            .map(unit => ({ id: unit.id, area: unit.area, areaLabel: unit.areaLabel, title: unit.title, parentTitle: unit.parentTitle, completedAt: unit.completedAt, estimatedSeconds: unit.estimatedSeconds, actualSeconds: unit.actualSecondsTotal, varianceSeconds: unit.actualSecondsTotal - unit.estimatedSeconds })),
+          overestimated: completedLeafUnits
+            .filter(unit => unit.estimatedSeconds >= 5 * 60 && unit.estimatedSeconds - unit.actualSecondsTotal >= 5 * 60 && unit.actualSecondsTotal <= unit.estimatedSeconds * 0.75)
+            .map(unit => ({ id: unit.id, area: unit.area, areaLabel: unit.areaLabel, title: unit.title, parentTitle: unit.parentTitle, completedAt: unit.completedAt, estimatedSeconds: unit.estimatedSeconds, actualSeconds: unit.actualSecondsTotal, varianceSeconds: unit.actualSecondsTotal - unit.estimatedSeconds })),
+          noTimerCompletions: completedLeafUnits
+            .filter(unit => unit.actualSecondsTotal < 60 && unit.estimatedSeconds >= 5 * 60)
+            .map(unit => ({ id: unit.id, area: unit.area, areaLabel: unit.areaLabel, title: unit.title, parentTitle: unit.parentTitle, completedAt: unit.completedAt, estimatedSeconds: unit.estimatedSeconds, actualSeconds: unit.actualSecondsTotal }))
+        },
+        openWork: units
+          .filter(unit => unit.leaf && !unit.done)
+          .map(unit => ({ id: unit.id, area: unit.area, areaLabel: unit.areaLabel, type: unit.type, title: unit.title, parentTitle: unit.parentTitle, later: unit.later, pinned: unit.pinned, scheduledDay: unit.scheduledDay, estimatedSeconds: unit.estimatedSeconds, actualSeconds: unit.actualSecondsTotal })),
+        weeklyRun: clone(targetState.weeklyRun || null),
+        weeklyScoreHistory: clone(targetState.weeklyScoreHistory || []),
+        activeTimer
+      };
+    }
+
+    function downloadJsonFile(payload, filename) {
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadReportFile() {
+      downloadJsonFile(createNovaReportPayload(), getReportFilename());
+      if (typeof showUndoToast === "function") showUndoToast("리포트 JSON 저장됨");
+    }
+
     function createBackupPayload() {
       return {
         schema: 1,
@@ -16348,6 +16942,7 @@ for update using (true) with check (true);</pre>
         exportedDate: getTodayKey(),
         storageKey: STORAGE_KEY,
         state: clone(state),
+        reportData: createNovaReportPayload(),
         persistentFields: parseStorageJson(PERSISTENT_FIELDS_KEY, null),
         commandTitle: safeStorageGet("localStorage", COMMAND_TITLE_KEY) || safeStorageGet("sessionStorage", COMMAND_TITLE_KEY) || "",
         nightlyCheck: parseStorageJson(NIGHTLY_CHECK_KEY, {}),
@@ -16361,15 +16956,7 @@ for update using (true) with check (true);</pre>
 
     function downloadBackupFile() {
       const payload = createBackupPayload();
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const anchor = document.createElement("a");
-      anchor.href = url;
-      anchor.download = getBackupFilename();
-      document.body.appendChild(anchor);
-      anchor.click();
-      anchor.remove();
-      URL.revokeObjectURL(url);
+      downloadJsonFile(payload, getBackupFilename());
     }
 
     function getStateTaskCount(targetState) {
@@ -16487,6 +17074,8 @@ for update using (true) with check (true);</pre>
     window.applyTaskTargetMinutes = applyTaskTargetMinutes;
     window.shiftTimeLogDate = shiftTimeLogDate;
     window.openMiniFocusWindow = openMiniFocusWindow;
+    window.createNovaReportPayload = createNovaReportPayload;
+    window.downloadReportFile = downloadReportFile;
     window.downloadBackupFile = downloadBackupFile;
     window.restoreBackupFile = restoreBackupFile;
     window.openSyncPanel = openSyncPanel;
