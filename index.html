@@ -10896,6 +10896,266 @@
     }
   </style>
 
+
+
+  <style id="nova-routine-polish-final-20260620">
+    /* Routine task modal */
+    .routine-task-btn {
+      min-width: 104px !important;
+    }
+
+    .routine-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 13000;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(35,35,33,0.34);
+    }
+    .routine-modal.show { display: grid; }
+    .routine-box {
+      width: min(560px, calc(100vw - 34px));
+      max-height: calc(100vh - 48px);
+      overflow: auto;
+      border: 1px solid rgba(255,255,255,0.78);
+      border-radius: 26px;
+      background: rgba(246,246,243,0.96);
+      box-shadow: 0 24px 78px rgba(34,32,29,0.22), inset 0 1px 0 rgba(255,255,255,0.74);
+      padding: 18px;
+    }
+    .routine-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .routine-head h3 {
+      margin: 4px 0 0;
+      font-size: 22px;
+      font-weight: 850;
+      letter-spacing: -0.04em;
+    }
+    .routine-close {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.78);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.58);
+      color: #686866;
+      font-size: 18px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .routine-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .routine-field,
+    .routine-subtasks {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+      color: #6b6b66;
+      font-size: 11px;
+      font-weight: 760;
+    }
+    .routine-field-wide { grid-column: 1 / -1; }
+    .routine-field input,
+    .routine-field select,
+    .routine-subtask-row input,
+    .routine-subtask-row select {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid rgba(255,255,255,0.78);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.62);
+      color: #242424;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.70), 0 3px 10px rgba(72,68,60,0.05);
+      padding: 0 13px;
+      font-size: 13px;
+      font-weight: 680;
+      outline: none;
+    }
+    .routine-days {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .routine-days label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 34px;
+      padding: 0 10px;
+      border: 1px solid rgba(255,255,255,0.78);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.54);
+      color: #4f504d;
+      font-size: 12px;
+      font-weight: 760;
+      cursor: pointer;
+    }
+    .routine-days input { accent-color: #242424; }
+    .routine-subtasks-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .routine-subtasks-head button {
+      min-height: 30px;
+      border: 1px solid rgba(255,255,255,0.78);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.62);
+      color: #333;
+      padding: 0 10px;
+      font-size: 11px;
+      font-weight: 760;
+      cursor: pointer;
+    }
+    .routine-subtask-list {
+      display: grid;
+      gap: 7px;
+    }
+    .routine-subtask-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 82px 32px;
+      gap: 7px;
+      align-items: center;
+    }
+    .routine-subtask-remove {
+      width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(232,232,229,0.82);
+      color: #777;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .routine-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .routine-primary {
+      min-width: 82px;
+      height: 38px;
+      border: 0;
+      border-radius: 999px;
+      background: #242424;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    @media (max-width: 620px) {
+      .routine-form { grid-template-columns: 1fr; }
+      .routine-field-wide { grid-column: auto; }
+      .routine-subtask-row { grid-template-columns: minmax(0, 1fr) 72px 32px; }
+    }
+
+    /* Font + color pass for phrase fields and project titles. */
+    @font-face {
+      font-family: "OwnglyphConcon";
+      src: url("./온글잎 콘콘체.TTF") format("truetype"),
+           url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    body:not(.mobile-focus-mode) .panel h2 { font-weight: 780 !important; }
+    body:not(.mobile-focus-mode) .panel.portfolio h2 { color: var(--portfolio) !important; }
+    body:not(.mobile-focus-mode) .panel.beacon h2 { color: var(--beacon) !important; }
+    body:not(.mobile-focus-mode) .panel.income h2 { color: var(--income) !important; }
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .quote-box.panel-quote-box {
+      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-weight: 400 !important;
+      font-size: 16px !important;
+      letter-spacing: 0.005em !important;
+      background: rgba(238,238,235,0.72) !important;
+      border-color: rgba(255,255,255,0.78) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 3px 10px rgba(72,68,60,0.055) !important;
+    }
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box { color: var(--portfolio) !important; }
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box { color: var(--beacon) !important; }
+    body:not(.mobile-focus-mode) .income .panel-quote-box { color: var(--income) !important; }
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder { color: rgba(201,120,127,0.62) !important; }
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder { color: rgba(138,143,207,0.68) !important; }
+    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder { color: rgba(199,161,90,0.70) !important; }
+
+    /* Completion feedback: one clean pop near the finished item. */
+    .task-card.clearing::after,
+    .subtask-row.clearing::after { display: none !important; }
+    .nova-reward-pop {
+      gap: 8px !important;
+      padding: 8px 11px 8px 9px !important;
+      border-width: 1.4px !important;
+      background: rgba(248,248,245,0.98) !important;
+      box-shadow: 0 14px 32px rgba(35,35,33,0.18), inset 0 1px 0 rgba(255,255,255,0.82) !important;
+      transform: translate(-50%, -10px) scale(.98) !important;
+      animation: novaRewardFloatFromTask 1180ms cubic-bezier(.18,.88,.22,1) forwards !important;
+    }
+    .nova-reward-label {
+      display: inline-flex;
+      align-items: center;
+      max-width: 128px;
+      color: #5f625e;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .nova-reward-pop strong {
+      font-size: 14px !important;
+      font-weight: 950 !important;
+      letter-spacing: -0.01em !important;
+    }
+    .nova-reward-pop.portfolio strong { color: #8f4149 !important; }
+    .nova-reward-pop.beacon strong { color: #545aa3 !important; }
+    .nova-reward-pop.income strong { color: #806838 !important; }
+
+    /* PC timer focus: no gradient card background; paused button must be grey. */
+    body:not(.mobile-focus-mode) .task-card.running.portfolio,
+    body:not(.mobile-focus-mode) .task-card.running.beacon,
+    body:not(.mobile-focus-mode) .task-card.running.income,
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.running.income,
+    body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
+    body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
+    body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
+      background: rgba(248,248,245,0.96) !important;
+      background-image: none !important;
+    }
+    body:not(.mobile-focus-mode) .task-card.running.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio { border-color: rgba(201,120,127,0.86) !important; }
+    body:not(.mobile-focus-mode) .task-card.running.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon { border-color: rgba(138,143,207,0.88) !important; }
+    body:not(.mobile-focus-mode) .task-card.running.income,
+    body:not(.mobile-focus-mode) .subtask-row.running.income { border-color: rgba(199,161,90,0.88) !important; }
+    body:not(.mobile-focus-mode) .pc-timer.paused,
+    body:not(.mobile-focus-mode) .pc-timer.running.paused,
+    body:not(.mobile-focus-mode) .pc-timer.paused.exceeded {
+      background: #8f8e89 !important;
+      background-image: none !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.44) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 3px 9px rgba(0,0,0,0.08) !important;
+      animation: none !important;
+    }
+    body:not(.mobile-focus-mode) .pc-timer.running.paused::before,
+    body:not(.mobile-focus-mode) .pc-timer.paused::before { display: none !important; }
+  </style>
+
 </head>
 
 <body>
@@ -10919,6 +11179,7 @@
               </svg>
               <span class="cloud-pull-label">update</span>
             </button>
+            <button class="sync-btn routine-task-btn" type="button" onclick="openRoutineTaskModal()">루틴할일추가</button>
             <button class="sync-btn" onclick="openSyncPanel()">모바일 연동</button>
             <button class="sync-btn" onclick="downloadBackupFile()">백업</button>
             <button class="sync-btn" onclick="downloadReportFile()">리포트</button>
@@ -11107,6 +11368,75 @@ for update using (true) with check (true);</pre>
     </div>
   </div>
 
+
+
+  <div class="routine-modal" id="routineTaskModal" aria-hidden="true">
+    <div class="routine-box" role="dialog" aria-modal="true" aria-labelledby="routineTaskTitle">
+      <div class="routine-head">
+        <div>
+          <div class="eyebrow">Routine Task</div>
+          <h3 id="routineTaskTitle">루틴 할일 추가</h3>
+        </div>
+        <button class="routine-close" type="button" onclick="closeRoutineTaskModal()">×</button>
+      </div>
+
+      <div class="routine-form">
+        <label class="routine-field">
+          <span>프로젝트</span>
+          <select id="routineAreaInput">
+            <option value="portfolio">Portfolio</option>
+            <option value="beacon">Beacon / Personal IP</option>
+            <option value="income">Etsy</option>
+          </select>
+        </label>
+
+        <label class="routine-field routine-field-wide">
+          <span>할일</span>
+          <input id="routineTitleInput" placeholder="요일마다 자동 생성할 할일" />
+        </label>
+
+        <label class="routine-field">
+          <span>예상 시간</span>
+          <select id="routineTargetInput">
+            <option value="15">15m</option>
+            <option value="25" selected>25m</option>
+            <option value="35">35m</option>
+            <option value="45">45m</option>
+            <option value="60">60m</option>
+            <option value="70">70m</option>
+            <option value="90">90m</option>
+          </select>
+        </label>
+
+        <div class="routine-field routine-field-wide">
+          <span>요일</span>
+          <div class="routine-days" id="routineDaysInput">
+            <label><input type="checkbox" value="mon">월</label>
+            <label><input type="checkbox" value="tue">화</label>
+            <label><input type="checkbox" value="wed">수</label>
+            <label><input type="checkbox" value="thu">목</label>
+            <label><input type="checkbox" value="fri">금</label>
+            <label><input type="checkbox" value="sat">토</label>
+            <label><input type="checkbox" value="sun">일</label>
+          </div>
+        </div>
+
+        <div class="routine-subtasks routine-field-wide">
+          <div class="routine-subtasks-head">
+            <span>하위할일</span>
+            <button type="button" onclick="addRoutineSubtaskInput()">+ 하위할일</button>
+          </div>
+          <div id="routineSubtaskList" class="routine-subtask-list"></div>
+        </div>
+      </div>
+
+      <div class="routine-actions">
+        <button class="ghost-btn" type="button" onclick="closeRoutineTaskModal()">취소</button>
+        <button class="routine-primary" type="button" onclick="saveRoutineTaskFromModal()">확인</button>
+      </div>
+    </div>
+  </div>
+
   <div class="undo-toast" id="undoToast" role="status" aria-live="polite">
     <span id="undoToastText">완료 처리됨</span>
     <button type="button" onclick="undoLastAction()">실행취소</button>
@@ -11225,6 +11555,7 @@ for update using (true) with check (true);</pre>
       weeklyRun: null,
       weeklyScoreHistory: [],
       quickTemplates: clone(DEFAULT_QUICK_TEMPLATES),
+      routineTasks: [],
       tasks: clone(SNAPSHOT_TASKS)
     };
 
@@ -11260,6 +11591,7 @@ for update using (true) with check (true);</pre>
     const mobileExpandedSubtaskKeys = new Set();
 
     let state = applyPersistentFields(applySnapshotTaskPreset(loadState()));
+    ensureRoutineTasksForToday({ skipSave: true });
     savePersistentFieldsFromState();
     saveLocalStateOnly({ immediate: true });
     let undoStack = [];
@@ -11582,6 +11914,74 @@ for update using (true) with check (true);</pre>
       return normalized;
     }
 
+
+
+    function normalizeRoutineTasks(value) {
+      const list = Array.isArray(value) ? value : [];
+      return list.map(item => {
+        const area = AREA_ORDER.includes(item?.area) ? item.area : "portfolio";
+        const days = Array.isArray(item?.days)
+          ? item.days.map(normalizeScheduledDay).filter(day => WEEKDAY_KEYS.includes(day))
+          : [];
+        const subtasks = Array.isArray(item?.subtasks)
+          ? item.subtasks.map(subtask => ({
+              id: subtask.id || makeId(),
+              title: String(subtask.title || "").trim(),
+              targetMinutes: normalizeTargetMinutes(subtask.targetMinutes)
+            })).filter(subtask => subtask.title)
+          : [];
+        return {
+          id: item?.id || makeId(),
+          area,
+          title: String(item?.title || "").trim() || "루틴 할일",
+          days: Array.from(new Set(days)),
+          targetMinutes: normalizeTargetMinutes(item?.targetMinutes),
+          subtasks,
+          createdDateKeys: Array.isArray(item?.createdDateKeys)
+            ? item.createdDateKeys.map(key => String(key || "")).filter(Boolean).slice(-90)
+            : []
+        };
+      }).filter(item => item.days.length > 0);
+    }
+
+    function ensureRoutineTasksForToday(options = {}) {
+      state.routineTasks = normalizeRoutineTasks(state.routineTasks || []);
+      const todayKey = getTodayKey();
+      const todayDay = getTodayWeekdayKey();
+      let changed = false;
+      state.routineTasks.forEach(routine => {
+        if (!routine.days.includes(todayDay)) return;
+        if (routine.createdDateKeys.includes(todayKey)) return;
+        const task = normalizeTask({
+          id: makeId(),
+          title: routine.title,
+          done: false,
+          completedAt: null,
+          pinned: false,
+          later: false,
+          scheduledDay: "today",
+          focusSeconds: 0,
+          targetMinutes: routine.targetMinutes,
+          subtasksCollapsed: routine.subtasks.length ? false : true,
+          subtasks: routine.subtasks.map(subtask => ({
+            id: makeId(),
+            title: subtask.title,
+            done: false,
+            completedAt: null,
+            pinned: false,
+            focusSeconds: 0,
+            targetMinutes: subtask.targetMinutes
+          }))
+        });
+        insertNewParentTask(routine.area, task);
+        routine.createdDateKeys.push(todayKey);
+        routine.createdDateKeys = routine.createdDateKeys.slice(-90);
+        changed = true;
+      });
+      if (changed && !options.skipSave) saveLocalStateOnly({ immediate: true });
+      return changed;
+    }
+
     function normalizeState(parsed) {
       const base = clone(defaultState);
       const merged = { ...base, ...parsed, tasks: { portfolio: [], beacon: [], income: [] } };
@@ -11599,6 +11999,7 @@ for update using (true) with check (true);</pre>
       merged.weeklyRun = normalizeWeeklyRun(parsed?.weeklyRun || base.weeklyRun, getWeekKey());
       merged.weeklyScoreHistory = Array.isArray(parsed?.weeklyScoreHistory) ? parsed.weeklyScoreHistory.slice(0, 52) : [];
       merged.quickTemplates = normalizeQuickTemplates(parsed?.quickTemplates || base.quickTemplates);
+      merged.routineTasks = normalizeRoutineTasks(parsed?.routineTasks || base.routineTasks || []);
 
       return merged;
     }
@@ -11879,7 +12280,8 @@ for update using (true) with check (true);</pre>
         "activeTimer",
         "weeklyRun",
         "weeklyScoreHistory",
-        "quickTemplates"
+        "quickTemplates",
+        "routineTasks"
       ].forEach(key => {
         if (!isDeepEqual(local[key], base[key])) merged[key] = clone(local[key]);
       });
@@ -12168,7 +12570,7 @@ for update using (true) with check (true);</pre>
         osc.frequency.setValueAtTime(880, now);
         osc.frequency.exponentialRampToValueAtTime(1240, now + 0.09);
         gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.032, now + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.038, now + 0.012);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -12233,7 +12635,13 @@ for update using (true) with check (true);</pre>
       };
     }
 
-    function showCompletionRewardEffect(percent, area, anchorRect = null) {
+    function getCompletionRewardLabel(area, seconds = 0) {
+      const prefix = area === "portfolio" ? "포폴 전진" : area === "beacon" ? "비콘 전진" : "Etsy 전진";
+      const amount = seconds > 0 ? ` +${formatLoadDuration(seconds)}` : "";
+      return `${prefix}${amount}`;
+    }
+
+    function showCompletionRewardEffect(percent, area, anchorRect = null, labelText = "") {
       const value = Math.max(0, Math.round(Number(percent) || 0));
       if (!value) return;
       const root = document.body || document.documentElement;
@@ -12246,10 +12654,11 @@ for update using (true) with check (true);</pre>
       pop.setAttribute("aria-hidden", "true");
       pop.style.setProperty("--reward-left", `${position.x}px`);
       pop.style.setProperty("--reward-top", `${position.y}px`);
-      pop.innerHTML = `<span class="nova-reward-coins"><i></i><i></i><i></i></span><strong>+${value}%p</strong>`;
+      const safeLabel = escapeHtml(labelText || getCompletionRewardLabel(area));
+      pop.innerHTML = `<span class="nova-reward-coins"><i></i><i></i><i></i></span><span class="nova-reward-label">${safeLabel}</span><strong>+${value}%P</strong>`;
       root.appendChild(pop);
       playCompletionRewardSound();
-      window.setTimeout(() => pop.remove(), 1200);
+      window.setTimeout(() => pop.remove(), 1320);
     }
 
     function getPinnedEstimateSummary(items = getFocusedTasks()) {
@@ -14569,6 +14978,7 @@ for update using (true) with check (true);</pre>
     }
 
     function render() {
+      if (ensureRoutineTasksForToday({ skipSave: true })) saveLocalStateOnly();
       document.getElementById("todayText").textContent = formatToday();
       document.getElementById("classDeadline").value = state.classDeadline || "";
       const phraseNotes = normalizePhraseNotes(state.phraseNotes);
@@ -14846,6 +15256,102 @@ for update using (true) with check (true);</pre>
       renderQuickTemplates(area);
     }
 
+
+    function openRoutineTaskModal() {
+      const modal = document.getElementById("routineTaskModal");
+      if (!modal) return;
+      const titleInput = document.getElementById("routineTitleInput");
+      const areaInput = document.getElementById("routineAreaInput");
+      const targetInput = document.getElementById("routineTargetInput");
+      if (areaInput) areaInput.value = "portfolio";
+      if (targetInput) targetInput.value = "25";
+      if (titleInput) titleInput.value = "";
+      document.querySelectorAll('#routineDaysInput input[type="checkbox"]').forEach(input => { input.checked = false; });
+      const list = document.getElementById("routineSubtaskList");
+      if (list) list.innerHTML = "";
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => titleInput?.focus());
+    }
+
+    function closeRoutineTaskModal() {
+      const modal = document.getElementById("routineTaskModal");
+      if (!modal) return;
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    function addRoutineSubtaskInput(value = "", minutes = 25) {
+      const list = document.getElementById("routineSubtaskList");
+      if (!list) return;
+      const row = document.createElement("div");
+      row.className = "routine-subtask-row";
+      const input = document.createElement("input");
+      input.className = "routine-subtask-title";
+      input.placeholder = "하위할일";
+      input.value = value;
+      const select = document.createElement("select");
+      select.className = "routine-subtask-minutes";
+      TIMER_TARGET_PRESETS.forEach(min => {
+        const option = document.createElement("option");
+        option.value = String(min);
+        option.textContent = `${min}m`;
+        select.appendChild(option);
+      });
+      select.value = String(normalizeTargetMinutes(minutes));
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "routine-subtask-remove";
+      remove.textContent = "×";
+      remove.title = "하위할일 삭제";
+      remove.onclick = () => row.remove();
+      row.appendChild(input);
+      row.appendChild(select);
+      row.appendChild(remove);
+      list.appendChild(row);
+      requestAnimationFrame(() => input.focus());
+    }
+
+    function getRoutineModalSubtasks() {
+      return Array.from(document.querySelectorAll("#routineSubtaskList .routine-subtask-row")).map(row => {
+        const title = row.querySelector(".routine-subtask-title")?.value?.trim() || "";
+        const targetMinutes = normalizeTargetMinutes(row.querySelector(".routine-subtask-minutes")?.value || 25);
+        return title ? { id: makeId(), title, targetMinutes } : null;
+      }).filter(Boolean);
+    }
+
+    function saveRoutineTaskFromModal() {
+      const area = document.getElementById("routineAreaInput")?.value || "portfolio";
+      const title = document.getElementById("routineTitleInput")?.value?.trim() || "";
+      const targetMinutes = normalizeTargetMinutes(document.getElementById("routineTargetInput")?.value || 25);
+      const days = Array.from(document.querySelectorAll('#routineDaysInput input[type="checkbox"]:checked')).map(input => input.value).filter(day => WEEKDAY_KEYS.includes(day));
+      if (!title) {
+        document.getElementById("routineTitleInput")?.focus();
+        showUndoToast("루틴 할일명을 입력하세요");
+        return;
+      }
+      if (!days.length) {
+        showUndoToast("요일을 하나 이상 체크하세요");
+        return;
+      }
+      pushUndoSnapshot();
+      state.routineTasks = normalizeRoutineTasks(state.routineTasks || []);
+      state.routineTasks.push({
+        id: makeId(),
+        area: AREA_ORDER.includes(area) ? area : "portfolio",
+        title,
+        days,
+        targetMinutes,
+        subtasks: getRoutineModalSubtasks(),
+        createdDateKeys: []
+      });
+      ensureRoutineTasksForToday({ skipSave: true });
+      saveState();
+      closeRoutineTaskModal();
+      render();
+      showUndoToast("루틴 할일 저장됨");
+    }
+
     function addTask(area) {
       const input = document.getElementById(`${area}Input`);
       const title = input.value.trim();
@@ -14967,7 +15473,7 @@ for update using (true) with check (true);</pre>
       render();
       if (nextDone) {
         showUndoToast("완료 처리됨");
-        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect);
+        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect, getCompletionRewardLabel(area, completedEstimateSeconds));
       }
     }
 
@@ -15130,7 +15636,7 @@ for update using (true) with check (true);</pre>
       render();
       if (nextDone) {
         showUndoToast("하위항목 완료됨");
-        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect);
+        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect, getCompletionRewardLabel(area, completedEstimateSeconds));
       }
     }
 
@@ -19322,6 +19828,188 @@ for update using (true) with check (true);</pre>
     }
   </style>
 
+
+  <style id="nova-final-reward-pin-timer-font-20260620">
+    /* User-supplied phrase font. Keep font file as a separate deploy asset. */
+    @font-face {
+      font-family: "OwnglyphConcon";
+      src: url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .quote-box,
+    .top-quote-box,
+    .panel-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+    body:not(.mobile-focus-mode) .income .panel-quote-box {
+      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.005em !important;
+    }
+
+    .quote-box::placeholder,
+    .top-quote-box::placeholder,
+    .panel-quote-box::placeholder {
+      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    /* Restore the original parent-card stroke weight and apply it evenly to subtasks/mobile. */
+    :root {
+      --nova-pin-stroke: 2.6px;
+      --nova-pin-stroke-mobile: 2.2px;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.portfolio,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="portfolio"] {
+      border: var(--nova-pin-stroke) solid var(--portfolio) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(201,120,127,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.beacon,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="beacon"] {
+      border: var(--nova-pin-stroke) solid var(--beacon) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(138,143,207,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.income,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.income,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="income"] {
+      border: var(--nova-pin-stroke) solid var(--income) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(199,161,90,0.40),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned {
+      border-width: var(--nova-pin-stroke-mobile) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.08),
+        inset 0 0 0 0.8px currentColor,
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.portfolio,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio {
+      border-color: var(--portfolio) !important;
+      color: var(--portfolio) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned.beacon,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon {
+      border-color: var(--beacon) !important;
+      color: var(--beacon) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned.income,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
+      border-color: var(--income) !important;
+      color: var(--income) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned *,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned * {
+      color: initial;
+    }
+
+    /* PC timer focus state: match mobile's live emphasis and grey pause state. */
+    body:not(.mobile-focus-mode) .task-card.running:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running:not(.paused) {
+      position: relative !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
+      border-color: rgba(201,120,127,0.86) !important;
+      background: linear-gradient(90deg, rgba(247,228,229,0.90), rgba(248,248,245,0.96) 62%) !important;
+    }
+    body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
+      border-color: rgba(138,143,207,0.90) !important;
+      background: linear-gradient(90deg, rgba(232,233,248,0.92), rgba(248,248,245,0.96) 62%) !important;
+    }
+    body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
+      border-color: rgba(199,161,90,0.90) !important;
+      background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.running:not(.paused) .task-title,
+    body:not(.mobile-focus-mode) .subtask-row.running:not(.paused) .subtask-title {
+      color: #111 !important;
+      font-weight: 760 !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.28) !important;
+      box-shadow:
+        0 8px 17px rgba(0,0,0,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 0 0 3px rgba(24,24,24,0.10) !important;
+      animation: pcMatteTimerBreath 1.15s ease-in-out infinite !important;
+      transform-origin: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #8f4149 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #545aa3 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #806838 !important; }
+
+    body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 7px !important;
+      height: 7px !important;
+      border: 0 !important;
+      margin: 0 !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      animation: pcMatteLiveDot 0.95s ease-out infinite !important;
+      flex: 0 0 auto !important;
+      transform: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.paused {
+      background: #8f8e89 !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.42) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 3px 9px rgba(0,0,0,0.08) !important;
+      animation: none !important;
+    }
+
+    @keyframes pcMatteTimerBreath {
+      0%, 100% { transform: translateZ(0) scale(1); }
+      50% { transform: translateZ(0) scale(1.035); }
+    }
+
+    @keyframes pcMatteLiveDot {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.62); opacity: 1; }
+      70% { box-shadow: 0 0 0 7px rgba(255,255,255,0); opacity: .78; }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded),
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
+        animation: none !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <main class="wrap">
@@ -20702,6 +21390,188 @@ for update using (true) with check (true);</pre>
         min-width: 56px !important;
         max-width: 56px !important;
         font-size: 10.5px !important;
+      }
+    }
+  </style>
+
+
+  <style id="nova-final-reward-pin-timer-font-20260620">
+    /* User-supplied phrase font. Keep font file as a separate deploy asset. */
+    @font-face {
+      font-family: "OwnglyphConcon";
+      src: url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .quote-box,
+    .top-quote-box,
+    .panel-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+    body:not(.mobile-focus-mode) .income .panel-quote-box {
+      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.005em !important;
+    }
+
+    .quote-box::placeholder,
+    .top-quote-box::placeholder,
+    .panel-quote-box::placeholder {
+      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    /* Restore the original parent-card stroke weight and apply it evenly to subtasks/mobile. */
+    :root {
+      --nova-pin-stroke: 2.6px;
+      --nova-pin-stroke-mobile: 2.2px;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.portfolio,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="portfolio"] {
+      border: var(--nova-pin-stroke) solid var(--portfolio) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(201,120,127,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.beacon,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="beacon"] {
+      border: var(--nova-pin-stroke) solid var(--beacon) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(138,143,207,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.income,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.income,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="income"] {
+      border: var(--nova-pin-stroke) solid var(--income) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(199,161,90,0.40),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned {
+      border-width: var(--nova-pin-stroke-mobile) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.08),
+        inset 0 0 0 0.8px currentColor,
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.portfolio,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio {
+      border-color: var(--portfolio) !important;
+      color: var(--portfolio) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned.beacon,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon {
+      border-color: var(--beacon) !important;
+      color: var(--beacon) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned.income,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
+      border-color: var(--income) !important;
+      color: var(--income) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned *,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned * {
+      color: initial;
+    }
+
+    /* PC timer focus state: match mobile's live emphasis and grey pause state. */
+    body:not(.mobile-focus-mode) .task-card.running:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running:not(.paused) {
+      position: relative !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
+      border-color: rgba(201,120,127,0.86) !important;
+      background: linear-gradient(90deg, rgba(247,228,229,0.90), rgba(248,248,245,0.96) 62%) !important;
+    }
+    body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
+      border-color: rgba(138,143,207,0.90) !important;
+      background: linear-gradient(90deg, rgba(232,233,248,0.92), rgba(248,248,245,0.96) 62%) !important;
+    }
+    body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
+      border-color: rgba(199,161,90,0.90) !important;
+      background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.running:not(.paused) .task-title,
+    body:not(.mobile-focus-mode) .subtask-row.running:not(.paused) .subtask-title {
+      color: #111 !important;
+      font-weight: 760 !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.28) !important;
+      box-shadow:
+        0 8px 17px rgba(0,0,0,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 0 0 3px rgba(24,24,24,0.10) !important;
+      animation: pcMatteTimerBreath 1.15s ease-in-out infinite !important;
+      transform-origin: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #8f4149 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #545aa3 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #806838 !important; }
+
+    body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 7px !important;
+      height: 7px !important;
+      border: 0 !important;
+      margin: 0 !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      animation: pcMatteLiveDot 0.95s ease-out infinite !important;
+      flex: 0 0 auto !important;
+      transform: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.paused {
+      background: #8f8e89 !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.42) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 3px 9px rgba(0,0,0,0.08) !important;
+      animation: none !important;
+    }
+
+    @keyframes pcMatteTimerBreath {
+      0%, 100% { transform: translateZ(0) scale(1); }
+      50% { transform: translateZ(0) scale(1.035); }
+    }
+
+    @keyframes pcMatteLiveDot {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.62); opacity: 1; }
+      70% { box-shadow: 0 0 0 7px rgba(255,255,255,0); opacity: .78; }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded),
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
+        animation: none !important;
       }
     }
   </style>
