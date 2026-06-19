@@ -7675,6 +7675,126 @@
     }
   </style>
 
+
+
+  <style id="pc-cloud-pull-emphasis-patch">
+    /* PC header: make the cloud pull / latest-state button more discoverable without enlarging the whole header. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        min-width: 64px !important;
+        width: auto !important;
+        height: 32px !important;
+        min-height: 32px !important;
+        padding: 0 13px !important;
+        border: 1.7px solid rgba(46, 41, 35, 0.62) !important;
+        background: linear-gradient(180deg, rgba(245, 234, 209, 0.98), rgba(255, 250, 242, 0.96)) !important;
+        color: #2e2923 !important;
+        box-shadow:
+          0 7px 16px rgba(46, 41, 35, 0.13),
+          inset 0 1px 0 rgba(255,255,255,0.76) !important;
+        font-size: 16px !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+        opacity: 1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn::after {
+        content: "최신";
+        font-size: 10.5px;
+        font-weight: 820;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        transform: translateY(0.5px);
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover {
+        background: linear-gradient(180deg, rgba(245, 234, 209, 1), rgba(255, 253, 248, 1)) !important;
+        border-color: rgba(46, 41, 35, 0.84) !important;
+        transform: translateY(-1px) !important;
+        box-shadow:
+          0 9px 20px rgba(46, 41, 35, 0.17),
+          inset 0 1px 0 rgba(255,255,255,0.78) !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:active {
+        transform: translateY(1px) !important;
+        box-shadow:
+          0 4px 10px rgba(46, 41, 35, 0.11),
+          inset 0 1px 2px rgba(46,41,35,0.12) !important;
+      }
+    }
+  </style>
+
+
+  <style id="today-focus-total-patch">
+    /* Today Load: make total focused time a primary metric. */
+    .today-load-panel {
+      grid-template-columns: 14px minmax(168px, 1.02fr) minmax(162px, 0.74fr) minmax(150px, 0.58fr) minmax(174px, 0.68fr) !important;
+      gap: 14px !important;
+    }
+
+    .today-load-panel .load-focus-total {
+      min-width: 0 !important;
+      display: grid !important;
+      gap: 4px !important;
+      align-content: center !important;
+      justify-items: start !important;
+      padding-left: 2px !important;
+    }
+
+    .today-load-panel .load-focus-total span {
+      color: #665f58 !important;
+      font-size: 12px !important;
+      font-weight: 760 !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+    }
+
+    .today-load-panel .load-focus-total strong {
+      color: #242424 !important;
+      font-size: 30px !important;
+      font-weight: 860 !important;
+      line-height: 0.95 !important;
+      letter-spacing: -0.055em !important;
+      font-variant-numeric: tabular-nums !important;
+      white-space: nowrap !important;
+    }
+
+    @media (max-width: 1420px) {
+      .today-load-panel {
+        grid-template-columns: 12px minmax(156px, 0.96fr) minmax(146px, 0.70fr) minmax(134px, 0.56fr) minmax(154px, 0.64fr) !important;
+        gap: 10px !important;
+      }
+
+      .today-load-panel .load-focus-total strong {
+        font-size: 26px !important;
+      }
+
+      .today-load-panel .load-focus-total span {
+        font-size: 11px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total {
+        grid-column: 2 / -1 !important;
+        width: 100% !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        align-items: baseline !important;
+        gap: 10px !important;
+        padding-left: 0 !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total strong {
+        font-size: 25px !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -7715,6 +7835,10 @@
             <div class="load-verdict" id="todayLoadVerdict">Portfolio 가능</div>
           </div>
           <div class="load-side">
+            <div class="load-focus-total" aria-label="오늘 총 집중시간">
+              <span>오늘 총 집중시간</span>
+              <strong id="todayFocusTotal">0h00m</strong>
+            </div>
             <div class="load-percent" id="todayLoadPercent">0%</div>
             <div class="load-portfolio" id="todayLoadPortfolio"></div>
           </div>
@@ -9128,12 +9252,30 @@ for update using (true) with check (true);</pre>
       };
     }
 
+    function formatFocusHoursMinutes(seconds) {
+      const total = Math.max(0, Math.floor(Number(seconds) || 0));
+      const hours = Math.floor(total / 3600);
+      const minutes = Math.floor((total % 3600) / 60);
+      return `${hours}h${String(minutes).padStart(2, "0")}m`;
+    }
+
+    function getTodayFocusTotalSeconds() {
+      const summary = getTodaySummaryWithRunning();
+      return (Number(summary.portfolio) || 0) + (Number(summary.beacon) || 0) + (Number(summary.income) || 0);
+    }
+
+    function updateTodayFocusTotalDom() {
+      const total = document.getElementById("todayFocusTotal");
+      if (total) total.textContent = formatFocusHoursMinutes(getTodayFocusTotalSeconds());
+    }
+
     function updateLiveTimerDom() {
       if (!state.activeTimer) return;
       const payload = getActiveTimerLivePayload();
       if (!payload) return;
 
       renderTopTimeLog();
+      updateTodayFocusTotalDom();
 
       document.querySelectorAll(`[data-live-meta="main"][data-area="${payload.area}"][data-task-id="${payload.taskId}"], [data-live-meta="main"][data-area="${payload.area}"][data-taskid="${payload.taskId}"]`).forEach(meta => {
         meta.textContent = `${payload.countdownText || "카운트다운 중"} · 총 집중 ${payload.taskFocusText || payload.focusText}`;
@@ -15655,6 +15797,60 @@ for update using (true) with check (true);</pre>
     }
 
   </style>
+
+
+  <style id="pc-cloud-pull-emphasis-patch">
+    /* PC header: make the cloud pull / latest-state button more discoverable without enlarging the whole header. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        min-width: 64px !important;
+        width: auto !important;
+        height: 32px !important;
+        min-height: 32px !important;
+        padding: 0 13px !important;
+        border: 1.7px solid rgba(46, 41, 35, 0.62) !important;
+        background: linear-gradient(180deg, rgba(245, 234, 209, 0.98), rgba(255, 250, 242, 0.96)) !important;
+        color: #2e2923 !important;
+        box-shadow:
+          0 7px 16px rgba(46, 41, 35, 0.13),
+          inset 0 1px 0 rgba(255,255,255,0.76) !important;
+        font-size: 16px !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+        opacity: 1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn::after {
+        content: "최신";
+        font-size: 10.5px;
+        font-weight: 820;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        transform: translateY(0.5px);
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover {
+        background: linear-gradient(180deg, rgba(245, 234, 209, 1), rgba(255, 253, 248, 1)) !important;
+        border-color: rgba(46, 41, 35, 0.84) !important;
+        transform: translateY(-1px) !important;
+        box-shadow:
+          0 9px 20px rgba(46, 41, 35, 0.17),
+          inset 0 1px 0 rgba(255,255,255,0.78) !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:active {
+        transform: translateY(1px) !important;
+        box-shadow:
+          0 4px 10px rgba(46, 41, 35, 0.11),
+          inset 0 1px 2px rgba(46,41,35,0.12) !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <main class="wrap">
@@ -16873,6 +17069,60 @@ for update using (true) with check (true);</pre>
       }
     }
   </style>
+
+
+  <style id="pc-cloud-pull-emphasis-patch">
+    /* PC header: make the cloud pull / latest-state button more discoverable without enlarging the whole header. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        min-width: 64px !important;
+        width: auto !important;
+        height: 32px !important;
+        min-height: 32px !important;
+        padding: 0 13px !important;
+        border: 1.7px solid rgba(46, 41, 35, 0.62) !important;
+        background: linear-gradient(180deg, rgba(245, 234, 209, 0.98), rgba(255, 250, 242, 0.96)) !important;
+        color: #2e2923 !important;
+        box-shadow:
+          0 7px 16px rgba(46, 41, 35, 0.13),
+          inset 0 1px 0 rgba(255,255,255,0.76) !important;
+        font-size: 16px !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+        opacity: 1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn::after {
+        content: "최신";
+        font-size: 10.5px;
+        font-weight: 820;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        transform: translateY(0.5px);
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover {
+        background: linear-gradient(180deg, rgba(245, 234, 209, 1), rgba(255, 253, 248, 1)) !important;
+        border-color: rgba(46, 41, 35, 0.84) !important;
+        transform: translateY(-1px) !important;
+        box-shadow:
+          0 9px 20px rgba(46, 41, 35, 0.17),
+          inset 0 1px 0 rgba(255,255,255,0.78) !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:active {
+        transform: translateY(1px) !important;
+        box-shadow:
+          0 4px 10px rgba(46, 41, 35, 0.11),
+          inset 0 1px 2px rgba(46,41,35,0.12) !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <main class="mini-wrap">
@@ -17776,6 +18026,7 @@ for update using (true) with check (true);</pre>
       panel.dataset.loadGrade = load.gradeKey || "leisure";
       panel.title = `가능 시간 계산: ${load.availableText}`;
       document.getElementById("todayLoadTitle").textContent = "오늘 작업량";
+      updateTodayFocusTotalDom();
       const detail = document.getElementById("todayLoadDetail");
       if (detail) {
         detail.textContent = load.noAvailableTime
