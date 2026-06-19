@@ -7364,6 +7364,78 @@
     }
   </style>
 
+
+
+  <style id="weekly-matrix-tight-density-patch">
+    /* Weekly matrix: stricter scoreboard + tighter horizontal density. */
+    .weekly-matrix-card {
+      grid-template-columns: auto auto !important;
+      gap: 30px !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    .weekly-matrix {
+      width: 248px !important;
+      gap: 3px !important;
+      justify-self: end !important;
+    }
+
+    .weekly-matrix-row {
+      grid-template-columns: 48px repeat(5, 27px) 34px !important;
+      gap: 3px !important;
+      font-size: 10.8px !important;
+    }
+
+    .weekly-matrix-row.header {
+      font-size: 9.5px !important;
+    }
+
+    .weekly-matrix-dot {
+      width: 17px !important;
+      height: 17px !important;
+      font-size: 10px !important;
+      box-shadow: none !important;
+    }
+
+    .weekly-matrix-dot.active.portfolio { box-shadow: 0 0 0 2px rgba(201,120,127,0.11) !important; }
+    .weekly-matrix-dot.active.beacon { box-shadow: 0 0 0 2px rgba(138,143,207,0.11) !important; }
+    .weekly-matrix-dot.active.income { box-shadow: 0 0 0 2px rgba(199,161,90,0.11) !important; }
+    .weekly-matrix-dot.partial.portfolio { box-shadow: 0 0 0 1px rgba(201,120,127,0.10) !important; }
+    .weekly-matrix-dot.partial.beacon { box-shadow: 0 0 0 1px rgba(138,143,207,0.10) !important; }
+    .weekly-matrix-dot.partial.income { box-shadow: 0 0 0 1px rgba(199,161,90,0.10) !important; }
+
+    .weekly-matrix-name {
+      padding-left: 1px !important;
+    }
+
+    .weekly-matrix-count {
+      text-align: left !important;
+      padding-left: 2px !important;
+      font-size: 10.8px !important;
+    }
+
+    .weekly-bars {
+      grid-template-columns: 70px repeat(5, 30px) !important;
+      width: 226px !important;
+      gap: 2px 3px !important;
+      justify-self: start !important;
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix,
+      body:not(.mobile-focus-mode) .weekly-bars {
+        width: 100% !important;
+        justify-self: stretch !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -9582,19 +9654,24 @@ for update using (true) with check (true);</pre>
       const actualSeconds = entries.reduce((sum, entry) => sum + Math.max(0, Number(entry.actualSeconds) || 0), 0);
       const effectiveSeconds = Math.max(loggedSeconds, actualSeconds, estimatedSeconds);
       const coreDone = entries.some(entry => hasAreaCoreOutput(area, `${entry.parentTitle} ${entry.title}`));
+      const timedCoreOutput = entries.some(entry => {
+        if (!hasAreaCoreOutput(area, `${entry.parentTitle} ${entry.title}`)) return false;
+        const entrySeconds = Math.max(0, Number(entry.estimateSeconds) || 0, Number(entry.actualSeconds) || 0);
+        return entrySeconds >= (area === "portfolio" ? 45 * 60 : 20 * 60);
+      });
 
       let active = false;
       let partial = false;
       if (area === "portfolio") {
         const pinnedMajor = entries.some(entry => entry.completedFromPin && Number(entry.estimateSeconds) >= 45 * 60);
-        active = effectiveSeconds >= 60 * 60 || pinnedMajor || coreDone;
-        partial = !active && (effectiveSeconds >= 15 * 60 || entries.length > 0);
+        active = effectiveSeconds >= 75 * 60 || pinnedMajor || timedCoreOutput;
+        partial = !active && (effectiveSeconds >= 20 * 60 || entries.length > 0 || coreDone);
       } else if (area === "beacon") {
-        active = effectiveSeconds >= 25 * 60 || coreDone;
-        partial = !active && (effectiveSeconds >= 10 * 60 || entries.length > 0);
+        active = effectiveSeconds >= 30 * 60 || timedCoreOutput;
+        partial = !active && (effectiveSeconds >= 10 * 60 || entries.length > 0 || coreDone);
       } else {
-        active = effectiveSeconds >= 25 * 60 || coreDone;
-        partial = !active && (effectiveSeconds >= 10 * 60 || entries.length > 0);
+        active = effectiveSeconds >= 30 * 60 || timedCoreOutput;
+        partial = !active && (effectiveSeconds >= 10 * 60 || entries.length > 0 || coreDone);
       }
       return { active, partial, seconds: effectiveSeconds };
     }
