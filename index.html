@@ -6916,6 +6916,26 @@
     }
   </style>
 
+
+
+  <style id="mobile-single-task-timer-still-patch">
+    /* Mobile focus: keep standalone-task live dot, but stop the large timer pill breathing/scale motion. */
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
+      animation: none !important;
+      transform: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      animation: mobileMatteLiveDot 0.95s ease-out infinite !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
+        animation: none !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
