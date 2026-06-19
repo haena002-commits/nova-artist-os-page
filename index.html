@@ -11706,13 +11706,12 @@ for update using (true) with check (true);</pre>
 
     function mobileMiniDoneLogHtml() {
       const doneEntries = getClearEntries();
-      const visibleEntries = doneEntries.slice(0, 3);
       if (!doneEntries.length) return "";
 
       return `<section class="mini-done-log" aria-label="오늘 완료한 할일">
-        <div class="mini-done-head"><span>오늘 완료 · ${escapeHtml(String(doneEntries.length))}개</span>${doneEntries.length > visibleEntries.length ? `<strong>+${escapeHtml(String(doneEntries.length - visibleEntries.length))}개 더 완료</strong>` : ""}</div>
+        <div class="mini-done-head"><span>오늘 완료 · ${escapeHtml(String(doneEntries.length))}개</span></div>
         <div class="mini-done-list">
-          ${visibleEntries.map(entry => {
+          ${doneEntries.map(entry => {
             const seconds = Number(entry.actualSeconds) > 0 ? Number(entry.actualSeconds) : Number(entry.estimateSeconds) || 0;
             const action = entry.subtaskId ? "restoreSubtask" : "restoreTask";
             return `<div class="mini-done-row ${escapeHtml(entry.area)}" title="${escapeHtml(entry.parentTitle ? entry.parentTitle + " / " + entry.title : entry.title)}">
