@@ -7795,6 +7795,140 @@
     }
   </style>
 
+
+
+  <style id="today-spacing-update-button-patch">
+    /* Today load card: give the right-side progress labels enough breathing room. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .today-load-panel {
+        grid-template-columns:
+          14px
+          minmax(188px, 1fr)
+          minmax(158px, 0.56fr)
+          minmax(152px, 0.52fr)
+          minmax(214px, 0.72fr) !important;
+        gap: 18px !important;
+        padding-right: 24px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent {
+        min-width: 152px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        min-width: 214px !important;
+        padding-left: 14px !important;
+        padding-right: 0 !important;
+        border-left: 1px solid rgba(36, 36, 32, 0.08) !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line {
+        display: grid !important;
+        grid-template-columns: minmax(96px, 1fr) auto !important;
+        align-items: baseline !important;
+        column-gap: 16px !important;
+        width: 100% !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line span,
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line strong {
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line strong {
+        justify-self: end !important;
+        text-align: right !important;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1420px) {
+      body:not(.mobile-focus-mode) .today-load-panel {
+        grid-template-columns:
+          12px
+          minmax(174px, 0.96fr)
+          minmax(142px, 0.52fr)
+          minmax(144px, 0.50fr)
+          minmax(198px, 0.70fr) !important;
+        gap: 14px !important;
+        padding-right: 20px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        min-width: 198px !important;
+        padding-left: 12px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line {
+        grid-template-columns: minmax(92px, 1fr) auto !important;
+        column-gap: 14px !important;
+      }
+    }
+
+    /* PC header cloud pull: neutral, wider hit area, single-stroke modern refresh icon. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        min-width: 82px !important;
+        height: 32px !important;
+        min-height: 32px !important;
+        padding: 0 13px !important;
+        border: 1px solid rgba(24, 24, 24, 0.18) !important;
+        border-radius: 999px !important;
+        background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(238,238,235,0.74)) !important;
+        color: #242424 !important;
+        box-shadow:
+          0 5px 13px rgba(0,0,0,0.07),
+          inset 0 1px 0 rgba(255,255,255,0.78) !important;
+        font-size: 11px !important;
+        font-weight: 760 !important;
+        line-height: 1 !important;
+        letter-spacing: 0 !important;
+        opacity: 1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn::after {
+        content: none !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-icon {
+        width: 14px !important;
+        height: 14px !important;
+        flex: 0 0 auto !important;
+        fill: none !important;
+        stroke: currentColor !important;
+        stroke-width: 1.7 !important;
+        stroke-linecap: round !important;
+        stroke-linejoin: round !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-label {
+        font-size: 10.5px !important;
+        font-weight: 760 !important;
+        line-height: 1 !important;
+        text-transform: lowercase !important;
+        transform: translateY(0.3px) !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover {
+        background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(242,242,239,0.86)) !important;
+        border-color: rgba(24,24,24,0.32) !important;
+        transform: translateY(-1px) !important;
+        box-shadow:
+          0 7px 17px rgba(0,0,0,0.10),
+          inset 0 1px 0 rgba(255,255,255,0.82) !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:active {
+        transform: translateY(1px) !important;
+        box-shadow:
+          0 3px 8px rgba(0,0,0,0.07),
+          inset 0 1px 2px rgba(0,0,0,0.09) !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -7809,7 +7943,15 @@
 
           <div class="brand-actions">
             <button class="focus-btn" onclick="openMiniFocusWindow()">미니</button>
-            <button class="sync-btn cloud-pull-btn" type="button" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">↻</button>
+            <button class="sync-btn cloud-pull-btn" type="button" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">
+              <svg class="cloud-pull-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M12.6 5.2A5.1 5.1 0 0 0 3.4 4.1" />
+                <path d="M12.6 2.7v2.5h-2.5" />
+                <path d="M3.4 10.8a5.1 5.1 0 0 0 9.2 1.1" />
+                <path d="M3.4 13.3v-2.5h2.5" />
+              </svg>
+              <span class="cloud-pull-label">update</span>
+            </button>
             <button class="sync-btn" onclick="openSyncPanel()">모바일 연동</button>
             <button class="sync-btn" onclick="downloadBackupFile()">백업</button>
             <button class="sync-btn" onclick="downloadReportFile()">리포트</button>
