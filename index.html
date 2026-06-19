@@ -10284,6 +10284,438 @@
     }
   </style>
 
+
+
+  <style id="weekly-matrix-label-visible-20260620">
+    /* Top weekly tracker label fix: keep row labels fully visible without changing the widget content. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .achievement-strip {
+        box-sizing: border-box !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        box-sizing: border-box !important;
+        padding-left: 18px !important;
+        padding-right: 14px !important;
+        grid-template-columns: minmax(286px, 286px) minmax(184px, 184px) !important;
+        gap: 12px !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix {
+        width: 286px !important;
+        justify-self: start !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-row {
+        grid-template-columns: 54px repeat(5, 27px) 38px !important;
+        gap: 3px !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-name {
+        min-width: 54px !important;
+        width: 54px !important;
+        padding-left: 0 !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+        text-align: left !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-count {
+        min-width: 38px !important;
+        width: 38px !important;
+        text-align: left !important;
+        padding-left: 1px !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars {
+        width: 184px !important;
+        grid-template-columns: 62px repeat(5, 24px) !important;
+        gap: 2px 3px !important;
+        justify-self: start !important;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1500px) {
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        padding-left: 16px !important;
+        padding-right: 12px !important;
+        grid-template-columns: minmax(276px, 276px) minmax(176px, 176px) !important;
+        gap: 10px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix {
+        width: 276px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-row {
+        grid-template-columns: 52px repeat(5, 26px) 36px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-name {
+        min-width: 52px !important;
+        width: 52px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-count {
+        min-width: 36px !important;
+        width: 36px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars {
+        width: 176px !important;
+        grid-template-columns: 60px repeat(5, 22px) !important;
+      }
+    }
+  </style>
+
+
+
+  <style id="pin-stroke-unified-cleanup-20260620">
+    /* Unify PIN stroke weight across parent tasks, subtasks, PC and mobile. */
+    :root {
+      --nova-pin-stroke: 2px;
+      --nova-pin-stroke-mobile: 1.4px;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned,
+    body:not(.mobile-focus-mode) .task-card.pinned.running,
+    body:not(.mobile-focus-mode) .subtask-row.pinned {
+      position: relative !important;
+      isolation: auto !important;
+      outline: none !important;
+      background-clip: padding-box !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.portfolio,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="portfolio"] {
+      border: var(--nova-pin-stroke) solid var(--portfolio) !important;
+      box-shadow: 0 7px 16px rgba(0,0,0,0.045), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.beacon,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="beacon"] {
+      border: var(--nova-pin-stroke) solid var(--beacon) !important;
+      box-shadow: 0 7px 16px rgba(0,0,0,0.045), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.income,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.income,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="income"] {
+      border: var(--nova-pin-stroke) solid var(--income) !important;
+      box-shadow: 0 7px 16px rgba(0,0,0,0.045), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned {
+      padding: 5px 6px !important;
+      overflow: hidden !important;
+      contain: layout paint !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned > * {
+      position: relative !important;
+      z-index: 1 !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned .pin-btn,
+    body:not(.mobile-focus-mode) .subtask-row.pinned .subtask-pin,
+    body:not(.mobile-focus-mode) .subtask-row.pinned .subtask-delete,
+    body:not(.mobile-focus-mode) .subtask-row.pinned .subtask-target-select {
+      box-shadow: none !important;
+      filter: none !important;
+      text-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned .pin-btn.active,
+    body:not(.mobile-focus-mode) .subtask-row.pinned .subtask-pin.active {
+      background: rgba(255,255,255,0.86) !important;
+      color: #353635 !important;
+      border-color: rgba(0,0,0,0.14) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned,
+    body.mobile-focus-mode .mobile-task.pinned.portfolio,
+    body.mobile-focus-mode .mobile-task.pinned.beacon,
+    body.mobile-focus-mode .mobile-task.pinned.income,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
+      border-width: var(--nova-pin-stroke-mobile) !important;
+      box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.portfolio,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio {
+      border-color: var(--portfolio) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.beacon,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon {
+      border-color: var(--beacon) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.income,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
+      border-color: var(--income) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.portfolio::before,
+    body.mobile-focus-mode .mobile-task.pinned.beacon::before,
+    body.mobile-focus-mode .mobile-task.pinned.income::before,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio::before,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon::before,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income::before {
+      top: 8px !important;
+      bottom: 8px !important;
+      width: 3px !important;
+      opacity: 0.88 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned .mobile-pin,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned .mobile-pin,
+    body.mobile-focus-mode .mobile-task.pinned .mobile-target,
+    body.mobile-focus-mode .mobile-task.pinned .mobile-timer {
+      box-shadow: none !important;
+      filter: none !important;
+      text-shadow: none !important;
+    }
+  </style>
+
+
+  <style id="pc-mainboard-timer-button-patch">
+    /* PC mainboard: add the same countdown counter behavior used on mobile/focus windows. */
+    body:not(.mobile-focus-mode) .task-left-actions .pc-timer,
+    body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+      position: relative !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      height: 26px !important;
+      min-height: 26px !important;
+      max-height: 26px !important;
+      min-width: 40px !important;
+      padding: 0 8px !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(24,24,24,0.10) !important;
+      background: rgba(255,255,255,0.72) !important;
+      color: #50524f !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.66), 0 2px 7px rgba(0,0,0,0.045) !important;
+      font-size: 11px !important;
+      font-weight: 760 !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      font-variant-numeric: tabular-nums !important;
+      isolation: isolate !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-left-actions .pc-timer {
+      min-width: 36px !important;
+      width: auto !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+      width: 62px !important;
+      min-width: 62px !important;
+      max-width: 62px !important;
+      padding: 0 6px !important;
+      justify-self: stretch !important;
+      align-self: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running {
+      color: #fff !important;
+      border-color: transparent !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #8f4149 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #545aa3 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #806838 !important; }
+
+    body:not(.mobile-focus-mode) .pc-timer.paused {
+      background: #8f8e89 !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.42) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.exceeded {
+      background: #b6463d !important;
+      color: #fff !important;
+      border-color: #b6463d !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:not(.running):not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin-left: 1px !important;
+      border-top: 4px solid transparent !important;
+      border-bottom: 4px solid transparent !important;
+      border-left: 6px solid currentColor !important;
+      transform: translateX(1px) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:not(.running):not(.paused):not(.exceeded) {
+      font-size: 0 !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:disabled {
+      opacity: 0.42 !important;
+      cursor: default !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-left-actions {
+      align-items: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row {
+      grid-template-columns: 8px 22px minmax(0, 1fr) 58px 62px 28px 22px !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-target-select { grid-column: 4 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .pc-timer { grid-column: 5 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-pin { grid-column: 6 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-delete { grid-column: 7 !important; }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .subtask-row {
+        grid-template-columns: 8px 22px minmax(0, 1fr) 52px 56px 28px 22px !important;
+      }
+      body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+        width: 56px !important;
+        min-width: 56px !important;
+        max-width: 56px !important;
+        font-size: 10.5px !important;
+      }
+    }
+  </style>
+
+
+  <style id="completion-reward-effect-20260620">
+    .nova-reward-pop {
+      position: fixed;
+      right: max(22px, env(safe-area-inset-right));
+      bottom: max(86px, calc(env(safe-area-inset-bottom) + 76px));
+      z-index: 30000;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      border: 1px solid rgba(255,255,255,0.72);
+      border-radius: 999px;
+      background: rgba(248,248,245,0.92);
+      color: #2b2c2b;
+      box-shadow: 0 12px 28px rgba(35,35,33,0.16), inset 0 1px 0 rgba(255,255,255,0.78);
+      padding: 7px 10px 7px 8px;
+      font-size: 13px;
+      font-weight: 850;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      animation: novaRewardFloat 980ms cubic-bezier(.22,.84,.25,1) forwards;
+      will-change: transform, opacity;
+    }
+
+    .nova-reward-pop.portfolio { border-color: rgba(201,120,127,0.30); }
+    .nova-reward-pop.beacon { border-color: rgba(138,143,207,0.32); }
+    .nova-reward-pop.income { border-color: rgba(199,161,90,0.34); }
+
+    .nova-reward-coins {
+      position: relative;
+      display: inline-grid;
+      grid-template-columns: repeat(3, 7px);
+      align-items: end;
+      gap: 1px;
+      width: 25px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .nova-reward-coins i {
+      display: block;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #b9a263;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.58), 0 2px 4px rgba(70,66,46,0.12);
+      transform: translateY(3px);
+      animation: novaCoinPop 560ms ease-out forwards;
+    }
+
+    .nova-reward-pop.portfolio .nova-reward-coins i { background: var(--portfolio); }
+    .nova-reward-pop.beacon .nova-reward-coins i { background: var(--beacon); }
+    .nova-reward-pop.income .nova-reward-coins i { background: var(--income); }
+    .nova-reward-coins i:nth-child(2) { animation-delay: 55ms; }
+    .nova-reward-coins i:nth-child(3) { animation-delay: 110ms; }
+
+    .nova-reward-pop strong {
+      display: inline-block;
+      color: #232423;
+      font-size: 13px;
+      font-weight: 920;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    @keyframes novaRewardFloat {
+      0% { opacity: 0; transform: translateY(8px) scale(.96); }
+      16% { opacity: 1; transform: translateY(0) scale(1); }
+      72% { opacity: 1; transform: translateY(-18px) scale(1); }
+      100% { opacity: 0; transform: translateY(-30px) scale(.98); }
+    }
+
+    @keyframes novaCoinPop {
+      0% { opacity: 0; transform: translateY(6px) scale(.72); }
+      48% { opacity: 1; transform: translateY(-3px) scale(1.07); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    body.mobile-focus-mode .nova-reward-pop {
+      right: 14px;
+      bottom: max(78px, calc(env(safe-area-inset-bottom) + 68px));
+      padding: 7px 9px 7px 8px;
+      font-size: 12px;
+    }
+
+    body.mobile-focus-mode .nova-reward-pop strong { font-size: 12px; }
+
+    @media (max-width: 768px) {
+      .nova-reward-pop {
+        right: 14px;
+        bottom: max(78px, calc(env(safe-area-inset-bottom) + 68px));
+        padding: 7px 9px 7px 8px;
+        font-size: 12px;
+      }
+      .nova-reward-pop strong { font-size: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nova-reward-pop,
+      .nova-reward-coins i {
+        animation-duration: 420ms !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -11488,6 +11920,101 @@ for update using (true) with check (true);</pre>
       return Math.min(100, Math.round((doneCount / units.length) * 100));
     }
 
+
+    function getTodayPinnedRewardUnits() {
+      const units = [];
+      AREA_ORDER.forEach(area => {
+        (state.tasks[area] || []).forEach(task => {
+          if (!task || task.later) return;
+          const subtasks = Array.isArray(task.subtasks) ? task.subtasks : [];
+          const taskCompletedFromPinToday = Boolean(task.done && task.completedFromPin && isCompletedToday(task.completedAt));
+          const taskCountsAsPinned = Boolean(task.pinned || taskCompletedFromPinToday);
+
+          if (subtasks.length) {
+            subtasks.forEach(subtask => {
+              const subCompletedFromPinToday = Boolean(subtask.done && subtask.completedFromPin && isCompletedToday(subtask.completedAt));
+              if (!taskCountsAsPinned && !subtask.pinned && !subCompletedFromPinToday) return;
+              units.push({
+                area,
+                taskId: task.id,
+                subtaskId: subtask.id,
+                done: Boolean(subtask.done),
+                targetSeconds: Math.max(60, getSubtaskEstimatedSeconds(subtask))
+              });
+            });
+            return;
+          }
+
+          if (!taskCountsAsPinned) return;
+          units.push({
+            area,
+            taskId: task.id,
+            subtaskId: null,
+            done: Boolean(task.done),
+            targetSeconds: Math.max(60, getTaskEstimatedSeconds(task))
+          });
+        });
+      });
+      return units;
+    }
+
+    function getPinnedCompletionRewardPercent(area, taskId, subtaskId = null) {
+      const units = getTodayPinnedRewardUnits();
+      const totalSeconds = units.reduce((sum, unit) => sum + Math.max(0, Number(unit.targetSeconds) || 0), 0);
+      if (!totalSeconds) return 0;
+
+      const matched = units.filter(unit => {
+        if (unit.area !== area || unit.taskId !== taskId) return false;
+        if (subtaskId) return unit.subtaskId === subtaskId && !unit.done;
+        return !unit.done;
+      });
+      const itemSeconds = matched.reduce((sum, unit) => sum + Math.max(0, Number(unit.targetSeconds) || 0), 0);
+      if (!itemSeconds) return 0;
+      return Math.max(1, Math.round((itemSeconds / totalSeconds) * 100));
+    }
+
+    function playCompletionRewardSound() {
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        const ctx = window.novaCompletionRewardAudioContext || new AudioContextClass();
+        window.novaCompletionRewardAudioContext = ctx;
+        if (ctx.state === "suspended") ctx.resume();
+
+        const now = ctx.currentTime;
+        const gain = ctx.createGain();
+        const osc = ctx.createOscillator();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(880, now);
+        osc.frequency.exponentialRampToValueAtTime(1240, now + 0.09);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.032, now + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.19);
+      } catch (_) {
+        // Sound is optional; silently skip when the browser blocks or cannot play it.
+      }
+    }
+
+    function showCompletionRewardEffect(percent, area) {
+      const value = Math.max(0, Math.round(Number(percent) || 0));
+      if (!value) return;
+      const root = document.body || document.documentElement;
+      if (!root) return;
+
+      document.querySelectorAll(".nova-reward-pop").forEach(node => node.remove());
+      const pop = document.createElement("div");
+      pop.className = `nova-reward-pop ${area || ""}`.trim();
+      pop.setAttribute("aria-hidden", "true");
+      pop.innerHTML = `<span class="nova-reward-coins"><i></i><i></i><i></i></span><strong>+${value}%p</strong>`;
+      root.appendChild(pop);
+      playCompletionRewardSound();
+      window.setTimeout(() => pop.remove(), 1200);
+    }
+
     function getPinnedEstimateSummary(items = getFocusedTasks()) {
       const estimatedSeconds = items.reduce((sum, item) => sum + getFocusItemEstimatedSeconds(item), 0);
       const spentSeconds = items.reduce((sum, item) => sum + getFocusItemSpentSeconds(item), 0);
@@ -11725,6 +12252,7 @@ for update using (true) with check (true);</pre>
 
       renderTopTimeLog();
       updateTodayFocusTotalDom();
+      updatePcCounterButtons();
 
       document.querySelectorAll(`[data-live-meta="main"][data-area="${payload.area}"][data-task-id="${payload.taskId}"], [data-live-meta="main"][data-area="${payload.area}"][data-taskid="${payload.taskId}"]`).forEach(meta => {
         meta.textContent = `${payload.countdownText || "카운트다운 중"} · 총 집중 ${payload.taskFocusText || payload.focusText}`;
@@ -12742,6 +13270,58 @@ for update using (true) with check (true);</pre>
       return `${stateInfo.visible ? "running" : ""} ${stateInfo.paused ? "paused" : ""} ${exceeded ? "exceeded" : ""}`.trim();
     }
 
+
+    function createPcCounterButton(area, task, subtask = null) {
+      const subtaskId = subtask?.id || "";
+      const text = getSubjectButtonClock(area, task, subtask);
+      const className = getSubjectButtonClass(area, task, subtask);
+      const exceeded = String(text).startsWith("+");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `target-btn pc-timer ${area} ${className} ${exceeded ? "exceeded" : ""}`.trim();
+      button.dataset.area = area;
+      button.dataset.taskid = task.id;
+      button.dataset.subtaskid = subtaskId;
+      button.dataset.action = "toggleTimer";
+      button.dataset.liveTimer = "pc";
+      button.textContent = text;
+      button.title = getSubjectButtonTitle(area, task, subtask);
+      button.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(area, task, subtask)}%`);
+      button.disabled = Boolean(task.done || task.later || (subtask && subtask.done));
+      button.onpointerdown = event => event.stopPropagation();
+      button.onclick = event => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (button.disabled) return;
+        toggleTimer(area, task.id, subtaskId || null);
+      };
+      return button;
+    }
+
+    function refreshPcCounterButton(button) {
+      if (!button) return false;
+      const area = button.dataset.area;
+      const taskId = button.dataset.taskid;
+      const subtaskId = button.dataset.subtaskid || null;
+      const info = getTimerSubject(area, taskId, subtaskId);
+      if (!info) return false;
+      const text = getSubjectButtonClock(area, info.task, info.subtask);
+      const className = getSubjectButtonClass(area, info.task, info.subtask);
+      const exceeded = String(text).startsWith("+");
+      button.textContent = text;
+      button.title = getSubjectButtonTitle(area, info.task, info.subtask);
+      button.className = `target-btn pc-timer ${area} ${className} ${exceeded ? "exceeded" : ""}`.trim();
+      button.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(area, info.task, info.subtask)}%`);
+      button.disabled = Boolean(info.task.done || info.task.later || info.subject.done);
+      return true;
+    }
+
+    function updatePcCounterButtons() {
+      document.querySelectorAll('.pc-timer[data-live-timer="pc"]').forEach(button => {
+        refreshPcCounterButton(button);
+      });
+    }
+
     function getSubjectLabel(timerInfo) {
       if (!timerInfo) return "";
       return timerInfo.isSubtask
@@ -13313,6 +13893,7 @@ for update using (true) with check (true);</pre>
               applyTaskTargetMinutes(area, task.id, raw);
             };
             leftActionRow.appendChild(targetSelect);
+            leftActionRow.appendChild(createPcCounterButton(area, task, null));
           }
 
           const targetButton = document.createElement("button");
@@ -13593,10 +14174,13 @@ for update using (true) with check (true);</pre>
               deleteSubtask(area, task.id, subtask.id);
             };
 
+            const subTimer = createPcCounterButton(area, task, subtask);
+
             row.appendChild(subDragHandle);
             row.appendChild(subCheck);
             row.appendChild(subTitle);
             row.appendChild(subTargetSelect);
+            row.appendChild(subTimer);
             row.appendChild(subPin);
             row.appendChild(subDel);
             subtaskList.appendChild(row);
@@ -13801,6 +14385,7 @@ for update using (true) with check (true);</pre>
       renderTopTimeLog();
       renderWeeklyHistory();
       renderFocusReportDashboard();
+      updatePcCounterButtons();
       renderSyncStatus();
       if (mobileFocusMode) renderMobileFocus();
       renderFocusWindowPopup();
@@ -14108,6 +14693,7 @@ for update using (true) with check (true);</pre>
       if (!task) return;
 
       const nextDone = !task.done;
+      const rewardPercent = nextDone ? getPinnedCompletionRewardPercent(area, id, null) : 0;
       const stamp = nextDone ? new Date().toISOString() : null;
       const wasPinned = Boolean(task.pinned);
       const completedEstimateSeconds = getTaskEstimatedSeconds(task);
@@ -14136,7 +14722,10 @@ for update using (true) with check (true);</pre>
 
       saveState();
       render();
-      if (nextDone) showUndoToast("완료 처리됨");
+      if (nextDone) {
+        showUndoToast("완료 처리됨");
+        showCompletionRewardEffect(rewardPercent, area);
+      }
     }
 
     function setTaskScheduledDay(area, id, value) {
@@ -14278,6 +14867,7 @@ for update using (true) with check (true);</pre>
       if (!subtask || !task) return;
 
       const nextDone = !subtask.done;
+      const rewardPercent = nextDone ? getPinnedCompletionRewardPercent(area, taskId, subtaskId) : 0;
       const wasPinned = Boolean(subtask.pinned || task.pinned);
       const completedEstimateSeconds = getSubtaskEstimatedSeconds(subtask);
       pushUndoSnapshot();
@@ -14294,7 +14884,10 @@ for update using (true) with check (true);</pre>
 
       saveState();
       render();
-      if (nextDone) showUndoToast("하위항목 완료됨");
+      if (nextDone) {
+        showUndoToast("하위항목 완료됨");
+        showCompletionRewardEffect(rewardPercent, area);
+      }
     }
 
     function editSubtask(area, taskId, subtaskId, title) {
@@ -18373,6 +18966,118 @@ for update using (true) with check (true);</pre>
     }
   </style>
 
+
+  <style id="pc-mainboard-timer-button-patch">
+    /* PC mainboard: add the same countdown counter behavior used on mobile/focus windows. */
+    body:not(.mobile-focus-mode) .task-left-actions .pc-timer,
+    body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+      position: relative !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      height: 26px !important;
+      min-height: 26px !important;
+      max-height: 26px !important;
+      min-width: 40px !important;
+      padding: 0 8px !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(24,24,24,0.10) !important;
+      background: rgba(255,255,255,0.72) !important;
+      color: #50524f !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.66), 0 2px 7px rgba(0,0,0,0.045) !important;
+      font-size: 11px !important;
+      font-weight: 760 !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      font-variant-numeric: tabular-nums !important;
+      isolation: isolate !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-left-actions .pc-timer {
+      min-width: 36px !important;
+      width: auto !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+      width: 62px !important;
+      min-width: 62px !important;
+      max-width: 62px !important;
+      padding: 0 6px !important;
+      justify-self: stretch !important;
+      align-self: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running {
+      color: #fff !important;
+      border-color: transparent !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #8f4149 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #545aa3 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #806838 !important; }
+
+    body:not(.mobile-focus-mode) .pc-timer.paused {
+      background: #8f8e89 !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.42) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.exceeded {
+      background: #b6463d !important;
+      color: #fff !important;
+      border-color: #b6463d !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:not(.running):not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin-left: 1px !important;
+      border-top: 4px solid transparent !important;
+      border-bottom: 4px solid transparent !important;
+      border-left: 6px solid currentColor !important;
+      transform: translateX(1px) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:not(.running):not(.paused):not(.exceeded) {
+      font-size: 0 !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:disabled {
+      opacity: 0.42 !important;
+      cursor: default !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-left-actions {
+      align-items: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row {
+      grid-template-columns: 8px 22px minmax(0, 1fr) 58px 62px 28px 22px !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-target-select { grid-column: 4 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .pc-timer { grid-column: 5 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-pin { grid-column: 6 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-delete { grid-column: 7 !important; }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .subtask-row {
+        grid-template-columns: 8px 22px minmax(0, 1fr) 52px 56px 28px 22px !important;
+      }
+      body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+        width: 56px !important;
+        min-width: 56px !important;
+        max-width: 56px !important;
+        font-size: 10.5px !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <main class="wrap">
@@ -19641,6 +20346,118 @@ for update using (true) with check (true);</pre>
         box-shadow:
           0 4px 10px rgba(46, 41, 35, 0.11),
           inset 0 1px 2px rgba(46,41,35,0.12) !important;
+      }
+    }
+  </style>
+
+
+  <style id="pc-mainboard-timer-button-patch">
+    /* PC mainboard: add the same countdown counter behavior used on mobile/focus windows. */
+    body:not(.mobile-focus-mode) .task-left-actions .pc-timer,
+    body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+      position: relative !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      height: 26px !important;
+      min-height: 26px !important;
+      max-height: 26px !important;
+      min-width: 40px !important;
+      padding: 0 8px !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(24,24,24,0.10) !important;
+      background: rgba(255,255,255,0.72) !important;
+      color: #50524f !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.66), 0 2px 7px rgba(0,0,0,0.045) !important;
+      font-size: 11px !important;
+      font-weight: 760 !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      font-variant-numeric: tabular-nums !important;
+      isolation: isolate !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-left-actions .pc-timer {
+      min-width: 36px !important;
+      width: auto !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+      width: 62px !important;
+      min-width: 62px !important;
+      max-width: 62px !important;
+      padding: 0 6px !important;
+      justify-self: stretch !important;
+      align-self: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running {
+      color: #fff !important;
+      border-color: transparent !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #8f4149 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #545aa3 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #806838 !important; }
+
+    body:not(.mobile-focus-mode) .pc-timer.paused {
+      background: #8f8e89 !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.42) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.exceeded {
+      background: #b6463d !important;
+      color: #fff !important;
+      border-color: #b6463d !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:not(.running):not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin-left: 1px !important;
+      border-top: 4px solid transparent !important;
+      border-bottom: 4px solid transparent !important;
+      border-left: 6px solid currentColor !important;
+      transform: translateX(1px) !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:not(.running):not(.paused):not(.exceeded) {
+      font-size: 0 !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer:disabled {
+      opacity: 0.42 !important;
+      cursor: default !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-left-actions {
+      align-items: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row {
+      grid-template-columns: 8px 22px minmax(0, 1fr) 58px 62px 28px 22px !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-target-select { grid-column: 4 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .pc-timer { grid-column: 5 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-pin { grid-column: 6 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-delete { grid-column: 7 !important; }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .subtask-row {
+        grid-template-columns: 8px 22px minmax(0, 1fr) 52px 56px 28px 22px !important;
+      }
+      body:not(.mobile-focus-mode) .subtask-row .pc-timer {
+        width: 56px !important;
+        min-width: 56px !important;
+        max-width: 56px !important;
+        font-size: 10.5px !important;
       }
     }
   </style>
