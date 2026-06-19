@@ -9593,6 +9593,697 @@
     }
   </style>
 
+
+  <style id="pc-quote-neutral-neumorphism-patch-20260620">
+    /* PC mainboard quote fields: remove project-colored gradients and use neutral neumorphism. */
+    body:not(.mobile-focus-mode) .panel-quote-box {
+      background: #eeeeeb !important;
+      background-image: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.74) !important;
+      color: #30312f !important;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.55) !important;
+      box-shadow:
+        inset 4px 4px 10px rgba(154,154,150,0.18),
+        inset -4px -4px 10px rgba(255,255,255,0.82),
+        0 3px 9px rgba(70,68,62,0.045) !important;
+    }
+
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+    body:not(.mobile-focus-mode) .income .panel-quote-box {
+      background: #eeeeeb !important;
+      background-image: none !important;
+      border-color: rgba(255, 255, 255, 0.74) !important;
+      color: #30312f !important;
+    }
+
+    body:not(.mobile-focus-mode) .panel-quote-box::placeholder,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder,
+    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder {
+      color: #545552 !important;
+      opacity: 0.98 !important;
+      font-weight: 760 !important;
+    }
+
+    body:not(.mobile-focus-mode) .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .income .panel-quote-box:focus {
+      background: #f1f1ee !important;
+      background-image: none !important;
+      border-color: rgba(255,255,255,0.86) !important;
+      outline: 2px solid rgba(36,36,34,0.12) !important;
+      outline-offset: 2px !important;
+      box-shadow:
+        inset 3px 3px 8px rgba(138,138,134,0.20),
+        inset -3px -3px 8px rgba(255,255,255,0.88),
+        0 6px 15px rgba(70,68,62,0.07) !important;
+    }
+  </style>
+
+
+
+  <style id="pc-comfort-spacing-patch">
+    /* PC mainboard comfort pass: same structure, slightly more vertical breathing room and clearer text. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .app {
+        padding-top: 20px !important;
+        row-gap: 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-card {
+        padding: 21px 24px 22px !important;
+        border-radius: 32px !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-row {
+        min-height: 40px !important;
+        align-items: center !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-title-wrap {
+        gap: 14px !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-title-wrap .title-date-pill {
+        height: 38px !important;
+        min-height: 38px !important;
+        padding: 0 15px !important;
+        font-size: 13px !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-title-wrap #commandTitle {
+        font-size: 36px !important;
+        line-height: 1.02 !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions {
+        gap: 7px !important;
+      }
+
+      body:not(.mobile-focus-mode) .focus-btn,
+      body:not(.mobile-focus-mode) .sync-btn,
+      body:not(.mobile-focus-mode) .sync-status-pill,
+      body:not(.mobile-focus-mode) .date-pill {
+        height: 34px !important;
+        min-height: 34px !important;
+        padding-left: 13px !important;
+        padding-right: 13px !important;
+        font-size: 11.8px !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn {
+        height: 34px !important;
+        min-height: 34px !important;
+      }
+
+      body:not(.mobile-focus-mode) .top-time-log.weekly-run {
+        margin-top: 13px !important;
+        padding: 8px 10px !important;
+        gap: 8px !important;
+        min-height: 44px !important;
+        border-radius: 16px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-run .top-time-title {
+        font-size: 12.5px !important;
+        min-width: 132px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-run .top-time-score {
+        font-size: 40px !important;
+        min-width: 74px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-run .top-run-segment {
+        height: 34px !important;
+        min-height: 34px !important;
+        padding: 0 12px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-run .top-run-segment span {
+        font-size: 11.5px !important;
+        font-weight: 720 !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-run .top-run-segment strong {
+        font-size: 13.5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .top-summary-grid {
+        margin-top: 14px !important;
+        gap: 14px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel {
+        min-height: 96px !important;
+        padding: 18px 26px !important;
+        gap: 20px !important;
+        border-radius: 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-dot {
+        width: 12px !important;
+        height: 12px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-title {
+        font-size: 13.5px !important;
+        line-height: 1.18 !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-detail,
+      body:not(.mobile-focus-mode) .today-load-panel .load-verdict {
+        margin-top: 4px !important;
+        font-size: 12.5px !important;
+        line-height: 1.28 !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total span {
+        font-size: 12.5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total strong {
+        font-size: 32px !important;
+        line-height: 1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent {
+        font-size: 30px !important;
+        gap: 7px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-grade {
+        font-size: 19px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .today-load-gauge {
+        height: 8px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line {
+        font-size: 12.5px !important;
+        line-height: 1.28 !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line strong {
+        font-size: 13px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-card {
+        min-height: 96px !important;
+        padding: 17px 18px !important;
+        gap: 10px !important;
+        border-radius: 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-head span {
+        font-size: 11px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-status {
+        font-size: 23px !important;
+        line-height: 1.05 !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-input {
+        height: 38px !important;
+        min-height: 38px !important;
+        padding: 0 13px !important;
+        font-size: 12.5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .achievement-strip {
+        min-height: 96px !important;
+        padding: 15px 18px !important;
+        border-radius: 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .achievement-item span {
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+      }
+
+      body:not(.mobile-focus-mode) .achievement-item strong {
+        font-size: 13px !important;
+        line-height: 1.25 !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        gap: 28px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix {
+        gap: 5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-row {
+        font-size: 12px !important;
+        gap: 5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-row.header {
+        font-size: 10.5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-dot {
+        width: 21px !important;
+        height: 21px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars-title,
+      body:not(.mobile-focus-mode) .weekly-bar-day {
+        font-size: 10.5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .main-grid {
+        gap: 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel {
+        border-radius: 31px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-header {
+        min-height: 148px !important;
+        padding: 20px 22px 15px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-header::before {
+        top: 10px !important;
+        left: 18px !important;
+        right: 18px !important;
+        height: 5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-kicker {
+        margin-bottom: 8px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-kicker .eyebrow {
+        font-size: 10.5px !important;
+        line-height: 1.1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .weight-pill {
+        min-height: 25px !important;
+        padding: 0 10px !important;
+        font-size: 10.5px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel h2 {
+        font-size: 25.5px !important;
+        line-height: 1.08 !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-quote-box,
+      body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+      body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+      body:not(.mobile-focus-mode) .income .panel-quote-box {
+        height: 48px !important;
+        min-height: 48px !important;
+        margin-top: 10px !important;
+        padding: 12px 15px !important;
+        border-radius: 18px !important;
+        font-size: 14px !important;
+        line-height: 1.38 !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-quote-box::placeholder,
+      body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder,
+      body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder,
+      body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder {
+        font-size: 14px !important;
+        font-weight: 760 !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-score-row {
+        grid-template-columns: 58px minmax(0, 1fr) !important;
+        gap: 11px !important;
+        margin-top: 12px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-score {
+        font-size: 24px !important;
+        line-height: 1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-score-row .progress-track {
+        height: 9px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-body {
+        padding: 13px 18px 16px !important;
+        gap: 10px !important;
+      }
+
+      body:not(.mobile-focus-mode) .task-input-row input {
+        height: 42px !important;
+        padding: 10px 15px !important;
+        font-size: 14px !important;
+      }
+
+      body:not(.mobile-focus-mode) .task-input-row .add-btn {
+        width: 42px !important;
+        min-width: 42px !important;
+        height: 42px !important;
+      }
+
+      body:not(.mobile-focus-mode) .quick-row {
+        min-height: 34px !important;
+        max-height: 42px !important;
+        padding-top: 3px !important;
+        padding-bottom: 5px !important;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1420px) {
+      body:not(.mobile-focus-mode) .brand-card {
+        padding: 18px 20px 20px !important;
+      }
+
+      body:not(.mobile-focus-mode) .top-summary-grid {
+        gap: 12px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel {
+        padding: 16px 20px !important;
+        gap: 14px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total strong {
+        font-size: 29px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent {
+        font-size: 28px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-status {
+        font-size: 21px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-header {
+        min-height: 140px !important;
+        padding: 19px 18px 14px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel h2 {
+        font-size: 24px !important;
+      }
+
+      body:not(.mobile-focus-mode) .panel-quote-box,
+      body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+      body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+      body:not(.mobile-focus-mode) .income .panel-quote-box {
+        height: 46px !important;
+        min-height: 46px !important;
+        font-size: 13.5px !important;
+      }
+    }
+  </style>
+
+
+
+  <style id="pin-color-subtask-drop-patch-20260620">
+    /* PIN stroke: use each project color instead of the previous black outline. */
+    body:not(.mobile-focus-mode) .task-card.pinned.portfolio,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.portfolio {
+      box-shadow:
+        inset 0 0 0 2.8px var(--portfolio),
+        0 9px 20px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.beacon,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.beacon {
+      box-shadow:
+        inset 0 0 0 2.8px var(--beacon),
+        0 9px 20px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.income,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.income {
+      box-shadow:
+        inset 0 0 0 2.8px var(--income),
+        0 9px 20px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned::after {
+      display: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="portfolio"] {
+      box-shadow:
+        inset 0 0 0 2.2px var(--portfolio),
+        inset 0 1px 0 rgba(255,255,255,0.64),
+        0 2px 6px rgba(0,0,0,0.025) !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="beacon"] {
+      box-shadow:
+        inset 0 0 0 2.2px var(--beacon),
+        inset 0 1px 0 rgba(255,255,255,0.64),
+        0 2px 6px rgba(0,0,0,0.025) !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="income"] {
+      box-shadow:
+        inset 0 0 0 2.2px var(--income),
+        inset 0 1px 0 rgba(255,255,255,0.64),
+        0 2px 6px rgba(0,0,0,0.025) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.subtask-drop-target.portfolio {
+      outline: 2.4px dashed var(--portfolio) !important;
+      outline-offset: 4px !important;
+      background: color-mix(in srgb, var(--portfolio-soft) 42%, #eeeeeb 58%) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.subtask-drop-target.beacon {
+      outline: 2.4px dashed var(--beacon) !important;
+      outline-offset: 4px !important;
+      background: color-mix(in srgb, var(--beacon-soft) 42%, #eeeeeb 58%) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.subtask-drop-target.income {
+      outline: 2.4px dashed var(--income) !important;
+      outline-offset: 4px !important;
+      background: color-mix(in srgb, var(--income-soft) 42%, #eeeeeb 58%) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.portfolio,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio {
+      border-color: var(--portfolio) !important;
+      box-shadow:
+        0 8px 18px rgba(0,0,0,0.09),
+        inset 3px 0 0 color-mix(in srgb, var(--portfolio) 70%, transparent),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.beacon,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon {
+      border-color: var(--beacon) !important;
+      box-shadow:
+        0 8px 18px rgba(0,0,0,0.09),
+        inset 3px 0 0 color-mix(in srgb, var(--beacon) 70%, transparent),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.income,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
+      border-color: var(--income) !important;
+      box-shadow:
+        0 8px 18px rgba(0,0,0,0.09),
+        inset 3px 0 0 color-mix(in srgb, var(--income) 72%, transparent),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+  </style>
+
+
+  <style id="top-summary-overflow-cleanup-20260620">
+    /* Header summary cleanup: consistent inner spacing, no right-side overflow, balanced top-card gaps. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .top-summary-grid {
+        --nova-summary-gap: 12px;
+        grid-template-columns:
+          minmax(790px, 1.62fr)
+          minmax(262px, 0.50fr)
+          minmax(470px, 0.88fr) !important;
+        gap: var(--nova-summary-gap) !important;
+        align-items: stretch !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel,
+      body:not(.mobile-focus-mode) .deadline-bridge-card,
+      body:not(.mobile-focus-mode) .achievement-strip {
+        min-height: 96px !important;
+        box-sizing: border-box !important;
+        border-radius: 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel {
+        grid-template-columns:
+          12px
+          minmax(210px, 1.12fr)
+          minmax(130px, 0.46fr)
+          minmax(124px, 0.42fr)
+          minmax(176px, 0.56fr) !important;
+        gap: 15px !important;
+        padding: 16px 18px !important;
+        overflow: hidden !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-main,
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total,
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent,
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        min-width: 0 !important;
+        padding-left: 12px !important;
+        padding-right: 0 !important;
+        border-left: 1px solid rgba(36, 36, 32, 0.08) !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) max-content !important;
+        column-gap: 9px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        align-items: baseline !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line span,
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line strong {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line span {
+        overflow: hidden !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line strong {
+        justify-self: end !important;
+        text-align: right !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-card {
+        padding: 16px 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .achievement-strip {
+        padding: 16px 18px !important;
+        overflow: hidden !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        grid-template-columns: minmax(254px, auto) minmax(208px, auto) !important;
+        gap: 20px !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix {
+        width: 284px !important;
+        max-width: 100% !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars {
+        width: 218px !important;
+        max-width: 100% !important;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1500px) {
+      body:not(.mobile-focus-mode) .top-summary-grid {
+        grid-template-columns:
+          minmax(700px, 1.56fr)
+          minmax(238px, 0.48fr)
+          minmax(410px, 0.86fr) !important;
+        gap: 10px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel {
+        grid-template-columns:
+          10px
+          minmax(182px, 1fr)
+          minmax(114px, 0.42fr)
+          minmax(112px, 0.40fr)
+          minmax(158px, 0.52fr) !important;
+        gap: 11px !important;
+        padding: 15px 16px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total strong {
+        font-size: 28px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent {
+        min-width: 112px !important;
+        font-size: 26px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-grade {
+        font-size: 17px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line {
+        column-gap: 7px !important;
+        font-size: 11.7px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line strong {
+        font-size: 12.2px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-card,
+      body:not(.mobile-focus-mode) .achievement-strip {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        grid-template-columns: minmax(238px, auto) minmax(190px, auto) !important;
+        gap: 14px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix {
+        width: 264px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars {
+        width: 198px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .top-summary-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel,
+      body:not(.mobile-focus-mode) .deadline-bridge-card,
+      body:not(.mobile-focus-mode) .achievement-strip {
+        overflow: hidden !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -12221,7 +12912,9 @@ for update using (true) with check (true);</pre>
     function moveSubtask(area, taskId, subtaskId, targetSubtaskId, position = "before", targetTaskId = taskId) {
       const sourceTask = getTask(area, taskId);
       const targetTask = getTask(area, targetTaskId);
-      if (!sourceTask || !targetTask || !Array.isArray(sourceTask.subtasks) || !Array.isArray(targetTask.subtasks)) return;
+      if (!sourceTask || !targetTask) return;
+      if (!Array.isArray(sourceTask.subtasks)) sourceTask.subtasks = [];
+      if (!Array.isArray(targetTask.subtasks)) targetTask.subtasks = [];
       const fromIndex = sourceTask.subtasks.findIndex(subtask => subtask.id === subtaskId);
       if (fromIndex < 0) return;
 
@@ -12254,6 +12947,7 @@ for update using (true) with check (true);</pre>
         state.activeTimer.taskId = targetTaskId;
       }
 
+      targetTask.subtasksCollapsed = false;
       syncParentFromSubtasks(sourceTask);
       if (!sameParent) syncParentFromSubtasks(targetTask);
       saveState();
@@ -12393,6 +13087,29 @@ for update using (true) with check (true);</pre>
         card.className = `task-card ${area} ${task.done ? "done" : ""} ${focusPinned ? "pinned" : ""} ${scheduledToday ? "scheduled-today" : ""} ${isRunning ? "running" : ""} ${isPaused ? "paused" : ""}`;
         card.dataset.area = area;
         card.dataset.taskId = task.id;
+        card.ondragover = event => {
+          if (!dragState || dragState.type !== "subtask" || dragState.area !== area || task.done || task.later) return;
+          const nestedList = event.target.closest(".subtask-list");
+          if (nestedList && card.contains(nestedList)) return;
+          event.preventDefault();
+          event.stopPropagation();
+          if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+          card.classList.add("subtask-drop-target");
+        };
+        card.ondragleave = event => {
+          if (!card.contains(event.relatedTarget)) card.classList.remove("subtask-drop-target");
+        };
+        card.ondrop = event => {
+          if (!dragState || dragState.type !== "subtask" || dragState.area !== area || task.done || task.later) return;
+          const nestedList = event.target.closest(".subtask-list");
+          if (nestedList && card.contains(nestedList)) return;
+          event.preventDefault();
+          event.stopPropagation();
+          clearDragMarkers();
+          card.classList.remove("subtask-drop-target");
+          moveSubtask(area, dragState.taskId, dragState.subtaskId, null, "after", task.id);
+          dragState = null;
+        };
 
         const mainRow = document.createElement("div");
         mainRow.className = `task-main-row ${compact ? "compact" : "with-control-panel"}`;
@@ -12923,7 +13640,9 @@ for update using (true) with check (true);</pre>
             subtaskAddRow.appendChild(subAddButton);
             subtaskWrap.appendChild(subtaskAddRow);
           }
-          card.appendChild(subtaskWrap);
+          if (totalSubtasks > 0 || addRowOpen) {
+            card.appendChild(subtaskWrap);
+          }
         }
 
         return card;
@@ -15285,7 +16004,7 @@ for update using (true) with check (true);</pre>
           </div>`;
 
       return `
-        <article class="mobile-task ${escapeHtml(area)} ${hasSubtasks ? "mobile-parent-group" : "mobile-single-task"} ${hasRunningSubtask ? "has-running-subtask" : ""} ${hasRunningSingleTask ? "has-running-single" : ""} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
+        <article class="mobile-task ${escapeHtml(area)} ${task.pinned ? "pinned" : ""} ${hasSubtasks ? "mobile-parent-group" : "mobile-single-task"} ${hasRunningSubtask ? "has-running-subtask" : ""} ${hasRunningSingleTask ? "has-running-single" : ""} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
           <div class="mobile-task-main">
             <button class="mobile-check" data-mobile-action="toggleTask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">✓</button>
             <div>
@@ -15310,7 +16029,7 @@ for update using (true) with check (true);</pre>
       const subTotalText = formatDuration(getSubtaskTotalFocusSeconds(area, task, subtask));
       const subEstimatedText = formatEstimatedDuration(getSubtaskEstimatedSeconds(subtask));
       return `
-        <article class="mobile-task mobile-subtask-focus ${escapeHtml(area)} ${subtaskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
+        <article class="mobile-task mobile-subtask-focus ${escapeHtml(area)} ${subtask.pinned ? "pinned" : ""} ${subtaskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
           <div class="mobile-task-main">
             <button class="mobile-check" data-mobile-action="toggleSubtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">✓</button>
             <div>
@@ -17518,10 +18237,34 @@ for update using (true) with check (true);</pre>
     .focus-subtask-card.portfolio,
     .focus-subtask-card.portfolio.running {
       border-width: 2.35px !important;
-      border-color: rgba(18, 18, 18, 0.88) !important;
+      border-color: var(--portfolio) !important;
       box-shadow:
         0 8px 18px rgba(0,0,0,0.09),
         inset 3px 0 0 rgba(189,127,138,0.58),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    .focus-task.beacon,
+    .focus-task.beacon.running,
+    .focus-subtask-card.beacon,
+    .focus-subtask-card.beacon.running {
+      border-width: 2.35px !important;
+      border-color: var(--beacon) !important;
+      box-shadow:
+        0 8px 18px rgba(0,0,0,0.09),
+        inset 3px 0 0 rgba(138,143,207,0.58),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    .focus-task.income,
+    .focus-task.income.running,
+    .focus-subtask-card.income,
+    .focus-subtask-card.income.running {
+      border-width: 2.35px !important;
+      border-color: var(--income) !important;
+      box-shadow:
+        0 8px 18px rgba(0,0,0,0.09),
+        inset 3px 0 0 rgba(199,161,90,0.58),
         inset 0 1px 0 rgba(255,255,255,0.68) !important;
     }
 
