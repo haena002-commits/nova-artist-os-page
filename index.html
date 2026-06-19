@@ -11250,6 +11250,7 @@
 
 
   <style id="nova-pc-upload-clear-final-20260620">
+    /* Main header: quick PC -> cloud upload button. */
     body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn {
       min-width: 58px !important;
       gap: 5px !important;
@@ -11287,9 +11288,12 @@
     }
 
     @media (max-width: 768px) {
-      body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn { display: none !important; }
+      body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn {
+        display: none !important;
+      }
     }
 
+    /* Final completion feedback color guard: no green cast on completed/clearing rows. */
     body:not(.mobile-focus-mode) .task-card.clearing,
     body:not(.mobile-focus-mode) .subtask-row.clearing {
       background: rgba(248,248,245,0.94) !important;
@@ -11355,6 +11359,7 @@
       border-color: rgba(199,161,90,0.26) !important;
     }
   </style>
+
 </head>
 
 <body>
@@ -20551,6 +20556,31 @@ for update using (true) with check (true);</pre>
       }
     });
   <\/script>
+
+<script id="nova-sound-polish-override-20260620">
+  // Optional WebAudio-only UI sounds. If the browser blocks audio, these quietly skip.
+  window.playCompletionRewardSound = function playCompletionRewardSound() {
+    try {
+      const ctx = getNovaAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      playBellTone(ctx, 1318.5, now, 0.15, 0.034, "sine");
+      playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.022, "triangle");
+      playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.010, "sine");
+    } catch (_) {}
+  };
+
+  window.playTimerExceededSound = function playTimerExceededSound() {
+    try {
+      const ctx = getNovaAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      playBellTone(ctx, 740, now, 0.085, 0.030, "square");
+      playBellTone(ctx, 980, now + 0.11, 0.095, 0.028, "square");
+    } catch (_) {}
+  };
+</script>
+
 </body>
 </html>`;
 
@@ -23358,28 +23388,284 @@ for update using (true) with check (true);</pre>
     scheduleLiveTimerLoop();
   </script>
 
-<script id="nova-sound-polish-override-20260620">
-  // Optional WebAudio-only UI sounds. If the browser blocks audio, these quietly skip.
-  window.playCompletionRewardSound = function playCompletionRewardSound() {
-    try {
-      const ctx = getNovaAudioContext();
-      if (!ctx) return;
-      const now = ctx.currentTime;
-      playBellTone(ctx, 1318.5, now, 0.15, 0.034, "sine");
-      playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.022, "triangle");
-      playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.010, "sine");
-    } catch (_) {}
-  };
 
-  window.playTimerExceededSound = function playTimerExceededSound() {
-    try {
-      const ctx = getNovaAudioContext();
-      if (!ctx) return;
+<style id="nova-asmr-timer-toggle-20260620">
+  /* Timer ASMR toggle + audio polish */
+  .nova-asmr-toggle {
+    width: 26px !important;
+    min-width: 26px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+    display: inline-grid !important;
+    place-items: center !important;
+    border: 1px solid rgba(36,36,36,0.12) !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,0.64) !important;
+    color: rgba(58,60,58,0.50) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.68), 0 2px 7px rgba(0,0,0,0.035) !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    line-height: 1 !important;
+    position: relative !important;
+    flex: 0 0 26px !important;
+  }
+
+  .nova-asmr-toggle svg {
+    width: 14px !important;
+    height: 14px !important;
+    display: block !important;
+    pointer-events: none !important;
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 2.15 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+  }
+
+  .nova-asmr-toggle::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transform: rotate(-38deg);
+    opacity: 0.66;
+  }
+
+  .nova-asmr-toggle.active::after { display: none; }
+  .nova-asmr-toggle.active { color: #353632 !important; background: rgba(255,255,255,0.82) !important; }
+  .nova-asmr-toggle.portfolio.active { color: #8f4149 !important; border-color: rgba(201,120,127,0.28) !important; }
+  .nova-asmr-toggle.beacon.active { color: #545aa3 !important; border-color: rgba(138,143,207,0.30) !important; }
+  .nova-asmr-toggle.income.active { color: #806838 !important; border-color: rgba(199,161,90,0.30) !important; }
+
+  body:not(.mobile-focus-mode) .task-left-actions .nova-asmr-toggle {
+    margin-left: 1px !important;
+    margin-right: 0 !important;
+  }
+
+  body:not(.mobile-focus-mode) .app .subtask-row {
+    grid-template-columns: 8px 22px minmax(0, 1fr) 26px 62px minmax(62px, 0.72fr) 28px 22px !important;
+    column-gap: 5px !important;
+  }
+
+  body:not(.mobile-focus-mode) .app .subtask-row > .subtask-drag-handle { grid-column: 1 !important; }
+  body:not(.mobile-focus-mode) .app .subtask-row > .check { grid-column: 2 !important; }
+  body:not(.mobile-focus-mode) .app .subtask-row > .subtask-title { grid-column: 3 !important; }
+  body:not(.mobile-focus-mode) .app .subtask-row > .nova-asmr-toggle { grid-column: 4 !important; justify-self: center !important; }
+  body:not(.mobile-focus-mode) .app .subtask-row > .subtask-target-select { grid-column: 5 !important; justify-self: stretch !important; }
+  body:not(.mobile-focus-mode) .app .subtask-row > .pc-timer { grid-column: 6 !important; justify-self: stretch !important; }
+  body:not(.mobile-focus-mode) .app .subtask-row > .subtask-pin { grid-column: 7 !important; justify-self: stretch !important; }
+  body:not(.mobile-focus-mode) .app .subtask-row > .subtask-delete { grid-column: 8 !important; justify-self: stretch !important; }
+
+  body.mobile-focus-mode .mobile-task-actions {
+    grid-template-columns: 42px 26px 50px minmax(0, 1fr) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task-actions .nova-asmr-toggle {
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    align-self: center !important;
+    justify-self: center !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask {
+    grid-template-columns: 18px minmax(0, 1fr) 24px 46px minmax(62px, 0.7fr) !important;
+    gap: 5px !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask .nova-asmr-toggle {
+    width: 22px !important;
+    min-width: 22px !important;
+    height: 22px !important;
+    min-height: 22px !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.62) !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask .mobile-target { width: 46px !important; min-width: 46px !important; }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-task-actions {
+      grid-template-columns: 38px 24px 46px minmax(0, 1fr) !important;
+    }
+    body.mobile-focus-mode .mobile-subtask {
+      grid-template-columns: 18px minmax(0, 1fr) 22px 42px minmax(56px,0.7fr) !important;
+    }
+  }
+</style>
+
+<script id="nova-sound-volume-asmr-20260620">
+  (function() {
+    const ASMR_STORAGE_KEY = "nova_timer_asmr_enabled";
+    const SPEAKER_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h4l5-4v13l-5-4H4z"></path><path d="M16.5 9.3c.85.85.85 4.55 0 5.4"></path><path d="M19 7c1.55 1.55 1.55 8.45 0 10"></path></svg>';
+    let asmrInterval = null;
+    let lastAsmrTickAt = 0;
+    let ensureQueued = false;
+
+    function getAsmrEnabled() {
+      return localStorage.getItem(ASMR_STORAGE_KEY) === "1";
+    }
+
+    function setAsmrEnabled(value) {
+      localStorage.setItem(ASMR_STORAGE_KEY, value ? "1" : "0");
+      syncAsmrButtonStates();
+      scheduleAsmrLoop();
+    }
+
+    function getElementArea(element) {
+      const host = element?.closest?.(".portfolio, .beacon, .income, .mobile-task, .task-card, .panel");
+      if (host?.classList?.contains("portfolio")) return "portfolio";
+      if (host?.classList?.contains("beacon")) return "beacon";
+      if (host?.classList?.contains("income")) return "income";
+      return "";
+    }
+
+    function makeAsmrButton(area) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `nova-asmr-toggle ${area || ""}`.trim();
+      btn.innerHTML = SPEAKER_ICON;
+      btn.dataset.action = "toggleTimerAsmr";
+      btn.title = "시계 초침소리 ASMR 켜기/끄기";
+      btn.setAttribute("aria-label", "시계 초침소리 ASMR 켜기/끄기");
+      btn.onpointerdown = event => event.stopPropagation();
+      btn.onclick = event => {
+        event.preventDefault();
+        event.stopPropagation();
+        setAsmrEnabled(!getAsmrEnabled());
+        try {
+          const ctx = getNovaAudioContext?.();
+          if (ctx) playSoftAsmrTick(ctx, 0.010);
+        } catch (_) {}
+      };
+      return btn;
+    }
+
+    function hasAsmrButtonImmediatelyBefore(element) {
+      return element?.previousElementSibling?.classList?.contains("nova-asmr-toggle");
+    }
+
+    function ensureAsmrButtons() {
+      document.querySelectorAll(".main-target-select").forEach(target => {
+        if (hasAsmrButtonImmediatelyBefore(target)) return;
+        target.parentNode?.insertBefore(makeAsmrButton(getElementArea(target)), target);
+      });
+
+      document.querySelectorAll(".subtask-target-select").forEach(target => {
+        if (hasAsmrButtonImmediatelyBefore(target)) return;
+        target.parentNode?.insertBefore(makeAsmrButton(getElementArea(target)), target);
+      });
+
+      document.querySelectorAll(".mobile-task-actions .mobile-target, .mobile-subtask .mobile-target").forEach(target => {
+        if (hasAsmrButtonImmediatelyBefore(target)) return;
+        target.parentNode?.insertBefore(makeAsmrButton(getElementArea(target)), target);
+      });
+
+      syncAsmrButtonStates();
+    }
+
+    function syncAsmrButtonStates() {
+      const enabled = getAsmrEnabled();
+      document.body?.classList?.toggle("nova-asmr-on", enabled);
+      document.querySelectorAll(".nova-asmr-toggle").forEach(btn => {
+        btn.classList.toggle("active", enabled);
+        btn.title = enabled ? "시계 초침소리 ASMR 끄기" : "시계 초침소리 ASMR 켜기";
+        btn.setAttribute("aria-pressed", enabled ? "true" : "false");
+      });
+    }
+
+    function isAnyTimerAudiblyRunning() {
+      return Boolean(document.querySelector(
+        '.pc-timer.running:not(.paused):not(.exceeded):not(:disabled), .mobile-timer.running:not(.paused):not(.exceeded):not(:disabled)'
+      ));
+    }
+
+    function playSoftAsmrTick(ctx, volume = 0.0075) {
       const now = ctx.currentTime;
-      playBellTone(ctx, 740, now, 0.085, 0.030, "square");
-      playBellTone(ctx, 980, now + 0.11, 0.095, 0.028, "square");
-    } catch (_) {}
-  };
+      const makeTick = (freq, at, dur, vol) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "square";
+        osc.frequency.setValueAtTime(freq, at);
+        gain.gain.setValueAtTime(0.0001, at);
+        gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, vol), at + 0.004);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(at);
+        osc.stop(at + dur + 0.012);
+      };
+      makeTick(1120, now, 0.030, volume);
+      makeTick(720, now + 0.026, 0.026, volume * 0.58);
+    }
+
+    function scheduleAsmrLoop() {
+      if (!getAsmrEnabled()) {
+        if (asmrInterval) clearInterval(asmrInterval);
+        asmrInterval = null;
+        return;
+      }
+      if (asmrInterval) return;
+      asmrInterval = setInterval(() => {
+        if (!getAsmrEnabled() || document.hidden || !isAnyTimerAudiblyRunning()) return;
+        const nowMs = Date.now();
+        if (nowMs - lastAsmrTickAt < 760) return;
+        lastAsmrTickAt = nowMs;
+        try {
+          const ctx = getNovaAudioContext?.();
+          if (ctx) playSoftAsmrTick(ctx, 0.0075);
+        } catch (_) {}
+      }, 1000);
+    }
+
+    function queueEnsureAsmrButtons() {
+      if (ensureQueued) return;
+      ensureQueued = true;
+      requestAnimationFrame(() => {
+        ensureQueued = false;
+        ensureAsmrButtons();
+      });
+    }
+
+    // +15% alert-volume polish. WebAudio only; blocked audio quietly skips.
+    window.playCompletionRewardSound = function playCompletionRewardSound() {
+      try {
+        const ctx = getNovaAudioContext?.();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        playBellTone(ctx, 1318.5, now, 0.15, 0.039, "sine");
+        playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.025, "triangle");
+        playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.012, "sine");
+      } catch (_) {}
+    };
+
+    window.playTimerExceededSound = function playTimerExceededSound() {
+      try {
+        const ctx = getNovaAudioContext?.();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        playBellTone(ctx, 740, now, 0.085, 0.035, "square");
+        playBellTone(ctx, 980, now + 0.11, 0.095, 0.032, "square");
+      } catch (_) {}
+    };
+
+    window.toggleNovaTimerAsmr = function toggleNovaTimerAsmr() {
+      setAsmrEnabled(!getAsmrEnabled());
+    };
+
+    queueEnsureAsmrButtons();
+    syncAsmrButtonStates();
+    scheduleAsmrLoop();
+
+    const observer = new MutationObserver(queueEnsureAsmrButtons);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    document.addEventListener("visibilitychange", scheduleAsmrLoop);
+    window.addEventListener("pageshow", () => { queueEnsureAsmrButtons(); scheduleAsmrLoop(); });
+  })();
 </script>
 </body>
 </html>
