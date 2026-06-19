@@ -10610,12 +10610,14 @@
     }
   </style>
 
-
-  <style id="completion-reward-effect-20260620">
+  <style id="completion-reward-effect-anchored-20260620">
+    /* Completion reward: show at the completed task/subtask card, not the page corner. */
     .nova-reward-pop {
       position: fixed;
-      right: max(22px, env(safe-area-inset-right));
-      bottom: max(86px, calc(env(safe-area-inset-bottom) + 76px));
+      left: var(--reward-left, 50vw);
+      top: var(--reward-top, 50vh);
+      right: auto;
+      bottom: auto;
       z-index: 30000;
       display: inline-flex;
       align-items: center;
@@ -10623,7 +10625,7 @@
       pointer-events: none;
       border: 1px solid rgba(255,255,255,0.72);
       border-radius: 999px;
-      background: rgba(248,248,245,0.92);
+      background: rgba(248,248,245,0.95);
       color: #2b2c2b;
       box-shadow: 0 12px 28px rgba(35,35,33,0.16), inset 0 1px 0 rgba(255,255,255,0.78);
       padding: 7px 10px 7px 8px;
@@ -10631,7 +10633,8 @@
       font-weight: 850;
       line-height: 1;
       font-variant-numeric: tabular-nums;
-      animation: novaRewardFloat 980ms cubic-bezier(.22,.84,.25,1) forwards;
+      transform: translate(-50%, -10px) scale(.96);
+      animation: novaRewardFloatFromTask 980ms cubic-bezier(.22,.84,.25,1) forwards;
       will-change: transform, opacity;
     }
 
@@ -10676,11 +10679,11 @@
       white-space: nowrap;
     }
 
-    @keyframes novaRewardFloat {
-      0% { opacity: 0; transform: translateY(8px) scale(.96); }
-      16% { opacity: 1; transform: translateY(0) scale(1); }
-      72% { opacity: 1; transform: translateY(-18px) scale(1); }
-      100% { opacity: 0; transform: translateY(-30px) scale(.98); }
+    @keyframes novaRewardFloatFromTask {
+      0% { opacity: 0; transform: translate(-50%, 6px) scale(.96); }
+      16% { opacity: 1; transform: translate(-50%, -4px) scale(1); }
+      72% { opacity: 1; transform: translate(-50%, -24px) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -38px) scale(.98); }
     }
 
     @keyframes novaCoinPop {
@@ -10690,18 +10693,13 @@
     }
 
     body.mobile-focus-mode .nova-reward-pop {
-      right: 14px;
-      bottom: max(78px, calc(env(safe-area-inset-bottom) + 68px));
       padding: 7px 9px 7px 8px;
       font-size: 12px;
     }
-
     body.mobile-focus-mode .nova-reward-pop strong { font-size: 12px; }
 
     @media (max-width: 768px) {
       .nova-reward-pop {
-        right: 14px;
-        bottom: max(78px, calc(env(safe-area-inset-bottom) + 68px));
         padding: 7px 9px 7px 8px;
         font-size: 12px;
       }
@@ -10712,6 +10710,188 @@
       .nova-reward-pop,
       .nova-reward-coins i {
         animation-duration: 420ms !important;
+      }
+    }
+  </style>
+
+
+  <style id="nova-final-reward-pin-timer-font-20260620">
+    /* User-supplied phrase font. Keep font file as a separate deploy asset. */
+    @font-face {
+      font-family: "OwnglyphConcon";
+      src: url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .quote-box,
+    .top-quote-box,
+    .panel-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+    body:not(.mobile-focus-mode) .income .panel-quote-box {
+      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.005em !important;
+    }
+
+    .quote-box::placeholder,
+    .top-quote-box::placeholder,
+    .panel-quote-box::placeholder {
+      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    /* Restore the original parent-card stroke weight and apply it evenly to subtasks/mobile. */
+    :root {
+      --nova-pin-stroke: 2.6px;
+      --nova-pin-stroke-mobile: 2.2px;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.portfolio,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="portfolio"] {
+      border: var(--nova-pin-stroke) solid var(--portfolio) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(201,120,127,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.beacon,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="beacon"] {
+      border: var(--nova-pin-stroke) solid var(--beacon) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(138,143,207,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.income,
+    body:not(.mobile-focus-mode) .task-card.pinned.running.income,
+    body:not(.mobile-focus-mode) .subtask-row.pinned[data-area="income"] {
+      border: var(--nova-pin-stroke) solid var(--income) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.055),
+        inset 0 0 0 1px rgba(199,161,90,0.40),
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned {
+      border-width: var(--nova-pin-stroke-mobile) !important;
+      box-shadow:
+        0 7px 16px rgba(0,0,0,0.08),
+        inset 0 0 0 0.8px currentColor,
+        inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.pinned.portfolio,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio {
+      border-color: var(--portfolio) !important;
+      color: var(--portfolio) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned.beacon,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon {
+      border-color: var(--beacon) !important;
+      color: var(--beacon) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned.income,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
+      border-color: var(--income) !important;
+      color: var(--income) !important;
+    }
+    body.mobile-focus-mode .mobile-task.pinned *,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned * {
+      color: initial;
+    }
+
+    /* PC timer focus state: match mobile's live emphasis and grey pause state. */
+    body:not(.mobile-focus-mode) .task-card.running:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running:not(.paused) {
+      position: relative !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
+      border-color: rgba(201,120,127,0.86) !important;
+      background: linear-gradient(90deg, rgba(247,228,229,0.90), rgba(248,248,245,0.96) 62%) !important;
+    }
+    body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
+      border-color: rgba(138,143,207,0.90) !important;
+      background: linear-gradient(90deg, rgba(232,233,248,0.92), rgba(248,248,245,0.96) 62%) !important;
+    }
+    body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
+    body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
+      border-color: rgba(199,161,90,0.90) !important;
+      background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.running:not(.paused) .task-title,
+    body:not(.mobile-focus-mode) .subtask-row.running:not(.paused) .subtask-title {
+      color: #111 !important;
+      font-weight: 760 !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.28) !important;
+      box-shadow:
+        0 8px 17px rgba(0,0,0,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 0 0 3px rgba(24,24,24,0.10) !important;
+      animation: pcMatteTimerBreath 1.15s ease-in-out infinite !important;
+      transform-origin: center !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #8f4149 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #545aa3 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #806838 !important; }
+
+    body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 7px !important;
+      height: 7px !important;
+      border: 0 !important;
+      margin: 0 !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      animation: pcMatteLiveDot 0.95s ease-out infinite !important;
+      flex: 0 0 auto !important;
+      transform: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.paused {
+      background: #8f8e89 !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,0.42) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 3px 9px rgba(0,0,0,0.08) !important;
+      animation: none !important;
+    }
+
+    @keyframes pcMatteTimerBreath {
+      0%, 100% { transform: translateZ(0) scale(1); }
+      50% { transform: translateZ(0) scale(1.035); }
+    }
+
+    @keyframes pcMatteLiveDot {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.62); opacity: 1; }
+      70% { box-shadow: 0 0 0 7px rgba(255,255,255,0); opacity: .78; }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded),
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
+        animation: none !important;
       }
     }
   </style>
@@ -11999,16 +12179,73 @@ for update using (true) with check (true);</pre>
       }
     }
 
-    function showCompletionRewardEffect(percent, area) {
+    function cssEscape(value) {
+      if (window.CSS && typeof window.CSS.escape === "function") return window.CSS.escape(String(value));
+      return String(value).replace(/[^a-zA-Z0-9_-]/g, "\\$&");
+    }
+
+    function isRewardAnchorVisible(element) {
+      if (!element || typeof element.getBoundingClientRect !== "function") return false;
+      const rect = element.getBoundingClientRect();
+      const style = window.getComputedStyle ? window.getComputedStyle(element) : null;
+      return rect.width > 0 && rect.height > 0 && style?.display !== "none" && style?.visibility !== "hidden";
+    }
+
+    function findCompletionRewardAnchorElement(area, taskId, subtaskId = null) {
+      const areaEsc = cssEscape(area);
+      const taskEsc = cssEscape(taskId);
+      const subEsc = subtaskId ? cssEscape(subtaskId) : "";
+      const mobileFirst = document.body?.classList?.contains("mobile-focus-mode");
+      const pcSelectors = subtaskId
+        ? [`.subtask-row[data-area="${areaEsc}"][data-task-id="${taskEsc}"][data-subtask-id="${subEsc}"]`, `.subtask-row[data-area="${areaEsc}"][data-taskid="${taskEsc}"][data-subtaskid="${subEsc}"]`]
+        : [`.task-card[data-area="${areaEsc}"][data-task-id="${taskEsc}"]`, `.task-card[data-area="${areaEsc}"][data-taskid="${taskEsc}"]`];
+      const mobileSelectors = subtaskId
+        ? [`.mobile-task[data-area="${areaEsc}"][data-taskid="${taskEsc}"][data-subtaskid="${subEsc}"]`, `.mobile-subtask[data-area="${areaEsc}"][data-taskid="${taskEsc}"][data-subtaskid="${subEsc}"]`]
+        : [`.mobile-task[data-area="${areaEsc}"][data-taskid="${taskEsc}"]:not([data-subtaskid])`];
+      const selectors = mobileFirst ? [...mobileSelectors, ...pcSelectors] : [...pcSelectors, ...mobileSelectors];
+      for (const selector of selectors) {
+        const nodes = document.querySelectorAll(selector);
+        for (const node of nodes) {
+          if (isRewardAnchorVisible(node)) return node;
+        }
+      }
+      return null;
+    }
+
+    function getCompletionRewardAnchorRect(area, taskId, subtaskId = null) {
+      const element = findCompletionRewardAnchorElement(area, taskId, subtaskId);
+      if (!element) return null;
+      const rect = element.getBoundingClientRect();
+      return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height };
+    }
+
+    function getRewardPositionFromRect(rect) {
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+      if (!rect) {
+        return { x: viewportWidth / 2, y: viewportHeight / 2 };
+      }
+      const preferredX = rect.left + Math.min(rect.width * 0.72, Math.max(86, rect.width - 70));
+      const preferredY = rect.top + Math.min(34, Math.max(18, rect.height * 0.36));
+      return {
+        x: Math.max(64, Math.min(viewportWidth - 64, preferredX)),
+        y: Math.max(42, Math.min(viewportHeight - 42, preferredY))
+      };
+    }
+
+    function showCompletionRewardEffect(percent, area, anchorRect = null) {
       const value = Math.max(0, Math.round(Number(percent) || 0));
       if (!value) return;
       const root = document.body || document.documentElement;
       if (!root) return;
 
+      const position = getRewardPositionFromRect(anchorRect);
       document.querySelectorAll(".nova-reward-pop").forEach(node => node.remove());
       const pop = document.createElement("div");
       pop.className = `nova-reward-pop ${area || ""}`.trim();
       pop.setAttribute("aria-hidden", "true");
+      pop.style.setProperty("--reward-left", `${position.x}px`);
+      pop.style.setProperty("--reward-top", `${position.y}px`);
       pop.innerHTML = `<span class="nova-reward-coins"><i></i><i></i><i></i></span><strong>+${value}%p</strong>`;
       root.appendChild(pop);
       playCompletionRewardSound();
@@ -13667,6 +13904,7 @@ for update using (true) with check (true);</pre>
         card.className = `task-card ${area} ${task.done ? "done" : ""} ${focusPinned ? "pinned" : ""} ${scheduledToday ? "scheduled-today" : ""} ${isRunning ? "running" : ""} ${isPaused ? "paused" : ""}`;
         card.dataset.area = area;
         card.dataset.taskId = task.id;
+        card.setAttribute("data-taskid", task.id);
         card.ondragover = event => {
           if (!dragState || dragState.type !== "subtask" || dragState.area !== area || task.done || task.later) return;
           const nestedList = event.target.closest(".subtask-list");
@@ -14048,10 +14286,14 @@ for update using (true) with check (true);</pre>
 
           task.subtasks.forEach((subtask, subtaskIndex) => {
             const row = document.createElement("div");
-            row.className = `subtask-row ${subtask.done ? "done" : ""} ${subtask.pinned ? "pinned" : ""}`;
+            const subtaskRunning = timerMatches(area, task.id, subtask.id);
+            const subtaskPaused = subtaskRunning && Boolean(state.activeTimer?.paused);
+            row.className = `subtask-row ${area} ${subtask.done ? "done" : ""} ${subtask.pinned ? "pinned" : ""} ${subtaskRunning ? "running" : ""} ${subtaskPaused ? "paused" : ""}`;
             row.dataset.area = area;
             row.dataset.taskId = task.id;
             row.dataset.subtaskId = subtask.id;
+            row.setAttribute("data-taskid", task.id);
+            row.setAttribute("data-subtaskid", subtask.id);
 
             const subDragHandle = document.createElement("span");
             subDragHandle.className = `drag-handle subtask-drag-handle ${subtask.done ? "disabled" : ""}`;
@@ -14694,6 +14936,7 @@ for update using (true) with check (true);</pre>
 
       const nextDone = !task.done;
       const rewardPercent = nextDone ? getPinnedCompletionRewardPercent(area, id, null) : 0;
+      const rewardAnchorRect = nextDone ? getCompletionRewardAnchorRect(area, id, null) : null;
       const stamp = nextDone ? new Date().toISOString() : null;
       const wasPinned = Boolean(task.pinned);
       const completedEstimateSeconds = getTaskEstimatedSeconds(task);
@@ -14724,7 +14967,7 @@ for update using (true) with check (true);</pre>
       render();
       if (nextDone) {
         showUndoToast("완료 처리됨");
-        showCompletionRewardEffect(rewardPercent, area);
+        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect);
       }
     }
 
@@ -14868,6 +15111,7 @@ for update using (true) with check (true);</pre>
 
       const nextDone = !subtask.done;
       const rewardPercent = nextDone ? getPinnedCompletionRewardPercent(area, taskId, subtaskId) : 0;
+      const rewardAnchorRect = nextDone ? getCompletionRewardAnchorRect(area, taskId, subtaskId) : null;
       const wasPinned = Boolean(subtask.pinned || task.pinned);
       const completedEstimateSeconds = getSubtaskEstimatedSeconds(subtask);
       pushUndoSnapshot();
@@ -14886,7 +15130,7 @@ for update using (true) with check (true);</pre>
       render();
       if (nextDone) {
         showUndoToast("하위항목 완료됨");
-        showCompletionRewardEffect(rewardPercent, area);
+        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect);
       }
     }
 
