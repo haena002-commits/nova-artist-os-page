@@ -9457,6 +9457,142 @@
     }
   </style>
 
+
+
+  <style id="pc-mainboard-polish-patch-20260620">
+    /* PC Mainboard polish: project-colored 완료 체크, visible prompt boxes, stable PIN stroke. */
+    body:not(.mobile-focus-mode) .task-card.done.portfolio > .task-main-row .check,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="portfolio"] .check,
+    body:not(.mobile-focus-mode) .task-card.clearing.portfolio > .task-main-row .check,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="portfolio"] .check {
+      background: var(--portfolio) !important;
+      border-color: rgba(135, 72, 79, 0.72) !important;
+      color: #fff !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(201,120,127,0.22) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.beacon > .task-main-row .check,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="beacon"] .check,
+    body:not(.mobile-focus-mode) .task-card.clearing.beacon > .task-main-row .check,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="beacon"] .check {
+      background: var(--beacon) !important;
+      border-color: rgba(78, 84, 151, 0.72) !important;
+      color: #fff !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(138,143,207,0.22) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.income > .task-main-row .check,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="income"] .check,
+    body:not(.mobile-focus-mode) .task-card.clearing.income > .task-main-row .check,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="income"] .check {
+      background: var(--income) !important;
+      border-color: rgba(139, 106, 45, 0.72) !important;
+      color: #fff !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(199,161,90,0.22) !important;
+    }
+
+    body:not(.mobile-focus-mode) .panel-quote-box {
+      height: auto !important;
+      min-height: 40px !important;
+      max-height: none !important;
+      padding: 9px 13px 10px 16px !important;
+      border-radius: 16px !important;
+      border-width: 1.4px !important;
+      font-family: "Gowun Dodum", "NanumSquareRound", "Apple SD Gothic Neo", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-size: 13.6px !important;
+      font-weight: 760 !important;
+      line-height: 1.38 !important;
+      letter-spacing: -0.015em !important;
+      box-shadow: inset 3px 3px 8px rgba(90,86,80,0.08), inset -3px -3px 8px rgba(255,255,255,0.72), 0 3px 10px rgba(72,68,60,0.05) !important;
+      resize: vertical !important;
+      overflow: auto !important;
+    }
+
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box {
+      background: linear-gradient(90deg, rgba(247,228,229,0.98), rgba(255,250,250,0.72)) !important;
+      border-color: rgba(201,120,127,0.42) !important;
+      color: #6f383f !important;
+    }
+
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box {
+      background: linear-gradient(90deg, rgba(232,233,248,0.98), rgba(250,250,255,0.72)) !important;
+      border-color: rgba(138,143,207,0.42) !important;
+      color: #454a87 !important;
+    }
+
+    body:not(.mobile-focus-mode) .income .panel-quote-box {
+      background: linear-gradient(90deg, rgba(245,234,209,0.98), rgba(255,253,247,0.72)) !important;
+      border-color: rgba(199,161,90,0.46) !important;
+      color: #725726 !important;
+    }
+
+    body:not(.mobile-focus-mode) .panel-quote-box::placeholder {
+      opacity: 0.92 !important;
+      font-weight: 720 !important;
+    }
+
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder { color: #8e4d56 !important; }
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder { color: #5c62a4 !important; }
+    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder { color: #806631 !important; }
+
+    body:not(.mobile-focus-mode) .panel-quote-box:focus {
+      outline: 2px solid rgba(36,36,34,0.12) !important;
+      outline-offset: 2px !important;
+      box-shadow: inset 2px 2px 7px rgba(70,65,58,0.10), inset -2px -2px 7px rgba(255,255,255,0.82), 0 5px 14px rgba(72,68,60,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned {
+      border-color: transparent !important;
+      border-width: 1px !important;
+      overflow: visible !important;
+      contain: layout !important;
+      box-shadow:
+        inset 0 0 0 2.4px rgba(18,18,18,0.88),
+        0 9px 20px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned::after {
+      display: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.running.portfolio {
+      box-shadow:
+        inset 0 0 0 2.4px rgba(100, 46, 54, 0.96),
+        0 9px 20px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.running.beacon {
+      box-shadow:
+        inset 0 0 0 2.4px rgba(55, 61, 132, 0.96),
+        0 9px 20px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.pinned.running.income {
+      box-shadow:
+        inset 0 0 0 2.4px rgba(112, 84, 30, 0.96),
+        0 9px 20px rgba(0,0,0,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.68) !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row.pinned {
+      border-color: transparent !important;
+      box-shadow:
+        inset 0 0 0 2px rgba(18,18,18,0.78),
+        inset 0 1px 0 rgba(255,255,255,0.64),
+        0 2px 6px rgba(0,0,0,0.025) !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-list.drag-ready {
+      outline: 2px dashed rgba(46,41,35,0.26) !important;
+      outline-offset: 3px !important;
+      border-radius: 14px !important;
+      background: rgba(255,255,255,0.20) !important;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -12082,33 +12218,44 @@ for update using (true) with check (true);</pre>
     }
 
 
-    function moveSubtask(area, taskId, subtaskId, targetSubtaskId, position = "before") {
-      const task = getTask(area, taskId);
-      if (!task || !Array.isArray(task.subtasks)) return;
-      const fromIndex = task.subtasks.findIndex(subtask => subtask.id === subtaskId);
+    function moveSubtask(area, taskId, subtaskId, targetSubtaskId, position = "before", targetTaskId = taskId) {
+      const sourceTask = getTask(area, taskId);
+      const targetTask = getTask(area, targetTaskId);
+      if (!sourceTask || !targetTask || !Array.isArray(sourceTask.subtasks) || !Array.isArray(targetTask.subtasks)) return;
+      const fromIndex = sourceTask.subtasks.findIndex(subtask => subtask.id === subtaskId);
       if (fromIndex < 0) return;
 
-      if (!targetSubtaskId) {
-        if (fromIndex === task.subtasks.length - 1) return;
-        pushUndoSnapshot();
-        const [moved] = task.subtasks.splice(fromIndex, 1);
-        task.subtasks.push(moved);
-        saveState();
-        render();
-        return;
+      const sameParent = taskId === targetTaskId;
+      if (sameParent && subtaskId === targetSubtaskId) return;
+      if (sameParent && !targetSubtaskId && fromIndex === sourceTask.subtasks.length - 1) return;
+
+      pushUndoSnapshot();
+      const [moved] = sourceTask.subtasks.splice(fromIndex, 1);
+
+      let targetIndex = -1;
+      if (targetSubtaskId) {
+        targetIndex = targetTask.subtasks.findIndex(subtask => subtask.id === targetSubtaskId);
       }
 
-      if (subtaskId === targetSubtaskId) return;
-      pushUndoSnapshot();
-      const [moved] = task.subtasks.splice(fromIndex, 1);
-      let targetIndex = task.subtasks.findIndex(subtask => subtask.id === targetSubtaskId);
-      if (targetIndex < 0) {
-        task.subtasks.splice(fromIndex, 0, moved);
+      if (targetSubtaskId && targetIndex < 0) {
+        sourceTask.subtasks.splice(fromIndex, 0, moved);
         undoStack.pop();
         return;
       }
-      if (position === "after") targetIndex += 1;
-      task.subtasks.splice(targetIndex, 0, moved);
+
+      if (!targetSubtaskId) {
+        targetTask.subtasks.push(moved);
+      } else {
+        if (position === "after") targetIndex += 1;
+        targetTask.subtasks.splice(targetIndex, 0, moved);
+      }
+
+      if (state.activeTimer && state.activeTimer.area === area && state.activeTimer.taskId === taskId && state.activeTimer.subtaskId === subtaskId) {
+        state.activeTimer.taskId = targetTaskId;
+      }
+
+      syncParentFromSubtasks(sourceTask);
+      if (!sameParent) syncParentFromSubtasks(targetTask);
       saveState();
       render();
     }
@@ -12531,7 +12678,7 @@ for update using (true) with check (true);</pre>
           subtaskList.dataset.area = area;
           subtaskList.dataset.taskId = task.id;
           subtaskList.ondragover = event => {
-            if (!dragState || dragState.type !== "subtask" || dragState.area !== area || dragState.taskId !== task.id) return;
+            if (!dragState || dragState.type !== "subtask" || dragState.area !== area) return;
             event.preventDefault();
             event.stopPropagation();
             subtaskList.classList.add("drag-ready");
@@ -12539,7 +12686,10 @@ for update using (true) with check (true);</pre>
               row.classList.remove("drag-over-before", "drag-over-after");
             });
             const targetRow = event.target.closest(".subtask-row");
-            if (!targetRow || !subtaskList.contains(targetRow) || targetRow.dataset.subtaskId === dragState.subtaskId) return;
+            const isSameRow = targetRow
+              && targetRow.dataset.taskId === dragState.taskId
+              && targetRow.dataset.subtaskId === dragState.subtaskId;
+            if (!targetRow || !subtaskList.contains(targetRow) || isSameRow) return;
             const rect = targetRow.getBoundingClientRect();
             const position = event.clientY > rect.top + rect.height / 2 ? "after" : "before";
             targetRow.classList.add(position === "after" ? "drag-over-after" : "drag-over-before");
@@ -12548,7 +12698,7 @@ for update using (true) with check (true);</pre>
             if (!subtaskList.contains(event.relatedTarget)) clearDragMarkers();
           };
           subtaskList.ondrop = event => {
-            if (!dragState || dragState.type !== "subtask" || dragState.area !== area || dragState.taskId !== task.id) return;
+            if (!dragState || dragState.type !== "subtask" || dragState.area !== area) return;
             event.preventDefault();
             event.stopPropagation();
             const targetRow = event.target.closest(".subtask-row");
@@ -12559,7 +12709,7 @@ for update using (true) with check (true);</pre>
               position = event.clientY > rect.top + rect.height / 2 ? "after" : "before";
             }
             clearDragMarkers();
-            moveSubtask(area, task.id, dragState.subtaskId, targetSubtaskId, position);
+            moveSubtask(area, dragState.taskId, dragState.subtaskId, targetSubtaskId, position, task.id);
             dragState = null;
           };
 
