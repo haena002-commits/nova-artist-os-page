@@ -1885,6 +1885,17 @@
       color: #3f5359;
     }
 
+
+    .nightly-check-actions.single,
+    .mini-nightly-actions.single {
+      grid-template-columns: 1fr !important;
+    }
+
+    .nightly-check-actions.single .nightly-check-btn,
+    .mini-nightly-actions.single .mini-nightly-btn {
+      width: 100% !important;
+    }
+
     .sync-head {
       display: flex;
       justify-content: space-between;
@@ -11467,12 +11478,10 @@ for update using (true) with check (true);</pre>
       modal.id = "nightlyCheckModal";
       modal.innerHTML = `
         <div class="nightly-check-box" role="dialog" aria-modal="true" aria-labelledby="nightlyCheckTitle">
-          <h3 class="nightly-check-title" id="nightlyCheckTitle">할일을 완료했나요?</h3>
+          <h3 class="nightly-check-title" id="nightlyCheckTitle">완료된 할 일을 체크하고,<br>리포트를 저장하세요</h3>
           <div class="nightly-check-sub" id="nightlyCheckSub"></div>
-          <div class="nightly-check-actions">
-            <button class="nightly-check-btn primary" type="button" data-nightly-action="check">체크하기</button>
-            <button class="nightly-check-btn snooze" type="button" data-nightly-action="snooze">10분 뒤</button>
-            <button class="nightly-check-btn" type="button" data-nightly-action="skip">넘기기</button>
+          <div class="nightly-check-actions single">
+            <button class="nightly-check-btn primary" type="button" data-nightly-action="confirm">확인</button>
           </div>
         </div>
       `;
@@ -11482,7 +11491,7 @@ for update using (true) with check (true);</pre>
           applyNightlyCheckAction(button.dataset.nightlyAction);
           return;
         }
-        if (event.target === modal) applyNightlyCheckAction("skip");
+        if (event.target === modal) applyNightlyCheckAction("confirm");
       });
       document.body.appendChild(modal);
       return modal;
@@ -11491,11 +11500,10 @@ for update using (true) with check (true);</pre>
     function showNightlyCheckModal() {
       const modal = ensureNightlyCheckModal();
       const sub = modal.querySelector("#nightlyCheckSub");
-      const count = getTodayRemainingCheckCount();
-      if (sub) sub.textContent = count > 0 ? `남은 체크 항목 ${count}개` : "";
+      if (sub) sub.textContent = "";
       modal.classList.add("show");
       setNightlyCheckState({ lastShownAt: Date.now(), snoozeUntil: 0, skipped: false, checked: false });
-      setTimeout(() => modal.querySelector("[data-nightly-action='check']")?.focus(), 0);
+      setTimeout(() => modal.querySelector("[data-nightly-action='confirm']")?.focus(), 0);
     }
 
     function hideNightlyCheckModal() {
@@ -11513,15 +11521,7 @@ for update using (true) with check (true);</pre>
     }
 
     function applyNightlyCheckAction(action) {
-      const now = Date.now();
-      if (action === "snooze") {
-        setNightlyCheckState({ snoozeUntil: now + 10 * 60 * 1000, skipped: false, checked: false });
-      } else if (action === "skip") {
-        setNightlyCheckState({ skipped: true, checked: false, snoozeUntil: 0 });
-      } else {
-        setNightlyCheckState({ checked: true, skipped: false, snoozeUntil: 0 });
-        if (miniFocusWin && !miniFocusWin.closed) miniFocusWin.focus();
-      }
+      setNightlyCheckState({ checked: true, skipped: false, snoozeUntil: 0 });
       hideNightlyCheckModal();
       postNightlyCheckToMini("nightlyCheckHide");
       scheduleNightlyCheckReminder();
@@ -11532,7 +11532,7 @@ for update using (true) with check (true);</pre>
         scheduleNightlyCheckReminder();
         return;
       }
-      const payload = { count: getTodayRemainingCheckCount(), dateKey: getTodayKey(), message: "할일을 완료했나요?" };
+      const payload = { count: getTodayRemainingCheckCount(), dateKey: getTodayKey(), message: "완료된 할 일을 체크하고, 리포트를 저장하세요" };
       const sentToMini = postNightlyCheckToMini("nightlyCheckShow", payload);
       if (!sentToMini) showNightlyCheckModal();
       else setNightlyCheckState({ lastShownAt: Date.now(), snoozeUntil: 0, skipped: false, checked: false });
@@ -16446,6 +16446,15 @@ for update using (true) with check (true);</pre>
       background: rgba(221,236,238,0.95);
       color: #3f5359;
     }
+
+
+    .mini-nightly-actions.single {
+      grid-template-columns: 1fr !important;
+    }
+
+    .mini-nightly-actions.single .mini-nightly-btn {
+      width: 100% !important;
+    }
   </style>
 
 
@@ -16572,12 +16581,10 @@ for update using (true) with check (true);</pre>
   </main>
   <div class="mini-nightly-modal" id="miniNightlyModal" aria-hidden="true">
     <div class="mini-nightly-box" role="dialog" aria-modal="true" aria-labelledby="miniNightlyTitle">
-      <h3 class="mini-nightly-title" id="miniNightlyTitle">할일을 완료했나요?</h3>
+      <h3 class="mini-nightly-title" id="miniNightlyTitle">완료된 할 일을 체크하고,<br>리포트를 저장하세요</h3>
       <div class="mini-nightly-sub" id="miniNightlySub"></div>
-      <div class="mini-nightly-actions">
-        <button class="mini-nightly-btn primary" type="button" data-nightly-action="check">체크하기</button>
-        <button class="mini-nightly-btn snooze" type="button" data-nightly-action="snooze">10분 뒤</button>
-        <button class="mini-nightly-btn" type="button" data-nightly-action="skip">넘기기</button>
+      <div class="mini-nightly-actions single">
+        <button class="mini-nightly-btn primary" type="button" data-nightly-action="confirm">확인</button>
       </div>
     </div>
   </div>
@@ -16652,12 +16659,12 @@ for update using (true) with check (true);</pre>
       var modal = document.getElementById("miniNightlyModal");
       var sub = document.getElementById("miniNightlySub");
       if (!modal) return;
-      if (sub) sub.textContent = (count || nightlyDueCount) > 0 ? "남은 체크 항목 " + (count || nightlyDueCount) + "개" : "";
+      if (sub) sub.textContent = "";
       modal.classList.add("show");
       modal.setAttribute("aria-hidden", "false");
       setMiniNightlyState({ lastShownAt: Date.now(), snoozeUntil: 0, skipped: false, checked: false });
       setTimeout(function() {
-        var btn = modal.querySelector('[data-nightly-action="check"]');
+        var btn = modal.querySelector('[data-nightly-action="confirm"]');
         if (btn) btn.focus();
       }, 0);
     }
@@ -16670,15 +16677,9 @@ for update using (true) with check (true);</pre>
     }
 
     function applyMiniNightlyAction(action) {
-      if (action === "snooze") {
-        setMiniNightlyState({ snoozeUntil: Date.now() + 10 * 60 * 1000, skipped: false, checked: false });
-      } else if (action === "skip") {
-        setMiniNightlyState({ skipped: true, checked: false, snoozeUntil: 0 });
-      } else {
-        setMiniNightlyState({ checked: true, skipped: false, snoozeUntil: 0 });
-      }
+      setMiniNightlyState({ checked: true, skipped: false, snoozeUntil: 0 });
       hideMiniNightly();
-      send("nightlyCheckAction", [action]);
+      send("nightlyCheckAction", ["confirm"]);
       scheduleMiniNightly();
     }
 
@@ -16783,7 +16784,7 @@ for update using (true) with check (true);</pre>
         applyMiniNightlyAction(button.dataset.nightlyAction);
         return;
       }
-      if (event.target.id === "miniNightlyModal") applyMiniNightlyAction("skip");
+      if (event.target.id === "miniNightlyModal") applyMiniNightlyAction("confirm");
     });
 
     function localClearThenSend(target, action, args) {
