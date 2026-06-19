@@ -11852,10 +11852,12 @@ for update using (true) with check (true);</pre>
       const timerLeftPercent = getSubjectTimerLeftPercent(area, task, null);
       const taskTotalText = formatDuration(getTaskTotalFocusSeconds(area, task));
       const taskEstimatedText = formatEstimatedDuration(getTaskEstimatedSeconds(task));
+      const hasSubtasks = (task.subtasks || []).length > 0;
       const remainingSubtasks = (task.subtasks || []).filter(subtask => !subtask.done);
       const subtasksHtml = remainingSubtasks.length
         ? `<div class="mobile-subtasks">${remainingSubtasks.map(subtask => mobileSubtaskHtml(area, task, subtask)).join("")}</div>`
         : "";
+      const parentTimerHtml = hasSubtasks ? "" : `<button class="mobile-timer ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>`;
 
       return `
         <article class="mobile-task ${escapeHtml(area)} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
@@ -11870,7 +11872,7 @@ for update using (true) with check (true);</pre>
           <div class="mobile-task-actions">
             <button class="mobile-pin ${task.pinned ? "active" : ""}" data-mobile-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">PIN</button>
             <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" title="${hasSubtaskTargets(task) ? "하위항목 시간 합계" : "목표 시간 수정"}">${escapeHtml(formatTaskTargetMinutes(task))}</button>
-            <button class="mobile-timer ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>
+            ${parentTimerHtml}
           </div>
           ${subtasksHtml}
         </article>`;
