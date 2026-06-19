@@ -7629,6 +7629,52 @@
     }
   </style>
 
+
+  <style id="header-date-focus-cleanup-patch">
+    .brand-title-wrap {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      min-width: 0 !important;
+    }
+
+    .brand-title-wrap .title-date-pill {
+      flex: 0 0 auto !important;
+      min-height: 34px !important;
+      height: 34px !important;
+      padding: 0 13px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-color: rgba(24,24,24,0.14) !important;
+      background: rgba(255,255,255,0.64) !important;
+      color: #3b3d3d !important;
+      font-size: 12.5px !important;
+      font-weight: 780 !important;
+      letter-spacing: -0.01em !important;
+      box-shadow: 0 3px 10px rgba(72,68,60,0.06), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+    }
+
+    .brand-title-wrap #commandTitle {
+      margin: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    @media (max-width: 768px) {
+      .brand-title-wrap {
+        flex-wrap: wrap !important;
+        gap: 7px 10px !important;
+      }
+
+      .brand-title-wrap .title-date-pill {
+        min-height: 31px !important;
+        height: 31px !important;
+        padding: 0 11px !important;
+        font-size: 11.5px !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -7636,12 +7682,12 @@
     <section class="topbar">
       <div class="brand-card">
         <div class="brand-row">
-          <div>
+          <div class="brand-title-wrap">
+            <div class="date-pill title-date-pill" id="todayText">Today</div>
             <h1 id="commandTitle" contenteditable="true" spellcheck="false">Stay Focused</h1>
           </div>
 
           <div class="brand-actions">
-            <button class="focus-btn" onclick="openFocusWindow()">포커스 창</button>
             <button class="focus-btn" onclick="openMiniFocusWindow()">미니</button>
             <button class="sync-btn cloud-pull-btn" type="button" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">↻</button>
             <button class="sync-btn" onclick="openSyncPanel()">모바일 연동</button>
@@ -7650,7 +7696,6 @@
             <button class="sync-btn" onclick="document.getElementById('backupRestoreInput')?.click()">불러오기</button>
             <input type="file" id="backupRestoreInput" accept="application/json,.json" hidden onchange="restoreBackupFile(event)" />
             <span class="sync-status-pill" id="syncStatusPill">Local only</span>
-            <div class="date-pill" id="todayText">Today</div>
           </div>
         </div>
 
