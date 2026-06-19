@@ -7201,6 +7201,158 @@
     .today-load-panel.red .load-overrun-value { color: #8f4149 !important; }
   </style>
 
+
+
+  <style id="today-load-tight-visual-patch">
+    /* Today load block: tighter thresholds + clearer grade label + less edge-hugging layout. */
+    .today-load-panel {
+      grid-template-columns: 14px minmax(260px, 1.28fr) minmax(196px, 0.68fr) minmax(250px, 0.78fr) !important;
+      gap: 18px !important;
+      padding: 16px 24px !important;
+      border-radius: 17px !important;
+      align-items: center !important;
+    }
+
+    .today-load-panel .load-dot {
+      width: 11px !important;
+      height: 11px !important;
+      justify-self: center !important;
+    }
+
+    .today-load-panel .load-title {
+      font-size: 14px !important;
+      line-height: 1.25 !important;
+      font-weight: 780 !important;
+      color: #504b45 !important;
+    }
+
+    .today-load-panel .load-detail,
+    .today-load-panel .load-verdict {
+      margin-top: 3px !important;
+      font-size: 12.5px !important;
+      line-height: 1.32 !important;
+      font-weight: 640 !important;
+      color: #6f6861 !important;
+    }
+
+    .today-load-panel .load-verdict {
+      color: #3f3d39 !important;
+      font-weight: 720 !important;
+    }
+
+    .today-load-panel .load-percent {
+      display: grid !important;
+      grid-template-columns: auto minmax(106px, 1fr) !important;
+      grid-template-rows: auto auto !important;
+      align-items: center !important;
+      justify-items: start !important;
+      column-gap: 11px !important;
+      row-gap: 4px !important;
+      min-width: 196px !important;
+      text-align: left !important;
+    }
+
+    .today-load-panel .load-grade {
+      grid-column: 1 !important;
+      grid-row: 1 / span 2 !important;
+      min-width: 2.4em !important;
+      color: #3b3a36 !important;
+      font-size: 20px !important;
+      font-weight: 820 !important;
+      line-height: 1 !important;
+      letter-spacing: -0.035em !important;
+      white-space: nowrap !important;
+    }
+
+    .today-load-panel .load-grade.leisure { color: #567d5b !important; }
+    .today-load-panel .load-grade.steady { color: #4f5f73 !important; }
+    .today-load-panel .load-grade.max { color: #8b6b2e !important; }
+    .today-load-panel .load-grade.over { color: #8f4149 !important; }
+
+    .today-load-panel .load-percent-value {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+      color: #242424 !important;
+      font-size: 25px !important;
+      font-weight: 820 !important;
+      line-height: 0.95 !important;
+      letter-spacing: -0.045em !important;
+      white-space: nowrap !important;
+    }
+
+    .today-load-panel .load-overrun-value {
+      font-size: 19px !important;
+      letter-spacing: -0.035em !important;
+    }
+
+    .today-load-panel .today-load-gauge {
+      grid-column: 2 !important;
+      grid-row: 2 !important;
+      width: 100% !important;
+      min-width: 106px !important;
+      height: 8px !important;
+      margin-top: 0 !important;
+    }
+
+    .today-load-panel .load-portfolio {
+      gap: 5px !important;
+      padding-left: 2px !important;
+    }
+
+    .today-load-panel .load-side-line {
+      font-size: 12.5px !important;
+      line-height: 1.32 !important;
+      font-weight: 640 !important;
+      color: #615c56 !important;
+    }
+
+    .today-load-panel .load-side-line strong {
+      font-size: 13.5px !important;
+      font-weight: 780 !important;
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .today-load-panel {
+        grid-template-columns: 10px minmax(0, 1fr) !important;
+        gap: 8px 10px !important;
+        padding: 12px 13px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-main,
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent,
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        grid-column: 2 / -1 !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent {
+        grid-row: auto !important;
+        grid-template-columns: auto minmax(88px, 1fr) !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        justify-items: start !important;
+        text-align: left !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-grade {
+        font-size: 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent-value {
+        font-size: 23px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .today-load-gauge {
+        width: 100% !important;
+        min-width: 88px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        grid-template-columns: 1fr !important;
+        gap: 4px !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -17232,34 +17384,42 @@ for update using (true) with check (true);</pre>
       const noAvailableTime = !hasAvailableTime && required > 0;
 
       let status = "green";
-      let label = "가능";
+      let label = "여유";
+      let gradeKey = "leisure";
+
       if (noAvailableTime) {
         status = "red";
-        label = "시간 없음";
-      } else if (percent > 95 && portfolioPercent <= 95) {
-        status = "yellow";
-        label = "전체 조정";
-      } else if (percent > 95) {
-        status = "red";
-        label = "과부하";
-      } else if (percent > 70) {
-        status = "yellow";
-        label = "빡빡";
-      } else if (required <= 0) {
+        label = "초과";
+        gradeKey = "over";
+      } else if (required <= 0 || percent <= 60) {
+        status = "green";
         label = "여유";
+        gradeKey = "leisure";
+      } else if (percent <= 85) {
+        status = "green";
+        label = "적당";
+        gradeKey = "steady";
+      } else if (percent <= 105) {
+        status = "yellow";
+        label = "맥스";
+        gradeKey = "max";
+      } else {
+        status = "red";
+        label = "초과";
+        gradeKey = "over";
       }
 
       let portfolioLabel = "Portfolio PIN 없음";
       if (portfolioItems.length) {
         if (noAvailableTime && portfolioRequired > 0) portfolioLabel = "Portfolio 남은 시간 없음";
-        else portfolioLabel = portfolioPercent > 95 ? "Portfolio도 위험" : "Portfolio 가능";
+        else portfolioLabel = portfolioPercent > 105 ? "Portfolio도 초과" : portfolioPercent > 85 ? "Portfolio 맥스권" : "Portfolio 가능";
       }
 
       let nudge = "다른 작업 여유 있음";
       if (noAvailableTime) nudge = "내일로 넘기거나 PIN 줄이기 권장";
-      else if (status === "red") nudge = "Portfolio 일부도 줄이기 권장";
-      else if (percent > 95) nudge = "Portfolio 외 작업 Later 권장";
-      else if (status === "yellow") nudge = "Portfolio 먼저 진행 권장";
+      else if (gradeKey === "over") nudge = "PIN 줄이기 권장";
+      else if (gradeKey === "max") nudge = "Portfolio 먼저 진행 권장";
+      else if (gradeKey === "steady") nudge = "오늘 안에 처리 가능";
 
       return {
         items,
@@ -17269,6 +17429,7 @@ for update using (true) with check (true);</pre>
         percent,
         status,
         label,
+        gradeKey,
         noAvailableTime,
         portfolioItems,
         portfolioRequired,
@@ -17279,15 +17440,17 @@ for update using (true) with check (true);</pre>
     }
 
     function renderTodayLoadGauge(load) {
+      const label = escapeHtml(load?.label || "여유");
+      const gradeKey = escapeHtml(load?.gradeKey || "leisure");
       const noAvailableTime = Boolean(load?.noAvailableTime);
       const required = Math.max(0, Number(load?.required) || 0);
       if (noAvailableTime && required > 0) {
-        return `<span class="load-percent-value load-overrun-value">초과</span><span class="today-load-gauge" title="오늘 남은 작업 가능 시간이 없습니다"><span class="today-load-gauge-fill" style="--load-width:100%"></span><span class="today-load-gauge-line"></span></span>`;
+        return `<span class="load-grade ${gradeKey}">${label}</span><span class="load-percent-value load-overrun-value">시간 없음</span><span class="today-load-gauge" title="오늘 남은 작업 가능 시간이 없습니다"><span class="today-load-gauge-fill" style="--load-width:100%"></span><span class="today-load-gauge-line"></span></span>`;
       }
       const percent = Math.max(0, Number(load?.percent) || 0);
       const visualPercent = Math.min(130, percent);
       const width = Math.round((visualPercent / 130) * 100);
-      return `<span class="load-percent-value">${Math.min(130, Math.round(percent))}%</span><span class="today-load-gauge" title="100% 기준선 · 현재 ${Math.round(percent)}%"><span class="today-load-gauge-fill" style="--load-width:${width}%"></span><span class="today-load-gauge-line"></span></span>`;
+      return `<span class="load-grade ${gradeKey}">${label}</span><span class="load-percent-value">${Math.min(130, Math.round(percent))}%</span><span class="today-load-gauge" title="100% 기준선 · 현재 ${Math.round(percent)}%"><span class="today-load-gauge-fill" style="--load-width:${width}%"></span><span class="today-load-gauge-line"></span></span>`;
     }
 
     function renderTodayLoadPanel() {
@@ -17301,8 +17464,9 @@ for update using (true) with check (true);</pre>
       const portfolioFlow = matrix.find(row => row.area === "portfolio") || { count: 0, total: 5 };
 
       panel.className = `today-load-panel ${load.status === "green" ? "" : load.status}`;
+      panel.dataset.loadGrade = load.gradeKey || "leisure";
       panel.title = `가능 시간 계산: ${load.availableText}`;
-      document.getElementById("todayLoadTitle").textContent = `오늘 작업량 · ${load.label}`;
+      document.getElementById("todayLoadTitle").textContent = "오늘 작업량";
       const detail = document.getElementById("todayLoadDetail");
       if (detail) {
         detail.textContent = load.noAvailableTime
