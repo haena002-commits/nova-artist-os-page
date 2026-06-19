@@ -6705,7 +6705,7 @@ for update using (true) with check (true);</pre>
     const SYNC_DEFAULT_TABLE = "nova_sync_state";
     const SYNC_DEFAULT_ROW_ID = "haena_nova_artist_os";
     let syncConfigReadMeta = { source: "none", sources: [], capturedFromUrl: false };
-    let syncDebugState = { lastPull: null, lastPush: null, lastSave: null, storageErrors: [] };
+    let syncDebugState = { lastPull: null, lastPush: null, storageErrors: [] };
     let lastMobileFocusPullAt = 0;
 
     captureSyncConfigFromUrl();
@@ -6750,49 +6750,11 @@ for update using (true) with check (true);</pre>
       return !mobileFocusMode && window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
     }
 
-    const TODAY_KEY_BASIS = "local/KST browser date (no UTC toISOString date slicing)";
-
-    function getLocalTodayKey(date = new Date()) {
-      const localDate = date instanceof Date ? date : new Date(date);
-      if (Number.isNaN(localDate.getTime())) return getLocalTodayKey(new Date());
-      const year = localDate.getFullYear();
-      const month = String(localDate.getMonth() + 1).padStart(2, "0");
-      const day = String(localDate.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    }
-
     function getTodayKey(date = new Date()) {
-      return getLocalTodayKey(date);
-    }
-
-    function isDateKey(value) {
-      return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
-    }
-
-    function resolvePinDate(item, fallback = getTodayKey()) {
-      if (isDateKey(item?.pinDate)) return item.pinDate;
-      if (isDateKey(item?.todayKey)) return item.todayKey;
-      return fallback;
-    }
-
-    function setPinMetadata(item, dateKey = getTodayKey()) {
-      if (!item) return item;
-      item.pinDate = dateKey;
-      item.todayKey = dateKey;
-      return item;
-    }
-
-    function clearPinMetadata(item) {
-      if (!item) return item;
-      item.pinDate = null;
-      item.todayKey = null;
-      return item;
-    }
-
-    function getPinMetadataFields(item, isPinned, fallback = getTodayKey()) {
-      if (!isPinned) return { pinDate: null, todayKey: null };
-      const pinDate = resolvePinDate(item, fallback);
-      return { pinDate, todayKey: pinDate };
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
     }
 
     function getWeekStartDate(date = new Date()) {
@@ -6894,63 +6856,6 @@ for update using (true) with check (true);</pre>
       return Boolean(task && !task.done && !task.later && task.pinned);
     }
 
-    function refreshPinnedDateMetadata(targetState = state, dateKey = getTodayKey()) {
-      AREA_ORDER.forEach(area => {
-        (targetState?.tasks?.[area] || []).forEach(task => {
-          if (task && !task.done && !task.later && task.pinned) {
-            setPinMetadata(task, resolvePinDate(task, dateKey));
-          } else {
-            clearPinMetadata(task);
-          }
-          (task?.subtasks || []).forEach(subtask => {
-            if (subtask && !subtask.done && !task.done && !task.later && subtask.pinned) {
-              setPinMetadata(subtask, resolvePinDate(subtask, dateKey));
-            } else {
-              clearPinMetadata(subtask);
-            }
-          });
-        });
-      });
-      return targetState;
-    }
-
-    function getPinnedDebugItems(targetState = state) {
-      const items = [];
-      AREA_ORDER.forEach(area => {
-        (targetState?.tasks?.[area] || []).forEach(task => {
-          if (task?.pinned) {
-            items.push({
-              area,
-              type: "task",
-              id: task.id,
-              title: task.title,
-              done: Boolean(task.done),
-              later: Boolean(task.later),
-              pinDate: task.pinDate || null,
-              todayKey: task.todayKey || null
-            });
-          }
-          (task?.subtasks || []).forEach(subtask => {
-            if (!subtask?.pinned) return;
-            items.push({
-              area,
-              type: "subtask",
-              taskId: task.id,
-              id: subtask.id,
-              title: subtask.title,
-              parentTitle: task.title,
-              done: Boolean(subtask.done),
-              parentDone: Boolean(task.done),
-              parentLater: Boolean(task.later),
-              pinDate: subtask.pinDate || null,
-              todayKey: subtask.todayKey || null
-            });
-          });
-        });
-      });
-      return items;
-    }
-
     function timestampForDone(isDone, existing) {
       if (!isDone) return null;
       return existing || new Date().toISOString();
@@ -6958,15 +6863,13 @@ for update using (true) with check (true);</pre>
 
     function normalizeTask(task) {
       const isDone = Boolean(task.done);
-      const isPinned = !isDone && !task.later && Boolean(task.pinned);
       const normalized = {
         id: task.id || makeId(),
         title: task.title || "새 할일",
         done: isDone,
         completedAt: timestampForDone(isDone, task.completedAt),
         later: !isDone && Boolean(task.later),
-        pinned: isPinned,
-        ...getPinMetadataFields(task, isPinned),
+        pinned: !isDone && !task.later && Boolean(task.pinned),
         scheduledDay: normalizeScheduledDay(task.scheduledDay),
         focusSeconds: Number(task.focusSeconds) || 0,
         targetMinutes: normalizeTargetMinutes(task.targetMinutes),
@@ -6976,14 +6879,12 @@ for update using (true) with check (true);</pre>
         subtasks: Array.isArray(task.subtasks)
           ? task.subtasks.map(subtask => {
               const subDone = Boolean(subtask.done);
-              const subPinned = !subDone && Boolean(subtask.pinned);
               return {
                 id: subtask.id || makeId(),
                 title: subtask.title || "새 하위 항목",
                 done: subDone,
                 completedAt: timestampForDone(subDone, subtask.completedAt),
-                pinned: subPinned,
-                ...getPinMetadataFields(subtask, subPinned),
+                pinned: !subDone && Boolean(subtask.pinned),
                 focusSeconds: Number(subtask.focusSeconds) || 0,
                 targetMinutes: normalizeTargetMinutes(subtask.targetMinutes),
                 timerResumeElapsedSeconds: Math.max(0, Math.floor(Number(subtask.timerResumeElapsedSeconds) || 0)),
@@ -6994,7 +6895,6 @@ for update using (true) with check (true);</pre>
       };
       if (normalized.subtasks.some(subtask => subtask.pinned)) {
         normalized.pinned = false;
-        clearPinMetadata(normalized);
       }
       return normalized;
     }
@@ -7217,12 +7117,6 @@ for update using (true) with check (true);</pre>
     }
 
     function flushStateSave() {
-      refreshPinnedDateMetadata(state);
-      syncDebugState.lastSave = {
-        at: new Date().toISOString(),
-        todayKey: getTodayKey(),
-        todayKeyBasis: TODAY_KEY_BASIS
-      };
       if (pendingStateSaveTimer) {
         clearTimeout(pendingStateSaveTimer);
         pendingStateSaveTimer = null;
@@ -7238,7 +7132,6 @@ for update using (true) with check (true);</pre>
     }
 
     function queueStateSave(options = {}) {
-      refreshPinnedDateMetadata(state);
       pendingStateSaveValue = JSON.stringify(state);
       if (options.immediate) {
         flushStateSave();
@@ -7297,14 +7190,12 @@ for update using (true) with check (true);</pre>
 
     function normalizeSubtaskLike(subtask = {}) {
       const subDone = Boolean(subtask.done);
-      const subPinned = !subDone && Boolean(subtask.pinned);
       return {
         id: subtask.id || makeId(),
         title: subtask.title || "새 하위 항목",
         done: subDone,
         completedAt: timestampForDone(subDone, subtask.completedAt),
-        pinned: subPinned,
-        ...getPinMetadataFields(subtask, subPinned),
+        pinned: !subDone && Boolean(subtask.pinned),
         focusSeconds: Number(subtask.focusSeconds) || 0,
         targetMinutes: normalizeTargetMinutes(subtask.targetMinutes),
         timerResumeElapsedSeconds: Math.max(0, Math.floor(Number(subtask.timerResumeElapsedSeconds) || 0)),
@@ -7343,11 +7234,6 @@ for update using (true) with check (true);</pre>
           "title",
           "done",
           "completedAt",
-          "completedFromPin",
-          "completedEstimateSeconds",
-          "pinned",
-          "pinDate",
-          "todayKey",
           "focusSeconds",
           "targetMinutes",
           "timerResumeElapsedSeconds",
@@ -7390,10 +7276,6 @@ for update using (true) with check (true);</pre>
           "completedAt",
           "later",
           "pinned",
-          "pinDate",
-          "todayKey",
-          "completedFromPin",
-          "completedEstimateSeconds",
           "scheduledDay",
           "focusSeconds",
           "targetMinutes",
@@ -10185,7 +10067,6 @@ for update using (true) with check (true);</pre>
       }
       task.later = true;
       task.pinned = false;
-      clearPinMetadata(task);
       if (state.focusArea === area && state.focusTaskId === id) {
         state.focusArea = null;
         state.focusTaskId = null;
@@ -10222,7 +10103,6 @@ for update using (true) with check (true);</pre>
       if (nextDone) {
         if (state.activeTimer && state.activeTimer.area === area && state.activeTimer.taskId === id) stopActiveTimer({ preserveResume: false });
         task.pinned = false;
-        clearPinMetadata(task);
       }
 
       if (task.subtasks.length > 0) {
@@ -10232,9 +10112,7 @@ for update using (true) with check (true);</pre>
           completedAt: stamp,
           completedFromPin: nextDone ? Boolean(subtask.pinned || wasPinned) : false,
           completedEstimateSeconds: nextDone ? getSubtaskEstimatedSeconds(subtask) : 0,
-          pinned: nextDone ? false : Boolean(subtask.pinned),
-          pinDate: nextDone ? null : subtask.pinDate || null,
-          todayKey: nextDone ? null : subtask.todayKey || null
+          pinned: nextDone ? false : Boolean(subtask.pinned)
         }));
       }
 
@@ -10263,9 +10141,7 @@ for update using (true) with check (true);</pre>
       task.pinned = !task.pinned;
 
       if (task.pinned) {
-        const pinDate = getTodayKey();
-        setPinMetadata(task, pinDate);
-        task.subtasks = (task.subtasks || []).map(subtask => clearPinMetadata({ ...subtask, pinned: false }));
+        task.subtasks = (task.subtasks || []).map(subtask => ({ ...subtask, pinned: false }));
         state.focusArea = area;
         state.focusTaskId = id;
         const tasks = state.tasks[area] || [];
@@ -10274,12 +10150,9 @@ for update using (true) with check (true);</pre>
           const [moved] = tasks.splice(index, 1);
           tasks.unshift(moved);
         }
-      } else {
-        clearPinMetadata(task);
-        if (state.focusArea === area && state.focusTaskId === id) {
-          state.focusArea = null;
-          state.focusTaskId = null;
-        }
+      } else if (state.focusArea === area && state.focusTaskId === id) {
+        state.focusArea = null;
+        state.focusTaskId = null;
       }
 
       saveState();
@@ -10294,13 +10167,9 @@ for update using (true) with check (true);</pre>
       pushUndoSnapshot();
       subtask.pinned = !subtask.pinned;
       if (subtask.pinned) {
-        setPinMetadata(subtask, getTodayKey());
         task.pinned = false;
-        clearPinMetadata(task);
         state.focusArea = area;
         state.focusTaskId = taskId;
-      } else {
-        clearPinMetadata(subtask);
       }
       saveState();
       render();
@@ -10399,17 +10268,11 @@ for update using (true) with check (true);</pre>
       subtask.completedAt = subtask.done ? new Date().toISOString() : null;
       subtask.completedFromPin = nextDone ? wasPinned : false;
       subtask.completedEstimateSeconds = nextDone ? completedEstimateSeconds : 0;
-      if (subtask.done) {
-        subtask.pinned = false;
-        clearPinMetadata(subtask);
-      }
+      if (subtask.done) subtask.pinned = false;
 
       syncParentFromSubtasks(task);
 
-      if (task.done) {
-        task.pinned = false;
-        clearPinMetadata(task);
-      }
+      if (task.done) task.pinned = false;
 
       saveState();
       render();
@@ -11367,8 +11230,6 @@ for update using (true) with check (true);</pre>
       const item = {
         ok: Boolean(ok),
         at: new Date().toISOString(),
-        todayKey: getTodayKey(),
-        todayKeyBasis: TODAY_KEY_BASIS,
         ...detail
       };
       if (kind === "pull") syncDebugState.lastPull = item;
@@ -11667,7 +11528,6 @@ for update using (true) with check (true);</pre>
         try { syncClient = window.supabase.createClient(syncConfig.url, syncConfig.anonKey); } catch (error) {}
       }
 
-      refreshPinnedDateMetadata(state);
       let stateToUpload = clone(state);
 
       if (!options.replace) {
@@ -11686,7 +11546,7 @@ for update using (true) with check (true);</pre>
 
       const payload = {
         id: syncConfig.rowId,
-        state: clone(refreshPinnedDateMetadata(stateToUpload)),
+        state: clone(stateToUpload),
         updated_at: new Date().toISOString(),
         client_id: syncClientId
       };
@@ -15869,11 +15729,7 @@ for update using (true) with check (true);</pre>
         },
         lastPull: syncDebugState.lastPull,
         lastPush: syncDebugState.lastPush,
-        lastSave: syncDebugState.lastSave,
         storageErrors: syncDebugState.storageErrors.slice(),
-        todayKey: getTodayKey(),
-        todayKeyBasis: TODAY_KEY_BASIS,
-        pinnedItems: getPinnedDebugItems(),
         mobileFocusMode,
         syncStatus
       };
