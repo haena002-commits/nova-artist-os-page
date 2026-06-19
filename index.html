@@ -11156,6 +11156,205 @@
     body:not(.mobile-focus-mode) .pc-timer.paused::before { display: none !important; }
   </style>
 
+
+
+  <style id="nova-timer-alert-done-color-polish-20260620">
+    /* Completion flash: remove the lingering green cast; use neutral/project-tinted feedback instead. */
+    body:not(.mobile-focus-mode) .task-card.clearing,
+    body:not(.mobile-focus-mode) .subtask-row.clearing {
+      animation: clearPulse 0.28s ease both !important;
+      background-image: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.clearing.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="portfolio"] {
+      background: rgba(250, 243, 244, 0.98) !important;
+      border-color: rgba(201,120,127,0.62) !important;
+      box-shadow: inset 0 0 0 1px rgba(201,120,127,0.18), 0 4px 12px rgba(201,120,127,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.clearing.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="beacon"] {
+      background: rgba(244, 245, 250, 0.98) !important;
+      border-color: rgba(138,143,207,0.62) !important;
+      box-shadow: inset 0 0 0 1px rgba(138,143,207,0.18), 0 4px 12px rgba(138,143,207,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing.income,
+    body:not(.mobile-focus-mode) .subtask-row.clearing.income,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="income"] {
+      background: rgba(250, 247, 239, 0.98) !important;
+      border-color: rgba(199,161,90,0.64) !important;
+      box-shadow: inset 0 0 0 1px rgba(199,161,90,0.20), 0 4px 12px rgba(199,161,90,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done,
+    body:not(.mobile-focus-mode) .subtask-row.done {
+      background-image: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.done.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="portfolio"] {
+      background: rgba(248, 244, 244, 0.74) !important;
+      border-color: rgba(201,120,127,0.26) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.done.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="beacon"] {
+      background: rgba(245, 246, 250, 0.74) !important;
+      border-color: rgba(138,143,207,0.26) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.income,
+    body:not(.mobile-focus-mode) .subtask-row.done.income,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="income"] {
+      background: rgba(249, 247, 241, 0.76) !important;
+      border-color: rgba(199,161,90,0.28) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.done,
+    body.mobile-focus-mode .mobile-subtask.done {
+      background-image: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.done.portfolio,
+    body.mobile-focus-mode .mobile-subtask.done[data-area="portfolio"] {
+      background: rgba(248, 244, 244, 0.70) !important;
+      border-color: rgba(201,120,127,0.28) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.done.beacon,
+    body.mobile-focus-mode .mobile-subtask.done[data-area="beacon"] {
+      background: rgba(245, 246, 250, 0.70) !important;
+      border-color: rgba(138,143,207,0.28) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.done.income,
+    body.mobile-focus-mode .mobile-subtask.done[data-area="income"] {
+      background: rgba(249, 247, 241, 0.72) !important;
+      border-color: rgba(199,161,90,0.30) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.done.portfolio .mobile-check,
+    body.mobile-focus-mode .mobile-subtask.done[data-area="portfolio"] .mobile-check { background: var(--portfolio) !important; border-color: var(--portfolio) !important; }
+    body.mobile-focus-mode .mobile-task.done.beacon .mobile-check,
+    body.mobile-focus-mode .mobile-subtask.done[data-area="beacon"] .mobile-check { background: var(--beacon) !important; border-color: var(--beacon) !important; }
+    body.mobile-focus-mode .mobile-task.done.income .mobile-check,
+    body.mobile-focus-mode .mobile-subtask.done[data-area="income"] .mobile-check { background: var(--income) !important; border-color: var(--income) !important; }
+  </style>
+
+
+
+  <style id="nova-pc-upload-clear-final-20260620">
+    body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn {
+      min-width: 58px !important;
+      gap: 5px !important;
+      padding-inline: 11px !important;
+      background: rgba(248,248,245,0.86) !important;
+      border-color: rgba(24,24,24,0.13) !important;
+      color: #303230 !important;
+      box-shadow: 0 4px 11px rgba(0,0,0,0.065), inset 0 1px 0 rgba(255,255,255,0.72) !important;
+    }
+
+    body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn:hover {
+      border-color: rgba(46,41,35,0.28) !important;
+      background: rgba(255,255,255,0.92) !important;
+      transform: translateY(-1px);
+    }
+
+    body:not(.mobile-focus-mode) .cloud-push-label {
+      font-size: 11.5px !important;
+      font-weight: 820 !important;
+      line-height: 1 !important;
+    }
+
+    body:not(.mobile-focus-mode) .cloud-push-icon {
+      display: inline-grid !important;
+      place-items: center !important;
+      width: 16px !important;
+      height: 16px !important;
+      border-radius: 999px !important;
+      background: rgba(46,41,35,0.08) !important;
+      color: #303230 !important;
+      font-size: 12px !important;
+      font-weight: 950 !important;
+      line-height: 1 !important;
+      transform: translateY(-0.5px);
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn { display: none !important; }
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing,
+    body:not(.mobile-focus-mode) .subtask-row.clearing {
+      background: rgba(248,248,245,0.94) !important;
+      background-image: none !important;
+      border-color: rgba(24,24,24,0.14) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.70), 0 4px 12px rgba(0,0,0,0.045) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.clearing.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="portfolio"] {
+      background: rgba(250,245,246,0.98) !important;
+      border-color: rgba(201,120,127,0.48) !important;
+      box-shadow: inset 0 0 0 1px rgba(201,120,127,0.12), 0 4px 12px rgba(201,120,127,0.06) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.clearing.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="beacon"] {
+      background: rgba(246,247,252,0.98) !important;
+      border-color: rgba(138,143,207,0.48) !important;
+      box-shadow: inset 0 0 0 1px rgba(138,143,207,0.12), 0 4px 12px rgba(138,143,207,0.06) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing.income,
+    body:not(.mobile-focus-mode) .subtask-row.clearing.income,
+    body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="income"] {
+      background: rgba(251,248,242,0.98) !important;
+      border-color: rgba(199,161,90,0.50) !important;
+      box-shadow: inset 0 0 0 1px rgba(199,161,90,0.13), 0 4px 12px rgba(199,161,90,0.06) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.clearing::after,
+    body:not(.mobile-focus-mode) .subtask-row.clearing::after {
+      display: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done,
+    body:not(.mobile-focus-mode) .subtask-row.done {
+      background-image: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.done.portfolio,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="portfolio"] {
+      background: rgba(248,245,246,0.72) !important;
+      border-color: rgba(201,120,127,0.24) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.done.beacon,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="beacon"] {
+      background: rgba(246,247,251,0.72) !important;
+      border-color: rgba(138,143,207,0.24) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.done.income,
+    body:not(.mobile-focus-mode) .subtask-row.done.income,
+    body:not(.mobile-focus-mode) .subtask-row.done[data-area="income"] {
+      background: rgba(250,248,243,0.74) !important;
+      border-color: rgba(199,161,90,0.26) !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -11178,6 +11377,9 @@
                 <path d="M3.4 13.3v-2.5h2.5" />
               </svg>
               <span class="cloud-pull-label">update</span>
+            </button>
+            <button class="sync-btn cloud-push-quick-btn" type="button" title="현재 PC 상태 올리기" aria-label="현재 PC 상태 클라우드에 올리기" onclick="pushCloudStateNow({ replace: true })">
+              <span class="cloud-push-label">PC</span><span class="cloud-push-icon" aria-hidden="true">↑</span>
             </button>
             <button class="sync-btn routine-task-btn" type="button" onclick="openRoutineTaskModal()">루틴할일추가</button>
             <button class="sync-btn" onclick="openSyncPanel()">모바일 연동</button>
@@ -12555,27 +12757,52 @@ for update using (true) with check (true);</pre>
       return Math.max(1, Math.round((itemSeconds / totalSeconds) * 100));
     }
 
+    function getNovaAudioContext() {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return null;
+      const ctx = window.novaUiAudioContext || new AudioContextClass();
+      window.novaUiAudioContext = ctx;
+      if (ctx.state === "suspended") ctx.resume();
+      return ctx;
+    }
+
+    function playBellTone(ctx, frequency, startAt, duration, volume, type = "sine") {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(frequency, startAt);
+      osc.frequency.exponentialRampToValueAtTime(frequency * 1.018, startAt + Math.min(0.05, duration * 0.35));
+      gain.gain.setValueAtTime(0.0001, startAt);
+      gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, volume), startAt + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startAt + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(startAt);
+      osc.stop(startAt + duration + 0.02);
+    }
+
     function playCompletionRewardSound() {
       try {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContextClass) return;
-        const ctx = window.novaCompletionRewardAudioContext || new AudioContextClass();
-        window.novaCompletionRewardAudioContext = ctx;
-        if (ctx.state === "suspended") ctx.resume();
-
+        const ctx = getNovaAudioContext();
+        if (!ctx) return;
         const now = ctx.currentTime;
-        const gain = ctx.createGain();
-        const osc = ctx.createOscillator();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(880, now);
-        osc.frequency.exponentialRampToValueAtTime(1240, now + 0.09);
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.038, now + 0.012);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.19);
+        // light coin-like ding: bright attack + short harmonic shimmer, no external audio asset.
+        playBellTone(ctx, 1046.5, now, 0.18, 0.032, "sine");
+        playBellTone(ctx, 1568.0, now + 0.018, 0.20, 0.020, "triangle");
+        playBellTone(ctx, 2093.0, now + 0.052, 0.16, 0.012, "sine");
+      } catch (_) {
+        // Sound is optional; silently skip when the browser blocks or cannot play it.
+      }
+    }
+
+    function playTimerExceededSound() {
+      try {
+        const ctx = getNovaAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        // short bibik alert at about the same perceived level as the reward ding.
+        playBellTone(ctx, 720, now, 0.09, 0.030, "square");
+        playBellTone(ctx, 960, now + 0.115, 0.10, 0.028, "square");
       } catch (_) {
         // Sound is optional; silently skip when the browser blocks or cannot play it.
       }
@@ -12990,11 +13217,45 @@ for update using (true) with check (true);</pre>
       liveTimerLoopId = setTimeout(liveTimerTick, delay);
     }
 
+    function getActiveTimerAlertKey() {
+      if (!state.activeTimer) return "";
+      return [
+        state.activeTimer.area || "",
+        state.activeTimer.taskId || "",
+        state.activeTimer.subtaskId || "",
+        state.activeTimer.startedAtMs || state.activeTimer.startedAt || ""
+      ].join("|");
+    }
+
+    function checkActiveTimerThresholdAlert() {
+      if (!state.activeTimer || state.activeTimer.paused) return;
+      const info = getTimerSubject(state.activeTimer.area, state.activeTimer.taskId, state.activeTimer.subtaskId || null);
+      if (!info) return;
+      const countdownSeconds = getCountdownSeconds(info.area, info.task, info.subtask);
+      const key = getActiveTimerAlertKey();
+      if (window.novaTimerThresholdAlertKey !== key) {
+        window.novaTimerThresholdAlertKey = key;
+        window.novaTimerThresholdLastCountdown = countdownSeconds;
+        if (countdownSeconds <= 0) state.activeTimer.timerOverAlertPlayed = true;
+        return;
+      }
+
+      const previous = Number(window.novaTimerThresholdLastCountdown);
+      if (!state.activeTimer.timerOverAlertPlayed && Number.isFinite(previous) && previous > 0 && countdownSeconds <= 0) {
+        state.activeTimer.timerOverAlertPlayed = true;
+        playTimerExceededSound();
+        saveState();
+      }
+      window.novaTimerThresholdLastCountdown = countdownSeconds;
+    }
+
     function liveTimerTick() {
       liveTimerLoopId = null;
       liveTimerLoopDelay = 0;
 
       if (!isLiveTimerRunning()) return;
+
+      checkActiveTimerThresholdAlert();
 
       const now = Date.now();
       if (now - lastTimeLogRenderAt > 5000) {
@@ -14978,7 +15239,6 @@ for update using (true) with check (true);</pre>
     }
 
     function render() {
-      if (ensureRoutineTasksForToday({ skipSave: true })) saveLocalStateOnly();
       document.getElementById("todayText").textContent = formatToday();
       document.getElementById("classDeadline").value = state.classDeadline || "";
       const phraseNotes = normalizePhraseNotes(state.phraseNotes);
@@ -16094,6 +16354,7 @@ for update using (true) with check (true);</pre>
         loggedElapsedSeconds: resumeElapsed,
         paused: false,
         targetSeconds,
+        timerOverAlertPlayed: resumeElapsed >= targetSeconds,
         dateKey: getTodayKey(now)
       };
       saveState();
@@ -23096,5 +23357,29 @@ for update using (true) with check (true);</pre>
     });
     scheduleLiveTimerLoop();
   </script>
+
+<script id="nova-sound-polish-override-20260620">
+  // Optional WebAudio-only UI sounds. If the browser blocks audio, these quietly skip.
+  window.playCompletionRewardSound = function playCompletionRewardSound() {
+    try {
+      const ctx = getNovaAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      playBellTone(ctx, 1318.5, now, 0.15, 0.034, "sine");
+      playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.022, "triangle");
+      playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.010, "sine");
+    } catch (_) {}
+  };
+
+  window.playTimerExceededSound = function playTimerExceededSound() {
+    try {
+      const ctx = getNovaAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      playBellTone(ctx, 740, now, 0.085, 0.030, "square");
+      playBellTone(ctx, 980, now + 0.11, 0.095, 0.028, "square");
+    } catch (_) {}
+  };
+</script>
 </body>
 </html>
