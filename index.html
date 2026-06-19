@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
   <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
@@ -8949,6 +8950,263 @@
       #focusReportDashboard .ops-chart-split { grid-template-columns: 1fr !important; }
       #focusReportDashboard .ops-compare-row { grid-template-columns: 70px minmax(0,1fr) 72px !important; }
       #focusReportDashboard .ops-heatmap-row { grid-template-columns: 64px repeat(7, minmax(0,1fr)) !important; }
+    }
+  </style>
+
+
+  <style id="report-overflow-guard-patch">
+    /* NOVA bottom report overflow guard · prevents labels, bars, tables, and heatmap rows from invading neighboring areas. */
+    #focusReportDashboard,
+    #focusReportDashboard * {
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    #focusReportDashboard {
+      width: 100% !important;
+      max-width: 100% !important;
+      grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.95fr) minmax(0, 0.98fr) !important;
+      gap: 24px !important;
+      align-items: stretch !important;
+      overflow: visible !important;
+    }
+
+    #focusReportDashboard .report-card {
+      overflow: hidden !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .report-card-head,
+    #focusReportDashboard .variance-card-head {
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .report-title-line,
+    #focusReportDashboard .report-card-head h3,
+    #focusReportDashboard .variance-card-head h3,
+    #focusReportDashboard .note {
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .ops-kpi-strip {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .ops-kpi {
+      min-width: 0 !important;
+      padding-left: 14px !important;
+      padding-right: 14px !important;
+      gap: 8px !important;
+    }
+
+    #focusReportDashboard .ops-kpi-label,
+    #focusReportDashboard .ops-kpi-value,
+    #focusReportDashboard .ops-kpi-delta,
+    #focusReportDashboard .ops-week-kpi span,
+    #focusReportDashboard .ops-week-kpi strong,
+    #focusReportDashboard .ops-week-kpi em {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    #focusReportDashboard .ops-chart-split {
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr) !important;
+      gap: 20px !important;
+      overflow: hidden !important;
+    }
+
+    #focusReportDashboard .ops-chart-box,
+    #focusReportDashboard .ops-stack-chart,
+    #focusReportDashboard .report-trend-wrap {
+      overflow: hidden !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .ops-bars-area {
+      gap: 8px !important;
+      padding-left: 3px !important;
+      padding-right: 3px !important;
+    }
+
+    #focusReportDashboard .ops-stack-bar {
+      width: 23px !important;
+      max-width: 100% !important;
+    }
+
+    #focusReportDashboard .ops-legend {
+      max-width: 100% !important;
+      gap: 18px !important;
+      flex-wrap: wrap !important;
+      row-gap: 6px !important;
+    }
+
+    #focusReportDashboard .variance-filter {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      flex-shrink: 1 !important;
+    }
+
+    #focusReportDashboard .variance-pill {
+      flex: 0 1 auto !important;
+    }
+
+    #focusReportDashboard .variance-table-wrap,
+    #focusReportDashboard .variance-table {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+      table-layout: fixed !important;
+    }
+
+    #focusReportDashboard .variance-table th,
+    #focusReportDashboard .variance-table td {
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    #focusReportDashboard .variance-task-cell,
+    #focusReportDashboard .variance-task-text {
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+
+    #focusReportDashboard .variance-num {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      text-align: left !important;
+    }
+
+    #focusReportDashboard .ops-week-kpis {
+      width: 100% !important;
+      min-width: 0 !important;
+      gap: 9px !important;
+    }
+
+    #focusReportDashboard .ops-week-kpi {
+      min-width: 0 !important;
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+    }
+
+    #focusReportDashboard .ops-compare-list {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .ops-compare-row {
+      grid-template-columns: minmax(88px, 108px) minmax(0, 1fr) minmax(72px, 82px) !important;
+      gap: 10px !important;
+      width: 100% !important;
+      overflow: hidden !important;
+    }
+
+    #focusReportDashboard .ops-compare-name {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-compare-name .report-area-dot {
+      flex: 0 0 9px !important;
+    }
+
+    #focusReportDashboard .ops-compare-bars,
+    #focusReportDashboard .ops-compare-track {
+      max-width: 100% !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    #focusReportDashboard .ops-compare-meta {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-wrap,
+    #focusReportDashboard .ops-heatmap,
+    #focusReportDashboard .ops-heatmap-head {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-head .report-section-title {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-legend {
+      flex: 0 0 auto !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-row {
+      grid-template-columns: minmax(82px, 96px) repeat(7, minmax(18px, 1fr)) !important;
+      gap: 5px !important;
+      width: 100% !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-name {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-day,
+    #focusReportDashboard .ops-heatmap-cell {
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+
+    #focusReportDashboard .report-footer-note,
+    #focusReportDashboard .variance-footer {
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+
+    @media (max-width: 1680px) {
+      #focusReportDashboard {
+        gap: 20px !important;
+      }
+
+      #focusReportDashboard .report-card {
+        padding-left: 28px !important;
+        padding-right: 28px !important;
+      }
+
+      #focusReportDashboard .ops-compare-row {
+        grid-template-columns: minmax(78px, 96px) minmax(0, 1fr) 72px !important;
+        gap: 8px !important;
+      }
+
+      #focusReportDashboard .ops-compare-name {
+        font-size: 12px !important;
+      }
+
+      #focusReportDashboard .ops-heatmap-row {
+        grid-template-columns: minmax(76px, 88px) repeat(7, minmax(16px, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 1480px) {
+      #focusReportDashboard {
+        grid-template-columns: 1fr !important;
+      }
+
+      #focusReportDashboard .report-card {
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+      }
     }
   </style>
 
