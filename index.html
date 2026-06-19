@@ -8361,6 +8361,597 @@
       }
     }
   </style>
+
+  <style id="nova-bottom-report-final-patch">
+    /* NOVA bottom report · three-card operating diagnosis layout */
+    .bottom-report-grid {
+      height: auto !important;
+      min-height: 0 !important;
+      margin-top: 8px !important;
+      margin-bottom: 40px !important;
+      padding: 0 !important;
+      display: block !important;
+      overflow: visible !important;
+    }
+
+    #focusReportDashboard.bottom-report-shell,
+    #focusReportDashboard {
+      display: grid !important;
+      grid-template-columns: minmax(520px, 1.18fr) minmax(430px, 0.92fr) minmax(430px, 0.86fr) !important;
+      gap: 24px !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      align-items: stretch !important;
+    }
+
+    #focusReportDashboard .report-card {
+      min-height: 438px !important;
+      height: auto !important;
+      padding: 28px 30px 26px !important;
+      border-radius: 34px !important;
+      background: rgba(247,247,244,0.88) !important;
+      border: 1px solid rgba(255,255,255,0.76) !important;
+      box-shadow: 0 18px 40px rgba(72,68,60,0.12), inset 0 1px 0 rgba(255,255,255,0.64) !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 18px !important;
+    }
+
+    #focusReportDashboard .report-card-head,
+    #focusReportDashboard .variance-card-head {
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: space-between !important;
+      gap: 16px !important;
+      margin: 0 !important;
+      flex-wrap: nowrap !important;
+    }
+
+    #focusReportDashboard .report-card-head h3,
+    #focusReportDashboard .variance-card-head h3 {
+      margin: 0 !important;
+      color: #252625 !important;
+      font-size: 23px !important;
+      font-weight: 760 !important;
+      letter-spacing: -0.035em !important;
+      line-height: 1.05 !important;
+    }
+
+    #focusReportDashboard .report-title-line {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .report-info-icon {
+      display: inline-grid !important;
+      place-items: center !important;
+      width: 18px !important;
+      height: 18px !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(37,38,37,0.22) !important;
+      color: #777872 !important;
+      font-size: 11px !important;
+      font-weight: 820 !important;
+      line-height: 1 !important;
+      transform: translateY(1px) !important;
+    }
+
+    #focusReportDashboard .note {
+      margin: 6px 0 0 !important;
+      max-width: 520px !important;
+      color: #777872 !important;
+      font-size: 12.5px !important;
+      font-weight: 520 !important;
+      line-height: 1.42 !important;
+      word-break: keep-all !important;
+    }
+
+    #focusReportDashboard .ops-kpi-strip {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 0 !important;
+      border: 1px solid rgba(214,214,210,0.86) !important;
+      border-radius: 20px !important;
+      background: rgba(255,255,255,0.54) !important;
+      overflow: hidden !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.74), 0 7px 18px rgba(72,68,60,0.045) !important;
+    }
+
+    #focusReportDashboard .ops-kpi {
+      display: grid !important;
+      grid-template-columns: auto minmax(0, 1fr) !important;
+      gap: 10px !important;
+      align-items: center !important;
+      min-height: 86px !important;
+      padding: 14px 16px !important;
+      border-right: 1px solid rgba(214,214,210,0.76) !important;
+    }
+
+    #focusReportDashboard .ops-kpi:last-child { border-right: 0 !important; }
+
+    #focusReportDashboard .ops-kpi-icon {
+      display: grid !important;
+      place-items: center !important;
+      width: 28px !important;
+      height: 28px !important;
+      color: rgba(70,70,66,0.72) !important;
+      font-size: 23px !important;
+      line-height: 1 !important;
+    }
+
+    #focusReportDashboard .ops-kpi-label {
+      color: #6f706b !important;
+      font-size: 12px !important;
+      font-weight: 640 !important;
+      line-height: 1.1 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    #focusReportDashboard .ops-kpi-value {
+      margin-top: 4px !important;
+      color: #252625 !important;
+      font-size: 22px !important;
+      font-weight: 780 !important;
+      letter-spacing: -0.045em !important;
+      line-height: 1 !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    #focusReportDashboard .ops-kpi-delta {
+      margin-top: 5px !important;
+      font-size: 11.5px !important;
+      font-weight: 680 !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-kpi-delta.plus,
+    #focusReportDashboard .report-delta.up { color: #5a9c70 !important; }
+    #focusReportDashboard .ops-kpi-delta.minus,
+    #focusReportDashboard .report-delta.down { color: #c86760 !important; }
+    #focusReportDashboard .ops-kpi-delta.flat,
+    #focusReportDashboard .report-delta.flat { color: #837f78 !important; }
+
+    #focusReportDashboard .ops-chart-split {
+      display: grid !important;
+      grid-template-columns: minmax(230px, 0.86fr) minmax(260px, 1fr) !important;
+      gap: 22px !important;
+      align-items: stretch !important;
+      min-height: 226px !important;
+    }
+
+    #focusReportDashboard .ops-chart-box {
+      min-width: 0 !important;
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      gap: 12px !important;
+    }
+
+    #focusReportDashboard .ops-chart-title,
+    #focusReportDashboard .report-section-title {
+      margin: 0 !important;
+      color: #4f504b !important;
+      font-size: 13px !important;
+      font-weight: 720 !important;
+      letter-spacing: -0.01em !important;
+      text-transform: none !important;
+    }
+
+    #focusReportDashboard .ops-stack-chart {
+      position: relative !important;
+      display: grid !important;
+      grid-template-columns: 34px minmax(0, 1fr) !important;
+      min-height: 174px !important;
+    }
+
+    #focusReportDashboard .ops-y-axis {
+      position: relative !important;
+      color: #777872 !important;
+      font-size: 11px !important;
+      font-weight: 560 !important;
+    }
+
+    #focusReportDashboard .ops-y-axis span {
+      position: absolute !important;
+      right: 8px !important;
+      transform: translateY(50%) !important;
+    }
+
+    #focusReportDashboard .ops-y-axis span:nth-child(1) { top: 0 !important; transform: translateY(-20%) !important; }
+    #focusReportDashboard .ops-y-axis span:nth-child(2) { top: 50% !important; }
+    #focusReportDashboard .ops-y-axis span:nth-child(3) { bottom: 0 !important; }
+
+    #focusReportDashboard .ops-bars-area {
+      position: relative !important;
+      display: grid !important;
+      grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      align-items: end !important;
+      padding: 2px 4px 0 !important;
+      border-bottom: 1px solid rgba(121,121,116,0.18) !important;
+      background-image: linear-gradient(to bottom, rgba(121,121,116,0.10) 0 1px, transparent 1px) !important;
+      background-size: 100% 50% !important;
+    }
+
+    #focusReportDashboard .ops-day-stack {
+      display: grid !important;
+      grid-template-rows: minmax(0, 1fr) auto !important;
+      gap: 9px !important;
+      justify-items: center !important;
+      height: 100% !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .ops-stack-bar {
+      align-self: end !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-end !important;
+      width: 25px !important;
+      height: 154px !important;
+      border-radius: 8px 8px 0 0 !important;
+      overflow: hidden !important;
+      background: rgba(255,255,255,0.34) !important;
+    }
+
+    #focusReportDashboard .ops-bar-seg.portfolio { background: rgba(201,120,127,0.64) !important; }
+    #focusReportDashboard .ops-bar-seg.beacon { background: rgba(138,143,207,0.64) !important; }
+    #focusReportDashboard .ops-bar-seg.income { background: rgba(199,161,90,0.70) !important; }
+
+    #focusReportDashboard .ops-day-label {
+      color: #6f706b !important;
+      font-size: 11px !important;
+      font-weight: 620 !important;
+      line-height: 1 !important;
+    }
+
+    #focusReportDashboard .ops-legend {
+      display: flex !important;
+      justify-content: center !important;
+      gap: 22px !important;
+      color: #6f706b !important;
+      font-size: 12px !important;
+      font-weight: 560 !important;
+    }
+
+    #focusReportDashboard .ops-legend span {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 7px !important;
+    }
+
+    #focusReportDashboard .ops-legend i,
+    #focusReportDashboard .report-area-dot,
+    #focusReportDashboard .variance-dot {
+      width: 9px !important;
+      height: 9px !important;
+      border-radius: 999px !important;
+      flex: 0 0 9px !important;
+    }
+
+    #focusReportDashboard .ops-legend i.portfolio { background: var(--portfolio) !important; }
+    #focusReportDashboard .ops-legend i.beacon { background: var(--beacon) !important; }
+    #focusReportDashboard .ops-legend i.income { background: var(--income) !important; }
+
+    #focusReportDashboard .report-trend-wrap {
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    #focusReportDashboard .report-trend-svg {
+      height: 174px !important;
+      width: 100% !important;
+    }
+
+    #focusReportDashboard .report-trend-labels {
+      margin-top: 6px !important;
+      gap: 6px !important;
+    }
+
+    #focusReportDashboard .report-footer-note,
+    #focusReportDashboard .variance-footer {
+      margin-top: auto !important;
+      padding: 14px 17px !important;
+      border-radius: 17px !important;
+      border: 1px solid rgba(255,255,255,0.58) !important;
+      background: rgba(239,243,249,0.78) !important;
+      color: #626b78 !important;
+      font-size: 12.5px !important;
+      font-weight: 560 !important;
+      line-height: 1.45 !important;
+      word-break: keep-all !important;
+    }
+
+    #focusReportDashboard .report-footer-note.warm {
+      background: rgba(247,239,220,0.70) !important;
+      color: #75623e !important;
+    }
+
+    #focusReportDashboard .variance-filter {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      min-height: 42px !important;
+      margin: 0 !important;
+      padding: 5px !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(225,225,220,0.78) !important;
+      background: rgba(255,255,255,0.42) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    }
+
+    #focusReportDashboard .variance-pill {
+      padding: 9px 13px !important;
+      border-radius: 999px !important;
+      color: #7f7f79 !important;
+      font-size: 12px !important;
+      font-weight: 640 !important;
+      line-height: 1 !important;
+    }
+
+    #focusReportDashboard .variance-pill.active {
+      background: rgba(255,255,255,0.88) !important;
+      color: #252625 !important;
+      box-shadow: 0 2px 8px rgba(72,68,60,0.06) !important;
+    }
+
+    #focusReportDashboard .variance-filter-meta { display: none !important; }
+
+    #focusReportDashboard .variance-table-wrap {
+      border-radius: 18px !important;
+      border: 1px solid rgba(225,225,220,0.78) !important;
+      background: rgba(255,250,245,0.58) !important;
+      overflow: hidden !important;
+    }
+
+    #focusReportDashboard .variance-table th {
+      padding: 13px 14px !important;
+      color: #595b56 !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      border-bottom: 1px solid rgba(225,225,220,0.70) !important;
+    }
+
+    #focusReportDashboard .variance-table td {
+      padding: 13px 14px !important;
+      font-size: 12.5px !important;
+      font-weight: 560 !important;
+      border-bottom: 1px solid rgba(225,225,220,0.55) !important;
+    }
+
+    #focusReportDashboard .variance-task-title {
+      color: #30312f !important;
+      font-size: 12.5px !important;
+      font-weight: 680 !important;
+      line-height: 1.24 !important;
+    }
+
+    #focusReportDashboard .variance-task-parent {
+      display: block !important;
+      color: #8b8b84 !important;
+      font-size: 10.5px !important;
+      font-weight: 520 !important;
+      margin-top: 3px !important;
+    }
+
+    #focusReportDashboard .variance-num {
+      color: #3b3c39 !important;
+      font-size: 12.5px !important;
+      font-weight: 650 !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    #focusReportDashboard .variance-num.delta.plus { color: #c86760 !important; }
+    #focusReportDashboard .variance-num.delta.minus { color: #4f9e76 !important; }
+
+    #focusReportDashboard .ops-week-kpis {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+      gap: 10px !important;
+    }
+
+    #focusReportDashboard .ops-week-kpi {
+      padding: 15px 14px !important;
+      border: 1px solid rgba(225,225,220,0.78) !important;
+      border-radius: 16px !important;
+      background: rgba(255,255,255,0.48) !important;
+      text-align: center !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.62) !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .ops-week-kpi span {
+      display: block !important;
+      color: #6f706b !important;
+      font-size: 11.5px !important;
+      font-weight: 620 !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-week-kpi strong {
+      display: block !important;
+      margin-top: 6px !important;
+      color: #252625 !important;
+      font-size: 22px !important;
+      font-weight: 780 !important;
+      letter-spacing: -0.04em !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    #focusReportDashboard .ops-week-kpi em {
+      display: block !important;
+      margin-top: 5px !important;
+      font-style: normal !important;
+      font-size: 11.5px !important;
+      font-weight: 680 !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-compare-list {
+      display: grid !important;
+      gap: 13px !important;
+      margin-top: 10px !important;
+    }
+
+    #focusReportDashboard .ops-compare-row {
+      display: grid !important;
+      grid-template-columns: 78px minmax(0,1fr) 82px !important;
+      align-items: center !important;
+      gap: 13px !important;
+    }
+
+    #focusReportDashboard .ops-compare-name {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      min-width: 0 !important;
+      color: #3f413e !important;
+      font-size: 12.5px !important;
+      font-weight: 650 !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-compare-bars {
+      display: grid !important;
+      gap: 7px !important;
+      min-width: 0 !important;
+    }
+
+    #focusReportDashboard .ops-compare-track {
+      position: relative !important;
+      height: 14px !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,0.52) !important;
+      overflow: hidden !important;
+      box-shadow: inset 0 1px 2px rgba(72,68,60,0.08) !important;
+    }
+
+    #focusReportDashboard .ops-compare-fill,
+    #focusReportDashboard .ops-compare-prev-fill {
+      display: block !important;
+      height: 100% !important;
+      border-radius: inherit !important;
+    }
+
+    #focusReportDashboard .ops-compare-fill.portfolio { background: rgba(201,120,127,0.82) !important; }
+    #focusReportDashboard .ops-compare-fill.beacon { background: rgba(138,143,207,0.82) !important; }
+    #focusReportDashboard .ops-compare-fill.income { background: rgba(199,161,90,0.82) !important; }
+    #focusReportDashboard .ops-compare-prev-fill { background: rgba(160,160,154,0.22) !important; }
+
+    #focusReportDashboard .ops-compare-meta {
+      text-align: right !important;
+      color: #3f413e !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      font-variant-numeric: tabular-nums !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-compare-meta span {
+      display: block !important;
+      margin-top: 4px !important;
+      font-size: 10.5px !important;
+      font-weight: 680 !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-wrap {
+      display: grid !important;
+      gap: 8px !important;
+      margin-top: 4px !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-head {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-legend {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      color: #777872 !important;
+      font-size: 11px !important;
+      font-weight: 520 !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-legend i {
+      display: inline-block !important;
+      width: 9px !important;
+      height: 9px !important;
+      border-radius: 999px !important;
+      background: rgba(120,120,114,0.28) !important;
+    }
+
+    #focusReportDashboard .ops-heatmap {
+      display: grid !important;
+      gap: 5px !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-row {
+      display: grid !important;
+      grid-template-columns: 72px repeat(7, minmax(0, 1fr)) !important;
+      gap: 5px !important;
+      align-items: center !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-name,
+    #focusReportDashboard .ops-heatmap-day {
+      color: #5b5c57 !important;
+      font-size: 11px !important;
+      font-weight: 620 !important;
+      white-space: nowrap !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-day { text-align: center !important; color: #777872 !important; }
+
+    #focusReportDashboard .ops-heatmap-cell {
+      height: 28px !important;
+      border-radius: 3px !important;
+      background: rgba(150,150,145,0.12) !important;
+    }
+
+    #focusReportDashboard .ops-heatmap-cell.portfolio { background: rgba(201,120,127,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.beacon { background: rgba(138,143,207,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.income { background: rgba(199,161,90,var(--heat,0.10)) !important; }
+
+    @media (max-width: 1480px) {
+      #focusReportDashboard {
+        grid-template-columns: 1fr !important;
+      }
+      #focusReportDashboard .report-card { min-height: 0 !important; }
+      #focusReportDashboard .ops-chart-split { grid-template-columns: 1fr 1fr !important; }
+    }
+
+    @media (max-width: 760px) {
+      #focusReportDashboard .report-card {
+        padding: 20px 16px !important;
+        border-radius: 24px !important;
+      }
+      #focusReportDashboard .report-card-head,
+      #focusReportDashboard .variance-card-head {
+        flex-wrap: wrap !important;
+      }
+      #focusReportDashboard .ops-kpi-strip,
+      #focusReportDashboard .ops-week-kpis {
+        grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+      }
+      #focusReportDashboard .ops-kpi:nth-child(2) { border-right: 0 !important; }
+      #focusReportDashboard .ops-kpi:nth-child(-n+2) { border-bottom: 1px solid rgba(214,214,210,0.76) !important; }
+      #focusReportDashboard .ops-chart-split { grid-template-columns: 1fr !important; }
+      #focusReportDashboard .ops-compare-row { grid-template-columns: 70px minmax(0,1fr) 72px !important; }
+      #focusReportDashboard .ops-heatmap-row { grid-template-columns: 64px repeat(7, minmax(0,1fr)) !important; }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -18588,82 +19179,245 @@ for update using (true) with check (true);</pre>
       }).join("");
     }
 
+
+    function clampReportPercent(value) {
+      return Math.max(0, Math.min(100, Math.round(Number(value) || 0)));
+    }
+
+    function getReportCompletionPercent(model) {
+      const total = (Number(model.weekCompleted) || 0) + (Number(model.totalOpen) || 0);
+      return total ? clampReportPercent((Number(model.weekCompleted) || 0) / total * 100) : 0;
+    }
+
+    function getReportAccuracyPercent(model, dateKeys = model.weekKeys) {
+      const estimated = sumReportDailyTotal(model.report, dateKeys, "completedEstimatedSeconds");
+      const actual = sumReportDailyTotal(model.report, dateKeys, "completedActualSeconds");
+      if (!estimated) return 0;
+      return clampReportPercent(100 - (Math.abs(actual - estimated) / estimated * 100));
+    }
+
+    function getReportCompletedDelta(model) {
+      const current = sumReportDailyTotal(model.report, model.weekKeys, "completedCount");
+      const previous = sumReportDailyTotal(model.report, model.prevWeekKeys, "completedCount");
+      return current - previous;
+    }
+
+    function formatReportSignedSeconds(seconds) {
+      const safe = Number(seconds) || 0;
+      if (!safe) return "±0";
+      return `${safe > 0 ? "+" : "-"}${formatDuration(Math.abs(safe))}`;
+    }
+
+    function getReportDeltaClass(value) {
+      const safe = Number(value) || 0;
+      return safe > 0 ? "plus" : safe < 0 ? "minus" : "flat";
+    }
+
+    function getReportWeekdayLabel(dateKey) {
+      if (!dateKey || !/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) return "";
+      const labels = ["일", "월", "화", "수", "목", "금", "토"];
+      return labels[new Date(`${dateKey}T00:00:00`).getDay()] || "";
+    }
+
+    function renderOpsKpiStrip(model) {
+      const weekDelta = model.weekTotal - model.prevWeekTotal;
+      const completionPercent = getReportCompletionPercent(model);
+      const completedDelta = getReportCompletedDelta(model);
+      const accuracyPercent = getReportAccuracyPercent(model);
+      const prevPortfolioSeconds = sumReportDailyArea(model.report, model.prevWeekKeys, "portfolio", "loggedSeconds");
+      const prevPortfolioShare = getAreaShare(model.prevWeekTotal, prevPortfolioSeconds);
+      const portfolioShare = model.weekByArea.portfolio?.share || 0;
+      const portfolioDelta = portfolioShare - prevPortfolioShare;
+      const items = [
+        { icon: "◷", label: "총 집중 시간", value: formatDuration(model.weekTotal), delta: `${formatReportSignedSeconds(weekDelta)} (vs 지난 주)`, cls: getReportDeltaClass(weekDelta) },
+        { icon: "◎", label: "완료율", value: `${completionPercent}%`, delta: `${completedDelta === 0 ? "±0" : `${completedDelta > 0 ? "+" : ""}${completedDelta}개`} (vs 지난 주)`, cls: getReportDeltaClass(completedDelta) },
+        { icon: "⌁", label: "예상 대비 정확도", value: `${accuracyPercent}%`, delta: `${accuracyPercent >= 80 ? "정상 범위" : "오차 확인 필요"}`, cls: accuracyPercent >= 80 ? "plus" : accuracyPercent ? "minus" : "flat" },
+        { icon: "◔", label: "포트폴리오 비중", value: `${portfolioShare}%`, delta: `${portfolioDelta === 0 ? "±0" : `${portfolioDelta > 0 ? "+" : ""}${portfolioDelta}%`} (vs 지난 주)`, cls: getReportDeltaClass(portfolioDelta) }
+      ];
+      return `
+        <div class="ops-kpi-strip">
+          ${items.map(item => `
+            <div class="ops-kpi">
+              <div class="ops-kpi-icon" aria-hidden="true">${escapeHtml(item.icon)}</div>
+              <div>
+                <div class="ops-kpi-label">${escapeHtml(item.label)}</div>
+                <div class="ops-kpi-value">${escapeHtml(item.value)}</div>
+                <div class="ops-kpi-delta ${attrValue(item.cls)}">${escapeHtml(item.delta)}</div>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderOpsStackedDailyBars(model) {
+      const maxSeconds = Math.max(...model.weekKeys.map(dateKey => {
+        const byArea = model.report?.daily?.[dateKey]?.byArea || {};
+        return AREA_ORDER.reduce((sum, area) => sum + (Number(byArea?.[area]?.loggedSeconds) || 0), 0);
+      }), 1);
+      const labelMax = Math.max(8 * 3600, maxSeconds);
+      return `
+        <div class="ops-stack-chart">
+          <div class="ops-y-axis" aria-hidden="true"><span>${escapeHtml(formatReportHours(labelMax))}</span><span>${escapeHtml(formatReportHours(labelMax / 2))}</span><span>0h</span></div>
+          <div class="ops-bars-area">
+            ${model.weekKeys.map(dateKey => {
+              const byArea = model.report?.daily?.[dateKey]?.byArea || {};
+              return `
+                <div class="ops-day-stack" title="${escapeHtml(dateKey)}">
+                  <div class="ops-stack-bar">
+                    ${AREA_ORDER.map(area => {
+                      const seconds = Number(byArea?.[area]?.loggedSeconds) || 0;
+                      const pct = seconds ? Math.max(3, Math.min(100, (seconds / labelMax) * 100)) : 0;
+                      return `<span class="ops-bar-seg ${attrValue(area)}" style="height:${pct.toFixed(2)}%"></span>`;
+                    }).join("")}
+                  </div>
+                  <div class="ops-day-label">${escapeHtml(getReportWeekdayLabel(dateKey))}</div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderOpsLegend() {
+      return `
+        <div class="ops-legend" aria-label="프로젝트 범례">
+          <span><i class="portfolio"></i>Portfolio</span>
+          <span><i class="beacon"></i>Beacon</span>
+          <span><i class="income"></i>Etsy</span>
+        </div>
+      `;
+    }
+
+    function renderOpsWeekKpis(model) {
+      const weekDelta = model.weekTotal - model.prevWeekTotal;
+      const completedDelta = getReportCompletedDelta(model);
+      const accuracyPercent = getReportAccuracyPercent(model);
+      const items = [
+        { label: "총 집중 시간", value: formatDuration(model.weekTotal), delta: formatReportSignedSeconds(weekDelta), cls: getReportDeltaClass(weekDelta) },
+        { label: "완료 태스크", value: `${model.weekCompleted}개`, delta: completedDelta === 0 ? "±0" : `${completedDelta > 0 ? "+" : ""}${completedDelta}개`, cls: getReportDeltaClass(completedDelta) },
+        { label: "예상 대비 정확도", value: `${accuracyPercent}%`, delta: accuracyPercent ? `${accuracyPercent >= 80 ? "+" : "-"}${Math.abs(accuracyPercent - 80)}% 기준` : "표본 적음", cls: accuracyPercent >= 80 ? "plus" : accuracyPercent ? "minus" : "flat" }
+      ];
+      return `
+        <div class="ops-week-kpis">
+          ${items.map(item => `
+            <div class="ops-week-kpi">
+              <span>${escapeHtml(item.label)}</span>
+              <strong>${escapeHtml(item.value)}</strong>
+              <em class="ops-kpi-delta ${attrValue(item.cls)}">${escapeHtml(item.delta)}</em>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderOpsWeeklyCompareRows(model) {
+      const max = Math.max(...AREA_ORDER.flatMap(area => [model.weekByArea[area]?.loggedSeconds || 0, model.weekByArea[area]?.prevLoggedSeconds || 0]), 1);
+      return `
+        <div class="ops-compare-list">
+          ${AREA_ORDER.map(area => {
+            const item = model.weekByArea[area];
+            const currentWidth = item.loggedSeconds ? Math.max(6, Math.round((item.loggedSeconds / max) * 100)) : 0;
+            const prevWidth = item.prevLoggedSeconds ? Math.max(6, Math.round((item.prevLoggedSeconds / max) * 100)) : 0;
+            const delta = item.loggedSeconds - item.prevLoggedSeconds;
+            const deltaClass = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
+            return `
+              <div class="ops-compare-row">
+                <div class="ops-compare-name"><span class="report-area-dot" style="${getAreaDotStyle(area)}"></span>${escapeHtml(item.label)}</div>
+                <div class="ops-compare-bars">
+                  <div class="ops-compare-track"><span class="ops-compare-fill ${attrValue(area)}" style="width:${currentWidth}%"></span></div>
+                  <div class="ops-compare-track"><span class="ops-compare-prev-fill" style="width:${prevWidth}%"></span></div>
+                </div>
+                <div class="ops-compare-meta">${escapeHtml(formatDuration(item.loggedSeconds))}<span class="report-delta ${deltaClass}">${delta === 0 ? "±0" : `${delta > 0 ? "+" : "-"}${escapeHtml(formatDuration(Math.abs(delta)))}`}</span></div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderOpsHeatmap(model) {
+      const values = AREA_ORDER.flatMap(area => model.weekKeys.map(dateKey => Number(model.report?.daily?.[dateKey]?.byArea?.[area]?.loggedSeconds) || 0));
+      const max = Math.max(...values, 1);
+      return `
+        <div class="ops-heatmap-wrap">
+          <div class="ops-heatmap-head">
+            <div class="report-section-title">요일별 집중도 히트맵</div>
+            <div class="ops-heatmap-legend">낮음 <i></i><i></i><i></i><i></i> 높음</div>
+          </div>
+          <div class="ops-heatmap">
+            <div class="ops-heatmap-row">
+              <div></div>
+              ${model.weekKeys.map(dateKey => `<div class="ops-heatmap-day">${escapeHtml(getReportWeekdayLabel(dateKey))}</div>`).join("")}
+            </div>
+            ${AREA_ORDER.map(area => `
+              <div class="ops-heatmap-row">
+                <div class="ops-heatmap-name">${escapeHtml(AREA_LABELS[area] || area)}</div>
+                ${model.weekKeys.map(dateKey => {
+                  const seconds = Number(model.report?.daily?.[dateKey]?.byArea?.[area]?.loggedSeconds) || 0;
+                  const heat = seconds ? Math.min(0.88, Math.max(0.18, seconds / max * 0.88)) : 0.08;
+                  return `<div class="ops-heatmap-cell ${attrValue(area)}" style="--heat:${heat.toFixed(2)}" title="${escapeHtml(dateKey)} · ${escapeHtml(formatDuration(seconds))}"></div>`;
+                }).join("")}
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
     function renderFocusReportDashboard() {
       const root = document.getElementById("focusReportDashboard");
       if (!root) return;
       const model = buildFocusReportModel();
-      const weeklyDelta = model.weekTotal - model.prevWeekTotal;
-      const deltaClass = weeklyDelta > 0 ? "up" : weeklyDelta < 0 ? "down" : "flat";
       root.innerHTML = `
         <div class="log-card report-card report-card-overview">
           <div class="report-card-head">
             <div>
-              <h3>운영 진단</h3>
-              <p class="note">포트폴리오 중심 흐름은 유지하되, 최근 7일 집중 추이와 프로젝트별 체감 비중을 함께 봅니다.</p>
-            </div>
-            <div class="report-kpi">
-              <strong>${escapeHtml(formatReportHours(model.weekTotal))}</strong>
-              <span>이번 주 집중</span>
+              <div class="report-title-line"><h3>주간 운영 진단</h3><span class="report-info-icon" title="이번 주 집중 흐름 요약">i</span></div>
+              <p class="note">프로젝트별 집중 시간 흐름</p>
             </div>
           </div>
-          <div class="report-trend-wrap">${renderReportTrendSvg(model.weekTrend)}</div>
-          <div class="report-mini-stats">
-            <div class="report-mini-stat">
-              <div class="label">Today</div>
-              <div class="value">${escapeHtml(formatReportHours(model.todayTotal))}</div>
-              <div class="sub">오늘 누적 집중</div>
+          ${renderOpsKpiStrip(model)}
+          <div class="ops-chart-split">
+            <div class="ops-chart-box">
+              <div class="ops-chart-title">프로젝트별 집중 시간 <span style="font-weight:520;color:#8b8b84;">(일별)</span></div>
+              ${renderOpsStackedDailyBars(model)}
             </div>
-            <div class="report-mini-stat">
-              <div class="label">Week Delta</div>
-              <div class="value">${weeklyDelta === 0 ? "0h" : escapeHtml(formatReportHours(Math.abs(weeklyDelta)))}</div>
-              <div class="sub report-delta ${deltaClass}">${weeklyDelta === 0 ? "전주와 동일" : weeklyDelta > 0 ? "전주 대비 증가" : "전주 대비 감소"}</div>
-            </div>
-            <div class="report-mini-stat">
-              <div class="label">Completed</div>
-              <div class="value">${escapeHtml(String(model.weekCompleted))}</div>
-              <div class="sub">이번 주 완료 수</div>
+            <div class="ops-chart-box">
+              <div class="ops-chart-title">총 집중 시간 추이</div>
+              <div class="report-trend-wrap">${renderReportTrendSvg(model.weekTrend)}</div>
             </div>
           </div>
-          <div class="report-area-bars">${renderReportAreaRows(model)}</div>
-          <div class="report-footer-note">${escapeHtml(model.insight)}</div>
+          ${renderOpsLegend()}
+          <div class="report-footer-note warm">★ ${escapeHtml(model.insight)}</div>
         </div>
         <div class="log-card report-card report-card-variance">
           <div class="variance-card-head">
             <div>
-              <h3>예상 오차 분석</h3>
-              <p class="note">무엇이 예상보다 지체됐는지, 무엇이 생각보다 빨리 끝났는지만 한 번에 보이게 정리했습니다.</p>
+              <div class="report-title-line"><h3>예상 오차 분석</h3><span class="report-info-icon" title="예상 시간과 실제 소요 시간 차이">i</span></div>
             </div>
-            <div class="variance-filter">
-              <span class="variance-pill active">${escapeHtml(model.varianceLabel)}</span>
-              <span class="variance-filter-meta">${escapeHtml(model.varianceMeta)}</span>
+            <div class="variance-filter" aria-label="분석 범위">
+              <span class="variance-pill ${model.varianceLabel === "오늘" ? "active" : ""}">오늘</span>
+              <span class="variance-pill ${model.varianceLabel === "이번 주" ? "active" : ""}">이번 주</span>
+              <span class="variance-pill">이번 달</span>
             </div>
           </div>
           <div class="variance-table-wrap">${renderVarianceRows(model)}</div>
-          <div class="variance-footer">${escapeHtml(model.varianceInsight)}</div>
+          <div class="variance-footer">▥ ${escapeHtml(model.varianceInsight)}</div>
         </div>
         <div class="log-card report-card report-card-weekly">
           <div class="report-card-head">
             <div>
-              <h3>주간 비교</h3>
-              <p class="note">전주 대비 흐름과 현재 남아 있는 작업량을 같이 봅니다.</p>
-            </div>
-            <div class="report-kpi">
-              <strong>${escapeHtml(String(model.totalOpen))}</strong>
-              <span>열린 할일</span>
+              <div class="report-title-line"><h3>전주 비교</h3><span class="report-info-icon" title="이번 주와 지난 주 비교">i</span></div>
             </div>
           </div>
+          ${renderOpsWeekKpis(model)}
           <div>
-            <div class="report-section-title">전주 대비 집중 시간</div>
-            <div class="report-compare-list">${renderWeeklyCompareRows(model)}</div>
+            <div class="report-section-title">프로젝트별 집중 시간 비교 <span style="font-weight:520;color:#8b8b84;">(vs 지난 주)</span></div>
+            ${renderOpsWeeklyCompareRows(model)}
           </div>
-          <div>
-            <div class="report-weekly-meta">
-              <div class="report-section-title" style="margin:0;">현재 열린 작업</div>
-              <span>미완료 기준</span>
-            </div>
-            <div class="report-open-bars">${renderOpenWorkRows(model)}</div>
-          </div>
-          <div class="report-footer-note">포트폴리오 비중이 높아도 괜찮습니다. 대신 Beacon과 Etsy가 완전히 비는 주만 바로 보이게 구성했습니다.</div>
+          ${renderOpsHeatmap(model)}
         </div>
       `;
     }
