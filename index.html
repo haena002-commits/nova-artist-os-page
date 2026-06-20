@@ -12235,6 +12235,111 @@
       }
     }
   </style>
+
+
+  <style id="task-input-flat-project-color-patch">
+    /* Task input flat pass: remove inset/emboss, brighten beige, use project colors. */
+    :root {
+      --task-input-flat-bg: #F5F0DC;
+      --task-input-flat-border: #DED7B9;
+    }
+
+    .app .panel .task-input-row input {
+      background: var(--task-input-flat-bg) !important;
+      border: 1px solid var(--task-input-flat-border) !important;
+      box-shadow: none !important;
+      filter: none !important;
+      outline: none !important;
+      text-shadow: none !important;
+    }
+
+    .app .panel.portfolio .task-input-row input {
+      color: var(--portfolio) !important;
+      caret-color: var(--portfolio) !important;
+      border-color: rgba(196, 100, 40, 0.26) !important;
+    }
+
+    .app .panel.beacon .task-input-row input {
+      color: var(--beacon) !important;
+      caret-color: var(--beacon) !important;
+      border-color: rgba(81, 103, 162, 0.26) !important;
+    }
+
+    .app .panel.income .task-input-row input {
+      color: var(--income) !important;
+      caret-color: var(--income) !important;
+      border-color: rgba(96, 105, 58, 0.26) !important;
+    }
+
+    .app .panel.portfolio .task-input-row input::placeholder {
+      color: rgba(196, 100, 40, 0.58) !important;
+      opacity: 1 !important;
+    }
+
+    .app .panel.beacon .task-input-row input::placeholder {
+      color: rgba(81, 103, 162, 0.58) !important;
+      opacity: 1 !important;
+    }
+
+    .app .panel.income .task-input-row input::placeholder {
+      color: rgba(96, 105, 58, 0.58) !important;
+      opacity: 1 !important;
+    }
+
+    .app .panel .task-input-row input:focus {
+      background: #F8F4E6 !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+
+    .app .panel.portfolio .task-input-row input:focus {
+      border-color: rgba(196, 100, 40, 0.52) !important;
+    }
+
+    .app .panel.beacon .task-input-row input:focus {
+      border-color: rgba(81, 103, 162, 0.52) !important;
+    }
+
+    .app .panel.income .task-input-row input:focus {
+      border-color: rgba(96, 105, 58, 0.52) !important;
+    }
+
+    .app .panel .task-input-row .add-btn {
+      box-shadow: none !important;
+      filter: none !important;
+      text-shadow: none !important;
+      border: 1px solid transparent !important;
+      color: #fff !important;
+    }
+
+    .app .panel.portfolio .task-input-row .add-btn {
+      background: var(--portfolio) !important;
+      border-color: var(--portfolio) !important;
+    }
+
+    .app .panel.beacon .task-input-row .add-btn {
+      background: var(--beacon) !important;
+      border-color: var(--beacon) !important;
+    }
+
+    .app .panel.income .task-input-row .add-btn {
+      background: var(--income) !important;
+      border-color: var(--income) !important;
+    }
+
+    .app .panel .task-input-row .add-btn:hover {
+      transform: none !important;
+      opacity: 0.92 !important;
+      box-shadow: none !important;
+    }
+
+    .app .panel .task-input-row .add-btn:active {
+      transform: none !important;
+      opacity: 0.82 !important;
+      box-shadow: none !important;
+    }
+  </style>
+
 </head>
 
 <body>
