@@ -11414,6 +11414,293 @@
       padding-right: 0 !important;
     }
   </style>
+
+
+  <style id="nova-final-mobile-pc-reset-20260620">
+    /* 2026-06-20 final override: stabilize the current GitHub Pages file after many stacked patches. */
+
+    /* PC main board: reduce old neumorphic color noise and keep the readable compact hierarchy. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) {
+        background: linear-gradient(135deg, #f4f4f1 0%, #eeeeeb 100%) !important;
+      }
+
+      body:not(.mobile-focus-mode) .brand-card,
+      body:not(.mobile-focus-mode) .hud-card,
+      body:not(.mobile-focus-mode) .panel,
+      body:not(.mobile-focus-mode) .log-card {
+        background: rgba(248, 248, 245, 0.92) !important;
+        border: 1px solid rgba(24, 24, 24, 0.12) !important;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.055) !important;
+        border-radius: 24px !important;
+      }
+
+      body:not(.mobile-focus-mode) .task-card {
+        background: rgba(255, 255, 253, 0.88) !important;
+        border: 1px solid rgba(24, 24, 24, 0.16) !important;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.045), inset 0 1px 0 rgba(255, 255, 255, 0.68) !important;
+      }
+
+      body:not(.mobile-focus-mode) .task-card.pinned::after {
+        border: 2px solid rgba(18, 18, 18, 0.88) !important;
+        box-shadow: none !important;
+      }
+
+      body:not(.mobile-focus-mode) .portfolio .add-btn,
+      body:not(.mobile-focus-mode) .beacon .add-btn,
+      body:not(.mobile-focus-mode) .income .add-btn {
+        background: #242424 !important;
+        color: #fff !important;
+      }
+
+      body:not(.mobile-focus-mode) .progress-fill {
+        background: linear-gradient(90deg, #c9787f 0 60%, #8a8fcf 60% 90%, #c7a15a 90% 100%) !important;
+      }
+    }
+
+    /* Mobile focus: compact top card, one PIN label, text-only saved state, neutral cards with color accents. */
+    body.mobile-focus-mode {
+      background: #f3f3f0 !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-shell {
+      width: min(390px, 100vw) !important;
+      padding: 8px 10px calc(env(safe-area-inset-bottom) + 12px) !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-header {
+      margin: -8px -10px 8px !important;
+      padding: 8px 10px 9px !important;
+      border-bottom: 1px solid rgba(24, 24, 24, 0.10) !important;
+      background: rgba(243, 243, 240, 0.96) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.045) !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-topline {
+      margin-bottom: 6px !important;
+      align-items: center !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-kicker {
+      min-height: 24px !important;
+      padding: 0 9px !important;
+      border: 1px solid rgba(24,24,24,0.13) !important;
+      background: rgba(255,255,255,0.56) !important;
+      color: #73736e !important;
+      box-shadow: none !important;
+      font-size: 10.5px !important;
+      font-weight: 720 !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-actions {
+      gap: 5px !important;
+    }
+
+    body.mobile-focus-mode .mobile-mini-btn {
+      height: 29px !important;
+      min-height: 29px !important;
+      padding: 0 9px !important;
+      border: 1px solid rgba(24,24,24,0.14) !important;
+      background: rgba(255,255,255,0.62) !important;
+      color: #44443f !important;
+      box-shadow: none !important;
+      font-size: 10.5px !important;
+      font-weight: 760 !important;
+    }
+
+    body.mobile-focus-mode .mobile-cloud-pull-btn {
+      width: 38px !important;
+      min-width: 38px !important;
+      background: rgba(245,234,209,0.92) !important;
+      border-color: rgba(46,41,35,0.45) !important;
+      font-size: 16px !important;
+    }
+
+    body.mobile-focus-mode .mobile-score-card {
+      padding: 8px 9px 9px !important;
+      border: 1.2px solid rgba(24,24,24,0.14) !important;
+      border-radius: 15px !important;
+      background: rgba(250,250,247,0.94) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.72) !important;
+    }
+
+    body.mobile-focus-mode .mobile-score-row {
+      display: block !important;
+    }
+
+    body.mobile-focus-mode .mobile-score-number {
+      display: block !important;
+      width: 100% !important;
+      margin: 0 0 3px !important;
+      color: #242424 !important;
+      font-size: 35px !important;
+      line-height: 0.95 !important;
+      font-weight: 850 !important;
+      letter-spacing: -0.07em !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    body.mobile-focus-mode .mobile-allocation-wrap {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    body.mobile-focus-mode .mini-allocation-bar {
+      width: 100% !important;
+      height: 8px !important;
+      gap: 3px !important;
+      border-radius: 999px !important;
+      background: rgba(24,24,24,0.07) !important;
+      box-shadow: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-pin-estimate-bar {
+      margin-top: 8px !important;
+      min-height: 28px !important;
+      padding: 0 10px !important;
+      border: 1px solid rgba(24,24,24,0.12) !important;
+      background: rgba(255,255,255,0.70) !important;
+      box-shadow: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-pin-estimate-bar span,
+    body.mobile-focus-mode .mobile-pin-estimate-bar em {
+      font-size: 11px !important;
+      font-weight: 760 !important;
+    }
+
+    body.mobile-focus-mode .mobile-pin-estimate-bar strong {
+      font-size: 14px !important;
+      font-weight: 860 !important;
+    }
+
+    body.mobile-focus-mode .mobile-meta-row {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      align-items: center !important;
+      gap: 5px !important;
+      margin-top: 7px !important;
+      overflow: hidden !important;
+    }
+
+    body.mobile-focus-mode .mobile-meta-row .mobile-pill,
+    body.mobile-focus-mode .mobile-meta-row .mobile-pill:last-child {
+      display: inline-flex !important;
+      flex: 0 0 auto !important;
+      height: 24px !important;
+      min-height: 24px !important;
+      align-items: center !important;
+      padding: 0 8px !important;
+      border: 1px solid rgba(24,24,24,0.12) !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,0.64) !important;
+      color: #62625d !important;
+      box-shadow: none !important;
+      font-size: 10.5px !important;
+      font-weight: 760 !important;
+      white-space: nowrap !important;
+    }
+
+    body.mobile-focus-mode .mobile-meta-row .mobile-pin-count {
+      font-weight: 820 !important;
+      color: #44443f !important;
+    }
+
+    body.mobile-focus-mode .mobile-sync-text-only {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      min-width: 0 !important;
+      margin-left: auto !important;
+      padding: 0 2px 0 6px !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: #777772 !important;
+      font-size: 10.5px !important;
+      font-weight: 760 !important;
+      white-space: nowrap !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-list {
+      gap: 8px !important;
+      margin-top: 8px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task {
+      border: 1.5px solid rgba(24,24,24,0.18) !important;
+      border-radius: 14px !important;
+      background: rgba(250,250,247,0.92) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+      padding: 9px 9px 9px 12px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.portfolio,
+    body.mobile-focus-mode .mobile-task.beacon,
+    body.mobile-focus-mode .mobile-task.income {
+      border-color: rgba(24,24,24,0.18) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.portfolio {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(201,120,127,0.58), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.beacon {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(138,143,207,0.58), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.income {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(199,161,90,0.60), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.portfolio::before,
+    body.mobile-focus-mode .mobile-task.beacon::before,
+    body.mobile-focus-mode .mobile-task.income::before {
+      display: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.running.portfolio,
+    body.mobile-focus-mode .mobile-task.running.beacon,
+    body.mobile-focus-mode .mobile-task.running.income {
+      border-color: rgba(24,24,24,0.36) !important;
+      background: rgba(255,255,253,0.98) !important;
+    }
+
+    body.mobile-focus-mode .mobile-task-title {
+      font-size: 14.8px !important;
+      line-height: 1.32 !important;
+      font-weight: 800 !important;
+      color: #242424 !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtasks {
+      border-top-color: rgba(24,24,24,0.10) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask {
+      border-color: rgba(24,24,24,0.11) !important;
+      background: rgba(255,255,255,0.62) !important;
+      box-shadow: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-add-open {
+      background: rgba(255,255,255,0.92) !important;
+      border-color: rgba(24,24,24,0.12) !important;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.11) !important;
+    }
+
+    @media (max-width: 380px) {
+      body.mobile-focus-mode .mobile-score-number {
+        font-size: 32px !important;
+      }
+      body.mobile-focus-mode .mobile-meta-row .mobile-pill {
+        padding: 0 7px !important;
+        font-size: 10px !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -17566,7 +17853,6 @@ for update using (true) with check (true);</pre>
               <div class="mobile-focus-actions">
                 <button class="mobile-mini-btn mobile-undo-btn" type="button" data-mobile-action="undo" ${canUndoLastAction() ? "" : "disabled"}>Undo</button>
                 ${syncButtonHtml}
-                <button class="mobile-mini-btn" data-mobile-action="sync">연동</button>
                 <button class="mobile-mini-btn mobile-cloud-pull-btn" type="button" data-mobile-action="refreshCloud" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기">↻</button>
               </div>
             </div>
@@ -17580,9 +17866,8 @@ for update using (true) with check (true);</pre>
               <div class="mobile-meta-row">
                 <span class="mobile-pill">${escapeHtml(getDeadlineText())}</span>
                 <span class="mobile-pill">총 집중 ${escapeHtml(formatDuration(total))}</span>
-                <span class="mobile-pill" data-mobile-sync-status>${escapeHtml(syncStatus.label || "Local only")}</span>
-                <span class="mobile-pill">${cloudBlocking ? "Cloud 확인 중" : `FOCUS PIN ${escapeHtml(focus.items.length)}개`}</span>
-                ${cloudBlocking ? "" : (focus.fallback ? `<span class="mobile-pill">PIN 없음 · 미완료 표시</span>` : `<span class="mobile-pill">FOCUS PIN ${escapeHtml(focus.items.length)}개</span>`)}
+                ${cloudBlocking ? `<span class="mobile-pill mobile-pin-count">Cloud 확인 중</span>` : (focus.fallback ? `<span class="mobile-pill mobile-pin-count">PIN 없음</span>` : `<span class="mobile-pill mobile-pin-count">PIN ${escapeHtml(focus.items.length)}</span>`)}
+                <span class="mobile-sync-text-only" data-mobile-sync-status>${escapeHtml(syncStatus.label || "Local only")}</span>
               </div>
             </div>
           </header>
