@@ -13030,6 +13030,73 @@ body:not(.mobile-focus-mode) .panel h2 { font-weight: 780 !important; }
     }
   </style>
 
+
+
+  <style id="mobile-parent-pin-position-and-pretendard-safe-v11">
+    /* Parent task with subtasks: keep the parent title/check slightly lower, but keep PIN high enough so it does not touch the subtask divider. */
+    body.mobile-focus-mode .mobile-task.mobile-parent-group {
+      padding-top: 18px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group > .mobile-task-main {
+      margin-top: 9px !important;
+      align-items: center !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group > .mobile-task-main > .mobile-check {
+      align-self: center !important;
+      margin-top: 1px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group > .mobile-task-main > div {
+      align-self: center !important;
+      padding-right: 112px !important;
+      min-width: 0 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      position: absolute !important;
+      top: 15px !important;
+      right: 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      width: auto !important;
+      min-width: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      gap: 0 !important;
+      z-index: 3 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions .mobile-pin {
+      width: 72px !important;
+      min-width: 72px !important;
+      height: 42px !important;
+      min-height: 42px !important;
+      padding: 0 16px !important;
+      font-size: 16px !important;
+      font-weight: 760 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtasks {
+      margin-top: 22px !important;
+      padding-top: 14px !important;
+    }
+
+    /* PC phrase fields: safe Pretendard-like sans stack, no external or local font access. */
+    body:not(.mobile-focus-mode) .quote-box,
+    body:not(.mobile-focus-mode) .top-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .quote-box::placeholder,
+    body:not(.mobile-focus-mode) .top-quote-box::placeholder,
+    body:not(.mobile-focus-mode) .panel-quote-box::placeholder {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif !important;
+      font-weight: 760 !important;
+      letter-spacing: -0.018em !important;
+    }
+  </style>
+
 </head>
 
 <body>
