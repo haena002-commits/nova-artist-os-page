@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <style>
     :root {
@@ -6998,7 +6998,7 @@
         0 7px 16px rgba(0,0,0,0.18),
         inset 0 1px 0 rgba(255,255,255,0.25),
         0 0 0 3px rgba(36,36,36,0.10) !important;
-      animation: mobileStrongTimerBreath 1.25s ease-in-out infinite !important;
+      animation: none !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
@@ -7148,7 +7148,7 @@
         0 8px 17px rgba(0,0,0,0.22),
         inset 0 1px 0 rgba(255,255,255,0.22),
         0 0 0 3px rgba(24,24,24,0.10) !important;
-      animation: mobileMatteTimerBreath 1.15s ease-in-out infinite !important;
+      animation: none !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
@@ -7327,7 +7327,7 @@
         0 8px 17px rgba(0,0,0,0.22),
         inset 0 1px 0 rgba(255,255,255,0.22),
         0 0 0 3px rgba(24,24,24,0.10) !important;
-      animation: mobileMatteTimerBreath 1.15s ease-in-out infinite !important;
+      animation: none !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
@@ -12525,6 +12525,51 @@
     body.mobile-focus-mode .mobile-cloud-push-btn .sync-transfer-label { font-size: 10.5px !important; }
   }
 </style>
+
+
+  <style id="mobile-timer-no-scale-hard-override-20260621">
+    /* Final mobile timer override: the pill never breathes/scales; only the small live dot blinks. */
+    body.mobile-focus-mode .mobile-timer,
+    body.mobile-focus-mode .mobile-timer.running,
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running,
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running,
+    body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running {
+      animation-name: none !important;
+      animation-duration: 0s !important;
+      animation-iteration-count: 1 !important;
+      animation: none !important;
+      transform: none !important;
+      scale: 1 !important;
+      transform-origin: center center !important;
+      will-change: auto !important;
+      contain: layout paint !important;
+      transition-property: background-color, border-color, box-shadow, color !important;
+      transition-duration: 0.12s !important;
+      transition-timing-function: ease !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      animation: mobileLiveDot 1.15s ease-out infinite !important;
+      transform: none !important;
+      scale: 1 !important;
+      flex: 0 0 6px !important;
+    }
+
+    @keyframes mobileStrongTimerBreath {
+      0%, 50%, 100% { transform: none !important; }
+    }
+    @keyframes mobileMatteTimerBreath {
+      0%, 50%, 100% { transform: none !important; }
+    }
+    @keyframes mobileTimerBreath {
+      0%, 50%, 100% { transform: none !important; }
+    }
+  </style>
 
 </head>
 
@@ -22735,7 +22780,7 @@ for update using (true) with check (true);</pre>
       box-shadow:
         0 4px 12px rgba(0,0,0,0.13),
         inset 0 1px 0 rgba(255,255,255,0.18) !important;
-      animation: mobileTimerBreath 1.6s ease-in-out infinite !important;
+      animation: none !important;
     }
 
     body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
@@ -23119,23 +23164,62 @@ for update using (true) with check (true);</pre>
 
 
   <style id="mobile-timer-no-breath-patch">
-    /* Mobile focus: remove timer pill breathing/scale motion, keep the small live dot. */
-    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded) {
+    /* Mobile / mini timer: keep the timer pill size fixed. Only the small live dot blinks. */
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+    .timer-btn.running:not(.paused):not(.exceeded),
+    .mini-timer-btn.running:not(.paused):not(.exceeded) {
       animation: none !important;
       transform: none !important;
+      scale: 1 !important;
       will-change: auto !important;
-      transition: background-color 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease !important;
       font-variant-numeric: tabular-nums !important;
+      transition: background-color 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease, color 0.12s ease !important;
     }
 
     body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
       animation: mobileLiveDot 1.15s ease-out infinite !important;
+      transform: none !important;
+      scale: 1 !important;
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded) {
+        animation: none !important;
+        transform: none !important;
+        scale: 1 !important;
+        will-change: auto !important;
+        font-variant-numeric: tabular-nums !important;
+        transition: background-color 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease, color 0.12s ease !important;
+      }
+
+      body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
+        animation: pcMatteLiveDot 0.95s ease-out infinite !important;
+        transform: none !important;
+        scale: 1 !important;
+      }
+    }
+
+    /* Neutralize any older mobile timer breath keyframes that may still be referenced above. */
+    @keyframes mobileStrongTimerBreath {
+      0%, 50%, 100% { transform: none; }
+    }
+
+    @keyframes mobileMatteTimerBreath {
+      0%, 50%, 100% { transform: none; }
+    }
+
+    @keyframes mobileTimerBreath {
+      0%, 50%, 100% { transform: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded) {
+      body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+      body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+      .timer-btn.running:not(.paused):not(.exceeded),
+      .mini-timer-btn.running:not(.paused):not(.exceeded) {
         animation: none !important;
         transform: none !important;
+        scale: 1 !important;
       }
     }
   </style>
