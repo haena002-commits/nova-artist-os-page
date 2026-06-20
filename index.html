@@ -12340,6 +12340,192 @@
     }
   </style>
 
+
+
+  <style id="sync-direction-label-patch">
+    /* Sync direction labels: PC main pulls from mobile/cloud, mobile view pulls from PC/cloud. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn {
+        min-width: 92px !important;
+        gap: 5px !important;
+        padding: 0 12px !important;
+      }
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-label {
+        font-size: 11px !important;
+        font-weight: 760 !important;
+        text-transform: none !important;
+      }
+      body:not(.mobile-focus-mode) .brand-actions .cloud-pull-icon {
+        width: auto !important;
+        height: auto !important;
+        min-width: 12px !important;
+        display: inline-grid !important;
+        place-items: center !important;
+        font-size: 12px !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+        transform: translateY(-0.2px) !important;
+      }
+    }
+
+    body.mobile-focus-mode .mobile-cloud-pull-btn {
+      width: auto !important;
+      min-width: 52px !important;
+      padding: 0 9px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      font-size: 11px !important;
+      font-weight: 760 !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+    }
+  </style>
+
+
+
+<style id="nova-sync-direction-buttons-final-20260620">
+  /* Final sync direction buttons: PC and mobile labels use the same typography and arrow chip style. */
+  body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn,
+  body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    width: auto !important;
+    min-width: 64px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 0 12px !important;
+    border: 1px solid rgba(24,24,24,0.14) !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,0.86) !important;
+    color: #2E3118 !important;
+    box-shadow: 0 4px 11px rgba(0,0,0,0.055), inset 0 1px 0 rgba(255,255,255,0.72) !important;
+    font-family: inherit !important;
+    font-size: 11px !important;
+    font-weight: 760 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    white-space: nowrap !important;
+  }
+
+  body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn::after {
+    content: none !important;
+  }
+
+  body:not(.mobile-focus-mode) .brand-actions .cloud-pull-icon {
+    display: none !important;
+  }
+
+  .sync-transfer-label,
+  body:not(.mobile-focus-mode) .cloud-pull-label,
+  body:not(.mobile-focus-mode) .cloud-push-label,
+  body.mobile-focus-mode .mobile-cloud-pull-btn .sync-transfer-label,
+  body.mobile-focus-mode .mobile-cloud-push-btn .sync-transfer-label {
+    display: inline-block !important;
+    font-family: inherit !important;
+    font-size: 11px !important;
+    font-weight: 760 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    transform: none !important;
+  }
+
+  .sync-transfer-icon,
+  body:not(.mobile-focus-mode) .cloud-push-icon,
+  body.mobile-focus-mode .mobile-cloud-pull-btn .sync-transfer-icon,
+  body.mobile-focus-mode .mobile-cloud-push-btn .sync-transfer-icon {
+    display: inline-grid !important;
+    place-items: center !important;
+    width: 16px !important;
+    min-width: 16px !important;
+    height: 16px !important;
+    min-height: 16px !important;
+    border-radius: 999px !important;
+    background: rgba(46,41,35,0.08) !important;
+    color: #2E3118 !important;
+    font-family: inherit !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+
+  body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover,
+  body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn:hover {
+    border-color: rgba(46,41,35,0.26) !important;
+    background: rgba(255,255,255,0.96) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.075), inset 0 1px 0 rgba(255,255,255,0.82) !important;
+  }
+
+  body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:active,
+  body:not(.mobile-focus-mode) .brand-actions .cloud-push-quick-btn:active {
+    transform: translateY(1px) !important;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.055), inset 0 1px 2px rgba(0,0,0,0.08) !important;
+  }
+
+  body.mobile-focus-mode .mobile-focus-actions {
+    gap: 4px !important;
+  }
+
+  body.mobile-focus-mode .mobile-cloud-pull-btn,
+  body.mobile-focus-mode .mobile-cloud-push-btn {
+    width: auto !important;
+    min-width: 52px !important;
+    height: 31px !important;
+    min-height: 31px !important;
+    padding: 0 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    border: 1px solid rgba(120,120,114,0.28) !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,0.68) !important;
+    color: #565651 !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    font-family: inherit !important;
+    font-size: 11px !important;
+    font-weight: 760 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  body.mobile-focus-mode .mobile-cloud-push-btn {
+    min-width: 76px !important;
+  }
+
+  body.mobile-focus-mode .mobile-cloud-pull-btn .sync-transfer-icon,
+  body.mobile-focus-mode .mobile-cloud-push-btn .sync-transfer-icon {
+    width: 15px !important;
+    min-width: 15px !important;
+    height: 15px !important;
+    min-height: 15px !important;
+    color: #565651 !important;
+    background: rgba(46,41,35,0.075) !important;
+    font-size: 10px !important;
+  }
+
+  body.mobile-focus-mode .mobile-cloud-pull-btn:disabled,
+  body.mobile-focus-mode .mobile-cloud-push-btn:disabled {
+    opacity: 0.52 !important;
+    cursor: wait !important;
+  }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-cloud-pull-btn { min-width: 48px !important; padding: 0 7px !important; }
+    body.mobile-focus-mode .mobile-cloud-push-btn { min-width: 70px !important; padding: 0 7px !important; }
+    body.mobile-focus-mode .mobile-cloud-pull-btn .sync-transfer-label,
+    body.mobile-focus-mode .mobile-cloud-push-btn .sync-transfer-label { font-size: 10.5px !important; }
+  }
+</style>
+
 </head>
 
 <body>
@@ -12354,17 +12540,11 @@
 
           <div class="brand-actions">
             <button class="focus-btn" onclick="openMiniFocusWindow()">미니</button>
-            <button class="sync-btn cloud-pull-btn" type="button" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">
-              <svg class="cloud-pull-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path d="M12.6 5.2A5.1 5.1 0 0 0 3.4 4.1" />
-                <path d="M12.6 2.7v2.5h-2.5" />
-                <path d="M3.4 10.8a5.1 5.1 0 0 0 9.2 1.1" />
-                <path d="M3.4 13.3v-2.5h2.5" />
-              </svg>
-              <span class="cloud-pull-label">update</span>
+            <button class="sync-btn cloud-pull-btn" type="button" title="모바일 상태 내려받기" aria-label="모바일 상태 PC로 내려받기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">
+              <span class="sync-transfer-label cloud-pull-label">mobile</span><span class="sync-transfer-icon cloud-pull-direction" aria-hidden="true">↓</span>
             </button>
             <button class="sync-btn cloud-push-quick-btn" type="button" title="현재 PC 상태 올리기" aria-label="현재 PC 상태 클라우드에 올리기" onclick="pushCloudStateNow({ replace: true })">
-              <span class="cloud-push-label">PC</span><span class="cloud-push-icon" aria-hidden="true">↑</span>
+              <span class="sync-transfer-label cloud-push-label">PC</span><span class="sync-transfer-icon cloud-push-icon" aria-hidden="true">↑</span>
             </button>
             <button class="sync-btn routine-task-btn" type="button" onclick="openRoutineTaskModal()">루틴할일추가</button>
             <button class="sync-btn" onclick="openSyncPanel()">모바일 연동</button>
@@ -17767,7 +17947,7 @@ for update using (true) with check (true);</pre>
       };
 
       if (!config.url || !config.anonKey) {
-        alert("Supabase URL과 anon key를 입력해 주세요.");
+        showStatusToast("Supabase URL과 anon key를 입력해 주세요.", 2600);
         return;
       }
 
@@ -17797,7 +17977,7 @@ for update using (true) with check (true);</pre>
       const link = getMobileFocusLink();
       try {
         await navigator.clipboard.writeText(link);
-        alert("모바일 포커스 링크를 복사했습니다. 핸드폰에서 이 링크를 열어 주세요.");
+        showStatusToast("모바일 포커스 링크 복사됨", 2400);
       } catch (error) {
         prompt("모바일에서 열 링크입니다. 복사해 주세요.", link);
       }
@@ -17808,7 +17988,7 @@ for update using (true) with check (true);</pre>
       if (!sql) return;
       try {
         await navigator.clipboard.writeText(sql);
-        alert("Supabase SQL을 복사했습니다.");
+        showStatusToast("Supabase SQL 복사됨", 2400);
       } catch (error) {
         prompt("Supabase SQL을 복사해 주세요.", sql);
       }
@@ -18018,17 +18198,17 @@ for update using (true) with check (true);</pre>
           });
 
         setSyncStatus("ready", "저장됨");
-        if (options.force) alert("모바일 연동을 시작했습니다. 이제 모바일 링크를 복사해 핸드폰에서 열면 됩니다.");
+        if (options.force) showStatusToast("모바일 연동 시작됨", 2600);
       } catch (error) {
         setSyncStatus("error", "연동 실패");
-        if (!options.silent) alert(`연동 오류: ${error.message || error}`);
+        if (!options.silent) showStatusToast(`연동 오류: ${error.message || error}`, 3200);
       }
     }
 
     async function pullCloudStateOnce(options = {}) {
       syncConfig = getSyncConfig();
       if (!syncConfig?.url || !syncConfig?.anonKey) {
-        if (!options.skipAlert) alert("먼저 모바일 연동 설정을 저장해 주세요.");
+        if (!options.skipAlert) showStatusToast("모바일 연동 설정 필요", 2600);
         recordSyncResult("pull", false, { reason: "missing-config" });
         return { ok: false, reason: "missing-config" };
       }
@@ -18044,7 +18224,7 @@ for update using (true) with check (true);</pre>
         setSyncStatus("error", "연동 실패");
         const message = error?.message || String(error);
         recordSyncResult("pull", false, { reason: "pull-error", message });
-        if (!options.silent && !options.skipAlert) alert(`가져오기 실패: ${message}`);
+        if (!options.silent && !options.skipAlert) showStatusToast(`불러오기 실패: ${message}`, 3200);
         return { ok: false, reason: "pull-error", message };
       }
 
@@ -18060,7 +18240,7 @@ for update using (true) with check (true);</pre>
         render();
         setSyncStatus("ready", "가져오기 완료");
         recordSyncResult("pull", true, { source: "cloud" });
-        if (!options.silent && !options.skipAlert) alert("클라우드 상태를 가져왔습니다.");
+        if (!options.silent && !options.skipAlert) showStatusToast("불러오기 완료", 2400);
         return { ok: true, source: "cloud" };
       } else {
         if (options.pullOnly) {
@@ -18072,7 +18252,7 @@ for update using (true) with check (true);</pre>
       }
 
       recordSyncResult("pull", true, { source: "created" });
-      if (!options.silent && !options.skipAlert) alert("클라우드 상태를 가져왔습니다.");
+      if (!options.silent && !options.skipAlert) showStatusToast("불러오기 완료", 2400);
       return { ok: true, source: "created" };
     }
 
@@ -18256,7 +18436,7 @@ for update using (true) with check (true);</pre>
     }
 
     function setCloudPullButtonsBusy(isBusy) {
-      document.querySelectorAll("[data-cloud-pull-button], [data-mobile-action='refreshCloud']").forEach(button => {
+      document.querySelectorAll("[data-cloud-pull-button], [data-mobile-action='refreshCloud'], [data-mobile-action='pushCloud']").forEach(button => {
         button.disabled = Boolean(isBusy);
         button.setAttribute("aria-busy", isBusy ? "true" : "false");
       });
@@ -18265,7 +18445,7 @@ for update using (true) with check (true);</pre>
     async function pullCloudStateFromTopButton() {
       setCloudPullButtonsBusy(true);
       setSyncStatus("pending", "동기화 중...");
-      showUndoToast("동기화 중...");
+      showStatusToast("동기화 중...", 1800);
 
       let result = null;
       try {
@@ -18280,10 +18460,10 @@ for update using (true) with check (true);</pre>
 
       if (result?.ok) {
         setSyncStatus("ready", "가져오기 완료");
-        showUndoToast("가져오기 완료");
+        showStatusToast("불러오기 완료", 2400);
       } else {
         setSyncStatus("error", "연동 실패");
-        showUndoToast("연동 실패");
+        showStatusToast("연동 실패", 2800);
       }
 
       setCloudPullButtonsBusy(false);
@@ -18317,7 +18497,7 @@ for update using (true) with check (true);</pre>
       syncConfig = getSyncConfig();
       if (!syncConfig?.url || !syncConfig?.anonKey) {
         recordSyncResult("push", false, { reason: "missing-config" });
-        if (!options.silent) alert("먼저 모바일 연동 설정을 저장해 주세요.");
+        if (!options.silent) showStatusToast("모바일 연동 설정 필요", 2600);
         return;
       }
       if (!syncClient && canUseSupabase()) {
@@ -18360,14 +18540,14 @@ for update using (true) with check (true);</pre>
         setSyncStatus("error", "연동 실패");
         const message = error?.message || String(error);
         recordSyncResult("push", false, { reason: "push-error", message });
-        if (!options.silent) alert(`올리기 실패: ${message}`);
+        if (!options.silent) showStatusToast(`내보내기 실패: ${message}`, 3200);
         return;
       }
 
       lastSyncedState = clone(stateToUpload);
       setSyncStatus("ready", "저장됨");
       recordSyncResult("push", true, { replace: Boolean(options.replace) });
-      if (!options.silent) alert("현재 상태를 클라우드에 병합 저장했습니다.");
+      if (!options.silent) showStatusToast("내보내기 완료", 2400);
     }
 
     function setupMobileFocusMode() {
@@ -18403,6 +18583,7 @@ for update using (true) with check (true);</pre>
         if (action === "sync") openSyncPanel();
         if (action === "undo") undoLastAction();
         if (action === "refreshCloud") pullCloudStateFromTopButton();
+        if (action === "pushCloud") { pushCloudStateNow({ replace: true }); return; }
         if (action === "openQuickAdd") openMobileQuickAdd(root);
         if (action === "quickMinutePreset") {
           event.preventDefault();
@@ -18602,7 +18783,8 @@ for update using (true) with check (true);</pre>
               <div class="mobile-focus-actions">
                 <button class="mobile-mini-btn mobile-undo-btn" type="button" data-mobile-action="undo" ${canUndoLastAction() ? "" : "disabled"}>Undo</button>
                 ${syncButtonHtml}
-                <button class="mobile-mini-btn mobile-cloud-pull-btn" type="button" data-mobile-action="refreshCloud" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기">↻</button>
+                <button class="mobile-mini-btn mobile-cloud-pull-btn" type="button" data-mobile-action="refreshCloud" title="PC 상태 내려받기" aria-label="PC 상태 내려받기"><span class="sync-transfer-label">PC</span><span class="sync-transfer-icon" aria-hidden="true">↓</span></button>
+                <button class="mobile-mini-btn mobile-cloud-push-btn" type="button" data-mobile-action="pushCloud" title="모바일 현재상태 올리기" aria-label="모바일 현재상태 클라우드에 올리기"><span class="sync-transfer-label">mobile</span><span class="sync-transfer-icon" aria-hidden="true">↑</span></button>
               </div>
             </div>
 
