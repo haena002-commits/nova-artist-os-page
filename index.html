@@ -12740,6 +12740,7 @@ for update using (true) with check (true);</pre>
       activeTimer: null,
       timeLogs: {},
       weeklyRun: null,
+      weeklyLaterReleaseKey: "",
       weeklyScoreHistory: [],
       quickTemplates: clone(DEFAULT_QUICK_TEMPLATES),
       routineTasks: [],
@@ -13006,7 +13007,11 @@ for update using (true) with check (true);</pre>
       if (!summary.weekKey || summary.days === 0) return false;
       if (!Array.isArray(state.weeklyScoreHistory)) state.weeklyScoreHistory = [];
       if (state.weeklyScoreHistory.some(item => item.weekKey === summary.weekKey)) return false;
-      state.weeklyScoreHistory.unshift({ ...summary, archivedAt: new Date().toISOString() });
+      state.weeklyScoreHistory.unshift({
+        ...summary,
+        submittedAt: `${summary.endKey}T23:59:00`,
+        archivedAt: new Date().toISOString()
+      });
       state.weeklyScoreHistory = state.weeklyScoreHistory.slice(0, 52);
       return true;
     }
@@ -13015,7 +13020,17 @@ for update using (true) with check (true);</pre>
       const currentWeekKey = getWeekKey();
       let changed = false;
       if (!state.weeklyRun || state.weeklyRun.weekKey !== currentWeekKey) {
-        if (state.weeklyRun && state.weeklyRun.weekKey) changed = archiveWeeklyRun(state.weeklyRun) || changed;
+        if (state.weeklyRun && state.weeklyRun.weekKey) {
+          const previousWeekKey = state.weeklyRun.weekKey;
+          const previousWeekEndKey = getWeekEndKey(previousWeekKey);
+          const finalSnapshot = getWeeklyRunSnapshot(previousWeekKey);
+          state.weeklyRun = normalizeWeeklyRun(state.weeklyRun, previousWeekKey);
+          if (!isDeepEqual(state.weeklyRun.days[previousWeekEndKey], finalSnapshot)) {
+            state.weeklyRun.days[previousWeekEndKey] = finalSnapshot;
+            changed = true;
+          }
+          changed = archiveWeeklyRun(state.weeklyRun) || changed;
+        }
         state.weeklyRun = normalizeWeeklyRun(null, currentWeekKey);
         changed = true;
       } else {
@@ -13037,6 +13052,46 @@ for update using (true) with check (true);</pre>
       }
 
       return changed;
+    }
+
+    function releaseWeeklyLaterTasksIfDue(options = {}) {
+      const currentWeekKey = getWeekKey();
+      if (state.weeklyLaterReleaseKey === currentWeekKey) {
+        return { changed: false, released: 0 };
+      }
+
+      if (!state.weeklyLaterReleaseKey && new Date().getDay() !== 1) {
+        state.weeklyLaterReleaseKey = currentWeekKey;
+        return { changed: true, released: 0 };
+      }
+
+      let released = 0;
+      AREA_ORDER.forEach(area => {
+        (state.tasks[area] || []).forEach(task => {
+          if (!task || task.done || !task.later) return;
+          task.later = false;
+          released += 1;
+        });
+      });
+
+      state.weeklyLaterReleaseKey = currentWeekKey;
+
+      if (released > 0 && options.showToast) {
+        setTimeout(() => {
+          showStatusToast(`이번 주 Later ${released}개를 활성화했습니다. 이번 주에 하지 않을 일은 다시 Later로 넘기세요.`);
+        }, 40);
+      }
+
+      return { changed: true, released };
+    }
+
+    function applyWeeklyBoundaryMaintenance(options = {}) {
+      let changed = false;
+      if (ensureWeeklyRunState({ recordToday: false })) changed = true;
+      const releaseResult = releaseWeeklyLaterTasksIfDue({ showToast: Boolean(options.showToast) });
+      if (releaseResult.changed) changed = true;
+      if (ensureWeeklyRunState({ recordToday: true })) changed = true;
+      return { changed, released: releaseResult.released };
     }
 
     function normalizePersistentFields(value) {
@@ -13184,6 +13239,9 @@ for update using (true) with check (true);</pre>
       merged.activeTimer = parsed?.activeTimer || null;
       merged.timeLogs = parsed?.timeLogs && typeof parsed.timeLogs === "object" ? parsed.timeLogs : {};
       merged.weeklyRun = normalizeWeeklyRun(parsed?.weeklyRun || base.weeklyRun, getWeekKey());
+      merged.weeklyLaterReleaseKey = /^\d{4}-\d{2}-\d{2}$/.test(String(parsed?.weeklyLaterReleaseKey || ""))
+        ? String(parsed.weeklyLaterReleaseKey)
+        : String(base.weeklyLaterReleaseKey || "");
       merged.weeklyScoreHistory = Array.isArray(parsed?.weeklyScoreHistory) ? parsed.weeklyScoreHistory.slice(0, 52) : [];
       merged.quickTemplates = normalizeQuickTemplates(parsed?.quickTemplates || base.quickTemplates);
       merged.routineTasks = normalizeRoutineTasks(parsed?.routineTasks || base.routineTasks || []);
@@ -13466,6 +13524,7 @@ for update using (true) with check (true);</pre>
         "selectedTimeLogDate",
         "activeTimer",
         "weeklyRun",
+        "weeklyLaterReleaseKey",
         "weeklyScoreHistory",
         "quickTemplates",
         "routineTasks"
@@ -13523,17 +13582,33 @@ for update using (true) with check (true);</pre>
     function showUndoToast(message = "완료 처리됨") {
       const toast = document.getElementById("undoToast");
       const text = document.getElementById("undoToastText");
+      const button = toast?.querySelector("button");
       if (!toast || !text) return;
+      if (button) button.style.display = "";
       text.textContent = message;
       toast.classList.add("show");
       clearTimeout(undoToastTimer);
       undoToastTimer = setTimeout(() => hideUndoToast(), 3000);
     }
 
+    function showStatusToast(message = "저장됨", duration = 4200) {
+      const toast = document.getElementById("undoToast");
+      const text = document.getElementById("undoToastText");
+      const button = toast?.querySelector("button");
+      if (!toast || !text) return;
+      if (button) button.style.display = "none";
+      text.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(undoToastTimer);
+      undoToastTimer = setTimeout(() => hideUndoToast(), duration);
+    }
+
     function hideUndoToast() {
       const toast = document.getElementById("undoToast");
+      const button = toast?.querySelector("button");
       if (!toast) return;
       toast.classList.remove("show");
+      if (button) button.style.display = "";
       clearTimeout(undoToastTimer);
       undoToastTimer = null;
     }
@@ -17935,8 +18010,10 @@ for update using (true) with check (true);</pre>
             isApplyingRemoteState = true;
             state = normalizeState(remoteState);
             lastSyncedState = clone(state);
-            saveState({ localOnly: true });
             isApplyingRemoteState = false;
+            const maintenanceResult = applyWeeklyBoundaryMaintenance({ showToast: true });
+            if (maintenanceResult.changed) saveState({ immediate: true });
+            else saveState({ localOnly: true });
             render();
             setSyncStatus("ready", "가져오기 완료");
           })
@@ -17980,8 +18057,11 @@ for update using (true) with check (true);</pre>
         isApplyingRemoteState = true;
         state = normalizeState(data.state);
         lastSyncedState = clone(state);
-        saveState({ localOnly: true });
         isApplyingRemoteState = false;
+        const maintenanceResult = applyWeeklyBoundaryMaintenance({ showToast: true });
+        if (maintenanceResult.changed) saveState({ immediate: true });
+        else saveState({ localOnly: true });
+        lastSyncedState = clone(state);
         render();
         setSyncStatus("ready", "가져오기 완료");
         recordSyncResult("pull", true, { source: "cloud" });
@@ -18263,6 +18343,12 @@ for update using (true) with check (true);</pre>
         } catch (error) {
           console.warn("최신 클라우드 상태 병합 확인 실패. 현재 상태를 그대로 올립니다.", error);
         }
+      }
+
+      const maintenanceBeforePush = applyWeeklyBoundaryMaintenance({ showToast: true });
+      if (maintenanceBeforePush.changed) {
+        saveLocalStateOnly({ immediate: true });
+        stateToUpload = clone(state);
       }
 
       const payload = {
@@ -24337,15 +24423,33 @@ for update using (true) with check (true);</pre>
 
     bindInputs();
     setupMobileFocusMode();
+    const initialWeeklyMaintenance = applyWeeklyBoundaryMaintenance({ showToast: true });
+    if (initialWeeklyMaintenance.changed) saveState({ immediate: true });
     if (mobileFocusMode) {
-      initCloudSync({ silent: true }).finally(() => render());
+      initCloudSync({ silent: true }).finally(() => {
+        const maintenanceResult = applyWeeklyBoundaryMaintenance({ showToast: true });
+        if (maintenanceResult.changed) saveState({ immediate: true });
+        render();
+      });
     } else {
       render();
-      initCloudSync();
+      initCloudSync().finally(() => {
+        const maintenanceResult = applyWeeklyBoundaryMaintenance({ showToast: true });
+        if (maintenanceResult.changed) {
+          saveState({ immediate: true });
+          render();
+        }
+      });
     }
     scheduleNightlyCheckReminder();
 
     setInterval(() => {
+      const maintenanceResult = applyWeeklyBoundaryMaintenance({ showToast: true });
+      if (maintenanceResult.changed) {
+        saveState();
+        render();
+        return;
+      }
       if (ensureWeeklyRunState({ recordToday: true })) {
         saveLocalStateOnly();
         render();
