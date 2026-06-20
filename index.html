@@ -10716,23 +10716,14 @@
 
 
   <style id="nova-final-reward-pin-timer-font-20260620">
-    /* User-supplied phrase font. Keep font file as a separate deploy asset. */
-    @font-face {
-      font-family: "OwnglyphConcon";
-      src: url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    .quote-box,
+.quote-box,
     .top-quote-box,
     .panel-quote-box,
     body:not(.mobile-focus-mode) .panel-quote-box,
     body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
     body:not(.mobile-focus-mode) .beacon .panel-quote-box,
     body:not(.mobile-focus-mode) .income .panel-quote-box {
-      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-weight: 400 !important;
       letter-spacing: 0.005em !important;
     }
@@ -10740,7 +10731,7 @@
     .quote-box::placeholder,
     .top-quote-box::placeholder,
     .panel-quote-box::placeholder {
-      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-weight: 400 !important;
     }
 
@@ -11061,21 +11052,13 @@
     }
 
     /* Font + color pass for phrase fields and project titles. */
-    @font-face {
-      font-family: "OwnglyphConcon";
-      src: url("./온글잎 콘콘체.TTF") format("truetype"),
-           url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    body:not(.mobile-focus-mode) .panel h2 { font-weight: 780 !important; }
+body:not(.mobile-focus-mode) .panel h2 { font-weight: 780 !important; }
     body:not(.mobile-focus-mode) .panel.portfolio h2 { color: var(--portfolio) !important; }
     body:not(.mobile-focus-mode) .panel.beacon h2 { color: var(--beacon) !important; }
     body:not(.mobile-focus-mode) .panel.income h2 { color: var(--income) !important; }
     body:not(.mobile-focus-mode) .panel-quote-box,
     body:not(.mobile-focus-mode) .quote-box.panel-quote-box {
-      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-weight: 400 !important;
       font-size: 16px !important;
       letter-spacing: 0.005em !important;
@@ -12759,7 +12742,6 @@
   </style>
 
   <style id="quote-handwriting-contrast-v7">
-    @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap');
 
     body:not(.mobile-focus-mode) .panel-quote-box,
     body:not(.mobile-focus-mode) .quote-box.panel-quote-box,
@@ -12769,7 +12751,7 @@
       background: #ceccc6 !important;
       border-color: rgba(255,255,255,0.58) !important;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.42), 0 2px 7px rgba(38,35,32,0.055) !important;
-      font-family: "Gaegu", "Nanum Pen Script", "Nanum Brush Script", "Yeon Sung", "Cafe24Oneprettynight", "Segoe Print", cursive !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-size: 15.5px !important;
       font-weight: 700 !important;
       letter-spacing: -0.01em !important;
@@ -12814,7 +12796,6 @@
   </style>
 
   <style id="panel-quote-readability-v8">
-    @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Gaegu:wght@700&display=swap');
 
     body:not(.mobile-focus-mode) .panel-quote-box,
     body:not(.mobile-focus-mode) .quote-box.panel-quote-box,
@@ -12826,7 +12807,7 @@
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.18),
         0 5px 14px rgba(40,38,34,0.11) !important;
-      font-family: "Gamja Flower", "Gaegu", "Nanum Pen Script", "Nanum Brush Script", "Yeon Sung", "Cafe24Oneprettynight", "Segoe Print", cursive !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-size: 17px !important;
       font-weight: 400 !important;
       letter-spacing: 0.01em !important;
@@ -12983,6 +12964,69 @@
         min-width: 48px !important;
         max-width: 48px !important;
       }
+    }
+  </style>
+
+
+  <style id="mobile-parent-header-align-and-default-font-v10">
+    /* Parent cards with subtasks: lower the parent title/check row so it aligns visually with the right PIN button. */
+    body.mobile-focus-mode .mobile-task.mobile-parent-group {
+      padding-top: 18px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group > .mobile-task-main {
+      margin-top: 4px !important;
+      align-items: center !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group > .mobile-task-main > .mobile-check {
+      align-self: center !important;
+      margin-top: 0 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group > .mobile-task-main > div {
+      align-self: center !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      position: absolute !important;
+      top: 22px !important;
+      right: 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      width: auto !important;
+      min-width: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      gap: 0 !important;
+      z-index: 3 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions .mobile-pin {
+      width: 72px !important;
+      min-width: 72px !important;
+      height: 42px !important;
+      min-height: 42px !important;
+      padding: 0 16px !important;
+      font-size: 16px !important;
+      font-weight: 760 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtasks {
+      margin-top: 18px !important;
+    }
+
+    /* Return PC quote fields to the default system font; keep contrast-only styling. */
+    body:not(.mobile-focus-mode) .quote-box,
+    body:not(.mobile-focus-mode) .top-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .quote-box::placeholder,
+    body:not(.mobile-focus-mode) .top-quote-box::placeholder,
+    body:not(.mobile-focus-mode) .panel-quote-box::placeholder {
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+      font-weight: 760 !important;
+      letter-spacing: -0.015em !important;
     }
   </style>
 
@@ -21715,23 +21759,14 @@ for update using (true) with check (true);</pre>
 
 
   <style id="nova-final-reward-pin-timer-font-20260620">
-    /* User-supplied phrase font. Keep font file as a separate deploy asset. */
-    @font-face {
-      font-family: "OwnglyphConcon";
-      src: url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    .quote-box,
+.quote-box,
     .top-quote-box,
     .panel-quote-box,
     body:not(.mobile-focus-mode) .panel-quote-box,
     body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
     body:not(.mobile-focus-mode) .beacon .panel-quote-box,
     body:not(.mobile-focus-mode) .income .panel-quote-box {
-      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-weight: 400 !important;
       letter-spacing: 0.005em !important;
     }
@@ -21739,7 +21774,7 @@ for update using (true) with check (true);</pre>
     .quote-box::placeholder,
     .top-quote-box::placeholder,
     .panel-quote-box::placeholder {
-      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-weight: 400 !important;
     }
 
@@ -23451,23 +23486,14 @@ for update using (true) with check (true);</pre>
 
 
   <style id="nova-final-reward-pin-timer-font-20260620">
-    /* User-supplied phrase font. Keep font file as a separate deploy asset. */
-    @font-face {
-      font-family: "OwnglyphConcon";
-      src: url("./%EC%98%A8%EA%B8%80%EC%9E%8E%20%EC%BD%98%EC%BD%98%EC%B2%B4.TTF") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    .quote-box,
+.quote-box,
     .top-quote-box,
     .panel-quote-box,
     body:not(.mobile-focus-mode) .panel-quote-box,
     body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
     body:not(.mobile-focus-mode) .beacon .panel-quote-box,
     body:not(.mobile-focus-mode) .income .panel-quote-box {
-      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-weight: 400 !important;
       letter-spacing: 0.005em !important;
     }
@@ -23475,7 +23501,7 @@ for update using (true) with check (true);</pre>
     .quote-box::placeholder,
     .top-quote-box::placeholder,
     .panel-quote-box::placeholder {
-      font-family: "OwnglyphConcon", "Pretendard Variable", "Pretendard", sans-serif !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
       font-weight: 400 !important;
     }
 
