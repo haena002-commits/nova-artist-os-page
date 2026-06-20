@@ -11862,6 +11862,379 @@
     }
   </style>
 
+
+  <style id="weekly-task-input-flat-patch-20260620">
+    /* Flat cleanup only: Weekly Success Score bars + task add input fields. */
+    body:not(.mobile-focus-mode) .top-time-log.weekly-run {
+      background: rgba(236,236,233,0.72) !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      border-color: rgba(24,24,24,0.08) !important;
+    }
+
+    body:not(.mobile-focus-mode) .weekly-run .top-run-segment {
+      background: #f7f7f4 !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(46,41,35,0.10) !important;
+    }
+
+    body:not(.mobile-focus-mode) .weekly-run .top-run-segment::before {
+      background-image: none !important;
+      box-shadow: none !important;
+      opacity: 1 !important;
+    }
+
+    body:not(.mobile-focus-mode) .weekly-run .top-run-segment.portfolio::before {
+      background: rgba(196,100,40,0.28) !important;
+    }
+
+    body:not(.mobile-focus-mode) .weekly-run .top-run-segment.beacon::before {
+      background: rgba(81,103,162,0.26) !important;
+    }
+
+    body:not(.mobile-focus-mode) .weekly-run .top-run-segment.income::before {
+      background: rgba(96,105,58,0.24) !important;
+    }
+
+    body:not(.mobile-focus-mode) .weekly-run .top-run-segment span,
+    body:not(.mobile-focus-mode) .weekly-run .top-run-segment strong {
+      text-shadow: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-input-row input {
+      background: #E8E2C5 !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(46,41,35,0.10) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-input-row input:focus {
+      background: #E8E2C5 !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      border-color: rgba(46,41,35,0.18) !important;
+    }
+  </style>
+
+
+
+  <style id="top-summary-unified-flat-no-crop-20260620">
+    /* Top summary 3-card pass: unify card surface to the right weekly block and prevent clipped data. */
+    @media (min-width: 769px) {
+      body:not(.mobile-focus-mode) .top-summary-grid {
+        grid-template-columns:
+          minmax(840px, 1.62fr)
+          minmax(300px, 0.48fr)
+          minmax(540px, 0.92fr) !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel,
+      body:not(.mobile-focus-mode) .deadline-bridge-card,
+      body:not(.mobile-focus-mode) .achievement-strip {
+        min-width: 0 !important;
+        min-height: 96px !important;
+        box-sizing: border-box !important;
+        border: 1px solid rgba(24, 24, 24, 0.08) !important;
+        border-radius: 18px !important;
+        background: rgba(255, 255, 255, 0.42) !important;
+        box-shadow: none !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel,
+      body:not(.mobile-focus-mode) .deadline-bridge-card,
+      body:not(.mobile-focus-mode) .achievement-strip,
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel {
+        grid-template-columns:
+          12px
+          minmax(230px, 1fr)
+          minmax(126px, 0.42fr)
+          minmax(178px, 0.48fr)
+          minmax(172px, 0.56fr) !important;
+        gap: 13px !important;
+        padding: 16px 18px !important;
+        align-items: center !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-main,
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total,
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent,
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-title,
+      body:not(.mobile-focus-mode) .today-load-panel .load-detail,
+      body:not(.mobile-focus-mode) .today-load-panel .load-verdict {
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-detail,
+      body:not(.mobile-focus-mode) .today-load-panel .load-verdict {
+        white-space: normal !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-focus-total {
+        display: grid !important;
+        justify-items: start !important;
+        gap: 2px !important;
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent {
+        grid-template-columns: max-content minmax(82px, 1fr) !important;
+        grid-template-rows: auto auto !important;
+        min-width: 178px !important;
+        width: 100% !important;
+        column-gap: 10px !important;
+        row-gap: 5px !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-grade {
+        min-width: 2.4em !important;
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent-value,
+      body:not(.mobile-focus-mode) .today-load-panel .load-overrun-value {
+        min-width: 0 !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+        justify-self: start !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-overrun-value {
+        font-size: 18px !important;
+        letter-spacing: -0.025em !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .today-load-gauge {
+        grid-column: 2 !important;
+        min-width: 82px !important;
+        width: 100% !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-portfolio {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 5px !important;
+        padding-left: 12px !important;
+        border-left: 1px solid rgba(36, 36, 32, 0.08) !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) max-content !important;
+        gap: 8px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line span {
+        min-width: 0 !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line strong {
+        min-width: max-content !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+        justify-self: end !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-card {
+        padding: 16px 18px !important;
+        align-content: center !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-head {
+        grid-template-columns: minmax(0, 1fr) max-content !important;
+        min-width: 0 !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-head span,
+      body:not(.mobile-focus-mode) .deadline-bridge-status {
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-status {
+        min-width: 126px !important;
+        width: auto !important;
+        font-size: 21px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-input {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      body:not(.mobile-focus-mode) .achievement-strip {
+        padding: 16px 18px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        display: grid !important;
+        grid-template-columns: 226px 174px !important;
+        gap: 10px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix {
+        width: 226px !important;
+        max-width: 226px !important;
+        justify-self: start !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-row {
+        grid-template-columns: 42px repeat(5, 24px) 34px !important;
+        gap: 3px !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-name {
+        width: 42px !important;
+        min-width: 42px !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-count {
+        width: 34px !important;
+        min-width: 34px !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+        text-align: left !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-dot {
+        width: 19px !important;
+        height: 19px !important;
+        font-size: 10px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars {
+        width: 174px !important;
+        max-width: 174px !important;
+        grid-template-columns: 54px repeat(5, 21px) !important;
+        gap: 2px 3px !important;
+        justify-self: start !important;
+        overflow: visible !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars-title,
+      body:not(.mobile-focus-mode) .weekly-bar-day {
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1720px) {
+      body:not(.mobile-focus-mode) .top-summary-grid {
+        grid-template-columns:
+          minmax(730px, 1.48fr)
+          minmax(270px, 0.48fr)
+          minmax(470px, 0.90fr) !important;
+        gap: 10px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel {
+        grid-template-columns:
+          10px
+          minmax(185px, 1fr)
+          minmax(116px, 0.38fr)
+          minmax(160px, 0.46fr)
+          minmax(144px, 0.50fr) !important;
+        gap: 10px !important;
+        padding: 15px 15px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-percent {
+        min-width: 160px !important;
+        column-gap: 8px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-overrun-value {
+        font-size: 17px !important;
+      }
+
+      body:not(.mobile-focus-mode) .today-load-panel .load-side-line {
+        font-size: 11.5px !important;
+        gap: 6px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-card,
+      body:not(.mobile-focus-mode) .achievement-strip {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-card {
+        grid-template-columns: 214px 160px !important;
+        gap: 8px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix {
+        width: 214px !important;
+        max-width: 214px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-row {
+        grid-template-columns: 40px repeat(5, 23px) 32px !important;
+        gap: 3px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-name {
+        width: 40px !important;
+        min-width: 40px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-matrix-count {
+        width: 32px !important;
+        min-width: 32px !important;
+      }
+
+      body:not(.mobile-focus-mode) .weekly-bars {
+        width: 160px !important;
+        max-width: 160px !important;
+        grid-template-columns: 50px repeat(5, 19px) !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .today-load-panel,
+      body:not(.mobile-focus-mode) .deadline-bridge-card,
+      body:not(.mobile-focus-mode) .achievement-strip {
+        border: 1px solid rgba(24, 24, 24, 0.08) !important;
+        background: rgba(255, 255, 255, 0.42) !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
