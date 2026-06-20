@@ -13060,11 +13060,6 @@ for update using (true) with check (true);</pre>
         return { changed: false, released: 0 };
       }
 
-      if (!state.weeklyLaterReleaseKey && new Date().getDay() !== 1) {
-        state.weeklyLaterReleaseKey = currentWeekKey;
-        return { changed: true, released: 0 };
-      }
-
       let released = 0;
       AREA_ORDER.forEach(area => {
         (state.tasks[area] || []).forEach(task => {
@@ -22939,6 +22934,29 @@ for update using (true) with check (true);</pre>
     }
   </style>
 
+
+
+  <style id="mobile-timer-no-breath-patch">
+    /* Mobile focus: remove timer pill breathing/scale motion, keep the small live dot. */
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded) {
+      animation: none !important;
+      transform: none !important;
+      will-change: auto !important;
+      transition: background-color 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      animation: mobileLiveDot 1.15s ease-out infinite !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded) {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="mini-wrap">
