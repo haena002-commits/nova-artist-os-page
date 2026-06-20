@@ -14,12 +14,14 @@
       --ink: #2e2923;
       --muted: #80756a;
       --line: #e5d9ca;
-      --portfolio: #c9787f;
-      --portfolio-soft: #f7e4e5;
-      --beacon: #8a8fcf;
-      --beacon-soft: #e8e9f8;
-      --income: #c7a15a;
-      --income-soft: #f5ead1;
+      --portfolio: #C46428;
+      --portfolio-soft: #E8E2C5;
+      --beacon: #5167A2;
+      --beacon-soft: #E8E2C5;
+      --income: #60693A;
+      --income-soft: #E8E2C5;
+      --brand-light: #E8E2C5;
+      --brand-dark: #2E3118;
       --green: #7da883;
       --red: #c96b62;
       --shadow: 0 12px 30px rgba(78, 55, 32, 0.08);
@@ -166,12 +168,12 @@
       margin-top: 14px;
       padding: 10px 13px;
       font-size: 14px;
-      background: linear-gradient(90deg, rgba(247, 228, 229, 0.96), rgba(232, 233, 248, 0.96) 52%, rgba(245, 234, 209, 0.96));
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(232,226,197,0.42) 52%, rgba(245, 234, 209, 0.96));
       border-color: rgba(46, 41, 35, 0.13);
     }
 
     .top-quote-box:focus {
-      background: linear-gradient(90deg, rgba(247, 228, 229, 1), rgba(232, 233, 248, 1) 52%, rgba(245, 234, 209, 1));
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(232,226,197,0.42) 52%, rgba(245, 234, 209, 1));
       border-color: rgba(46, 41, 35, 0.32);
     }
 
@@ -183,44 +185,44 @@
     }
 
     .portfolio .panel-quote-box {
-      background: rgba(247, 228, 229, 0.96);
-      border-color: rgba(201, 120, 127, 0.28);
-      color: #68383d;
+      background: rgba(232,226,197,0.42);
+      border-color: rgba(196,100,40,0.32);
+      color: #2E3118;
     }
 
     .beacon .panel-quote-box {
-      background: rgba(232, 233, 248, 0.96);
-      border-color: rgba(138, 143, 207, 0.30);
-      color: #464b8e;
+      background: rgba(232,226,197,0.42);
+      border-color: rgba(81,103,162,0.32);
+      color: #2E3118;
     }
 
     .income .panel-quote-box {
       background: rgba(245, 234, 209, 0.96);
-      border-color: rgba(199, 161, 90, 0.32);
+      border-color: rgba(96,105,58,0.32);
       color: #735722;
     }
 
     .portfolio .panel-quote-box:focus {
       background: var(--portfolio-soft);
-      border-color: rgba(201, 120, 127, 0.58);
-      box-shadow: inset 0 0 0 1px rgba(201, 120, 127, 0.08), 0 8px 18px rgba(201, 120, 127, 0.10);
+      border-color: rgba(196,100,40,0.32);
+      box-shadow: inset 0 0 0 1px rgba(196,100,40,0.32), 0 8px 18px rgba(196,100,40,0.32);
     }
 
     .beacon .panel-quote-box:focus {
       background: var(--beacon-soft);
-      border-color: rgba(138, 143, 207, 0.58);
-      box-shadow: inset 0 0 0 1px rgba(138, 143, 207, 0.08), 0 8px 18px rgba(138, 143, 207, 0.10);
+      border-color: rgba(81,103,162,0.32);
+      box-shadow: inset 0 0 0 1px rgba(81,103,162,0.32), 0 8px 18px rgba(81,103,162,0.32);
     }
 
     .income .panel-quote-box:focus {
       background: var(--income-soft);
-      border-color: rgba(199, 161, 90, 0.60);
-      box-shadow: inset 0 0 0 1px rgba(199, 161, 90, 0.08), 0 8px 18px rgba(199, 161, 90, 0.10);
+      border-color: rgba(96,105,58,0.32);
+      box-shadow: inset 0 0 0 1px rgba(96,105,58,0.32), 0 8px 18px rgba(96,105,58,0.32);
     }
 
-    .portfolio .panel-quote-box::placeholder { color: #a15c63; }
-    .beacon .panel-quote-box::placeholder { color: #7075b4; }
-    .income .panel-quote-box::placeholder { color: #947235; }
+    .portfolio .panel-quote-box::placeholder { color: #C46428; }
+    .beacon .panel-quote-box::placeholder { color: #5167A2; }
+    .income .panel-quote-box::placeholder { color: #60693A; }
 
     .top-time-log {
       display: grid;
@@ -283,9 +285,9 @@
       white-space: nowrap;
     }
 
-    .top-time-chip.portfolio { border-color: rgba(201,120,127,0.32); background: var(--portfolio-soft); }
-    .top-time-chip.beacon { border-color: rgba(138,143,207,0.32); background: var(--beacon-soft); }
-    .top-time-chip.income { border-color: rgba(199,161,90,0.32); background: var(--income-soft); }
+    .top-time-chip.portfolio { border-color: rgba(196,100,40,0.32); background: var(--portfolio-soft); }
+    .top-time-chip.beacon { border-color: rgba(81,103,162,0.32); background: var(--beacon-soft); }
+    .top-time-chip.income { border-color: rgba(96,105,58,0.32); background: var(--income-soft); }
 
     .field {
       background: #fffdf8;
@@ -355,6 +357,10 @@
       background: linear-gradient(90deg, var(--portfolio), var(--beacon), var(--income));
       transition: width 0.25s ease;
     }
+
+    .panel.portfolio .progress-fill { background: var(--portfolio); }
+    .panel.beacon .progress-fill { background: var(--beacon); }
+    .panel.income .progress-fill { background: var(--income); }
 
     .mini-stats {
       display: grid;
@@ -435,9 +441,9 @@
       letter-spacing: 0.08em;
     }
 
-    .portfolio .weight-pill { background: var(--portfolio-soft); color: #8f4149; }
-    .beacon .weight-pill { background: var(--beacon-soft); color: #545aa3; }
-    .income .weight-pill { background: var(--income-soft); color: #8b6b2e; }
+    .portfolio .weight-pill { background: var(--portfolio-soft); color: #C46428; }
+    .beacon .weight-pill { background: var(--beacon-soft); color: #5167A2; }
+    .income .weight-pill { background: var(--income-soft); color: #60693A; }
 
     .panel h2 {
       margin: 0;
@@ -581,27 +587,27 @@
 
     .task-card.running.portfolio {
       background: var(--portfolio-soft);
-      border-color: rgba(201, 120, 127, 0.72);
+      border-color: rgba(196,100,40,0.32);
     }
 
     .task-card.running.beacon {
       background: var(--beacon-soft);
-      border-color: rgba(138, 143, 207, 0.72);
+      border-color: rgba(81,103,162,0.32);
     }
 
     .task-card.running.income {
       background: var(--income-soft);
-      border-color: rgba(199, 161, 90, 0.76);
+      border-color: rgba(96,105,58,0.32);
     }
 
     .task-card.running.portfolio .task-title,
-    .task-card.running.portfolio .task-meta { color: #8f4149; }
+    .task-card.running.portfolio .task-meta { color: #C46428; }
 
     .task-card.running.beacon .task-title,
-    .task-card.running.beacon .task-meta { color: #545aa3; }
+    .task-card.running.beacon .task-meta { color: #5167A2; }
 
     .task-card.running.income .task-title,
-    .task-card.running.income .task-meta { color: #8b6b2e; }
+    .task-card.running.income .task-meta { color: #60693A; }
 
     .completed-section {
       margin-top: 0;
@@ -671,7 +677,7 @@
     }
 
     .load-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(125,168,131,0.14); }
-    .today-load-panel.yellow .load-dot { background: var(--income); box-shadow: 0 0 0 4px rgba(199,161,90,0.15); }
+    .today-load-panel.yellow .load-dot { background: var(--income); box-shadow: 0 0 0 4px rgba(96,105,58,0.32); }
     .today-load-panel.red .load-dot { background: var(--red); box-shadow: 0 0 0 4px rgba(201,107,98,0.14); }
     .load-main { min-width: 0; }
     .load-title { font-size: 11.5px; font-weight: 950; letter-spacing: 0; text-transform: none; color: #65594e; }
@@ -687,7 +693,7 @@
       font-weight: 950;
       letter-spacing: 0;
       text-align: center;
-      color: #292a28;
+      color: #2E3118;
     }
     .load-percent-value { line-height: 1; }
     .today-load-gauge {
@@ -706,7 +712,7 @@
       border-radius: inherit;
       background: rgba(125,168,131,0.78);
     }
-    .today-load-panel.yellow .today-load-gauge-fill { background: rgba(199,161,90,0.82); }
+    .today-load-panel.yellow .today-load-gauge-fill { background: rgba(96,105,58,0.32); }
     .today-load-panel.red .today-load-gauge-fill { background: rgba(201,107,98,0.82); }
     .today-load-gauge-line {
       position: absolute;
@@ -720,10 +726,10 @@
     }
     .load-side { display: contents; }
     .load-portfolio { display: grid; gap: 3px; justify-content: stretch; justify-self: stretch; margin-top: 0; }
-    .load-chip { border: 1px solid rgba(201,120,127,0.25); border-radius: 999px; background: var(--portfolio-soft); color: #8f4149; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
+    .load-chip { border: 1px solid rgba(196,100,40,0.32); border-radius: 999px; background: var(--portfolio-soft); color: #C46428; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
     .load-side-line { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-width: 0; font-size: 11.5px; color: #746e66; font-weight: 820; white-space: nowrap; }
-    .load-side-line strong { color: #8f4149; font-size: 12.5px; font-weight: 950; overflow: hidden; text-overflow: ellipsis; }
-    .load-side-line.done strong { color: #2d2f2e; }
+    .load-side-line strong { color: #C46428; font-size: 12.5px; font-weight: 950; overflow: hidden; text-overflow: ellipsis; }
+    .load-side-line.done strong { color: #2E3118; }
 
     .achievement-strip {
       min-width: 0;
@@ -765,7 +771,7 @@
     .achievement-item strong {
       display: inline;
       margin-top: 0;
-      color: #2d2f2e;
+      color: #2E3118;
       font-size: 12px;
       font-weight: 950;
       white-space: nowrap;
@@ -773,7 +779,7 @@
       text-overflow: ellipsis;
     }
 
-    .achievement-item.portfolio strong { color: #8f4149; }
+    .achievement-item.portfolio strong { color: #C46428; }
 
     .weekly-flow-dots {
       display: flex;
@@ -786,8 +792,8 @@
     }
 
     .weekly-flow-day { display: inline-flex; gap: 2px; align-items: center; }
-    .weekly-flow-day.active { color: #8f4149; }
-    .weekly-flow-day.partial { color: #b78a3d; }
+    .weekly-flow-day.active { color: #C46428; }
+    .weekly-flow-day.partial { color: #60693A; }
     .weekly-flow-day.today { text-decoration: underline; text-underline-offset: 3px; }
 
     .weekly-matrix-card {
@@ -820,9 +826,9 @@
       font-weight: 820;
     }
     .weekly-matrix-row.header { color: #928b82; font-size: 10px; font-weight: 820; }
-    .weekly-matrix-row.portfolio { color: #8f4149; font-weight: 950; }
-    .weekly-matrix-row.beacon { color: #545aa3; }
-    .weekly-matrix-row.income { color: #8b6b2e; }
+    .weekly-matrix-row.portfolio { color: #C46428; font-weight: 950; }
+    .weekly-matrix-row.beacon { color: #5167A2; }
+    .weekly-matrix-row.income { color: #60693A; }
     .weekly-matrix-row > span { text-align: center; }
     .weekly-matrix-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left !important; }
     .weekly-matrix-dot {
@@ -837,12 +843,12 @@
       font-size: 11px;
       font-weight: 950;
     }
-    .weekly-matrix-dot.active.portfolio { color: #8f4149; background: var(--portfolio-soft); box-shadow: 0 0 0 2px rgba(201,120,127,0.12); }
-    .weekly-matrix-dot.active.beacon { color: #545aa3; background: var(--beacon-soft); box-shadow: 0 0 0 2px rgba(138,143,207,0.12); }
-    .weekly-matrix-dot.active.income { color: #8b6b2e; background: var(--income-soft); box-shadow: 0 0 0 2px rgba(199,161,90,0.12); }
-    .weekly-matrix-dot.partial.portfolio { color: #8f4149; background: rgba(247,228,229,0.86); box-shadow: 0 0 0 2px rgba(201,120,127,0.10); }
-    .weekly-matrix-dot.partial.beacon { color: #545aa3; background: rgba(232,233,248,0.86); box-shadow: 0 0 0 2px rgba(138,143,207,0.10); }
-    .weekly-matrix-dot.partial.income { color: #8b6b2e; background: rgba(249,241,219,0.86); box-shadow: 0 0 0 2px rgba(199,161,90,0.10); }
+    .weekly-matrix-dot.active.portfolio { color: #C46428; background: var(--portfolio-soft); box-shadow: 0 0 0 2px rgba(196,100,40,0.32); }
+    .weekly-matrix-dot.active.beacon { color: #5167A2; background: var(--beacon-soft); box-shadow: 0 0 0 2px rgba(81,103,162,0.32); }
+    .weekly-matrix-dot.active.income { color: #60693A; background: var(--income-soft); box-shadow: 0 0 0 2px rgba(96,105,58,0.32); }
+    .weekly-matrix-dot.partial.portfolio { color: #C46428; background: rgba(232,226,197,0.42); box-shadow: 0 0 0 2px rgba(196,100,40,0.32); }
+    .weekly-matrix-dot.partial.beacon { color: #5167A2; background: rgba(232,226,197,0.42); box-shadow: 0 0 0 2px rgba(81,103,162,0.32); }
+    .weekly-matrix-dot.partial.income { color: #60693A; background: rgba(232,226,197,0.42); box-shadow: 0 0 0 2px rgba(96,105,58,0.32); }
     .weekly-matrix-count { text-align: right !important; color: #4f4b46; font-weight: 920; }
     .weekly-bars {
       display: grid;
@@ -882,8 +888,8 @@
       min-height: 3px;
       height: var(--bar-height, 0px);
       border-radius: 999px 999px 4px 4px;
-      background: rgba(201,120,127,0.72);
-      box-shadow: 0 0 0 2px rgba(201,120,127,0.08);
+      background: rgba(196,100,40,0.32);
+      box-shadow: 0 0 0 2px rgba(196,100,40,0.32);
     }
     .weekly-bar.empty {
       width: 13px;
@@ -947,14 +953,14 @@
     .clear-summary-title { font-size: 12px; font-weight: 950; letter-spacing: 0.08em; text-transform: uppercase; }
     .clear-summary-sub { font-size: 11px; color: var(--muted); font-weight: 850; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .clear-summary-chips { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
-    .clear-chip { border-radius: 999px; background: var(--portfolio-soft); color: #8f4149; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
+    .clear-chip { border-radius: 999px; background: var(--portfolio-soft); color: #C46428; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
     .clear-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 7px; align-items: center; padding: 7px 9px; border: 1px solid rgba(229,217,202,0.72); border-radius: 12px; background: rgba(255,250,242,0.84); font-size: 12px; font-weight: 850; }
     .clear-row-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .clear-row.portfolio .clear-row-title { color: #8f4149; font-weight: 950; }
+    .clear-row.portfolio .clear-row-title { color: #C46428; font-weight: 950; }
     .clear-row-type { border-radius: 999px; padding: 4px 7px; font-size: 10px; font-weight: 950; background: #eee5da; }
-    .clear-row-type.portfolio { background: var(--portfolio-soft); color: #8f4149; }
-    .clear-row-type.beacon { background: var(--beacon-soft); color: #545aa3; }
-    .clear-row-type.income { background: var(--income-soft); color: #8b6b2e; }
+    .clear-row-type.portfolio { background: var(--portfolio-soft); color: #C46428; }
+    .clear-row-type.beacon { background: var(--beacon-soft); color: #5167A2; }
+    .clear-row-type.income { background: var(--income-soft); color: #60693A; }
     .clear-row-time { color: #65594e; font-size: 11px; font-weight: 950; white-space: nowrap; }
     .task-card.clearing, .subtask-row.clearing { position: relative; animation: clearPulse 0.32s ease both; border-color: rgba(125,168,131,0.74) !important; background: #edf6ee !important; }
     .task-card.clearing::after, .subtask-row.clearing::after { content: attr(data-clear-feedback); position: absolute; right: 10px; top: 8px; border-radius: 999px; background: var(--green); color: #fff; padding: 5px 8px; font-size: 11px; font-weight: 950; box-shadow: 0 8px 18px rgba(125,168,131,0.18); z-index: 4; }
@@ -1522,9 +1528,9 @@
       white-space: nowrap;
     }
 
-    .session-badge.portfolio { background: var(--portfolio-soft); color: #8f4149; }
-    .session-badge.beacon { background: var(--beacon-soft); color: #545aa3; }
-    .session-badge.income { background: var(--income-soft); color: #8b6b2e; }
+    .session-badge.portfolio { background: var(--portfolio-soft); color: #C46428; }
+    .session-badge.beacon { background: var(--beacon-soft); color: #5167A2; }
+    .session-badge.income { background: var(--income-soft); color: #60693A; }
 
     .session-title {
       min-width: 0;
@@ -1607,7 +1613,7 @@
 
     .report-kpi strong {
       display: block;
-      color: #242424;
+      color: #2E3118;
       font-size: 24px;
       font-weight: 950;
       letter-spacing: -0.04em;
@@ -1736,13 +1742,13 @@
 
     .report-bar-fill.portfolio,
     .report-open-fill.portfolio,
-    .report-compare-current.portfolio { background: linear-gradient(90deg, rgba(201,120,127,0.56), rgba(201,120,127,0.88)); }
+    .report-compare-current.portfolio { background: linear-gradient(90deg, rgba(196,100,40,0.32), rgba(196,100,40,0.32)); }
     .report-bar-fill.beacon,
     .report-open-fill.beacon,
-    .report-compare-current.beacon { background: linear-gradient(90deg, rgba(138,143,207,0.54), rgba(138,143,207,0.88)); }
+    .report-compare-current.beacon { background: linear-gradient(90deg, rgba(81,103,162,0.32), rgba(81,103,162,0.32)); }
     .report-bar-fill.income,
     .report-open-fill.income,
-    .report-compare-current.income { background: linear-gradient(90deg, rgba(199,161,90,0.54), rgba(199,161,90,0.86)); }
+    .report-compare-current.income { background: linear-gradient(90deg, rgba(96,105,58,0.32), rgba(96,105,58,0.32)); }
 
     .report-compare-prev {
       background: rgba(114,109,103,0.18);
@@ -2193,7 +2199,7 @@
 
     .nova-confirm-title {
       margin: 0;
-      color: #292a28;
+      color: #2E3118;
       font-size: 18px;
       font-weight: 950;
       letter-spacing: 0;
@@ -2246,7 +2252,7 @@
     }
 
     .nova-confirm-btn.confirm.danger {
-      background: #8f4149;
+      background: #C46428;
     }
 
     .nightly-check-modal {
@@ -2274,7 +2280,7 @@
 
     .nightly-check-title {
       margin: 0;
-      color: #292a28;
+      color: #2E3118;
       font-size: 19px;
       font-weight: 950;
       letter-spacing: 0;
@@ -2587,9 +2593,9 @@
       padding: 12px;
     }
 
-    .mobile-task.running.portfolio { background: var(--portfolio-soft); border-color: rgba(201, 120, 127, 0.72); }
-    .mobile-task.running.beacon { background: var(--beacon-soft); border-color: rgba(138, 143, 207, 0.72); }
-    .mobile-task.running.income { background: var(--income-soft); border-color: rgba(199, 161, 90, 0.76); }
+    .mobile-task.running.portfolio { background: var(--portfolio-soft); border-color: rgba(196,100,40,0.32); }
+    .mobile-task.running.beacon { background: var(--beacon-soft); border-color: rgba(81,103,162,0.32); }
+    .mobile-task.running.income { background: var(--income-soft); border-color: rgba(96,105,58,0.32); }
 
     .mobile-task-main {
       display: grid;
@@ -2624,9 +2630,9 @@
       text-transform: uppercase;
     }
 
-    .mobile-tag.portfolio { background: var(--portfolio-soft); color: #8f4149; }
-    .mobile-tag.beacon { background: var(--beacon-soft); color: #545aa3; }
-    .mobile-tag.income { background: var(--income-soft); color: #8b6b2e; }
+    .mobile-tag.portfolio { background: var(--portfolio-soft); color: #C46428; }
+    .mobile-tag.beacon { background: var(--beacon-soft); color: #5167A2; }
+    .mobile-tag.income { background: var(--income-soft); color: #60693A; }
 
     .mobile-task-title {
       outline: none;
@@ -3095,12 +3101,12 @@
       --ink: #242525;
       --muted: #7a7c7c;
       --line: rgba(255, 255, 255, 0.68);
-      --portfolio: #bd7d83;
-      --portfolio-soft: #eadbdd;
-      --beacon: #8b91c2;
-      --beacon-soft: #dddfea;
-      --income: #b7a16b;
-      --income-soft: #e9e2cf;
+      --portfolio: #C46428;
+      --portfolio-soft: #E8E2C5;
+      --beacon: #5167A2;
+      --beacon-soft: #E8E2C5;
+      --income: #60693A;
+      --income-soft: #E8E2C5;
       --green: #829f86;
       --red: #bd756f;
       --shadow: 18px 18px 42px rgba(158, 158, 154, 0.48), -18px -18px 42px rgba(255,255,255,0.92);
@@ -4196,19 +4202,19 @@
 
     .task-card.portfolio .subtoggle-btn.has-subtasks {
       background: var(--portfolio-soft) !important;
-      color: #80515b !important;
+      color: #C46428 !important;
       border-color: rgba(191, 126, 138, 0.42) !important;
     }
 
     .task-card.beacon .subtoggle-btn.has-subtasks {
       background: var(--beacon-soft) !important;
-      color: #51558f !important;
+      color: #5167A2 !important;
       border-color: rgba(128, 135, 199, 0.42) !important;
     }
 
     .task-card.income .subtoggle-btn.has-subtasks {
       background: var(--income-soft) !important;
-      color: #806838 !important;
+      color: #60693A !important;
       border-color: rgba(185, 151, 84, 0.44) !important;
     }
 
@@ -4590,6 +4596,7 @@
       position: relative !important;
       min-height: 30px !important;
       height: 30px !important;
+      background: rgba(247,247,244,0.94) !important;
       overflow: hidden !important;
       border-radius: 999px !important;
       padding: 0 8px !important;
@@ -4610,9 +4617,9 @@
       transition: width 0.25s ease !important;
     }
 
-    .weekly-run .top-run-segment.portfolio::before { background: linear-gradient(90deg, rgba(201,120,127,0.72), rgba(201,120,127,0.42)); }
-    .weekly-run .top-run-segment.beacon::before { background: linear-gradient(90deg, rgba(138,143,207,0.72), rgba(138,143,207,0.42)); }
-    .weekly-run .top-run-segment.income::before { background: linear-gradient(90deg, rgba(199,161,90,0.76), rgba(199,161,90,0.42)); }
+    .weekly-run .top-run-segment.portfolio::before { background: linear-gradient(90deg, rgba(196,100,40,0.32), rgba(196,100,40,0.32)); }
+    .weekly-run .top-run-segment.beacon::before { background: linear-gradient(90deg, rgba(81,103,162,0.32), rgba(81,103,162,0.32)); }
+    .weekly-run .top-run-segment.income::before { background: linear-gradient(90deg, rgba(96,105,58,0.32), rgba(96,105,58,0.32)); }
 
     .weekly-run .top-run-segment span,
     .weekly-run .top-run-segment strong {
@@ -4623,7 +4630,7 @@
 
     .weekly-run .top-run-segment strong {
       font-size: 13px !important;
-      color: #2d2f2e !important;
+      color: #2E3118 !important;
     }
 
     .weekly-history {
@@ -5019,7 +5026,7 @@
     /* Mobile focus screen: match the compact NOVA mini window while keeping Quick Add. */
     body.mobile-focus-mode {
       background: linear-gradient(135deg, #f5f5f2 0%, #eeeeeb 100%) !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       overflow-x: hidden !important;
     }
 
@@ -5080,7 +5087,7 @@
 
     body.mobile-focus-mode .mobile-focus-title {
       margin: 5px 0 0 !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 24px !important;
       line-height: 0.98 !important;
       letter-spacing: -0.045em !important;
@@ -5153,7 +5160,7 @@
     }
 
     body.mobile-focus-mode .mobile-score-number {
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 25px !important;
       font-weight: 820 !important;
       letter-spacing: -0.055em !important;
@@ -5172,7 +5179,7 @@
     body.mobile-focus-mode .mobile-progress-fill {
       height: 100% !important;
       border-radius: 999px !important;
-      background: #242424 !important;
+      background: #2E3118 !important;
       opacity: 0.9 !important;
     }
 
@@ -5211,12 +5218,12 @@
       border-radius: inherit !important;
     }
 
-    body.mobile-focus-mode .mini-allocation-segment.portfolio { background: rgba(201,120,127,0.20) !important; }
-    body.mobile-focus-mode .mini-allocation-segment.portfolio span { background: #c9787f !important; }
-    body.mobile-focus-mode .mini-allocation-segment.beacon { background: rgba(138,143,207,0.20) !important; }
-    body.mobile-focus-mode .mini-allocation-segment.beacon span { background: #8a8fcf !important; }
-    body.mobile-focus-mode .mini-allocation-segment.income { background: rgba(199,161,90,0.22) !important; }
-    body.mobile-focus-mode .mini-allocation-segment.income span { background: #c7a15a !important; }
+    body.mobile-focus-mode .mini-allocation-segment.portfolio { background: rgba(196,100,40,0.32) !important; }
+    body.mobile-focus-mode .mini-allocation-segment.portfolio span { background: #C46428 !important; }
+    body.mobile-focus-mode .mini-allocation-segment.beacon { background: rgba(81,103,162,0.32) !important; }
+    body.mobile-focus-mode .mini-allocation-segment.beacon span { background: #5167A2 !important; }
+    body.mobile-focus-mode .mini-allocation-segment.income { background: rgba(96,105,58,0.32) !important; }
+    body.mobile-focus-mode .mini-allocation-segment.income span { background: #60693A !important; }
 
     body.mobile-focus-mode .mobile-pin-estimate-bar {
       display: grid !important;
@@ -5238,7 +5245,7 @@
     }
 
     body.mobile-focus-mode .mobile-pin-estimate-bar strong {
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 12px !important;
       font-weight: 860 !important;
       font-variant-numeric: tabular-nums !important;
@@ -5306,7 +5313,7 @@
 
     body.mobile-focus-mode .mobile-cloud-notice b {
       display: block !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 13px !important;
       line-height: 1.25 !important;
       font-weight: 820 !important;
@@ -5345,24 +5352,24 @@
       bottom: 8px !important;
       width: 3px !important;
       border-radius: 0 999px 999px 0 !important;
-      background: #8a8fcf !important;
+      background: #5167A2 !important;
       opacity: 0.88 !important;
     }
 
     body.mobile-focus-mode .mobile-task.portfolio {
       border-width: 2.2px !important;
       border-color: rgba(18,18,18,0.88) !important;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.10), inset 3px 0 0 rgba(201,120,127,0.48), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.10), inset 3px 0 0 rgba(196,100,40,0.32), inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
     body.mobile-focus-mode .mobile-task.portfolio::before {
       width: 4px !important;
       opacity: 1 !important;
-      background: rgba(201,120,127,0.74) !important;
+      background: rgba(196,100,40,0.32) !important;
     }
 
-    body.mobile-focus-mode .mobile-task.beacon::before { background: #8a8fcf !important; }
-    body.mobile-focus-mode .mobile-task.income::before { background: #c7a15a !important; }
+    body.mobile-focus-mode .mobile-task.beacon::before { background: #5167A2 !important; }
+    body.mobile-focus-mode .mobile-task.income::before { background: #60693A !important; }
 
     body.mobile-focus-mode .mobile-task.running.portfolio,
     body.mobile-focus-mode .mobile-task.running.beacon,
@@ -5402,8 +5409,8 @@
 
     body.mobile-focus-mode .mobile-task.done .mobile-check,
     body.mobile-focus-mode .mobile-subtask.done .mobile-check {
-      background: #242424 !important;
-      border-color: #242424 !important;
+      background: #2E3118 !important;
+      border-color: #2E3118 !important;
       color: #fff !important;
     }
 
@@ -5412,7 +5419,7 @@
     }
 
     body.mobile-focus-mode .mobile-task-title {
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 13.2px !important;
       line-height: 1.34 !important;
       font-weight: 760 !important;
@@ -5506,7 +5513,7 @@
       justify-self: stretch !important;
       color: #fff !important;
       border-color: #d9d9d6 !important;
-      background: linear-gradient(90deg, #242424 var(--timer-left,100%), rgba(220,220,216,0.95) var(--timer-left,100%)) !important;
+      background: linear-gradient(90deg, #2E3118 var(--timer-left,100%), rgba(220,220,216,0.95) var(--timer-left,100%)) !important;
       font-variant-numeric: tabular-nums !important;
       font-size: 12px !important;
     }
@@ -5550,7 +5557,7 @@
     }
 
     body.mobile-focus-mode .mobile-subtask-title {
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 12.6px !important;
       line-height: 1.22 !important;
       font-weight: 700 !important;
@@ -5611,7 +5618,7 @@
       border: 1px solid rgba(24,24,24,0.10) !important;
       border-radius: 999px !important;
       background: rgba(255,255,255,0.90) !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       box-shadow: 0 8px 22px rgba(0,0,0,0.13), inset 0 1px 0 rgba(255,255,255,0.76) !important;
       font-size: 13px !important;
       font-weight: 820 !important;
@@ -5645,7 +5652,7 @@
     body.mobile-focus-mode .mobile-add-sheet-head b {
       font-size: 15px !important;
       font-weight: 820 !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
     }
 
     body.mobile-focus-mode .mobile-add-close {
@@ -5684,7 +5691,7 @@
       border: 1px solid rgba(24,24,24,0.10) !important;
       border-radius: 999px !important;
       background: rgba(255,255,255,0.68) !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       padding: 8px 12px !important;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.72) !important;
       font-size: 12px !important;
@@ -5712,7 +5719,7 @@
       margin-top: 2px !important;
       flex: 0 0 auto !important;
       border-radius: 999px !important;
-      background: #242424 !important;
+      background: #2E3118 !important;
       color: #fff !important;
       font-size: 13px !important;
       font-weight: 820 !important;
@@ -6715,9 +6722,9 @@
       color: #696963 !important;
     }
 
-    body.mobile-focus-mode .mini-done-row.portfolio { border-left: 3px solid rgba(201,120,127,0.30) !important; }
-    body.mobile-focus-mode .mini-done-row.beacon { border-left: 3px solid rgba(138,143,207,0.28) !important; }
-    body.mobile-focus-mode .mini-done-row.income { border-left: 3px solid rgba(199,161,90,0.30) !important; }
+    body.mobile-focus-mode .mini-done-row.portfolio { border-left: 3px solid rgba(196,100,40,0.32) !important; }
+    body.mobile-focus-mode .mini-done-row.beacon { border-left: 3px solid rgba(81,103,162,0.32) !important; }
+    body.mobile-focus-mode .mini-done-row.income { border-left: 3px solid rgba(96,105,58,0.32) !important; }
 
     body.mobile-focus-mode .mini-done-check {
       display: grid !important;
@@ -6791,15 +6798,15 @@
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group.portfolio .mobile-task-title {
-      color: #8f4149 !important;
+      color: #C46428 !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group.beacon .mobile-task-title {
-      color: #545aa3 !important;
+      color: #5167A2 !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group.income .mobile-task-title {
-      color: #8b6b2e !important;
+      color: #60693A !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-meta {
@@ -6893,25 +6900,25 @@
     body.mobile-focus-mode .mobile-task.has-running-subtask.portfolio {
       box-shadow:
         0 11px 24px rgba(0,0,0,0.15),
-        inset 5px 0 0 rgba(201,120,127,0.86),
+        inset 5px 0 0 rgba(196,100,40,0.32),
         inset 0 1px 0 rgba(255,255,255,0.70),
-        0 0 0 3px rgba(201,120,127,0.22) !important;
+        0 0 0 3px rgba(196,100,40,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.beacon {
       box-shadow:
         0 11px 24px rgba(0,0,0,0.15),
-        inset 5px 0 0 rgba(138,143,207,0.92),
+        inset 5px 0 0 rgba(81,103,162,0.32),
         inset 0 1px 0 rgba(255,255,255,0.70),
-        0 0 0 3px rgba(138,143,207,0.24) !important;
+        0 0 0 3px rgba(81,103,162,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.income {
       box-shadow:
         0 11px 24px rgba(0,0,0,0.15),
-        inset 5px 0 0 rgba(199,161,90,0.94),
+        inset 5px 0 0 rgba(96,105,58,0.32),
         inset 0 1px 0 rgba(255,255,255,0.70),
-        0 0 0 3px rgba(199,161,90,0.24) !important;
+        0 0 0 3px rgba(96,105,58,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask::after {
@@ -6925,7 +6932,7 @@
       align-items: center !important;
       padding: 0 8px !important;
       border-radius: 999px !important;
-      background: #242424 !important;
+      background: #2E3118 !important;
       color: #fff !important;
       font-size: 10px !important;
       font-weight: 860 !important;
@@ -6934,9 +6941,9 @@
       pointer-events: none !important;
     }
 
-    body.mobile-focus-mode .mobile-task.has-running-subtask.portfolio::after { background: #8f4149 !important; }
-    body.mobile-focus-mode .mobile-task.has-running-subtask.beacon::after { background: #545aa3 !important; }
-    body.mobile-focus-mode .mobile-task.has-running-subtask.income::after { background: #806838 !important; }
+    body.mobile-focus-mode .mobile-task.has-running-subtask.portfolio::after { background: #C46428 !important; }
+    body.mobile-focus-mode .mobile-task.has-running-subtask.beacon::after { background: #5167A2 !important; }
+    body.mobile-focus-mode .mobile-task.has-running-subtask.income::after { background: #60693A !important; }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) {
       border-width: 1.6px !important;
@@ -6955,29 +6962,29 @@
       bottom: 6px !important;
       width: 5px !important;
       border-radius: 999px !important;
-      background: #242424 !important;
+      background: #2E3118 !important;
       opacity: 0.95 !important;
       pointer-events: none !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) {
-      border-color: rgba(201,120,127,0.86) !important;
-      background: linear-gradient(90deg, rgba(247,228,229,0.94), rgba(255,255,255,0.94) 58%) !important;
+      border-color: rgba(196,100,40,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(255,255,255,0.94) 58%) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) {
-      border-color: rgba(138,143,207,0.90) !important;
-      background: linear-gradient(90deg, rgba(232,233,248,0.98), rgba(255,255,255,0.94) 58%) !important;
+      border-color: rgba(81,103,162,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(255,255,255,0.94) 58%) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-      border-color: rgba(199,161,90,0.90) !important;
+      border-color: rgba(96,105,58,0.32) !important;
       background: linear-gradient(90deg, rgba(245,234,209,0.98), rgba(255,255,255,0.94) 58%) !important;
     }
 
-    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused)::before { background: #c9787f !important; }
-    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused)::before { background: #8a8fcf !important; }
-    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused)::before { background: #c7a15a !important; }
+    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused)::before { background: #C46428 !important; }
+    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused)::before { background: #5167A2 !important; }
+    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused)::before { background: #60693A !important; }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-subtask-title {
       color: #181818 !important;
@@ -6995,15 +7002,15 @@
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: linear-gradient(90deg, #8f4149, #c9787f) !important;
+      background: linear-gradient(90deg, #C46428, #C46428) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: linear-gradient(90deg, #545aa3, #8a8fcf) !important;
+      background: linear-gradient(90deg, #5167A2, #5167A2) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: linear-gradient(90deg, #806838, #c7a15a) !important;
+      background: linear-gradient(90deg, #60693A, #60693A) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
@@ -7052,27 +7059,27 @@
       background: #fbf2f3 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #c9787f,
+        inset 7px 0 0 #C46428,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(201,120,127,0.28) !important;
+        0 0 0 4px rgba(196,100,40,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.beacon {
       background: #f3f4fb !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #8a8fcf,
+        inset 7px 0 0 #5167A2,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(138,143,207,0.30) !important;
+        0 0 0 4px rgba(81,103,162,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.income {
       background: #fbf6e9 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #c7a15a,
+        inset 7px 0 0 #60693A,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(199,161,90,0.30) !important;
+        0 0 0 4px rgba(96,105,58,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask::after {
@@ -7103,30 +7110,30 @@
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) {
-      border-color: #c9787f !important;
+      border-color: #C46428 !important;
       background: #f4d9dc !important;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.78),
         0 8px 16px rgba(0,0,0,0.15),
-        0 0 0 4px rgba(201,120,127,0.22) !important;
+        0 0 0 4px rgba(196,100,40,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) {
-      border-color: #8a8fcf !important;
+      border-color: #5167A2 !important;
       background: #dcdef3 !important;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.78),
         0 8px 16px rgba(0,0,0,0.15),
-        0 0 0 4px rgba(138,143,207,0.24) !important;
+        0 0 0 4px rgba(81,103,162,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-      border-color: #c7a15a !important;
+      border-color: #60693A !important;
       background: #f1e2bd !important;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.78),
         0 8px 16px rgba(0,0,0,0.15),
-        0 0 0 4px rgba(199,161,90,0.24) !important;
+        0 0 0 4px rgba(96,105,58,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-subtask-title {
@@ -7145,15 +7152,15 @@
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: #8f4149 !important;
+      background: #C46428 !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: #545aa3 !important;
+      background: #5167A2 !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: #806838 !important;
+      background: #60693A !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
@@ -7249,9 +7256,9 @@
       background: #fbf2f3 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #c9787f,
+        inset 7px 0 0 #C46428,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(201,120,127,0.28) !important;
+        0 0 0 4px rgba(196,100,40,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused),
@@ -7259,9 +7266,9 @@
       background: #f3f4fb !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #8a8fcf,
+        inset 7px 0 0 #5167A2,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(138,143,207,0.30) !important;
+        0 0 0 4px rgba(81,103,162,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused),
@@ -7269,9 +7276,9 @@
       background: #fbf6e9 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #c7a15a,
+        inset 7px 0 0 #60693A,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(199,161,90,0.30) !important;
+        0 0 0 4px rgba(96,105,58,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused)::after,
@@ -7286,7 +7293,7 @@
       align-items: center !important;
       padding: 0 10px !important;
       border-radius: 999px !important;
-      background: #242424 !important;
+      background: #2E3118 !important;
       color: #fff !important;
       font-size: 10.5px !important;
       font-weight: 900 !important;
@@ -7296,11 +7303,11 @@
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused)::after,
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused)::after { background: #8f4149 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused)::after { background: #C46428 !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused)::after,
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused)::after { background: #545aa3 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused)::after { background: #5167A2 !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused)::after,
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused)::after { background: #806838 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused)::after { background: #60693A !important; }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-task-title,
     body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-task-title {
@@ -7324,11 +7331,11 @@
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #8f4149 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #C46428 !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #545aa3 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #5167A2 !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #806838 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #60693A !important; }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before,
     body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
@@ -7424,7 +7431,7 @@
     }
 
     body.mobile-focus-mode .mobile-target-picker-title b {
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 15px !important;
       font-weight: 820 !important;
       line-height: 1.2 !important;
@@ -7468,7 +7475,7 @@
       border: 1px solid rgba(24,24,24,0.10) !important;
       border-radius: 999px !important;
       background: rgba(255,255,255,0.72) !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       padding: 8px 13px !important;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.72) !important;
       font-size: 13px !important;
@@ -7480,7 +7487,7 @@
       min-height: 40px !important;
       border: 0 !important;
       border-radius: 999px !important;
-      background: #242424 !important;
+      background: #2E3118 !important;
       color: #fff !important;
       font-size: 12px !important;
       font-weight: 820 !important;
@@ -7506,8 +7513,8 @@
     }
 
     body.mobile-focus-mode .mobile-target-picker-preset.active {
-      background: #242424 !important;
-      border-color: #242424 !important;
+      background: #2E3118 !important;
+      border-color: #2E3118 !important;
       color: #fff !important;
     }
 
@@ -7642,7 +7649,7 @@
       letter-spacing: -0.04em !important;
       white-space: nowrap !important;
     }
-    .today-load-panel.red .load-overrun-value { color: #8f4149 !important; }
+    .today-load-panel.red .load-overrun-value { color: #C46428 !important; }
   </style>
 
 
@@ -7710,13 +7717,13 @@
 
     .today-load-panel .load-grade.leisure { color: #567d5b !important; }
     .today-load-panel .load-grade.steady { color: #4f5f73 !important; }
-    .today-load-panel .load-grade.max { color: #8b6b2e !important; }
-    .today-load-panel .load-grade.over { color: #8f4149 !important; }
+    .today-load-panel .load-grade.max { color: #60693A !important; }
+    .today-load-panel .load-grade.over { color: #C46428 !important; }
 
     .today-load-panel .load-percent-value {
       grid-column: 2 !important;
       grid-row: 1 !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 25px !important;
       font-weight: 820 !important;
       line-height: 0.95 !important;
@@ -7831,12 +7838,12 @@
       box-shadow: none !important;
     }
 
-    .weekly-matrix-dot.active.portfolio { box-shadow: 0 0 0 2px rgba(201,120,127,0.11) !important; }
-    .weekly-matrix-dot.active.beacon { box-shadow: 0 0 0 2px rgba(138,143,207,0.11) !important; }
-    .weekly-matrix-dot.active.income { box-shadow: 0 0 0 2px rgba(199,161,90,0.11) !important; }
-    .weekly-matrix-dot.partial.portfolio { box-shadow: 0 0 0 1px rgba(201,120,127,0.10) !important; }
-    .weekly-matrix-dot.partial.beacon { box-shadow: 0 0 0 1px rgba(138,143,207,0.10) !important; }
-    .weekly-matrix-dot.partial.income { box-shadow: 0 0 0 1px rgba(199,161,90,0.10) !important; }
+    .weekly-matrix-dot.active.portfolio { box-shadow: 0 0 0 2px rgba(196,100,40,0.32) !important; }
+    .weekly-matrix-dot.active.beacon { box-shadow: 0 0 0 2px rgba(81,103,162,0.32) !important; }
+    .weekly-matrix-dot.active.income { box-shadow: 0 0 0 2px rgba(96,105,58,0.32) !important; }
+    .weekly-matrix-dot.partial.portfolio { box-shadow: 0 0 0 1px rgba(196,100,40,0.32) !important; }
+    .weekly-matrix-dot.partial.beacon { box-shadow: 0 0 0 1px rgba(81,103,162,0.32) !important; }
+    .weekly-matrix-dot.partial.income { box-shadow: 0 0 0 1px rgba(96,105,58,0.32) !important; }
 
     .weekly-matrix-name {
       padding-left: 1px !important;
@@ -7914,7 +7921,7 @@
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       white-space: nowrap !important;
-      color: #8f4149 !important;
+      color: #C46428 !important;
       font-size: 10px !important;
       font-weight: 820 !important;
       letter-spacing: 0.06em !important;
@@ -7925,7 +7932,7 @@
       min-width: 86px !important;
       border: 0 !important;
       background: transparent !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       text-align: right !important;
       font-size: 20px !important;
       font-weight: 820 !important;
@@ -7952,7 +7959,7 @@
 
     .deadline-bridge-input:focus {
       border-color: rgba(143,65,73,0.32) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 3px rgba(201,120,127,0.10) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 3px rgba(196,100,40,0.32) !important;
     }
 
     .achievement-strip {
@@ -8188,7 +8195,7 @@
     }
 
     .today-load-panel .load-focus-total strong {
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 30px !important;
       font-weight: 860 !important;
       line-height: 0.95 !important;
@@ -8311,7 +8318,7 @@
         border: 1px solid rgba(24, 24, 24, 0.18) !important;
         border-radius: 999px !important;
         background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(238,238,235,0.74)) !important;
-        color: #242424 !important;
+        color: #2E3118 !important;
         box-shadow:
           0 5px 13px rgba(0,0,0,0.07),
           inset 0 1px 0 rgba(255,255,255,0.78) !important;
@@ -8599,9 +8606,9 @@
       background: rgba(255,255,255,0.34) !important;
     }
 
-    #focusReportDashboard .ops-bar-seg.portfolio { background: rgba(201,120,127,0.64) !important; }
-    #focusReportDashboard .ops-bar-seg.beacon { background: rgba(138,143,207,0.64) !important; }
-    #focusReportDashboard .ops-bar-seg.income { background: rgba(199,161,90,0.70) !important; }
+    #focusReportDashboard .ops-bar-seg.portfolio { background: rgba(196,100,40,0.32) !important; }
+    #focusReportDashboard .ops-bar-seg.beacon { background: rgba(81,103,162,0.32) !important; }
+    #focusReportDashboard .ops-bar-seg.income { background: rgba(96,105,58,0.32) !important; }
 
     #focusReportDashboard .ops-day-label {
       color: #6f706b !important;
@@ -8840,9 +8847,9 @@
       border-radius: inherit !important;
     }
 
-    #focusReportDashboard .ops-compare-fill.portfolio { background: rgba(201,120,127,0.82) !important; }
-    #focusReportDashboard .ops-compare-fill.beacon { background: rgba(138,143,207,0.82) !important; }
-    #focusReportDashboard .ops-compare-fill.income { background: rgba(199,161,90,0.82) !important; }
+    #focusReportDashboard .ops-compare-fill.portfolio { background: rgba(196,100,40,0.32) !important; }
+    #focusReportDashboard .ops-compare-fill.beacon { background: rgba(81,103,162,0.32) !important; }
+    #focusReportDashboard .ops-compare-fill.income { background: rgba(96,105,58,0.32) !important; }
     #focusReportDashboard .ops-compare-prev-fill { background: rgba(160,160,154,0.22) !important; }
 
     #focusReportDashboard .ops-compare-meta {
@@ -8920,9 +8927,9 @@
       background: rgba(150,150,145,0.12) !important;
     }
 
-    #focusReportDashboard .ops-heatmap-cell.portfolio { background: rgba(201,120,127,var(--heat,0.10)) !important; }
-    #focusReportDashboard .ops-heatmap-cell.beacon { background: rgba(138,143,207,var(--heat,0.10)) !important; }
-    #focusReportDashboard .ops-heatmap-cell.income { background: rgba(199,161,90,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.portfolio { background: rgba(196,100,40,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.beacon { background: rgba(81,103,162,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.income { background: rgba(96,105,58,var(--heat,0.10)) !important; }
 
     @media (max-width: 1480px) {
       #focusReportDashboard {
@@ -9468,7 +9475,7 @@
       background: var(--portfolio) !important;
       border-color: rgba(135, 72, 79, 0.72) !important;
       color: #fff !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(201,120,127,0.22) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(196,100,40,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.beacon > .task-main-row .check,
@@ -9478,7 +9485,7 @@
       background: var(--beacon) !important;
       border-color: rgba(78, 84, 151, 0.72) !important;
       color: #fff !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(138,143,207,0.22) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(81,103,162,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.income > .task-main-row .check,
@@ -9488,7 +9495,7 @@
       background: var(--income) !important;
       border-color: rgba(139, 106, 45, 0.72) !important;
       color: #fff !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(199,161,90,0.22) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(96,105,58,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .panel-quote-box {
@@ -9509,20 +9516,20 @@
     }
 
     body:not(.mobile-focus-mode) .portfolio .panel-quote-box {
-      background: linear-gradient(90deg, rgba(247,228,229,0.98), rgba(255,250,250,0.72)) !important;
-      border-color: rgba(201,120,127,0.42) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(255,250,250,0.72)) !important;
+      border-color: rgba(196,100,40,0.32) !important;
       color: #6f383f !important;
     }
 
     body:not(.mobile-focus-mode) .beacon .panel-quote-box {
-      background: linear-gradient(90deg, rgba(232,233,248,0.98), rgba(250,250,255,0.72)) !important;
-      border-color: rgba(138,143,207,0.42) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(250,250,255,0.72)) !important;
+      border-color: rgba(81,103,162,0.32) !important;
       color: #454a87 !important;
     }
 
     body:not(.mobile-focus-mode) .income .panel-quote-box {
       background: linear-gradient(90deg, rgba(245,234,209,0.98), rgba(255,253,247,0.72)) !important;
-      border-color: rgba(199,161,90,0.46) !important;
+      border-color: rgba(96,105,58,0.32) !important;
       color: #725726 !important;
     }
 
@@ -10548,9 +10555,9 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #8f4149 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #545aa3 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #806838 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #C46428 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5167A2 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #60693A !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.paused {
       background: #8f8e89 !important;
@@ -10638,9 +10645,9 @@
       will-change: transform, opacity;
     }
 
-    .nova-reward-pop.portfolio { border-color: rgba(201,120,127,0.30); }
-    .nova-reward-pop.beacon { border-color: rgba(138,143,207,0.32); }
-    .nova-reward-pop.income { border-color: rgba(199,161,90,0.34); }
+    .nova-reward-pop.portfolio { border-color: rgba(196,100,40,0.32); }
+    .nova-reward-pop.beacon { border-color: rgba(81,103,162,0.32); }
+    .nova-reward-pop.income { border-color: rgba(96,105,58,0.32); }
 
     .nova-reward-coins {
       position: relative;
@@ -10756,7 +10763,7 @@
       border: var(--nova-pin-stroke) solid var(--portfolio) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(201,120,127,0.38),
+        inset 0 0 0 1px rgba(196,100,40,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -10766,7 +10773,7 @@
       border: var(--nova-pin-stroke) solid var(--beacon) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(138,143,207,0.38),
+        inset 0 0 0 1px rgba(81,103,162,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -10776,7 +10783,7 @@
       border: var(--nova-pin-stroke) solid var(--income) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(199,161,90,0.40),
+        inset 0 0 0 1px rgba(96,105,58,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -10817,17 +10824,17 @@
 
     body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
-      border-color: rgba(201,120,127,0.86) !important;
-      background: linear-gradient(90deg, rgba(247,228,229,0.90), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(196,100,40,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
-      border-color: rgba(138,143,207,0.90) !important;
-      background: linear-gradient(90deg, rgba(232,233,248,0.92), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(81,103,162,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
-      border-color: rgba(199,161,90,0.90) !important;
+      border-color: rgba(96,105,58,0.32) !important;
       background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
     }
 
@@ -10852,9 +10859,9 @@
       transform-origin: center !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #8f4149 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #545aa3 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #806838 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #C46428 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5167A2 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #60693A !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
       content: "" !important;
@@ -10972,7 +10979,7 @@
       border: 1px solid rgba(255,255,255,0.78);
       border-radius: 999px;
       background: rgba(255,255,255,0.62);
-      color: #242424;
+      color: #2E3118;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.70), 0 3px 10px rgba(72,68,60,0.05);
       padding: 0 13px;
       font-size: 13px;
@@ -10998,7 +11005,7 @@
       font-weight: 760;
       cursor: pointer;
     }
-    .routine-days input { accent-color: #242424; }
+    .routine-days input { accent-color: #2E3118; }
     .routine-subtasks-head {
       display: flex;
       justify-content: space-between;
@@ -11047,7 +11054,7 @@
       height: 38px;
       border: 0;
       border-radius: 999px;
-      background: #242424;
+      background: #2E3118;
       color: #fff;
       font-size: 13px;
       font-weight: 850;
@@ -11086,9 +11093,9 @@
     body:not(.mobile-focus-mode) .portfolio .panel-quote-box { color: var(--portfolio) !important; }
     body:not(.mobile-focus-mode) .beacon .panel-quote-box { color: var(--beacon) !important; }
     body:not(.mobile-focus-mode) .income .panel-quote-box { color: var(--income) !important; }
-    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder { color: rgba(201,120,127,0.62) !important; }
-    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder { color: rgba(138,143,207,0.68) !important; }
-    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder { color: rgba(199,161,90,0.70) !important; }
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder { color: rgba(196,100,40,0.32) !important; }
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder { color: rgba(81,103,162,0.32) !important; }
+    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder { color: rgba(96,105,58,0.32) !important; }
 
     /* Completion feedback: one clean pop near the finished item. */
     .task-card.clearing::after,
@@ -11116,9 +11123,9 @@
       font-weight: 950 !important;
       letter-spacing: -0.01em !important;
     }
-    .nova-reward-pop.portfolio strong { color: #8f4149 !important; }
-    .nova-reward-pop.beacon strong { color: #545aa3 !important; }
-    .nova-reward-pop.income strong { color: #806838 !important; }
+    .nova-reward-pop.portfolio strong { color: #C46428 !important; }
+    .nova-reward-pop.beacon strong { color: #5167A2 !important; }
+    .nova-reward-pop.income strong { color: #60693A !important; }
 
     /* PC timer focus: no gradient card background; paused button must be grey. */
     body:not(.mobile-focus-mode) .task-card.running.portfolio,
@@ -11137,11 +11144,11 @@
       background-image: none !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.portfolio,
-    body:not(.mobile-focus-mode) .subtask-row.running.portfolio { border-color: rgba(201,120,127,0.86) !important; }
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio { border-color: rgba(196,100,40,0.32) !important; }
     body:not(.mobile-focus-mode) .task-card.running.beacon,
-    body:not(.mobile-focus-mode) .subtask-row.running.beacon { border-color: rgba(138,143,207,0.88) !important; }
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon { border-color: rgba(81,103,162,0.32) !important; }
     body:not(.mobile-focus-mode) .task-card.running.income,
-    body:not(.mobile-focus-mode) .subtask-row.running.income { border-color: rgba(199,161,90,0.88) !important; }
+    body:not(.mobile-focus-mode) .subtask-row.running.income { border-color: rgba(96,105,58,0.32) !important; }
     body:not(.mobile-focus-mode) .pc-timer.paused,
     body:not(.mobile-focus-mode) .pc-timer.running.paused,
     body:not(.mobile-focus-mode) .pc-timer.paused.exceeded {
@@ -11170,24 +11177,24 @@
     body:not(.mobile-focus-mode) .subtask-row.clearing.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="portfolio"] {
       background: rgba(250, 243, 244, 0.98) !important;
-      border-color: rgba(201,120,127,0.62) !important;
-      box-shadow: inset 0 0 0 1px rgba(201,120,127,0.18), 0 4px 12px rgba(201,120,127,0.08) !important;
+      border-color: rgba(196,100,40,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(196,100,40,0.32), 0 4px 12px rgba(196,100,40,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="beacon"] {
       background: rgba(244, 245, 250, 0.98) !important;
-      border-color: rgba(138,143,207,0.62) !important;
-      box-shadow: inset 0 0 0 1px rgba(138,143,207,0.18), 0 4px 12px rgba(138,143,207,0.08) !important;
+      border-color: rgba(81,103,162,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(81,103,162,0.32), 0 4px 12px rgba(81,103,162,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="income"] {
       background: rgba(250, 247, 239, 0.98) !important;
-      border-color: rgba(199,161,90,0.64) !important;
-      box-shadow: inset 0 0 0 1px rgba(199,161,90,0.20), 0 4px 12px rgba(199,161,90,0.08) !important;
+      border-color: rgba(96,105,58,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(96,105,58,0.32), 0 4px 12px rgba(96,105,58,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done,
@@ -11199,21 +11206,21 @@
     body:not(.mobile-focus-mode) .subtask-row.done.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="portfolio"] {
       background: rgba(248, 244, 244, 0.74) !important;
-      border-color: rgba(201,120,127,0.26) !important;
+      border-color: rgba(196,100,40,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="beacon"] {
       background: rgba(245, 246, 250, 0.74) !important;
-      border-color: rgba(138,143,207,0.26) !important;
+      border-color: rgba(81,103,162,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="income"] {
       background: rgba(249, 247, 241, 0.76) !important;
-      border-color: rgba(199,161,90,0.28) !important;
+      border-color: rgba(96,105,58,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done,
@@ -11224,19 +11231,19 @@
     body.mobile-focus-mode .mobile-task.done.portfolio,
     body.mobile-focus-mode .mobile-subtask.done[data-area="portfolio"] {
       background: rgba(248, 244, 244, 0.70) !important;
-      border-color: rgba(201,120,127,0.28) !important;
+      border-color: rgba(196,100,40,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done.beacon,
     body.mobile-focus-mode .mobile-subtask.done[data-area="beacon"] {
       background: rgba(245, 246, 250, 0.70) !important;
-      border-color: rgba(138,143,207,0.28) !important;
+      border-color: rgba(81,103,162,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done.income,
     body.mobile-focus-mode .mobile-subtask.done[data-area="income"] {
       background: rgba(249, 247, 241, 0.72) !important;
-      border-color: rgba(199,161,90,0.30) !important;
+      border-color: rgba(96,105,58,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done.portfolio .mobile-check,
@@ -11302,24 +11309,24 @@
     body:not(.mobile-focus-mode) .subtask-row.clearing.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="portfolio"] {
       background: rgba(250,245,246,0.98) !important;
-      border-color: rgba(201,120,127,0.48) !important;
-      box-shadow: inset 0 0 0 1px rgba(201,120,127,0.12), 0 4px 12px rgba(201,120,127,0.06) !important;
+      border-color: rgba(196,100,40,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(196,100,40,0.32), 0 4px 12px rgba(196,100,40,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="beacon"] {
       background: rgba(246,247,252,0.98) !important;
-      border-color: rgba(138,143,207,0.48) !important;
-      box-shadow: inset 0 0 0 1px rgba(138,143,207,0.12), 0 4px 12px rgba(138,143,207,0.06) !important;
+      border-color: rgba(81,103,162,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(81,103,162,0.32), 0 4px 12px rgba(81,103,162,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="income"] {
       background: rgba(251,248,242,0.98) !important;
-      border-color: rgba(199,161,90,0.50) !important;
-      box-shadow: inset 0 0 0 1px rgba(199,161,90,0.13), 0 4px 12px rgba(199,161,90,0.06) !important;
+      border-color: rgba(96,105,58,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(96,105,58,0.32), 0 4px 12px rgba(96,105,58,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing::after,
@@ -11338,21 +11345,21 @@
     body:not(.mobile-focus-mode) .subtask-row.done.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="portfolio"] {
       background: rgba(248,245,246,0.72) !important;
-      border-color: rgba(201,120,127,0.24) !important;
+      border-color: rgba(196,100,40,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="beacon"] {
       background: rgba(246,247,251,0.72) !important;
-      border-color: rgba(138,143,207,0.24) !important;
+      border-color: rgba(81,103,162,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="income"] {
       background: rgba(250,248,243,0.74) !important;
-      border-color: rgba(199,161,90,0.26) !important;
+      border-color: rgba(96,105,58,0.32) !important;
     }
   </style>
 
@@ -11449,13 +11456,17 @@
       body:not(.mobile-focus-mode) .portfolio .add-btn,
       body:not(.mobile-focus-mode) .beacon .add-btn,
       body:not(.mobile-focus-mode) .income .add-btn {
-        background: #242424 !important;
+        background: #2E3118 !important;
         color: #fff !important;
       }
 
       body:not(.mobile-focus-mode) .progress-fill {
-        background: linear-gradient(90deg, #c9787f 0 60%, #8a8fcf 60% 90%, #c7a15a 90% 100%) !important;
+        background: linear-gradient(90deg, var(--portfolio) 0 60%, var(--beacon) 60% 90%, var(--income) 90% 100%) !important;
       }
+
+      body:not(.mobile-focus-mode) .panel.portfolio .progress-fill { background: var(--portfolio) !important; }
+      body:not(.mobile-focus-mode) .panel.beacon .progress-fill { background: var(--beacon) !important; }
+      body:not(.mobile-focus-mode) .panel.income .progress-fill { background: var(--income) !important; }
     }
 
     /* Mobile focus: compact top card, one PIN label, text-only saved state, neutral cards with color accents. */
@@ -11532,7 +11543,7 @@
       display: block !important;
       width: 100% !important;
       margin: 0 0 3px !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 35px !important;
       line-height: 0.95 !important;
       font-weight: 850 !important;
@@ -11643,15 +11654,15 @@
     }
 
     body.mobile-focus-mode .mobile-task.portfolio {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(201,120,127,0.58), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(196,100,40,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
     }
 
     body.mobile-focus-mode .mobile-task.beacon {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(138,143,207,0.58), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(81,103,162,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
     }
 
     body.mobile-focus-mode .mobile-task.income {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(199,161,90,0.60), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(96,105,58,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
     }
 
     body.mobile-focus-mode .mobile-task.portfolio::before,
@@ -11671,7 +11682,7 @@
       font-size: 14.8px !important;
       line-height: 1.32 !important;
       font-weight: 800 !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
     }
 
     body.mobile-focus-mode .mobile-subtasks {
@@ -11698,6 +11709,156 @@
         padding: 0 7px !important;
         font-size: 10px !important;
       }
+    }
+  </style>
+
+  <style id="project-pin-color-patch">
+    body:not(.mobile-focus-mode) .task-card.portfolio .pin-btn.active,
+    body:not(.mobile-focus-mode) .subtask-row.portfolio .subtask-pin.active {
+      background: var(--portfolio) !important;
+      border-color: var(--portfolio) !important;
+      color: #fff !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.beacon .pin-btn.active,
+    body:not(.mobile-focus-mode) .subtask-row.beacon .subtask-pin.active {
+      background: var(--beacon) !important;
+      border-color: var(--beacon) !important;
+      color: #fff !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.income .pin-btn.active,
+    body:not(.mobile-focus-mode) .subtask-row.income .subtask-pin.active {
+      background: var(--income) !important;
+      border-color: var(--income) !important;
+      color: #fff !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.portfolio .mobile-pin.active {
+      background: var(--portfolio) !important;
+      border-color: var(--portfolio) !important;
+      color: #fff !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.beacon .mobile-pin.active {
+      background: var(--beacon) !important;
+      border-color: var(--beacon) !important;
+      color: #fff !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.income .mobile-pin.active {
+      background: var(--income) !important;
+      border-color: var(--income) !important;
+      color: #fff !important;
+    }
+  </style>
+
+  <style id="panel-quote-later-gray-bg-patch">
+    .panel-quote-box,
+    .portfolio .panel-quote-box,
+    .beacon .panel-quote-box,
+    .income .panel-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+    body:not(.mobile-focus-mode) .income .panel-quote-box,
+    .panel-quote-box:focus,
+    .portfolio .panel-quote-box:focus,
+    .beacon .panel-quote-box:focus,
+    .income .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .income .panel-quote-box:focus {
+      background: rgba(236,236,233,0.72) !important;
+      background-image: none !important;
+    }
+  </style>
+
+  <style id="task-input-bright-bg-and-weekly-gray-patch">
+    .task-input-row input,
+    body:not(.mobile-focus-mode) .task-input-row input,
+    body.mobile-focus-mode #mobileQuickTitle {
+      background: #E8E2C5 !important;
+      background-image: none !important;
+    }
+
+    .top-time-log.weekly-run,
+    body:not(.mobile-focus-mode) .top-time-log.weekly-run {
+      background: rgba(236,236,233,0.72) !important;
+      background-image: none !important;
+      box-shadow: var(--shadow-inset) !important;
+    }
+
+    .weekly-run .top-time-title,
+    .weekly-run .top-time-score,
+    body:not(.mobile-focus-mode) .weekly-run .top-time-title,
+    body:not(.mobile-focus-mode) .weekly-run .top-time-score {
+      background: transparent !important;
+      background-image: none !important;
+    }
+  </style>
+
+  <style id="completion-reward-instant-polish-patch">
+    .nova-reward-pop {
+      gap: 10px !important;
+      padding: 10px 14px 10px 11px !important;
+      border-width: 2px !important;
+      box-shadow:
+        0 18px 38px rgba(35,35,33,0.24),
+        0 0 0 5px rgba(255,255,255,0.44),
+        inset 0 1px 0 rgba(255,255,255,0.86) !important;
+      animation: novaRewardInstantBoost 1120ms cubic-bezier(.16,.96,.2,1) forwards !important;
+    }
+
+    .nova-reward-pop.portfolio {
+      background: color-mix(in srgb, #fff 88%, var(--portfolio) 12%) !important;
+      border-color: var(--portfolio) !important;
+    }
+
+    .nova-reward-pop.beacon {
+      background: color-mix(in srgb, #fff 88%, var(--beacon) 12%) !important;
+      border-color: var(--beacon) !important;
+    }
+
+    .nova-reward-pop.income {
+      background: color-mix(in srgb, #fff 88%, var(--income) 12%) !important;
+      border-color: var(--income) !important;
+    }
+
+    .nova-reward-pop strong {
+      font-size: 16px !important;
+      line-height: 1 !important;
+      transform-origin: center !important;
+      animation: novaRewardNumberKick 620ms cubic-bezier(.2,1.18,.22,1) both !important;
+    }
+
+    .nova-reward-coins {
+      transform: scale(1.12);
+    }
+
+    .task-card.clearing.rewarding,
+    .subtask-row.clearing.rewarding {
+      animation: clearPulseRewarding 0.26s ease both !important;
+    }
+
+    @keyframes novaRewardInstantBoost {
+      0% { opacity: 0; transform: translate(-50%, 4px) scale(.86); filter: saturate(1.08); }
+      18% { opacity: 1; transform: translate(-50%, -14px) scale(1.08); }
+      48% { opacity: 1; transform: translate(-50%, -20px) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -34px) scale(.96); filter: saturate(1); }
+    }
+
+    @keyframes novaRewardNumberKick {
+      0% { transform: scale(.82); }
+      36% { transform: scale(1.18); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes clearPulseRewarding {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.018); }
+      100% { transform: scale(.998); opacity: .84; }
     }
   </style>
 
@@ -13234,6 +13395,28 @@ for update using (true) with check (true);</pre>
       window.setTimeout(() => pop.remove(), 1320);
     }
 
+    const immediateCompletionRewardKeys = new Set();
+
+    function completionRewardKey(area, taskId, subtaskId = null) {
+      return `${area || ""}::${taskId || ""}::${subtaskId || ""}`;
+    }
+
+    function showImmediateCompletionReward(area, taskId, subtaskId = null, anchorElement = null, estimateSeconds = 0) {
+      const rewardPercent = getPinnedCompletionRewardPercent(area, taskId, subtaskId);
+      if (!rewardPercent) return false;
+      const rect = anchorElement?.getBoundingClientRect?.();
+      const anchorRect = rect
+        ? { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height }
+        : getCompletionRewardAnchorRect(area, taskId, subtaskId);
+      showCompletionRewardEffect(rewardPercent, area, anchorRect, getCompletionRewardLabel(area, estimateSeconds));
+      immediateCompletionRewardKeys.add(completionRewardKey(area, taskId, subtaskId));
+      return true;
+    }
+
+    function consumeImmediateCompletionReward(area, taskId, subtaskId = null) {
+      return immediateCompletionRewardKeys.delete(completionRewardKey(area, taskId, subtaskId));
+    }
+
     function getPinnedEstimateSummary(items = getFocusedTasks()) {
       const estimatedSeconds = items.reduce((sum, item) => sum + getFocusItemEstimatedSeconds(item), 0);
       const spentSeconds = items.reduce((sum, item) => sum + getFocusItemSpentSeconds(item), 0);
@@ -14696,11 +14879,14 @@ for update using (true) with check (true);</pre>
       }
       card.dataset.clearFeedback = `${area === "portfolio" ? "포폴 전진" : "완료"} +${formatLoadDuration(seconds)}`;
       card.classList.add("clearing");
+      if (showImmediateCompletionReward(area, taskId, subtaskId, card, seconds)) {
+        card.classList.add("rewarding");
+      }
       card.querySelectorAll("button,select,input").forEach(control => { control.disabled = true; });
       setTimeout(() => {
         if (subtaskId) toggleSubtask(area, taskId, subtaskId);
         else toggleTask(area, taskId);
-      }, 320);
+      }, 180);
     }
 
     function isCaretAtEnd(element) {
@@ -16079,7 +16265,9 @@ for update using (true) with check (true);</pre>
       render();
       if (nextDone) {
         showUndoToast("완료 처리됨");
-        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect, getCompletionRewardLabel(area, completedEstimateSeconds));
+        if (!consumeImmediateCompletionReward(area, id, null)) {
+          showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect, getCompletionRewardLabel(area, completedEstimateSeconds));
+        }
       }
     }
 
@@ -16242,7 +16430,9 @@ for update using (true) with check (true);</pre>
       render();
       if (nextDone) {
         showUndoToast("하위항목 완료됨");
-        showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect, getCompletionRewardLabel(area, completedEstimateSeconds));
+        if (!consumeImmediateCompletionReward(area, taskId, subtaskId)) {
+          showCompletionRewardEffect(rewardPercent, area, rewardAnchorRect, getCompletionRewardLabel(area, completedEstimateSeconds));
+        }
       }
     }
 
@@ -18256,21 +18446,21 @@ for update using (true) with check (true);</pre>
       --bg: #e9e9e7;
       --paper: rgba(239, 239, 236, 0.92);
       --paper-strong: rgba(246, 246, 243, 0.96);
-      --ink: #242424;
+      --ink: #2E3118;
       --muted: #868681;
       --line: rgba(255,255,255,0.72);
       --soft-shadow: 13px 13px 32px rgba(145,145,138,0.30), -11px -11px 28px rgba(255,255,255,0.86);
       --soft-shadow-small: 7px 7px 16px rgba(150,150,144,0.22), -6px -6px 14px rgba(255,255,255,0.84);
       --inset-soft: inset 5px 5px 12px rgba(158,158,152,0.24), inset -5px -5px 12px rgba(255,255,255,0.84);
-      --portfolio: #bd7f8a;
-      --portfolio-soft: rgba(212, 160, 168, 0.22);
-      --portfolio-mid: rgba(189,127,138,0.34);
-      --beacon: #7f84c8;
-      --beacon-soft: rgba(157,161,213,0.22);
-      --beacon-mid: rgba(127,132,200,0.34);
-      --income: #bea05e;
-      --income-soft: rgba(211,181,111,0.24);
-      --income-mid: rgba(190,160,94,0.35);
+      --portfolio: #C46428;
+      --portfolio-soft: rgba(232,226,197,0.32);
+      --portfolio-mid: rgba(196,100,40,0.34);
+      --beacon: #5167A2;
+      --beacon-soft: rgba(232,226,197,0.32);
+      --beacon-mid: rgba(81,103,162,0.34);
+      --income: #60693A;
+      --income-soft: rgba(232,226,197,0.32);
+      --income-mid: rgba(96,105,58,0.35);
       --green: #7da883;
       --red: #c96b62;
     }
@@ -18511,9 +18701,9 @@ for update using (true) with check (true);</pre>
       text-transform: uppercase;
     }
 
-    .tag.portfolio { background: var(--portfolio-soft); color: #80515b; }
-    .tag.beacon { background: var(--beacon-soft); color: #51558f; }
-    .tag.income { background: var(--income-soft); color: #806838; }
+    .tag.portfolio { background: var(--portfolio-soft); color: #C46428; }
+    .tag.beacon { background: var(--beacon-soft); color: #5167A2; }
+    .tag.income { background: var(--income-soft); color: #60693A; }
 
     .title {
       outline: none;
@@ -19213,7 +19403,7 @@ for update using (true) with check (true);</pre>
     }
 
     .focus-eta-label strong {
-      color: #242424 !important;
+      color: #2E3118 !important;
       font-size: 13px !important;
       font-weight: 950 !important;
       font-variant-numeric: tabular-nums !important;
@@ -19371,7 +19561,7 @@ for update using (true) with check (true);</pre>
 
     .focus-subtask-card,
     .focus-subtask-card.running {
-      border: 1.4px solid #242424 !important;
+      border: 1.4px solid #2E3118 !important;
       padding-top: 8px !important;
     }
 
@@ -20151,21 +20341,21 @@ for update using (true) with check (true);</pre>
     .task-card.portfolio .subtoggle-btn,
     .focus-task.portfolio .subtoggle-focus {
       background: var(--portfolio-soft) !important;
-      color: #80515b !important;
+      color: #C46428 !important;
       border-color: rgba(191, 126, 138, 0.42) !important;
     }
 
     .task-card.beacon .subtoggle-btn,
     .focus-task.beacon .subtoggle-focus {
       background: var(--beacon-soft) !important;
-      color: #51558f !important;
+      color: #5167A2 !important;
       border-color: rgba(128, 135, 199, 0.42) !important;
     }
 
     .task-card.income .subtoggle-btn,
     .focus-task.income .subtoggle-focus {
       background: var(--income-soft) !important;
-      color: #806838 !important;
+      color: #60693A !important;
       border-color: rgba(185, 151, 84, 0.44) !important;
     }
 
@@ -20192,7 +20382,7 @@ for update using (true) with check (true);</pre>
       border-color: var(--portfolio) !important;
       box-shadow:
         0 8px 18px rgba(0,0,0,0.09),
-        inset 3px 0 0 rgba(189,127,138,0.58),
+        inset 3px 0 0 rgba(196,100,40,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68) !important;
     }
 
@@ -20204,7 +20394,7 @@ for update using (true) with check (true);</pre>
       border-color: var(--beacon) !important;
       box-shadow:
         0 8px 18px rgba(0,0,0,0.09),
-        inset 3px 0 0 rgba(138,143,207,0.58),
+        inset 3px 0 0 rgba(81,103,162,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68) !important;
     }
 
@@ -20216,7 +20406,7 @@ for update using (true) with check (true);</pre>
       border-color: var(--income) !important;
       box-shadow:
         0 8px 18px rgba(0,0,0,0.09),
-        inset 3px 0 0 rgba(199,161,90,0.58),
+        inset 3px 0 0 rgba(96,105,58,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68) !important;
     }
 
@@ -20228,7 +20418,7 @@ for update using (true) with check (true);</pre>
       bottom: 9px !important;
       width: 3px !important;
       border-radius: 0 999px 999px 0 !important;
-      background: rgba(189,127,138,0.72) !important;
+      background: rgba(196,100,40,0.32) !important;
       pointer-events: none !important;
       z-index: 5 !important;
     }
@@ -20237,7 +20427,7 @@ for update using (true) with check (true);</pre>
     .focus-task.portfolio .title,
     .focus-task.portfolio .subtask-title {
       font-weight: 760 !important;
-      color: #242424 !important;
+      color: #2E3118 !important;
     }
 
     .focus-task.clearing,
@@ -20375,9 +20565,9 @@ for update using (true) with check (true);</pre>
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #8f4149 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #545aa3 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #806838 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #C46428 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5167A2 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #60693A !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.paused {
       background: #8f8e89 !important;
@@ -20479,7 +20669,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--portfolio) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(201,120,127,0.38),
+        inset 0 0 0 1px rgba(196,100,40,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -20489,7 +20679,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--beacon) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(138,143,207,0.38),
+        inset 0 0 0 1px rgba(81,103,162,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -20499,7 +20689,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--income) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(199,161,90,0.40),
+        inset 0 0 0 1px rgba(96,105,58,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -20540,17 +20730,17 @@ for update using (true) with check (true);</pre>
 
     body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
-      border-color: rgba(201,120,127,0.86) !important;
-      background: linear-gradient(90deg, rgba(247,228,229,0.90), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(196,100,40,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
-      border-color: rgba(138,143,207,0.90) !important;
-      background: linear-gradient(90deg, rgba(232,233,248,0.92), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(81,103,162,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
-      border-color: rgba(199,161,90,0.90) !important;
+      border-color: rgba(96,105,58,0.32) !important;
       background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
     }
 
@@ -20575,9 +20765,9 @@ for update using (true) with check (true);</pre>
       transform-origin: center !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #8f4149 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #545aa3 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #806838 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #C46428 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5167A2 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #60693A !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
       content: "" !important;
@@ -20646,7 +20836,7 @@ for update using (true) with check (true);</pre>
       <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-bottom:8px;border:1px solid rgba(255,255,255,0.78);border-radius:16px;background:rgba(246,246,243,0.78);padding:9px 10px;">
         <div style="min-width:0;">
           <div style="font-size:11px;font-weight:900;color:#696964;letter-spacing:.08em;text-transform:uppercase;">오늘 작업량 · ${escapeHtml(focusLoad.label)}</div>
-          <div style="font-size:12px;font-weight:780;color:#242424;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">필요 시간 ${escapeHtml(formatLoadDuration(focusLoad.required))} / 가능 시간 ${escapeHtml(formatLoadDuration(focusLoad.available))}</div>
+          <div style="font-size:12px;font-weight:780;color:#2E3118;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">필요 시간 ${escapeHtml(formatLoadDuration(focusLoad.required))} / 가능 시간 ${escapeHtml(formatLoadDuration(focusLoad.available))}</div>
           <div style="font-size:11px;font-weight:780;color:#696964;">완료 ${escapeHtml(String(focusClear.total))}개 · 포폴 ${escapeHtml(formatLoadDuration(focusClear.portfolioSeconds))}</div>
         </div>
         <strong style="font-size:20px;">${escapeHtml(Math.min(999, focusLoad.percent))}%</strong>
@@ -21139,7 +21329,7 @@ for update using (true) with check (true);</pre>
     :root {
       --bg: #eeeeeb;
       --card: rgba(248,248,245,0.96);
-      --ink: #242424;
+      --ink: #2E3118;
       --muted: #73736e;
       --quiet: #8a8a84;
       --line: rgba(24,24,24,0.72);
@@ -21220,7 +21410,7 @@ for update using (true) with check (true);</pre>
     }
 
     .mini-eta-pill strong {
-      color: #242424;
+      color: #2E3118;
       font-size: 12px;
       font-weight: 760;
       font-variant-numeric: tabular-nums;
@@ -21257,12 +21447,12 @@ for update using (true) with check (true);</pre>
       border-radius: inherit;
     }
 
-    .mini-allocation-segment.portfolio { background: rgba(201,120,127,0.20); }
-    .mini-allocation-segment.portfolio span { background: #c9787f; }
-    .mini-allocation-segment.beacon { background: rgba(138,143,207,0.20); }
-    .mini-allocation-segment.beacon span { background: #8a8fcf; }
-    .mini-allocation-segment.income { background: rgba(199,161,90,0.22); }
-    .mini-allocation-segment.income span { background: #c7a15a; }
+    .mini-allocation-segment.portfolio { background: rgba(196,100,40,0.32); }
+    .mini-allocation-segment.portfolio span { background: #C46428; }
+    .mini-allocation-segment.beacon { background: rgba(81,103,162,0.32); }
+    .mini-allocation-segment.beacon span { background: #5167A2; }
+    .mini-allocation-segment.income { background: rgba(96,105,58,0.32); }
+    .mini-allocation-segment.income span { background: #60693A; }
 
     .mini-card {
       position: relative;
@@ -21314,24 +21504,24 @@ for update using (true) with check (true);</pre>
     }
 
     .mini-card.portfolio::before {
-      background: #c9787f;
+      background: #C46428;
     }
 
     .mini-card.beacon::before {
-      background: #8a8fcf;
+      background: #5167A2;
     }
 
     .mini-card.income::before {
-      background: #c7a15a;
+      background: #60693A;
     }
 
     .mini-subtask-card {
-      border-color: #242424;
+      border-color: #2E3118;
       padding: 7px;
     }
 
     .mini-group-card {
-      border-color: #242424;
+      border-color: #2E3118;
       padding: 7px;
     }
 
@@ -21365,8 +21555,8 @@ for update using (true) with check (true);</pre>
     }
 
     .mini-check.done {
-      background: #242424;
-      border-color: #242424;
+      background: #2E3118;
+      border-color: #2E3118;
     }
 
     .mini-task-title {
@@ -21404,11 +21594,11 @@ for update using (true) with check (true);</pre>
     }
 
     .mini-group-card.beacon .mini-parent-block-title {
-      color: #51558f;
+      color: #5167A2;
     }
 
     .mini-group-card.income .mini-parent-block-title {
-      color: #806838;
+      color: #60693A;
     }
 
     .mini-card.portfolio {
@@ -21416,21 +21606,21 @@ for update using (true) with check (true);</pre>
       border-color: rgba(18,18,18,0.88);
       box-shadow:
         0 8px 18px rgba(0,0,0,0.10),
-        inset 3px 0 0 rgba(201,120,127,0.48),
+        inset 3px 0 0 rgba(196,100,40,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62);
     }
 
     .mini-card.portfolio::before {
       width: 4px;
       opacity: 1;
-      background: rgba(201,120,127,0.74);
+      background: rgba(196,100,40,0.32);
     }
 
     .mini-card.portfolio .mini-task-title,
     .mini-card.portfolio .mini-parent-block-title,
     .mini-card.portfolio .mini-subtask-title {
       font-weight: 760;
-      color: #242424;
+      color: #2E3118;
     }
 
     .mini-subtasks {
@@ -21508,8 +21698,8 @@ for update using (true) with check (true);</pre>
 
     .mini-timer-btn.running {
       width: 52px;
-      background: #242424;
-      border-color: #242424;
+      background: #2E3118;
+      border-color: #2E3118;
       color: #fff;
       font-size: 11px;
       font-variant-numeric: tabular-nums;
@@ -21591,9 +21781,9 @@ for update using (true) with check (true);</pre>
       color: #696963;
     }
 
-    .mini-done-row.portfolio { border-left: 3px solid rgba(201,120,127,0.28); }
-    .mini-done-row.beacon { border-left: 3px solid rgba(138,143,207,0.26); }
-    .mini-done-row.income { border-left: 3px solid rgba(199,161,90,0.28); }
+    .mini-done-row.portfolio { border-left: 3px solid rgba(196,100,40,0.32); }
+    .mini-done-row.beacon { border-left: 3px solid rgba(81,103,162,0.32); }
+    .mini-done-row.income { border-left: 3px solid rgba(96,105,58,0.32); }
 
     .mini-done-check {
       display: grid;
@@ -21677,7 +21867,7 @@ for update using (true) with check (true);</pre>
 
     .mini-nightly-title {
       margin: 0;
-      color: #242424;
+      color: #2E3118;
       font-size: 17px;
       font-weight: 950;
     }
@@ -21743,25 +21933,25 @@ for update using (true) with check (true);</pre>
     body.mobile-focus-mode .mobile-task.running.portfolio {
       box-shadow:
         0 10px 22px rgba(0,0,0,0.12),
-        inset 4px 0 0 rgba(201,120,127,0.70),
+        inset 4px 0 0 rgba(196,100,40,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68),
-        0 0 0 2px rgba(201,120,127,0.16) !important;
+        0 0 0 2px rgba(196,100,40,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.running.beacon {
       box-shadow:
         0 10px 22px rgba(0,0,0,0.12),
-        inset 4px 0 0 rgba(138,143,207,0.72),
+        inset 4px 0 0 rgba(81,103,162,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68),
-        0 0 0 2px rgba(138,143,207,0.18) !important;
+        0 0 0 2px rgba(81,103,162,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.running.income {
       box-shadow:
         0 10px 22px rgba(0,0,0,0.12),
-        inset 4px 0 0 rgba(199,161,90,0.76),
+        inset 4px 0 0 rgba(96,105,58,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68),
-        0 0 0 2px rgba(199,161,90,0.18) !important;
+        0 0 0 2px rgba(96,105,58,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running {
@@ -21774,9 +21964,9 @@ for update using (true) with check (true);</pre>
         0 0 0 2px rgba(36,36,36,0.045) !important;
     }
 
-    body.mobile-focus-mode .mobile-subtask.running.portfolio { border-color: rgba(201,120,127,0.54) !important; }
-    body.mobile-focus-mode .mobile-subtask.running.beacon { border-color: rgba(138,143,207,0.56) !important; }
-    body.mobile-focus-mode .mobile-subtask.running.income { border-color: rgba(199,161,90,0.58) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.portfolio { border-color: rgba(196,100,40,0.32) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.beacon { border-color: rgba(81,103,162,0.32) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.income { border-color: rgba(96,105,58,0.32) !important; }
 
     body.mobile-focus-mode .mobile-subtask.running::after {
       content: "집중중" !important;
@@ -21786,7 +21976,7 @@ for update using (true) with check (true);</pre>
       height: 15px !important;
       padding: 0 6px !important;
       border-radius: 999px !important;
-      background: #242424 !important;
+      background: #2E3118 !important;
       color: #fff !important;
       font-size: 8.5px !important;
       font-weight: 820 !important;
@@ -21941,9 +22131,9 @@ for update using (true) with check (true);</pre>
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #8f4149 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #545aa3 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #806838 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #C46428 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5167A2 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #60693A !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.paused {
       background: #8f8e89 !important;
@@ -22045,7 +22235,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--portfolio) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(201,120,127,0.38),
+        inset 0 0 0 1px rgba(196,100,40,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -22055,7 +22245,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--beacon) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(138,143,207,0.38),
+        inset 0 0 0 1px rgba(81,103,162,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -22065,7 +22255,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--income) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(199,161,90,0.40),
+        inset 0 0 0 1px rgba(96,105,58,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -22106,17 +22296,17 @@ for update using (true) with check (true);</pre>
 
     body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
-      border-color: rgba(201,120,127,0.86) !important;
-      background: linear-gradient(90deg, rgba(247,228,229,0.90), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(196,100,40,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
-      border-color: rgba(138,143,207,0.90) !important;
-      background: linear-gradient(90deg, rgba(232,233,248,0.92), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(81,103,162,0.32) !important;
+      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
-      border-color: rgba(199,161,90,0.90) !important;
+      border-color: rgba(96,105,58,0.32) !important;
       background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
     }
 
@@ -22141,9 +22331,9 @@ for update using (true) with check (true);</pre>
       transform-origin: center !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #8f4149 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #545aa3 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #806838 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #C46428 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5167A2 !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #60693A !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
       content: "" !important;
@@ -23017,7 +23207,7 @@ for update using (true) with check (true);</pre>
       return `
         <svg class="report-trend-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="최근 7일 집중 추이">
           ${grid}
-          <path d="${areaPath}" fill="rgba(201,120,127,0.12)"></path>
+          <path d="${areaPath}" fill="rgba(196,100,40,0.32)"></path>
           <polyline points="${polyline}" fill="none" stroke="var(--portfolio)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></polyline>
           ${dots}
         </svg>
