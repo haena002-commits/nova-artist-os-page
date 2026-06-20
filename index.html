@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <style>
     :root {
@@ -12571,6 +12571,22 @@
     }
   </style>
 
+
+  <style id="pc-timer-view-only-guard-20260621">
+    body:not(.mobile-focus-mode) .pc-timer.view-only,
+    body:not(.mobile-focus-mode) .timer-btn[data-live-timer="focus"],
+    body:not(.mobile-focus-mode) .mini-timer-btn[data-live-timer="mini"] {
+      cursor: default !important;
+      pointer-events: auto !important;
+    }
+
+    body:not(.mobile-focus-mode) .pc-timer.view-only:not(.running):not(.paused):not(.exceeded),
+    body:not(.mobile-focus-mode) .timer-btn[data-live-timer="focus"]:not(.running):not(.paused):not(.exceeded),
+    body:not(.mobile-focus-mode) .mini-timer-btn[data-live-timer="mini"]:not(.running):not(.paused):not(.exceeded) {
+      opacity: 0.72 !important;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -15473,6 +15489,46 @@ for update using (true) with check (true);</pre>
       return "카운트다운 시작";
     }
 
+    function getPcTimerButtonText(area, task, subtask = null) {
+      const stateInfo = getSubjectTimerState(area, task, subtask);
+      return stateInfo.visible ? getSubjectButtonClock(area, task, subtask) : "대기";
+    }
+
+    function getPcTimerButtonTitle(area, task, subtask = null) {
+      const stateInfo = getSubjectTimerState(area, task, subtask);
+      if (stateInfo.running && stateInfo.paused) return "보기 전용 · 일시정지 중입니다. 재개는 모바일에서 해주세요.";
+      if (stateInfo.running) return "보기 전용 · 모바일에서 카운트 중입니다.";
+      if (stateInfo.paused) return "보기 전용 · 일시정지된 타이머입니다. 재개는 모바일에서 해주세요.";
+      return "보기 전용 · 타이머 시작은 모바일에서만 가능합니다.";
+    }
+
+    function shouldBlockPcTimerControl() {
+      return !mobileFocusMode;
+    }
+
+    function isActiveTimerInsideTask(area, taskId) {
+      return Boolean(state.activeTimer && state.activeTimer.area === area && state.activeTimer.taskId === taskId);
+    }
+
+    function isActiveTimerSubject(area, taskId, subtaskId = null) {
+      if (!state.activeTimer || state.activeTimer.area !== area || state.activeTimer.taskId !== taskId) return false;
+      const activeSubtaskId = state.activeTimer.subtaskId || null;
+      return (subtaskId || null) === activeSubtaskId;
+    }
+
+    function showTimerDeleteGuard() {
+      const message = "할일을 삭제하기 전에 타이머를 종료하세요";
+      if (typeof showStatusToast === "function") showStatusToast(message, 2600);
+      else alert(message);
+    }
+
+    function blockDeleteWhileTimerActive(area, taskId, subtaskId = null) {
+      const blocked = subtaskId ? isActiveTimerSubject(area, taskId, subtaskId) : isActiveTimerInsideTask(area, taskId);
+      if (!blocked) return false;
+      showTimerDeleteGuard();
+      return true;
+    }
+
     function getSubjectButtonClass(area, task, subtask = null) {
       const stateInfo = getSubjectTimerState(area, task, subtask);
       const exceeded = stateInfo.visible && getCountdownSeconds(area, task, subtask) < 0;
@@ -15482,7 +15538,7 @@ for update using (true) with check (true);</pre>
 
     function createPcCounterButton(area, task, subtask = null) {
       const subtaskId = subtask?.id || "";
-      const text = getSubjectButtonClock(area, task, subtask);
+      const text = getPcTimerButtonText(area, task, subtask);
       const className = getSubjectButtonClass(area, task, subtask);
       const exceeded = String(text).startsWith("+");
       const button = document.createElement("button");
@@ -15491,18 +15547,18 @@ for update using (true) with check (true);</pre>
       button.dataset.area = area;
       button.dataset.taskid = task.id;
       button.dataset.subtaskid = subtaskId;
-      button.dataset.action = "toggleTimer";
+      button.dataset.action = "viewTimer";
       button.dataset.liveTimer = "pc";
       button.textContent = text;
-      button.title = getSubjectButtonTitle(area, task, subtask);
+      button.title = getPcTimerButtonTitle(area, task, subtask);
       button.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(area, task, subtask)}%`);
       button.disabled = Boolean(task.done || task.later || (subtask && subtask.done));
+      button.setAttribute("aria-disabled", "true");
+      button.classList.add("view-only");
       button.onpointerdown = event => event.stopPropagation();
       button.onclick = event => {
         event.preventDefault();
         event.stopPropagation();
-        if (button.disabled) return;
-        toggleTimer(area, task.id, subtaskId || null);
       };
       return button;
     }
@@ -15514,11 +15570,11 @@ for update using (true) with check (true);</pre>
       const subtaskId = button.dataset.subtaskid || null;
       const info = getTimerSubject(area, taskId, subtaskId);
       if (!info) return false;
-      const text = getSubjectButtonClock(area, info.task, info.subtask);
+      const text = getPcTimerButtonText(area, info.task, info.subtask);
       const className = getSubjectButtonClass(area, info.task, info.subtask);
       const exceeded = String(text).startsWith("+");
       button.textContent = text;
-      button.title = getSubjectButtonTitle(area, info.task, info.subtask);
+      button.title = getPcTimerButtonTitle(area, info.task, info.subtask);
       button.className = `target-btn pc-timer ${area} ${className} ${exceeded ? "exceeded" : ""}`.trim();
       button.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(area, info.task, info.subtask)}%`);
       button.disabled = Boolean(info.task.done || info.task.later || info.subject.done);
@@ -17128,8 +17184,8 @@ for update using (true) with check (true);</pre>
     function deleteTask(area, id) {
       const exists = getTask(area, id);
       if (!exists) return;
+      if (blockDeleteWhileTimerActive(area, id)) return;
       pushUndoSnapshot();
-      if (state.activeTimer && state.activeTimer.area === area && state.activeTimer.taskId === id) stopActiveTimer({ preserveResume: false });
       state.tasks[area] = state.tasks[area].filter(task => task.id !== id);
 
       if (state.focusTaskId === id && state.focusArea === area) {
@@ -17228,6 +17284,7 @@ for update using (true) with check (true);</pre>
     function deleteSubtask(area, taskId, subtaskId) {
       const task = getTask(area, taskId);
       if (!task) return;
+      if (blockDeleteWhileTimerActive(area, taskId, subtaskId)) return;
 
       pushUndoSnapshot();
       task.subtasks = task.subtasks.filter(subtask => subtask.id !== subtaskId);
@@ -17624,6 +17681,10 @@ for update using (true) with check (true);</pre>
     }
 
     function toggleTimer(area, taskId, subtaskId = null) {
+      if (shouldBlockPcTimerControl()) {
+        if (typeof showStatusToast === "function") showStatusToast("타이머 조작은 모바일에서만 가능합니다", 2200);
+        return;
+      }
       subtaskId = subtaskId || null;
       if (timerMatches(area, taskId, subtaskId)) {
         if (state.activeTimer.paused) {
@@ -18661,7 +18722,7 @@ for update using (true) with check (true);</pre>
         if (action === "restoreSubtask") { toggleSubtask(area, taskId, subtaskId); pushMobileFocusChangeNow(); return; }
         if (action === "togglePin") { togglePin(area, taskId); didCloudPushChange = true; }
         if (action === "toggleSubtaskPin") { toggleSubtaskPin(area, taskId, subtaskId); didCloudPushChange = true; }
-        if (action === "toggleTimer") toggleTimer(area, taskId, subtaskId);
+        if (action === "toggleTimer") { toggleTimer(area, taskId, subtaskId); pushMobileFocusChangeNow(); return; }
         if (action === "setTarget") {
           const current = (target.textContent || "25").replace(/[^0-9]/g, "") || "25";
           openMobileTargetPicker(root, area, taskId, subtaskId, current);
@@ -19026,6 +19087,10 @@ for update using (true) with check (true);</pre>
       }
 
       if (message.action === "toggleTimer") {
+        if (shouldBlockPcTimerControl()) {
+          showStatusToast("타이머 조작은 모바일에서만 가능합니다", 2200);
+          return;
+        }
         toggleTimer(args[0], args[1], args[2] || null);
       }
 
@@ -19111,8 +19176,8 @@ for update using (true) with check (true);</pre>
               const subEstimatedText = formatEstimatedDuration(subEstimatedSeconds);
               const subTimerLeftPercent = getSubjectTimerLeftPercent(area, task, subtask);
               const subButtonClass = getSubjectButtonClass(area, task, subtask);
-              const subButtonText = getSubjectButtonClock(area, task, subtask);
-              const subButtonTitle = getSubjectButtonTitle(area, task, subtask);
+              const subButtonText = getPcTimerButtonText(area, task, subtask);
+              const subButtonTitle = getPcTimerButtonTitle(area, task, subtask);
               const subButtonExceeded = String(subButtonText).startsWith("+");
 
               return `
@@ -19134,7 +19199,7 @@ for update using (true) with check (true);</pre>
                   </div>
                   <div class="focus-actions focus-subtask-actions">
                     ${targetPresetSelectHtml(area, task.id, subtask.id, subTargetMinutes, "하위항목 예상시간 설정")}
-                    <button class="timer-btn ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" data-exceeded="${subButtonExceeded ? "true" : "false"}" data-paused="${subIsPaused ? "true" : "false"}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" title="${escapeHtml(subButtonTitle)}" data-action="toggleTimer" data-live-timer="focus" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
+                    <button class="timer-btn ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" data-exceeded="${subButtonExceeded ? "true" : "false"}" data-paused="${subIsPaused ? "true" : "false"}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" title="${escapeHtml(subButtonTitle)}" data-action="viewTimer" data-live-timer="focus" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
                   </div>
                 </div>
               </article>
@@ -19161,8 +19226,8 @@ for update using (true) with check (true);</pre>
             const taskProgressPercent = taskEstimatedSeconds > 0 ? Math.min(999, Math.round((taskTotalSeconds / taskEstimatedSeconds) * 100)) : 0;
             const timerLeftPercent = getSubjectTimerLeftPercent(area, task, null);
             const timerButtonClass = getSubjectButtonClass(area, task, null);
-            const timerButtonText = getSubjectButtonClock(area, task, null);
-            const timerButtonTitle = getSubjectButtonTitle(area, task, null);
+            const timerButtonText = getPcTimerButtonText(area, task, null);
+            const timerButtonTitle = getPcTimerButtonTitle(area, task, null);
             const timerButtonExceeded = String(timerButtonText).startsWith("+");
 
             const subtasksHtml = shouldShowSubtasks
@@ -19188,7 +19253,7 @@ for update using (true) with check (true);</pre>
                         data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}</div>
                       <div class="subtask-actions">
                         ${targetPresetSelectHtml(area, task.id, subtask.id, subTargetMinutes, "하위항목 예상시간 설정")}
-                        <button class="timer-btn subtimer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" data-exceeded="${subButtonExceeded ? "true" : "false"}" data-paused="${subIsPaused ? "true" : "false"}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" title="${escapeHtml(subButtonTitle)}" data-action="toggleTimer" data-live-timer="focus" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
+                        <button class="timer-btn subtimer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" data-exceeded="${subButtonExceeded ? "true" : "false"}" data-paused="${subIsPaused ? "true" : "false"}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" title="${escapeHtml(subButtonTitle)}" data-action="viewTimer" data-live-timer="focus" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
                       </div>
                     </div>
                   `}).join("")}
@@ -19213,7 +19278,7 @@ for update using (true) with check (true);</pre>
                   <div class="focus-actions">
                     ${totalSubtaskCount > 0 ? `<button class="subtoggle-focus ${task.subtasksCollapsed ? "collapsed" : ""}" title="${escapeHtml(subToggleTitle)} · ${completedSubtaskCount}/${totalSubtaskCount}" data-action="toggleSubtasks" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">${escapeHtml(subToggleIcon)}</button>` : ""}
                     ${targetPresetSelectHtml(area, task.id, "", targetMinutes, hasSubtaskTargets(task) ? "하위항목 시간 합계" : "예상시간 설정")}
-                    <button class="timer-btn ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" data-exceeded="${timerButtonExceeded ? "true" : "false"}" data-paused="${isTaskTimerRunning && isPaused ? "true" : "false"}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" title="${escapeHtml(timerButtonTitle)}" data-action="toggleTimer" data-live-timer="focus" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>
+                    <button class="timer-btn ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" data-exceeded="${timerButtonExceeded ? "true" : "false"}" data-paused="${isTaskTimerRunning && isPaused ? "true" : "false"}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" title="${escapeHtml(timerButtonTitle)}" data-action="viewTimer" data-live-timer="focus" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>
                   </div>
                 </div>
                 ${subtasksHtml}
@@ -22040,14 +22105,14 @@ for update using (true) with check (true);</pre>
         const subtaskId = subtask?.id || "";
         const targetMinutes = subtask ? normalizeTargetMinutes(subtask.targetMinutes) : getTaskTargetMinutesForDisplay(task);
         const timerState = getSubjectTimerState(area, task, subtask);
-        const timerText = timerState.visible ? getSubjectButtonClock(area, task, subtask) : "▶";
+        const timerText = getPcTimerButtonText(area, task, subtask);
         const timerClass = getSubjectButtonClass(area, task, subtask);
         const timerExceeded = timerState.visible && getCountdownSeconds(area, task, subtask) < 0;
         const timerLeftPercent = getSubjectTimerLeftPercent(area, task, subtask);
-        const timerTitle = getSubjectButtonTitle(area, task, subtask);
+        const timerTitle = getPcTimerButtonTitle(area, task, subtask);
         return `<div class="mini-time-actions">
           <button class="mini-target-btn" type="button" data-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtaskId)}" title="예상 시간 수정">${escapeHtml(targetMinutes)}m</button>
-          <button class="mini-timer-btn ${timerClass} ${timerExceeded ? "exceeded" : ""}" type="button" data-action="toggleTimer" data-live-timer="mini" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtaskId)}" data-paused="${timerState.paused ? "true" : "false"}" data-exceeded="${timerExceeded ? "true" : "false"}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" title="${escapeHtml(timerTitle)}">${escapeHtml(timerText)}</button>
+          <button class="mini-timer-btn ${timerClass} ${timerExceeded ? "exceeded" : ""}" type="button" data-action="viewTimer" data-live-timer="mini" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtaskId)}" data-paused="${timerState.paused ? "true" : "false"}" data-exceeded="${timerExceeded ? "true" : "false"}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" title="${escapeHtml(timerTitle)}">${escapeHtml(timerText)}</button>
         </div>`;
       }
       const tasksHtml = miniGroups.length
@@ -24785,5 +24850,241 @@ for update using (true) with check (true);</pre>
     } catch (_) {}
   };
 </script>
+
+
+<style id="mobile-timer-button-unify-20260621">
+  /* 2026-06-21 · Mobile focus timer buttons: unified target/timer pills, right aligned, project-colored card strokes. */
+  body.mobile-focus-mode {
+    --nova-mobile-target-w: 48px;
+    --nova-mobile-timer-w: 86px;
+    --nova-mobile-pill-h: 34px;
+    --nova-mobile-control-gap: 6px;
+    --nova-mobile-control-shadow: 0 4px 10px rgba(0,0,0,0.075), inset 0 1px 0 rgba(255,255,255,0.70);
+  }
+
+  body.mobile-focus-mode .mobile-target,
+  body.mobile-focus-mode .mobile-timer {
+    position: relative !important;
+    box-sizing: border-box !important;
+    height: var(--nova-mobile-pill-h) !important;
+    min-height: var(--nova-mobile-pill-h) !important;
+    max-height: var(--nova-mobile-pill-h) !important;
+    border-radius: 999px !important;
+    padding: 0 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    align-self: center !important;
+    justify-self: end !important;
+    line-height: 1 !important;
+    gap: 5px !important;
+    letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
+    font-variant-numeric: tabular-nums !important;
+    transform: none !important;
+    scale: 1 !important;
+    animation: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-target {
+    width: var(--nova-mobile-target-w) !important;
+    min-width: var(--nova-mobile-target-w) !important;
+    max-width: var(--nova-mobile-target-w) !important;
+    border: 1px solid rgba(24,24,24,0.12) !important;
+    background: rgba(255,255,255,0.78) !important;
+    color: #565651 !important;
+    box-shadow: var(--nova-mobile-control-shadow) !important;
+    font-size: 11.5px !important;
+    font-weight: 780 !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer {
+    width: var(--nova-mobile-timer-w) !important;
+    min-width: var(--nova-mobile-timer-w) !important;
+    max-width: var(--nova-mobile-timer-w) !important;
+    border: 1px solid rgba(255,255,255,0.32) !important;
+    background: linear-gradient(90deg, #2E3118 var(--timer-left,100%), rgba(220,220,216,0.96) var(--timer-left,100%)) !important;
+    color: #fff !important;
+    box-shadow: var(--nova-mobile-control-shadow) !important;
+    font-size: 12.2px !important;
+    font-weight: 820 !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer:not(.running):not(.paused):not(.exceeded) {
+    font-size: 12px !important;
+    font-weight: 900 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task-actions,
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    display: grid !important;
+    grid-template-columns: var(--nova-mobile-target-w) var(--nova-mobile-timer-w) !important;
+    justify-content: end !important;
+    justify-items: end !important;
+    align-items: center !important;
+    column-gap: var(--nova-mobile-control-gap) !important;
+    margin-top: 8px !important;
+    padding-left: 22px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-pin,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-pin {
+    position: absolute !important;
+    top: 9px !important;
+    right: 9px !important;
+    z-index: 4 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-target,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-target {
+    grid-column: 1 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-timer,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-timer {
+    grid-column: 2 !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask {
+    grid-template-columns: 19px minmax(0, 1fr) var(--nova-mobile-target-w) var(--nova-mobile-timer-w) !important;
+    column-gap: var(--nova-mobile-control-gap) !important;
+    align-items: center !important;
+    padding: 5px 6px !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask .mobile-target,
+  body.mobile-focus-mode .mobile-subtask .mobile-timer {
+    height: var(--nova-mobile-pill-h) !important;
+    min-height: var(--nova-mobile-pill-h) !important;
+    max-height: var(--nova-mobile-pill-h) !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask .mobile-target {
+    width: var(--nova-mobile-target-w) !important;
+    min-width: var(--nova-mobile-target-w) !important;
+    max-width: var(--nova-mobile-target-w) !important;
+    font-size: 11.5px !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask .mobile-timer {
+    width: var(--nova-mobile-timer-w) !important;
+    min-width: var(--nova-mobile-timer-w) !important;
+    max-width: var(--nova-mobile-timer-w) !important;
+    font-size: 12.2px !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.paused {
+    background: #8f8e89 !important;
+    border-color: rgba(255,255,255,0.36) !important;
+    color: #fff !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.exceeded {
+    background: #b6463d !important;
+    border-color: #b6463d !important;
+    color: #fff !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded) {
+    background: #C46428 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded) {
+    background: #5167A2 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded) {
+    background: #60693A !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before {
+    content: "" !important;
+    width: 7px !important;
+    height: 7px !important;
+    min-width: 7px !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    flex: 0 0 7px !important;
+    animation: mobileLiveDot 1.15s ease-out infinite !important;
+    transform: none !important;
+    scale: 1 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.portfolio {
+    border-color: rgba(196,100,40,0.72) !important;
+    border-color: color-mix(in srgb, var(--portfolio) 72%, #ffffff 28%) !important;
+    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(196,100,40,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.beacon {
+    border-color: rgba(81,103,162,0.72) !important;
+    border-color: color-mix(in srgb, var(--beacon) 72%, #ffffff 28%) !important;
+    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(81,103,162,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.income {
+    border-color: rgba(96,105,58,0.74) !important;
+    border-color: color-mix(in srgb, var(--income) 74%, #ffffff 26%) !important;
+    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(96,105,58,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.portfolio::before { background: var(--portfolio) !important; }
+  body.mobile-focus-mode .mobile-task.beacon::before { background: var(--beacon) !important; }
+  body.mobile-focus-mode .mobile-task.income::before { background: var(--income) !important; }
+
+  body.mobile-focus-mode .mobile-task.pinned.portfolio,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio {
+    border-color: var(--portfolio) !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(196,100,40,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.pinned.beacon,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon {
+    border-color: var(--beacon) !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(81,103,162,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.pinned.income,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
+    border-color: var(--income) !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(96,105,58,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask.portfolio {
+    border-color: rgba(196,100,40,0.34) !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask.beacon {
+    border-color: rgba(81,103,162,0.34) !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask.income {
+    border-color: rgba(96,105,58,0.36) !important;
+  }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode {
+      --nova-mobile-target-w: 46px;
+      --nova-mobile-timer-w: 82px;
+      --nova-mobile-pill-h: 33px;
+      --nova-mobile-control-gap: 5px;
+    }
+
+    body.mobile-focus-mode .mobile-target { font-size: 11px !important; }
+    body.mobile-focus-mode .mobile-timer,
+    body.mobile-focus-mode .mobile-subtask .mobile-timer { font-size: 11.8px !important; }
+  }
+</style>
+
 </body>
 </html>
