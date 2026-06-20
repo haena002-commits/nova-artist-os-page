@@ -12559,6 +12559,204 @@
       }
     }
   </style>
+
+  <style id="weekly-run-progress-visible-v4">
+    /* Weekly Success Score: restore visible progress fills inside each pill. */
+    .weekly-run .top-run-segment {
+      position: relative !important;
+      isolation: isolate !important;
+      overflow: hidden !important;
+      background: rgba(255,255,255,0.56) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 2px 7px rgba(38,35,32,0.035) !important;
+    }
+
+    .weekly-run .top-run-segment::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      z-index: 0 !important;
+      width: var(--run-progress, 0%) !important;
+      min-width: 0 !important;
+      border-radius: inherit !important;
+      opacity: 0.74 !important;
+      transition: width 0.18s ease !important;
+    }
+
+    .weekly-run .top-run-segment.portfolio {
+      border-color: rgba(233,129,130,0.34) !important;
+      background: rgba(233,129,130,0.12) !important;
+    }
+
+    .weekly-run .top-run-segment.beacon {
+      border-color: rgba(139,150,209,0.34) !important;
+      background: rgba(139,150,209,0.12) !important;
+    }
+
+    .weekly-run .top-run-segment.income {
+      border-color: rgba(225,181,94,0.34) !important;
+      background: rgba(225,181,94,0.14) !important;
+    }
+
+    .weekly-run .top-run-segment.portfolio::before {
+      background: rgba(233,129,130,0.45) !important;
+    }
+
+    .weekly-run .top-run-segment.beacon::before {
+      background: rgba(139,150,209,0.46) !important;
+    }
+
+    .weekly-run .top-run-segment.income::before {
+      background: rgba(225,181,94,0.48) !important;
+    }
+
+    .weekly-run .top-run-segment span,
+    .weekly-run .top-run-segment strong {
+      position: relative !important;
+      z-index: 2 !important;
+      text-shadow: none !important;
+    }
+  </style>
+
+  <style id="panel-quote-contrast-v5">
+    /* PC main board phrase boxes: darker matte gray background for better contrast with pastel project text. */
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .quote-box.panel-quote-box,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+    body:not(.mobile-focus-mode) .income .panel-quote-box {
+      background: rgba(218, 217, 213, 0.88) !important;
+      border-color: rgba(255, 255, 255, 0.72) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        0 2px 7px rgba(32, 32, 30, 0.055) !important;
+    }
+
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box {
+      color: #cf747d !important;
+    }
+
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box {
+      color: #7e89c9 !important;
+    }
+
+    body:not(.mobile-focus-mode) .income .panel-quote-box {
+      color: #c99743 !important;
+    }
+
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder {
+      color: rgba(207, 116, 125, 0.92) !important;
+    }
+
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder {
+      color: rgba(126, 137, 201, 0.94) !important;
+    }
+
+    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder {
+      color: rgba(201, 151, 67, 0.96) !important;
+    }
+
+    body:not(.mobile-focus-mode) .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .quote-box.panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .income .panel-quote-box:focus {
+      background: rgba(210, 209, 205, 0.94) !important;
+      border-color: rgba(34, 34, 32, 0.18) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.56),
+        0 0 0 3px rgba(255, 255, 255, 0.38),
+        0 4px 12px rgba(32, 32, 30, 0.07) !important;
+    }
+  </style>
+
+  <style id="pc-mobile-sync-label-v6">
+    /* Sync direction labels: PC mainboard pulls Mobile state, mobile view pulls PC state. */
+    body:not(.mobile-focus-mode) .brand-actions .mobile-download-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      min-width: 68px !important;
+      height: 32px !important;
+      min-height: 32px !important;
+      padding: 0 12px !important;
+      border-radius: 999px !important;
+      white-space: nowrap !important;
+    }
+
+    body:not(.mobile-focus-mode) .brand-actions .mobile-download-btn::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .brand-actions .mobile-download-btn .cloud-pull-label {
+      display: inline-flex !important;
+      align-items: center !important;
+      color: inherit !important;
+      font-size: 11px !important;
+      font-weight: 820 !important;
+      line-height: 1 !important;
+      letter-spacing: -0.02em !important;
+      text-transform: none !important;
+      transform: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .brand-actions .mobile-download-btn .cloud-pull-icon {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 16px !important;
+      height: 16px !important;
+      flex: 0 0 auto !important;
+      font-size: 13px !important;
+      font-weight: 950 !important;
+      line-height: 1 !important;
+      transform: translateY(-0.5px) !important;
+      stroke: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-actions .pc-download-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      width: auto !important;
+      min-width: 54px !important;
+      height: 34px !important;
+      min-height: 34px !important;
+      padding: 0 12px !important;
+      border-radius: 999px !important;
+      white-space: nowrap !important;
+      font-size: 12px !important;
+      font-weight: 820 !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-actions .pc-download-btn .mobile-cloud-label,
+    body.mobile-focus-mode .mobile-focus-actions .pc-download-btn .mobile-cloud-icon {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+    }
+
+    body.mobile-focus-mode .mobile-focus-actions .pc-download-btn .mobile-cloud-icon {
+      width: 14px !important;
+      height: 14px !important;
+      font-size: 13px !important;
+      font-weight: 950 !important;
+      transform: translateY(-0.5px) !important;
+    }
+
+    @media (max-width: 380px) {
+      body.mobile-focus-mode .mobile-focus-actions .pc-download-btn {
+        min-width: 50px !important;
+        padding: 0 10px !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -12573,14 +12771,8 @@
 
           <div class="brand-actions">
             <button class="focus-btn" onclick="openMiniFocusWindow()">미니</button>
-            <button class="sync-btn cloud-pull-btn" type="button" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">
-              <svg class="cloud-pull-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                <path d="M12.6 5.2A5.1 5.1 0 0 0 3.4 4.1" />
-                <path d="M12.6 2.7v2.5h-2.5" />
-                <path d="M3.4 10.8a5.1 5.1 0 0 0 9.2 1.1" />
-                <path d="M3.4 13.3v-2.5h2.5" />
-              </svg>
-              <span class="cloud-pull-label">update</span>
+            <button class="sync-btn cloud-pull-btn mobile-download-btn" type="button" title="모바일 상태 내려받기" aria-label="모바일 상태를 PC로 내려받기" data-cloud-pull-button onclick="pullCloudStateFromTopButton()">
+              <span class="cloud-pull-label">Mobile</span><span class="cloud-pull-icon" aria-hidden="true">↓</span>
             </button>
             <button class="sync-btn cloud-push-quick-btn" type="button" title="현재 PC 상태 올리기" aria-label="현재 PC 상태 클라우드에 올리기" onclick="pushCloudStateNow({ replace: true })">
               <span class="cloud-push-label">PC</span><span class="cloud-push-icon" aria-hidden="true">↑</span>
@@ -18712,7 +18904,7 @@ for update using (true) with check (true);</pre>
                 <button class="mobile-mini-btn mobile-undo-btn" type="button" data-mobile-action="undo" ${canUndoLastAction() ? "" : "disabled"}>Undo</button>
                 ${syncButtonHtml}
                 <button class="mobile-mini-btn" data-mobile-action="sync">연동</button>
-                <button class="mobile-mini-btn mobile-cloud-pull-btn" type="button" data-mobile-action="refreshCloud" title="최신 데이터 불러오기" aria-label="클라우드에서 가져오기">↻</button>
+                <button class="mobile-mini-btn mobile-cloud-pull-btn pc-download-btn" type="button" data-mobile-action="refreshCloud" title="PC 상태 내려받기" aria-label="PC 상태를 모바일로 내려받기"><span class="mobile-cloud-label">PC</span><span class="mobile-cloud-icon" aria-hidden="true">↓</span></button>
               </div>
             </div>
 
