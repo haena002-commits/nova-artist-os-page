@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f6f0e7;
@@ -17,13 +14,13 @@
       --ink: #2e2923;
       --muted: #80756a;
       --line: #e5d9ca;
-      --portfolio: #C46428;
-      --portfolio-soft: #E8E2C5;
-      --beacon: #5167A2;
-      --beacon-soft: #E8E2C5;
-      --income: #60693A;
-      --income-soft: #E8E2C5;
-      --brand-light: #E8E2C5;
+      --portfolio: #DB827F;
+      --portfolio-soft: #FFE9DA;
+      --beacon: #5E604D;
+      --beacon-soft: #FFE9DA;
+      --income: #A19DA4;
+      --income-soft: #FFE9DA;
+      --brand-light: #FFE9DA;
       --brand-dark: #2E3118;
       --green: #7da883;
       --red: #c96b62;
@@ -171,12 +168,12 @@
       margin-top: 14px;
       padding: 10px 13px;
       font-size: 14px;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(232,226,197,0.42) 52%, rgba(245, 234, 209, 0.96));
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(255,233,218,0.42) 52%, rgba(255, 233, 218, 0.96));
       border-color: rgba(46, 41, 35, 0.13);
     }
 
     .top-quote-box:focus {
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(232,226,197,0.42) 52%, rgba(245, 234, 209, 1));
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(255,233,218,0.42) 52%, rgba(255, 233, 218, 1));
       border-color: rgba(46, 41, 35, 0.32);
     }
 
@@ -188,44 +185,44 @@
     }
 
     .portfolio .panel-quote-box {
-      background: rgba(232,226,197,0.42);
-      border-color: rgba(196,100,40,0.32);
+      background: rgba(255,233,218,0.42);
+      border-color: rgba(219,130,127,0.32);
       color: #2E3118;
     }
 
     .beacon .panel-quote-box {
-      background: rgba(232,226,197,0.42);
-      border-color: rgba(81,103,162,0.32);
+      background: rgba(255,233,218,0.42);
+      border-color: rgba(94,96,77,0.32);
       color: #2E3118;
     }
 
     .income .panel-quote-box {
-      background: rgba(245, 234, 209, 0.96);
-      border-color: rgba(96,105,58,0.32);
+      background: rgba(255, 233, 218, 0.96);
+      border-color: rgba(161,157,164,0.32);
       color: #735722;
     }
 
     .portfolio .panel-quote-box:focus {
       background: var(--portfolio-soft);
-      border-color: rgba(196,100,40,0.32);
-      box-shadow: inset 0 0 0 1px rgba(196,100,40,0.32), 0 8px 18px rgba(196,100,40,0.32);
+      border-color: rgba(219,130,127,0.32);
+      box-shadow: inset 0 0 0 1px rgba(219,130,127,0.32), 0 8px 18px rgba(219,130,127,0.32);
     }
 
     .beacon .panel-quote-box:focus {
       background: var(--beacon-soft);
-      border-color: rgba(81,103,162,0.32);
-      box-shadow: inset 0 0 0 1px rgba(81,103,162,0.32), 0 8px 18px rgba(81,103,162,0.32);
+      border-color: rgba(94,96,77,0.32);
+      box-shadow: inset 0 0 0 1px rgba(94,96,77,0.32), 0 8px 18px rgba(94,96,77,0.32);
     }
 
     .income .panel-quote-box:focus {
       background: var(--income-soft);
-      border-color: rgba(96,105,58,0.32);
-      box-shadow: inset 0 0 0 1px rgba(96,105,58,0.32), 0 8px 18px rgba(96,105,58,0.32);
+      border-color: rgba(161,157,164,0.32);
+      box-shadow: inset 0 0 0 1px rgba(161,157,164,0.32), 0 8px 18px rgba(161,157,164,0.32);
     }
 
-    .portfolio .panel-quote-box::placeholder { color: #C46428; }
-    .beacon .panel-quote-box::placeholder { color: #5167A2; }
-    .income .panel-quote-box::placeholder { color: #60693A; }
+    .portfolio .panel-quote-box::placeholder { color: #DB827F; }
+    .beacon .panel-quote-box::placeholder { color: #5E604D; }
+    .income .panel-quote-box::placeholder { color: #A19DA4; }
 
     .top-time-log {
       display: grid;
@@ -288,9 +285,9 @@
       white-space: nowrap;
     }
 
-    .top-time-chip.portfolio { border-color: rgba(196,100,40,0.32); background: var(--portfolio-soft); }
-    .top-time-chip.beacon { border-color: rgba(81,103,162,0.32); background: var(--beacon-soft); }
-    .top-time-chip.income { border-color: rgba(96,105,58,0.32); background: var(--income-soft); }
+    .top-time-chip.portfolio { border-color: rgba(219,130,127,0.32); background: var(--portfolio-soft); }
+    .top-time-chip.beacon { border-color: rgba(94,96,77,0.32); background: var(--beacon-soft); }
+    .top-time-chip.income { border-color: rgba(161,157,164,0.32); background: var(--income-soft); }
 
     .field {
       background: #fffdf8;
@@ -444,9 +441,9 @@
       letter-spacing: 0.08em;
     }
 
-    .portfolio .weight-pill { background: var(--portfolio-soft); color: #C46428; }
-    .beacon .weight-pill { background: var(--beacon-soft); color: #5167A2; }
-    .income .weight-pill { background: var(--income-soft); color: #60693A; }
+    .portfolio .weight-pill { background: var(--portfolio-soft); color: #DB827F; }
+    .beacon .weight-pill { background: var(--beacon-soft); color: #5E604D; }
+    .income .weight-pill { background: var(--income-soft); color: #A19DA4; }
 
     .panel h2 {
       margin: 0;
@@ -590,27 +587,27 @@
 
     .task-card.running.portfolio {
       background: var(--portfolio-soft);
-      border-color: rgba(196,100,40,0.32);
+      border-color: rgba(219,130,127,0.32);
     }
 
     .task-card.running.beacon {
       background: var(--beacon-soft);
-      border-color: rgba(81,103,162,0.32);
+      border-color: rgba(94,96,77,0.32);
     }
 
     .task-card.running.income {
       background: var(--income-soft);
-      border-color: rgba(96,105,58,0.32);
+      border-color: rgba(161,157,164,0.32);
     }
 
     .task-card.running.portfolio .task-title,
-    .task-card.running.portfolio .task-meta { color: #C46428; }
+    .task-card.running.portfolio .task-meta { color: #DB827F; }
 
     .task-card.running.beacon .task-title,
-    .task-card.running.beacon .task-meta { color: #5167A2; }
+    .task-card.running.beacon .task-meta { color: #5E604D; }
 
     .task-card.running.income .task-title,
-    .task-card.running.income .task-meta { color: #60693A; }
+    .task-card.running.income .task-meta { color: #A19DA4; }
 
     .completed-section {
       margin-top: 0;
@@ -680,7 +677,7 @@
     }
 
     .load-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(125,168,131,0.14); }
-    .today-load-panel.yellow .load-dot { background: var(--income); box-shadow: 0 0 0 4px rgba(96,105,58,0.32); }
+    .today-load-panel.yellow .load-dot { background: var(--income); box-shadow: 0 0 0 4px rgba(161,157,164,0.32); }
     .today-load-panel.red .load-dot { background: var(--red); box-shadow: 0 0 0 4px rgba(201,107,98,0.14); }
     .load-main { min-width: 0; }
     .load-title { font-size: 11.5px; font-weight: 950; letter-spacing: 0; text-transform: none; color: #65594e; }
@@ -715,7 +712,7 @@
       border-radius: inherit;
       background: rgba(125,168,131,0.78);
     }
-    .today-load-panel.yellow .today-load-gauge-fill { background: rgba(96,105,58,0.32); }
+    .today-load-panel.yellow .today-load-gauge-fill { background: rgba(161,157,164,0.32); }
     .today-load-panel.red .today-load-gauge-fill { background: rgba(201,107,98,0.82); }
     .today-load-gauge-line {
       position: absolute;
@@ -729,9 +726,9 @@
     }
     .load-side { display: contents; }
     .load-portfolio { display: grid; gap: 3px; justify-content: stretch; justify-self: stretch; margin-top: 0; }
-    .load-chip { border: 1px solid rgba(196,100,40,0.32); border-radius: 999px; background: var(--portfolio-soft); color: #C46428; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
+    .load-chip { border: 1px solid rgba(219,130,127,0.32); border-radius: 999px; background: var(--portfolio-soft); color: #DB827F; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
     .load-side-line { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-width: 0; font-size: 11.5px; color: #746e66; font-weight: 820; white-space: nowrap; }
-    .load-side-line strong { color: #C46428; font-size: 12.5px; font-weight: 950; overflow: hidden; text-overflow: ellipsis; }
+    .load-side-line strong { color: #DB827F; font-size: 12.5px; font-weight: 950; overflow: hidden; text-overflow: ellipsis; }
     .load-side-line.done strong { color: #2E3118; }
 
     .achievement-strip {
@@ -782,7 +779,7 @@
       text-overflow: ellipsis;
     }
 
-    .achievement-item.portfolio strong { color: #C46428; }
+    .achievement-item.portfolio strong { color: #DB827F; }
 
     .weekly-flow-dots {
       display: flex;
@@ -795,8 +792,8 @@
     }
 
     .weekly-flow-day { display: inline-flex; gap: 2px; align-items: center; }
-    .weekly-flow-day.active { color: #C46428; }
-    .weekly-flow-day.partial { color: #60693A; }
+    .weekly-flow-day.active { color: #DB827F; }
+    .weekly-flow-day.partial { color: #A19DA4; }
     .weekly-flow-day.today { text-decoration: underline; text-underline-offset: 3px; }
 
     .weekly-matrix-card {
@@ -829,9 +826,9 @@
       font-weight: 820;
     }
     .weekly-matrix-row.header { color: #928b82; font-size: 10px; font-weight: 820; }
-    .weekly-matrix-row.portfolio { color: #C46428; font-weight: 950; }
-    .weekly-matrix-row.beacon { color: #5167A2; }
-    .weekly-matrix-row.income { color: #60693A; }
+    .weekly-matrix-row.portfolio { color: #DB827F; font-weight: 950; }
+    .weekly-matrix-row.beacon { color: #5E604D; }
+    .weekly-matrix-row.income { color: #A19DA4; }
     .weekly-matrix-row > span { text-align: center; }
     .weekly-matrix-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left !important; }
     .weekly-matrix-dot {
@@ -846,12 +843,12 @@
       font-size: 11px;
       font-weight: 950;
     }
-    .weekly-matrix-dot.active.portfolio { color: #C46428; background: var(--portfolio-soft); box-shadow: 0 0 0 2px rgba(196,100,40,0.32); }
-    .weekly-matrix-dot.active.beacon { color: #5167A2; background: var(--beacon-soft); box-shadow: 0 0 0 2px rgba(81,103,162,0.32); }
-    .weekly-matrix-dot.active.income { color: #60693A; background: var(--income-soft); box-shadow: 0 0 0 2px rgba(96,105,58,0.32); }
-    .weekly-matrix-dot.partial.portfolio { color: #C46428; background: rgba(232,226,197,0.42); box-shadow: 0 0 0 2px rgba(196,100,40,0.32); }
-    .weekly-matrix-dot.partial.beacon { color: #5167A2; background: rgba(232,226,197,0.42); box-shadow: 0 0 0 2px rgba(81,103,162,0.32); }
-    .weekly-matrix-dot.partial.income { color: #60693A; background: rgba(232,226,197,0.42); box-shadow: 0 0 0 2px rgba(96,105,58,0.32); }
+    .weekly-matrix-dot.active.portfolio { color: #DB827F; background: var(--portfolio-soft); box-shadow: 0 0 0 2px rgba(219,130,127,0.32); }
+    .weekly-matrix-dot.active.beacon { color: #5E604D; background: var(--beacon-soft); box-shadow: 0 0 0 2px rgba(94,96,77,0.32); }
+    .weekly-matrix-dot.active.income { color: #A19DA4; background: var(--income-soft); box-shadow: 0 0 0 2px rgba(161,157,164,0.32); }
+    .weekly-matrix-dot.partial.portfolio { color: #DB827F; background: rgba(255,233,218,0.42); box-shadow: 0 0 0 2px rgba(219,130,127,0.32); }
+    .weekly-matrix-dot.partial.beacon { color: #5E604D; background: rgba(255,233,218,0.42); box-shadow: 0 0 0 2px rgba(94,96,77,0.32); }
+    .weekly-matrix-dot.partial.income { color: #A19DA4; background: rgba(255,233,218,0.42); box-shadow: 0 0 0 2px rgba(161,157,164,0.32); }
     .weekly-matrix-count { text-align: right !important; color: #4f4b46; font-weight: 920; }
     .weekly-bars {
       display: grid;
@@ -891,8 +888,8 @@
       min-height: 3px;
       height: var(--bar-height, 0px);
       border-radius: 999px 999px 4px 4px;
-      background: rgba(196,100,40,0.32);
-      box-shadow: 0 0 0 2px rgba(196,100,40,0.32);
+      background: rgba(219,130,127,0.32);
+      box-shadow: 0 0 0 2px rgba(219,130,127,0.32);
     }
     .weekly-bar.empty {
       width: 13px;
@@ -956,14 +953,14 @@
     .clear-summary-title { font-size: 12px; font-weight: 950; letter-spacing: 0.08em; text-transform: uppercase; }
     .clear-summary-sub { font-size: 11px; color: var(--muted); font-weight: 850; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .clear-summary-chips { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
-    .clear-chip { border-radius: 999px; background: var(--portfolio-soft); color: #C46428; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
+    .clear-chip { border-radius: 999px; background: var(--portfolio-soft); color: #DB827F; padding: 4px 7px; font-size: 10px; font-weight: 950; white-space: nowrap; }
     .clear-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 7px; align-items: center; padding: 7px 9px; border: 1px solid rgba(229,217,202,0.72); border-radius: 12px; background: rgba(255,250,242,0.84); font-size: 12px; font-weight: 850; }
     .clear-row-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .clear-row.portfolio .clear-row-title { color: #C46428; font-weight: 950; }
+    .clear-row.portfolio .clear-row-title { color: #DB827F; font-weight: 950; }
     .clear-row-type { border-radius: 999px; padding: 4px 7px; font-size: 10px; font-weight: 950; background: #eee5da; }
-    .clear-row-type.portfolio { background: var(--portfolio-soft); color: #C46428; }
-    .clear-row-type.beacon { background: var(--beacon-soft); color: #5167A2; }
-    .clear-row-type.income { background: var(--income-soft); color: #60693A; }
+    .clear-row-type.portfolio { background: var(--portfolio-soft); color: #DB827F; }
+    .clear-row-type.beacon { background: var(--beacon-soft); color: #5E604D; }
+    .clear-row-type.income { background: var(--income-soft); color: #A19DA4; }
     .clear-row-time { color: #65594e; font-size: 11px; font-weight: 950; white-space: nowrap; }
     .task-card.clearing, .subtask-row.clearing { position: relative; animation: clearPulse 0.32s ease both; border-color: rgba(125,168,131,0.74) !important; background: #edf6ee !important; }
     .task-card.clearing::after, .subtask-row.clearing::after { content: attr(data-clear-feedback); position: absolute; right: 10px; top: 8px; border-radius: 999px; background: var(--green); color: #fff; padding: 5px 8px; font-size: 11px; font-weight: 950; box-shadow: 0 8px 18px rgba(125,168,131,0.18); z-index: 4; }
@@ -1531,9 +1528,9 @@
       white-space: nowrap;
     }
 
-    .session-badge.portfolio { background: var(--portfolio-soft); color: #C46428; }
-    .session-badge.beacon { background: var(--beacon-soft); color: #5167A2; }
-    .session-badge.income { background: var(--income-soft); color: #60693A; }
+    .session-badge.portfolio { background: var(--portfolio-soft); color: #DB827F; }
+    .session-badge.beacon { background: var(--beacon-soft); color: #5E604D; }
+    .session-badge.income { background: var(--income-soft); color: #A19DA4; }
 
     .session-title {
       min-width: 0;
@@ -1745,13 +1742,13 @@
 
     .report-bar-fill.portfolio,
     .report-open-fill.portfolio,
-    .report-compare-current.portfolio { background: linear-gradient(90deg, rgba(196,100,40,0.32), rgba(196,100,40,0.32)); }
+    .report-compare-current.portfolio { background: linear-gradient(90deg, rgba(219,130,127,0.32), rgba(219,130,127,0.32)); }
     .report-bar-fill.beacon,
     .report-open-fill.beacon,
-    .report-compare-current.beacon { background: linear-gradient(90deg, rgba(81,103,162,0.32), rgba(81,103,162,0.32)); }
+    .report-compare-current.beacon { background: linear-gradient(90deg, rgba(94,96,77,0.32), rgba(94,96,77,0.32)); }
     .report-bar-fill.income,
     .report-open-fill.income,
-    .report-compare-current.income { background: linear-gradient(90deg, rgba(96,105,58,0.32), rgba(96,105,58,0.32)); }
+    .report-compare-current.income { background: linear-gradient(90deg, rgba(161,157,164,0.32), rgba(161,157,164,0.32)); }
 
     .report-compare-prev {
       background: rgba(114,109,103,0.18);
@@ -2111,7 +2108,7 @@
     }
 
     .cloud-pull-btn:hover {
-      background: rgba(245, 234, 209, 0.92);
+      background: rgba(255, 233, 218, 0.92);
       border-color: rgba(46, 41, 35, 0.76);
       transform: translateY(-1px);
       box-shadow: 0 11px 22px rgba(46, 41, 35, 0.15), inset 0 1px 0 rgba(255,255,255,0.74);
@@ -2255,7 +2252,7 @@
     }
 
     .nova-confirm-btn.confirm.danger {
-      background: #C46428;
+      background: #DB827F;
     }
 
     .nightly-check-modal {
@@ -2596,9 +2593,9 @@
       padding: 12px;
     }
 
-    .mobile-task.running.portfolio { background: var(--portfolio-soft); border-color: rgba(196,100,40,0.32); }
-    .mobile-task.running.beacon { background: var(--beacon-soft); border-color: rgba(81,103,162,0.32); }
-    .mobile-task.running.income { background: var(--income-soft); border-color: rgba(96,105,58,0.32); }
+    .mobile-task.running.portfolio { background: var(--portfolio-soft); border-color: rgba(219,130,127,0.32); }
+    .mobile-task.running.beacon { background: var(--beacon-soft); border-color: rgba(94,96,77,0.32); }
+    .mobile-task.running.income { background: var(--income-soft); border-color: rgba(161,157,164,0.32); }
 
     .mobile-task-main {
       display: grid;
@@ -2633,9 +2630,9 @@
       text-transform: uppercase;
     }
 
-    .mobile-tag.portfolio { background: var(--portfolio-soft); color: #C46428; }
-    .mobile-tag.beacon { background: var(--beacon-soft); color: #5167A2; }
-    .mobile-tag.income { background: var(--income-soft); color: #60693A; }
+    .mobile-tag.portfolio { background: var(--portfolio-soft); color: #DB827F; }
+    .mobile-tag.beacon { background: var(--beacon-soft); color: #5E604D; }
+    .mobile-tag.income { background: var(--income-soft); color: #A19DA4; }
 
     .mobile-task-title {
       outline: none;
@@ -3104,12 +3101,12 @@
       --ink: #242525;
       --muted: #7a7c7c;
       --line: rgba(255, 255, 255, 0.68);
-      --portfolio: #C46428;
-      --portfolio-soft: #E8E2C5;
-      --beacon: #5167A2;
-      --beacon-soft: #E8E2C5;
-      --income: #60693A;
-      --income-soft: #E8E2C5;
+      --portfolio: #DB827F;
+      --portfolio-soft: #FFE9DA;
+      --beacon: #5E604D;
+      --beacon-soft: #FFE9DA;
+      --income: #A19DA4;
+      --income-soft: #FFE9DA;
       --green: #829f86;
       --red: #bd756f;
       --shadow: 18px 18px 42px rgba(158, 158, 154, 0.48), -18px -18px 42px rgba(255,255,255,0.92);
@@ -4205,19 +4202,19 @@
 
     .task-card.portfolio .subtoggle-btn.has-subtasks {
       background: var(--portfolio-soft) !important;
-      color: #C46428 !important;
+      color: #DB827F !important;
       border-color: rgba(191, 126, 138, 0.42) !important;
     }
 
     .task-card.beacon .subtoggle-btn.has-subtasks {
       background: var(--beacon-soft) !important;
-      color: #5167A2 !important;
+      color: #5E604D !important;
       border-color: rgba(128, 135, 199, 0.42) !important;
     }
 
     .task-card.income .subtoggle-btn.has-subtasks {
       background: var(--income-soft) !important;
-      color: #60693A !important;
+      color: #A19DA4 !important;
       border-color: rgba(185, 151, 84, 0.44) !important;
     }
 
@@ -4620,9 +4617,9 @@
       transition: width 0.25s ease !important;
     }
 
-    .weekly-run .top-run-segment.portfolio::before { background: linear-gradient(90deg, rgba(196,100,40,0.32), rgba(196,100,40,0.32)); }
-    .weekly-run .top-run-segment.beacon::before { background: linear-gradient(90deg, rgba(81,103,162,0.32), rgba(81,103,162,0.32)); }
-    .weekly-run .top-run-segment.income::before { background: linear-gradient(90deg, rgba(96,105,58,0.32), rgba(96,105,58,0.32)); }
+    .weekly-run .top-run-segment.portfolio::before { background: linear-gradient(90deg, rgba(219,130,127,0.32), rgba(219,130,127,0.32)); }
+    .weekly-run .top-run-segment.beacon::before { background: linear-gradient(90deg, rgba(94,96,77,0.32), rgba(94,96,77,0.32)); }
+    .weekly-run .top-run-segment.income::before { background: linear-gradient(90deg, rgba(161,157,164,0.32), rgba(161,157,164,0.32)); }
 
     .weekly-run .top-run-segment span,
     .weekly-run .top-run-segment strong {
@@ -5136,7 +5133,7 @@
       min-width: 38px !important;
       width: 38px !important;
       border-color: rgba(46,41,35,0.50) !important;
-      background: rgba(245,234,209,0.84) !important;
+      background: rgba(255,233,218,0.84) !important;
       color: #2e2923 !important;
       font-size: 16px !important;
       font-weight: 900 !important;
@@ -5221,12 +5218,12 @@
       border-radius: inherit !important;
     }
 
-    body.mobile-focus-mode .mini-allocation-segment.portfolio { background: rgba(196,100,40,0.32) !important; }
-    body.mobile-focus-mode .mini-allocation-segment.portfolio span { background: #C46428 !important; }
-    body.mobile-focus-mode .mini-allocation-segment.beacon { background: rgba(81,103,162,0.32) !important; }
-    body.mobile-focus-mode .mini-allocation-segment.beacon span { background: #5167A2 !important; }
-    body.mobile-focus-mode .mini-allocation-segment.income { background: rgba(96,105,58,0.32) !important; }
-    body.mobile-focus-mode .mini-allocation-segment.income span { background: #60693A !important; }
+    body.mobile-focus-mode .mini-allocation-segment.portfolio { background: rgba(219,130,127,0.32) !important; }
+    body.mobile-focus-mode .mini-allocation-segment.portfolio span { background: #DB827F !important; }
+    body.mobile-focus-mode .mini-allocation-segment.beacon { background: rgba(94,96,77,0.32) !important; }
+    body.mobile-focus-mode .mini-allocation-segment.beacon span { background: #5E604D !important; }
+    body.mobile-focus-mode .mini-allocation-segment.income { background: rgba(161,157,164,0.32) !important; }
+    body.mobile-focus-mode .mini-allocation-segment.income span { background: #A19DA4 !important; }
 
     body.mobile-focus-mode .mobile-pin-estimate-bar {
       display: grid !important;
@@ -5355,24 +5352,24 @@
       bottom: 8px !important;
       width: 3px !important;
       border-radius: 0 999px 999px 0 !important;
-      background: #5167A2 !important;
+      background: #5E604D !important;
       opacity: 0.88 !important;
     }
 
     body.mobile-focus-mode .mobile-task.portfolio {
       border-width: 2.2px !important;
       border-color: rgba(18,18,18,0.88) !important;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.10), inset 3px 0 0 rgba(196,100,40,0.32), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.10), inset 3px 0 0 rgba(219,130,127,0.32), inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
     body.mobile-focus-mode .mobile-task.portfolio::before {
       width: 4px !important;
       opacity: 1 !important;
-      background: rgba(196,100,40,0.32) !important;
+      background: rgba(219,130,127,0.32) !important;
     }
 
-    body.mobile-focus-mode .mobile-task.beacon::before { background: #5167A2 !important; }
-    body.mobile-focus-mode .mobile-task.income::before { background: #60693A !important; }
+    body.mobile-focus-mode .mobile-task.beacon::before { background: #5E604D !important; }
+    body.mobile-focus-mode .mobile-task.income::before { background: #A19DA4 !important; }
 
     body.mobile-focus-mode .mobile-task.running.portfolio,
     body.mobile-focus-mode .mobile-task.running.beacon,
@@ -6725,9 +6722,9 @@
       color: #696963 !important;
     }
 
-    body.mobile-focus-mode .mini-done-row.portfolio { border-left: 3px solid rgba(196,100,40,0.32) !important; }
-    body.mobile-focus-mode .mini-done-row.beacon { border-left: 3px solid rgba(81,103,162,0.32) !important; }
-    body.mobile-focus-mode .mini-done-row.income { border-left: 3px solid rgba(96,105,58,0.32) !important; }
+    body.mobile-focus-mode .mini-done-row.portfolio { border-left: 3px solid rgba(219,130,127,0.32) !important; }
+    body.mobile-focus-mode .mini-done-row.beacon { border-left: 3px solid rgba(94,96,77,0.32) !important; }
+    body.mobile-focus-mode .mini-done-row.income { border-left: 3px solid rgba(161,157,164,0.32) !important; }
 
     body.mobile-focus-mode .mini-done-check {
       display: grid !important;
@@ -6801,15 +6798,15 @@
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group.portfolio .mobile-task-title {
-      color: #C46428 !important;
+      color: #DB827F !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group.beacon .mobile-task-title {
-      color: #5167A2 !important;
+      color: #5E604D !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group.income .mobile-task-title {
-      color: #60693A !important;
+      color: #A19DA4 !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-meta {
@@ -6903,25 +6900,25 @@
     body.mobile-focus-mode .mobile-task.has-running-subtask.portfolio {
       box-shadow:
         0 11px 24px rgba(0,0,0,0.15),
-        inset 5px 0 0 rgba(196,100,40,0.32),
+        inset 5px 0 0 rgba(219,130,127,0.32),
         inset 0 1px 0 rgba(255,255,255,0.70),
-        0 0 0 3px rgba(196,100,40,0.32) !important;
+        0 0 0 3px rgba(219,130,127,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.beacon {
       box-shadow:
         0 11px 24px rgba(0,0,0,0.15),
-        inset 5px 0 0 rgba(81,103,162,0.32),
+        inset 5px 0 0 rgba(94,96,77,0.32),
         inset 0 1px 0 rgba(255,255,255,0.70),
-        0 0 0 3px rgba(81,103,162,0.32) !important;
+        0 0 0 3px rgba(94,96,77,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.income {
       box-shadow:
         0 11px 24px rgba(0,0,0,0.15),
-        inset 5px 0 0 rgba(96,105,58,0.32),
+        inset 5px 0 0 rgba(161,157,164,0.32),
         inset 0 1px 0 rgba(255,255,255,0.70),
-        0 0 0 3px rgba(96,105,58,0.32) !important;
+        0 0 0 3px rgba(161,157,164,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask::after {
@@ -6944,9 +6941,9 @@
       pointer-events: none !important;
     }
 
-    body.mobile-focus-mode .mobile-task.has-running-subtask.portfolio::after { background: #C46428 !important; }
-    body.mobile-focus-mode .mobile-task.has-running-subtask.beacon::after { background: #5167A2 !important; }
-    body.mobile-focus-mode .mobile-task.has-running-subtask.income::after { background: #60693A !important; }
+    body.mobile-focus-mode .mobile-task.has-running-subtask.portfolio::after { background: #DB827F !important; }
+    body.mobile-focus-mode .mobile-task.has-running-subtask.beacon::after { background: #5E604D !important; }
+    body.mobile-focus-mode .mobile-task.has-running-subtask.income::after { background: #A19DA4 !important; }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) {
       border-width: 1.6px !important;
@@ -6971,23 +6968,23 @@
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) {
-      border-color: rgba(196,100,40,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(255,255,255,0.94) 58%) !important;
+      border-color: rgba(219,130,127,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(255,255,255,0.94) 58%) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) {
-      border-color: rgba(81,103,162,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(255,255,255,0.94) 58%) !important;
+      border-color: rgba(94,96,77,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(255,255,255,0.94) 58%) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-      border-color: rgba(96,105,58,0.32) !important;
-      background: linear-gradient(90deg, rgba(245,234,209,0.98), rgba(255,255,255,0.94) 58%) !important;
+      border-color: rgba(161,157,164,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.98), rgba(255,255,255,0.94) 58%) !important;
     }
 
-    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused)::before { background: #C46428 !important; }
-    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused)::before { background: #5167A2 !important; }
-    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused)::before { background: #60693A !important; }
+    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused)::before { background: #DB827F !important; }
+    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused)::before { background: #5E604D !important; }
+    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused)::before { background: #A19DA4 !important; }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-subtask-title {
       color: #181818 !important;
@@ -7005,15 +7002,15 @@
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: linear-gradient(90deg, #C46428, #C46428) !important;
+      background: linear-gradient(90deg, #DB827F, #DB827F) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: linear-gradient(90deg, #5167A2, #5167A2) !important;
+      background: linear-gradient(90deg, #5E604D, #5E604D) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: linear-gradient(90deg, #60693A, #60693A) !important;
+      background: linear-gradient(90deg, #A19DA4, #A19DA4) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
@@ -7062,27 +7059,27 @@
       background: #fbf2f3 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #C46428,
+        inset 7px 0 0 #DB827F,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(196,100,40,0.32) !important;
+        0 0 0 4px rgba(219,130,127,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.beacon {
       background: #f3f4fb !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #5167A2,
+        inset 7px 0 0 #5E604D,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(81,103,162,0.32) !important;
+        0 0 0 4px rgba(94,96,77,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask.income {
       background: #fbf6e9 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #60693A,
+        inset 7px 0 0 #A19DA4,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(96,105,58,0.32) !important;
+        0 0 0 4px rgba(161,157,164,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.has-running-subtask::after {
@@ -7113,30 +7110,30 @@
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) {
-      border-color: #C46428 !important;
+      border-color: #DB827F !important;
       background: #f4d9dc !important;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.78),
         0 8px 16px rgba(0,0,0,0.15),
-        0 0 0 4px rgba(196,100,40,0.32) !important;
+        0 0 0 4px rgba(219,130,127,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) {
-      border-color: #5167A2 !important;
+      border-color: #5E604D !important;
       background: #dcdef3 !important;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.78),
         0 8px 16px rgba(0,0,0,0.15),
-        0 0 0 4px rgba(81,103,162,0.32) !important;
+        0 0 0 4px rgba(94,96,77,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-      border-color: #60693A !important;
+      border-color: #A19DA4 !important;
       background: #f1e2bd !important;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.78),
         0 8px 16px rgba(0,0,0,0.15),
-        0 0 0 4px rgba(96,105,58,0.32) !important;
+        0 0 0 4px rgba(161,157,164,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-subtask-title {
@@ -7155,15 +7152,15 @@
     }
 
     body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: #C46428 !important;
+      background: #DB827F !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: #5167A2 !important;
+      background: #5E604D !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      background: #60693A !important;
+      background: #A19DA4 !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
@@ -7259,9 +7256,9 @@
       background: #fbf2f3 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #C46428,
+        inset 7px 0 0 #DB827F,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(196,100,40,0.32) !important;
+        0 0 0 4px rgba(219,130,127,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused),
@@ -7269,9 +7266,9 @@
       background: #f3f4fb !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #5167A2,
+        inset 7px 0 0 #5E604D,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(81,103,162,0.32) !important;
+        0 0 0 4px rgba(94,96,77,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused),
@@ -7279,9 +7276,9 @@
       background: #fbf6e9 !important;
       box-shadow:
         0 12px 25px rgba(0,0,0,0.17),
-        inset 7px 0 0 #60693A,
+        inset 7px 0 0 #A19DA4,
         inset 0 1px 0 rgba(255,255,255,0.72),
-        0 0 0 4px rgba(96,105,58,0.32) !important;
+        0 0 0 4px rgba(161,157,164,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused)::after,
@@ -7306,11 +7303,11 @@
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused)::after,
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused)::after { background: #C46428 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused)::after { background: #DB827F !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused)::after,
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused)::after { background: #5167A2 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused)::after { background: #5E604D !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused)::after,
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused)::after { background: #60693A !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused)::after { background: #A19DA4 !important; }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-task-title,
     body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-task-title {
@@ -7334,11 +7331,11 @@
     }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #C46428 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #DB827F !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #5167A2 !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #5E604D !important; }
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #60693A !important; }
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) { background: #A19DA4 !important; }
 
     body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before,
     body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded)::before {
@@ -7652,7 +7649,7 @@
       letter-spacing: -0.04em !important;
       white-space: nowrap !important;
     }
-    .today-load-panel.red .load-overrun-value { color: #C46428 !important; }
+    .today-load-panel.red .load-overrun-value { color: #DB827F !important; }
   </style>
 
 
@@ -7720,8 +7717,8 @@
 
     .today-load-panel .load-grade.leisure { color: #567d5b !important; }
     .today-load-panel .load-grade.steady { color: #4f5f73 !important; }
-    .today-load-panel .load-grade.max { color: #60693A !important; }
-    .today-load-panel .load-grade.over { color: #C46428 !important; }
+    .today-load-panel .load-grade.max { color: #A19DA4 !important; }
+    .today-load-panel .load-grade.over { color: #DB827F !important; }
 
     .today-load-panel .load-percent-value {
       grid-column: 2 !important;
@@ -7841,12 +7838,12 @@
       box-shadow: none !important;
     }
 
-    .weekly-matrix-dot.active.portfolio { box-shadow: 0 0 0 2px rgba(196,100,40,0.32) !important; }
-    .weekly-matrix-dot.active.beacon { box-shadow: 0 0 0 2px rgba(81,103,162,0.32) !important; }
-    .weekly-matrix-dot.active.income { box-shadow: 0 0 0 2px rgba(96,105,58,0.32) !important; }
-    .weekly-matrix-dot.partial.portfolio { box-shadow: 0 0 0 1px rgba(196,100,40,0.32) !important; }
-    .weekly-matrix-dot.partial.beacon { box-shadow: 0 0 0 1px rgba(81,103,162,0.32) !important; }
-    .weekly-matrix-dot.partial.income { box-shadow: 0 0 0 1px rgba(96,105,58,0.32) !important; }
+    .weekly-matrix-dot.active.portfolio { box-shadow: 0 0 0 2px rgba(219,130,127,0.32) !important; }
+    .weekly-matrix-dot.active.beacon { box-shadow: 0 0 0 2px rgba(94,96,77,0.32) !important; }
+    .weekly-matrix-dot.active.income { box-shadow: 0 0 0 2px rgba(161,157,164,0.32) !important; }
+    .weekly-matrix-dot.partial.portfolio { box-shadow: 0 0 0 1px rgba(219,130,127,0.32) !important; }
+    .weekly-matrix-dot.partial.beacon { box-shadow: 0 0 0 1px rgba(94,96,77,0.32) !important; }
+    .weekly-matrix-dot.partial.income { box-shadow: 0 0 0 1px rgba(161,157,164,0.32) !important; }
 
     .weekly-matrix-name {
       padding-left: 1px !important;
@@ -7924,7 +7921,7 @@
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       white-space: nowrap !important;
-      color: #C46428 !important;
+      color: #DB827F !important;
       font-size: 10px !important;
       font-weight: 820 !important;
       letter-spacing: 0.06em !important;
@@ -7962,7 +7959,7 @@
 
     .deadline-bridge-input:focus {
       border-color: rgba(143,65,73,0.32) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 3px rgba(196,100,40,0.32) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 0 0 3px rgba(219,130,127,0.32) !important;
     }
 
     .achievement-strip {
@@ -8134,7 +8131,7 @@
         min-height: 32px !important;
         padding: 0 13px !important;
         border: 1.7px solid rgba(46, 41, 35, 0.62) !important;
-        background: linear-gradient(180deg, rgba(245, 234, 209, 0.98), rgba(255, 250, 242, 0.96)) !important;
+        background: linear-gradient(180deg, rgba(255, 233, 218, 0.98), rgba(255, 250, 242, 0.96)) !important;
         color: #2e2923 !important;
         box-shadow:
           0 7px 16px rgba(46, 41, 35, 0.13),
@@ -8155,7 +8152,7 @@
       }
 
       body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover {
-        background: linear-gradient(180deg, rgba(245, 234, 209, 1), rgba(255, 253, 248, 1)) !important;
+        background: linear-gradient(180deg, rgba(255, 233, 218, 1), rgba(255, 253, 248, 1)) !important;
         border-color: rgba(46, 41, 35, 0.84) !important;
         transform: translateY(-1px) !important;
         box-shadow:
@@ -8609,9 +8606,9 @@
       background: rgba(255,255,255,0.34) !important;
     }
 
-    #focusReportDashboard .ops-bar-seg.portfolio { background: rgba(196,100,40,0.32) !important; }
-    #focusReportDashboard .ops-bar-seg.beacon { background: rgba(81,103,162,0.32) !important; }
-    #focusReportDashboard .ops-bar-seg.income { background: rgba(96,105,58,0.32) !important; }
+    #focusReportDashboard .ops-bar-seg.portfolio { background: rgba(219,130,127,0.32) !important; }
+    #focusReportDashboard .ops-bar-seg.beacon { background: rgba(94,96,77,0.32) !important; }
+    #focusReportDashboard .ops-bar-seg.income { background: rgba(161,157,164,0.32) !important; }
 
     #focusReportDashboard .ops-day-label {
       color: #6f706b !important;
@@ -8850,9 +8847,9 @@
       border-radius: inherit !important;
     }
 
-    #focusReportDashboard .ops-compare-fill.portfolio { background: rgba(196,100,40,0.32) !important; }
-    #focusReportDashboard .ops-compare-fill.beacon { background: rgba(81,103,162,0.32) !important; }
-    #focusReportDashboard .ops-compare-fill.income { background: rgba(96,105,58,0.32) !important; }
+    #focusReportDashboard .ops-compare-fill.portfolio { background: rgba(219,130,127,0.32) !important; }
+    #focusReportDashboard .ops-compare-fill.beacon { background: rgba(94,96,77,0.32) !important; }
+    #focusReportDashboard .ops-compare-fill.income { background: rgba(161,157,164,0.32) !important; }
     #focusReportDashboard .ops-compare-prev-fill { background: rgba(160,160,154,0.22) !important; }
 
     #focusReportDashboard .ops-compare-meta {
@@ -8930,9 +8927,9 @@
       background: rgba(150,150,145,0.12) !important;
     }
 
-    #focusReportDashboard .ops-heatmap-cell.portfolio { background: rgba(196,100,40,var(--heat,0.10)) !important; }
-    #focusReportDashboard .ops-heatmap-cell.beacon { background: rgba(81,103,162,var(--heat,0.10)) !important; }
-    #focusReportDashboard .ops-heatmap-cell.income { background: rgba(96,105,58,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.portfolio { background: rgba(219,130,127,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.beacon { background: rgba(94,96,77,var(--heat,0.10)) !important; }
+    #focusReportDashboard .ops-heatmap-cell.income { background: rgba(161,157,164,var(--heat,0.10)) !important; }
 
     @media (max-width: 1480px) {
       #focusReportDashboard {
@@ -9478,7 +9475,7 @@
       background: var(--portfolio) !important;
       border-color: rgba(135, 72, 79, 0.72) !important;
       color: #fff !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(196,100,40,0.32) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(219,130,127,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.beacon > .task-main-row .check,
@@ -9488,7 +9485,7 @@
       background: var(--beacon) !important;
       border-color: rgba(78, 84, 151, 0.72) !important;
       color: #fff !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(81,103,162,0.32) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(94,96,77,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.income > .task-main-row .check,
@@ -9498,7 +9495,7 @@
       background: var(--income) !important;
       border-color: rgba(139, 106, 45, 0.72) !important;
       color: #fff !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(96,105,58,0.32) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 2px 7px rgba(161,157,164,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .panel-quote-box {
@@ -9519,20 +9516,20 @@
     }
 
     body:not(.mobile-focus-mode) .portfolio .panel-quote-box {
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(255,250,250,0.72)) !important;
-      border-color: rgba(196,100,40,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(255,250,250,0.72)) !important;
+      border-color: rgba(219,130,127,0.32) !important;
       color: #6f383f !important;
     }
 
     body:not(.mobile-focus-mode) .beacon .panel-quote-box {
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(250,250,255,0.72)) !important;
-      border-color: rgba(81,103,162,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(250,250,255,0.72)) !important;
+      border-color: rgba(94,96,77,0.32) !important;
       color: #454a87 !important;
     }
 
     body:not(.mobile-focus-mode) .income .panel-quote-box {
-      background: linear-gradient(90deg, rgba(245,234,209,0.98), rgba(255,253,247,0.72)) !important;
-      border-color: rgba(96,105,58,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.98), rgba(255,253,247,0.72)) !important;
+      border-color: rgba(161,157,164,0.32) !important;
       color: #725726 !important;
     }
 
@@ -10558,9 +10555,9 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #C46428 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5167A2 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #60693A !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #DB827F !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5E604D !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #A19DA4 !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.paused {
       background: #8f8e89 !important;
@@ -10648,9 +10645,9 @@
       will-change: transform, opacity;
     }
 
-    .nova-reward-pop.portfolio { border-color: rgba(196,100,40,0.32); }
-    .nova-reward-pop.beacon { border-color: rgba(81,103,162,0.32); }
-    .nova-reward-pop.income { border-color: rgba(96,105,58,0.32); }
+    .nova-reward-pop.portfolio { border-color: rgba(219,130,127,0.32); }
+    .nova-reward-pop.beacon { border-color: rgba(94,96,77,0.32); }
+    .nova-reward-pop.income { border-color: rgba(161,157,164,0.32); }
 
     .nova-reward-coins {
       position: relative;
@@ -10766,7 +10763,7 @@
       border: var(--nova-pin-stroke) solid var(--portfolio) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(196,100,40,0.32),
+        inset 0 0 0 1px rgba(219,130,127,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -10776,7 +10773,7 @@
       border: var(--nova-pin-stroke) solid var(--beacon) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(81,103,162,0.32),
+        inset 0 0 0 1px rgba(94,96,77,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -10786,7 +10783,7 @@
       border: var(--nova-pin-stroke) solid var(--income) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(96,105,58,0.32),
+        inset 0 0 0 1px rgba(161,157,164,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -10827,18 +10824,18 @@
 
     body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
-      border-color: rgba(196,100,40,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(219,130,127,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
-      border-color: rgba(81,103,162,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(94,96,77,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
-      border-color: rgba(96,105,58,0.32) !important;
-      background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(161,157,164,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.92), rgba(248,248,245,0.96) 62%) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.running:not(.paused) .task-title,
@@ -10862,9 +10859,9 @@
       transform-origin: center !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #C46428 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5167A2 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #60693A !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #DB827F !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5E604D !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #A19DA4 !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
       content: "" !important;
@@ -11096,9 +11093,9 @@
     body:not(.mobile-focus-mode) .portfolio .panel-quote-box { color: var(--portfolio) !important; }
     body:not(.mobile-focus-mode) .beacon .panel-quote-box { color: var(--beacon) !important; }
     body:not(.mobile-focus-mode) .income .panel-quote-box { color: var(--income) !important; }
-    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder { color: rgba(196,100,40,0.32) !important; }
-    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder { color: rgba(81,103,162,0.32) !important; }
-    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder { color: rgba(96,105,58,0.32) !important; }
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder { color: rgba(219,130,127,0.32) !important; }
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder { color: rgba(94,96,77,0.32) !important; }
+    body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder { color: rgba(161,157,164,0.32) !important; }
 
     /* Completion feedback: one clean pop near the finished item. */
     .task-card.clearing::after,
@@ -11126,9 +11123,9 @@
       font-weight: 950 !important;
       letter-spacing: -0.01em !important;
     }
-    .nova-reward-pop.portfolio strong { color: #C46428 !important; }
-    .nova-reward-pop.beacon strong { color: #5167A2 !important; }
-    .nova-reward-pop.income strong { color: #60693A !important; }
+    .nova-reward-pop.portfolio strong { color: #DB827F !important; }
+    .nova-reward-pop.beacon strong { color: #5E604D !important; }
+    .nova-reward-pop.income strong { color: #A19DA4 !important; }
 
     /* PC timer focus: no gradient card background; paused button must be grey. */
     body:not(.mobile-focus-mode) .task-card.running.portfolio,
@@ -11147,11 +11144,11 @@
       background-image: none !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.portfolio,
-    body:not(.mobile-focus-mode) .subtask-row.running.portfolio { border-color: rgba(196,100,40,0.32) !important; }
+    body:not(.mobile-focus-mode) .subtask-row.running.portfolio { border-color: rgba(219,130,127,0.32) !important; }
     body:not(.mobile-focus-mode) .task-card.running.beacon,
-    body:not(.mobile-focus-mode) .subtask-row.running.beacon { border-color: rgba(81,103,162,0.32) !important; }
+    body:not(.mobile-focus-mode) .subtask-row.running.beacon { border-color: rgba(94,96,77,0.32) !important; }
     body:not(.mobile-focus-mode) .task-card.running.income,
-    body:not(.mobile-focus-mode) .subtask-row.running.income { border-color: rgba(96,105,58,0.32) !important; }
+    body:not(.mobile-focus-mode) .subtask-row.running.income { border-color: rgba(161,157,164,0.32) !important; }
     body:not(.mobile-focus-mode) .pc-timer.paused,
     body:not(.mobile-focus-mode) .pc-timer.running.paused,
     body:not(.mobile-focus-mode) .pc-timer.paused.exceeded {
@@ -11180,24 +11177,24 @@
     body:not(.mobile-focus-mode) .subtask-row.clearing.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="portfolio"] {
       background: rgba(250, 243, 244, 0.98) !important;
-      border-color: rgba(196,100,40,0.32) !important;
-      box-shadow: inset 0 0 0 1px rgba(196,100,40,0.32), 0 4px 12px rgba(196,100,40,0.32) !important;
+      border-color: rgba(219,130,127,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(219,130,127,0.32), 0 4px 12px rgba(219,130,127,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="beacon"] {
       background: rgba(244, 245, 250, 0.98) !important;
-      border-color: rgba(81,103,162,0.32) !important;
-      box-shadow: inset 0 0 0 1px rgba(81,103,162,0.32), 0 4px 12px rgba(81,103,162,0.32) !important;
+      border-color: rgba(94,96,77,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(94,96,77,0.32), 0 4px 12px rgba(94,96,77,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="income"] {
       background: rgba(250, 247, 239, 0.98) !important;
-      border-color: rgba(96,105,58,0.32) !important;
-      box-shadow: inset 0 0 0 1px rgba(96,105,58,0.32), 0 4px 12px rgba(96,105,58,0.32) !important;
+      border-color: rgba(161,157,164,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(161,157,164,0.32), 0 4px 12px rgba(161,157,164,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done,
@@ -11209,21 +11206,21 @@
     body:not(.mobile-focus-mode) .subtask-row.done.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="portfolio"] {
       background: rgba(248, 244, 244, 0.74) !important;
-      border-color: rgba(196,100,40,0.32) !important;
+      border-color: rgba(219,130,127,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="beacon"] {
       background: rgba(245, 246, 250, 0.74) !important;
-      border-color: rgba(81,103,162,0.32) !important;
+      border-color: rgba(94,96,77,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="income"] {
       background: rgba(249, 247, 241, 0.76) !important;
-      border-color: rgba(96,105,58,0.32) !important;
+      border-color: rgba(161,157,164,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done,
@@ -11234,19 +11231,19 @@
     body.mobile-focus-mode .mobile-task.done.portfolio,
     body.mobile-focus-mode .mobile-subtask.done[data-area="portfolio"] {
       background: rgba(248, 244, 244, 0.70) !important;
-      border-color: rgba(196,100,40,0.32) !important;
+      border-color: rgba(219,130,127,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done.beacon,
     body.mobile-focus-mode .mobile-subtask.done[data-area="beacon"] {
       background: rgba(245, 246, 250, 0.70) !important;
-      border-color: rgba(81,103,162,0.32) !important;
+      border-color: rgba(94,96,77,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done.income,
     body.mobile-focus-mode .mobile-subtask.done[data-area="income"] {
       background: rgba(249, 247, 241, 0.72) !important;
-      border-color: rgba(96,105,58,0.32) !important;
+      border-color: rgba(161,157,164,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.done.portfolio .mobile-check,
@@ -11312,24 +11309,24 @@
     body:not(.mobile-focus-mode) .subtask-row.clearing.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="portfolio"] {
       background: rgba(250,245,246,0.98) !important;
-      border-color: rgba(196,100,40,0.32) !important;
-      box-shadow: inset 0 0 0 1px rgba(196,100,40,0.32), 0 4px 12px rgba(196,100,40,0.32) !important;
+      border-color: rgba(219,130,127,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(219,130,127,0.32), 0 4px 12px rgba(219,130,127,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing.beacon,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="beacon"] {
       background: rgba(246,247,252,0.98) !important;
-      border-color: rgba(81,103,162,0.32) !important;
-      box-shadow: inset 0 0 0 1px rgba(81,103,162,0.32), 0 4px 12px rgba(81,103,162,0.32) !important;
+      border-color: rgba(94,96,77,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(94,96,77,0.32), 0 4px 12px rgba(94,96,77,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing.income,
     body:not(.mobile-focus-mode) .subtask-row.clearing[data-area="income"] {
       background: rgba(251,248,242,0.98) !important;
-      border-color: rgba(96,105,58,0.32) !important;
-      box-shadow: inset 0 0 0 1px rgba(96,105,58,0.32), 0 4px 12px rgba(96,105,58,0.32) !important;
+      border-color: rgba(161,157,164,0.32) !important;
+      box-shadow: inset 0 0 0 1px rgba(161,157,164,0.32), 0 4px 12px rgba(161,157,164,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.clearing::after,
@@ -11348,21 +11345,21 @@
     body:not(.mobile-focus-mode) .subtask-row.done.portfolio,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="portfolio"] {
       background: rgba(248,245,246,0.72) !important;
-      border-color: rgba(196,100,40,0.32) !important;
+      border-color: rgba(219,130,127,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done.beacon,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="beacon"] {
       background: rgba(246,247,251,0.72) !important;
-      border-color: rgba(81,103,162,0.32) !important;
+      border-color: rgba(94,96,77,0.32) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done.income,
     body:not(.mobile-focus-mode) .subtask-row.done[data-area="income"] {
       background: rgba(250,248,243,0.74) !important;
-      border-color: rgba(96,105,58,0.32) !important;
+      border-color: rgba(161,157,164,0.32) !important;
     }
   </style>
 
@@ -11525,7 +11522,7 @@
     body.mobile-focus-mode .mobile-cloud-pull-btn {
       width: 38px !important;
       min-width: 38px !important;
-      background: rgba(245,234,209,0.92) !important;
+      background: rgba(255,233,218,0.92) !important;
       border-color: rgba(46,41,35,0.45) !important;
       font-size: 16px !important;
     }
@@ -11657,15 +11654,15 @@
     }
 
     body.mobile-focus-mode .mobile-task.portfolio {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(196,100,40,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(219,130,127,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
     }
 
     body.mobile-focus-mode .mobile-task.beacon {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(81,103,162,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(94,96,77,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
     }
 
     body.mobile-focus-mode .mobile-task.income {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(96,105,58,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.055), inset 4px 0 0 rgba(161,157,164,0.32), inset 0 1px 0 rgba(255,255,255,0.70) !important;
     }
 
     body.mobile-focus-mode .mobile-task.portfolio::before,
@@ -11782,7 +11779,7 @@
     .task-input-row input,
     body:not(.mobile-focus-mode) .task-input-row input,
     body.mobile-focus-mode #mobileQuickTitle {
-      background: #E8E2C5 !important;
+      background: #FFE9DA !important;
       background-image: none !important;
     }
 
@@ -11889,15 +11886,15 @@
     }
 
     body:not(.mobile-focus-mode) .weekly-run .top-run-segment.portfolio::before {
-      background: rgba(196,100,40,0.28) !important;
+      background: rgba(219,130,127,0.28) !important;
     }
 
     body:not(.mobile-focus-mode) .weekly-run .top-run-segment.beacon::before {
-      background: rgba(81,103,162,0.26) !important;
+      background: rgba(94,96,77,0.26) !important;
     }
 
     body:not(.mobile-focus-mode) .weekly-run .top-run-segment.income::before {
-      background: rgba(96,105,58,0.24) !important;
+      background: rgba(161,157,164,0.24) !important;
     }
 
     body:not(.mobile-focus-mode) .weekly-run .top-run-segment span,
@@ -11906,14 +11903,14 @@
     }
 
     body:not(.mobile-focus-mode) .task-input-row input {
-      background: #E8E2C5 !important;
+      background: #FFE9DA !important;
       background-image: none !important;
       box-shadow: none !important;
       border: 1px solid rgba(46,41,35,0.10) !important;
     }
 
     body:not(.mobile-focus-mode) .task-input-row input:focus {
-      background: #E8E2C5 !important;
+      background: #FFE9DA !important;
       background-image: none !important;
       box-shadow: none !important;
       border-color: rgba(46,41,35,0.18) !important;
@@ -12259,33 +12256,33 @@
     .app .panel.portfolio .task-input-row input {
       color: var(--portfolio) !important;
       caret-color: var(--portfolio) !important;
-      border-color: rgba(196, 100, 40, 0.26) !important;
+      border-color: rgba(219, 130, 127, 0.26) !important;
     }
 
     .app .panel.beacon .task-input-row input {
       color: var(--beacon) !important;
       caret-color: var(--beacon) !important;
-      border-color: rgba(81, 103, 162, 0.26) !important;
+      border-color: rgba(94, 96, 77, 0.26) !important;
     }
 
     .app .panel.income .task-input-row input {
       color: var(--income) !important;
       caret-color: var(--income) !important;
-      border-color: rgba(96, 105, 58, 0.26) !important;
+      border-color: rgba(161, 157, 164, 0.26) !important;
     }
 
     .app .panel.portfolio .task-input-row input::placeholder {
-      color: rgba(196, 100, 40, 0.58) !important;
+      color: rgba(219, 130, 127, 0.58) !important;
       opacity: 1 !important;
     }
 
     .app .panel.beacon .task-input-row input::placeholder {
-      color: rgba(81, 103, 162, 0.58) !important;
+      color: rgba(94, 96, 77, 0.58) !important;
       opacity: 1 !important;
     }
 
     .app .panel.income .task-input-row input::placeholder {
-      color: rgba(96, 105, 58, 0.58) !important;
+      color: rgba(161, 157, 164, 0.58) !important;
       opacity: 1 !important;
     }
 
@@ -12296,15 +12293,15 @@
     }
 
     .app .panel.portfolio .task-input-row input:focus {
-      border-color: rgba(196, 100, 40, 0.52) !important;
+      border-color: rgba(219, 130, 127, 0.52) !important;
     }
 
     .app .panel.beacon .task-input-row input:focus {
-      border-color: rgba(81, 103, 162, 0.52) !important;
+      border-color: rgba(94, 96, 77, 0.52) !important;
     }
 
     .app .panel.income .task-input-row input:focus {
-      border-color: rgba(96, 105, 58, 0.52) !important;
+      border-color: rgba(161, 157, 164, 0.52) !important;
     }
 
     .app .panel .task-input-row .add-btn {
@@ -12591,45 +12588,76 @@
   </style>
 
 
-  <style id="pc-subtask-add-project-button-20260622">
-    /* PC main board: make the small subtask add + button more discoverable while keeping the compact round shape. */
-    body:not(.mobile-focus-mode) .task-card .task-left-actions .subtask-add-chip {
-      background: #F5EAD1 !important;
-      border-width: 1.5px !important;
-      border-style: solid !important;
-      font-weight: 900 !important;
-      box-shadow: 0 3px 8px rgba(72, 68, 60, 0.08), inset 0 1px 0 rgba(255,255,255,0.72) !important;
+  <style id="mobile-timer-pill-progress-final-20260621">
+    /* Final mobile focus timer: remaining time is represented only inside the timer button. */
+    body.mobile-focus-mode .mobile-task.portfolio .mobile-timer,
+    body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer { --timer-fill-color: #DB827F; }
+    body.mobile-focus-mode .mobile-task.beacon .mobile-timer,
+    body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer { --timer-fill-color: #5E604D; }
+    body.mobile-focus-mode .mobile-task.income .mobile-timer,
+    body.mobile-focus-mode .mobile-subtask.income .mobile-timer { --timer-fill-color: #A19DA4; }
+
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded) {
+      position: relative !important;
+      overflow: hidden !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      background: linear-gradient(90deg,
+        var(--timer-fill-color, #2E3118) 0%,
+        var(--timer-fill-color, #2E3118) var(--timer-left, 100%),
+        rgba(255,255,255,0.98) var(--timer-left, 100%),
+        rgba(255,255,255,0.98) 100%
+      ) !important;
+      color: #fff !important;
+      border-color: rgba(24,24,24,0.14) !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.42) !important;
+      transform: none !important;
+      animation: none !important;
     }
 
-    body:not(.mobile-focus-mode) .task-card.portfolio .task-left-actions .subtask-add-chip {
-      color: var(--portfolio) !important;
-      border-color: var(--portfolio) !important;
+    body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
+      color: var(--timer-fill-color, #2E3118) !important;
     }
 
-    body:not(.mobile-focus-mode) .task-card.beacon .task-left-actions .subtask-add-chip {
-      color: var(--beacon) !important;
-      border-color: var(--beacon) !important;
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 7px !important;
+      height: 7px !important;
+      min-width: 7px !important;
+      border-radius: 999px !important;
+      background: currentColor !important;
+      box-shadow: none !important;
+      flex: 0 0 7px !important;
+      animation: mobileLiveDot 1.15s ease-out infinite !important;
+      transform: none !important;
     }
 
-    body:not(.mobile-focus-mode) .task-card.income .task-left-actions .subtask-add-chip {
-      color: var(--income) !important;
-      border-color: var(--income) !important;
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) {
+      background: rgba(255,255,255,0.96) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 4px 9px rgba(0,0,0,0.055) !important;
+      border-width: 1.2px !important;
     }
 
-    body:not(.mobile-focus-mode) .task-card.portfolio .task-left-actions .subtask-add-chip:hover {
-      background: #FFF4DA !important;
-      box-shadow: 0 4px 10px rgba(196,100,40,0.18), inset 0 1px 0 rgba(255,255,255,0.78) !important;
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
+      content: none !important;
+      display: none !important;
     }
 
-    body:not(.mobile-focus-mode) .task-card.beacon .task-left-actions .subtask-add-chip:hover {
-      background: #FFF4DA !important;
-      box-shadow: 0 4px 10px rgba(81,103,162,0.18), inset 0 1px 0 rgba(255,255,255,0.78) !important;
-    }
-
-    body:not(.mobile-focus-mode) .task-card.income .task-left-actions .subtask-add-chip:hover {
-      background: #FFF4DA !important;
-      box-shadow: 0 4px 10px rgba(96,105,58,0.18), inset 0 1px 0 rgba(255,255,255,0.78) !important;
-    }
+    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused) { border-color: rgba(219,130,127,0.34) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused) { border-color: rgba(94,96,77,0.34) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) { border-color: rgba(161,157,164,0.36) !important; }
   </style>
 
 </head>
@@ -14534,7 +14562,7 @@ for update using (true) with check (true);</pre>
       timer.textContent = text;
       timer.classList.toggle("paused", className.includes("paused"));
       timer.classList.toggle("exceeded", exceeded);
-      timer.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(payload.area, info.task, info.subtask)}%`);
+      applyMobileTimerPillState(timer, payload.area, getSubjectTimerLeftPercent(payload.area, info.task, info.subtask));
 
       const card = timer.closest(".mobile-task");
       if (card) {
@@ -15581,6 +15609,34 @@ for update using (true) with check (true);</pre>
     }
 
 
+    function getMobileTimerFillColor(area) {
+      if (area === "portfolio") return "#DB827F";
+      if (area === "beacon") return "#5E604D";
+      if (area === "income") return "#A19DA4";
+      return "#2E3118";
+    }
+
+    function applyMobileTimerPillState(button, area, leftPercent) {
+      if (!button) return;
+      const safeLeftPercent = Math.max(0, Math.min(100, Math.round(Number(leftPercent) || 0)));
+      button.style.setProperty("--timer-left", `${safeLeftPercent}%`);
+      button.style.setProperty("--timer-fill-color", getMobileTimerFillColor(area));
+      button.classList.toggle("progress-low", safeLeftPercent <= 50);
+    }
+
+    function refreshMobileTimerPillVisuals(scope = document) {
+      if (!scope || !scope.querySelectorAll) return;
+      scope.querySelectorAll('.mobile-timer[data-area]').forEach(button => {
+        const area = button.dataset.area;
+        const taskId = button.dataset.taskid;
+        const subtaskId = button.dataset.subtaskid || null;
+        const info = getTimerSubject(area, taskId, subtaskId);
+        if (!info) return;
+        applyMobileTimerPillState(button, area, getSubjectTimerLeftPercent(area, info.task, info.subtask));
+      });
+    }
+
+
     function createPcCounterButton(area, task, subtask = null) {
       const subtaskId = subtask?.id || "";
       const text = getPcTimerButtonText(area, task, subtask);
@@ -16116,7 +16172,7 @@ for update using (true) with check (true);</pre>
             subToggle.classList.add("task-progress-badge");
             subToggle.title = task.subtasksCollapsed ? "하위 보기" : "하위 숨기기";
           } else {
-            subToggle.textContent = "+";
+            subToggle.textContent = "하위 추가 +";
             subToggle.classList.add("subtask-add-chip");
             subToggle.title = "하위 추가";
           }
@@ -18993,6 +19049,7 @@ for update using (true) with check (true);</pre>
         </main>`;
 
       renderSyncStatus();
+      refreshMobileTimerPillVisuals(root);
     }
 
     function mobileFocusItemHtml(item, fallback = false) {
@@ -19348,15 +19405,15 @@ for update using (true) with check (true);</pre>
       --soft-shadow: 13px 13px 32px rgba(145,145,138,0.30), -11px -11px 28px rgba(255,255,255,0.86);
       --soft-shadow-small: 7px 7px 16px rgba(150,150,144,0.22), -6px -6px 14px rgba(255,255,255,0.84);
       --inset-soft: inset 5px 5px 12px rgba(158,158,152,0.24), inset -5px -5px 12px rgba(255,255,255,0.84);
-      --portfolio: #C46428;
-      --portfolio-soft: rgba(232,226,197,0.32);
-      --portfolio-mid: rgba(196,100,40,0.34);
-      --beacon: #5167A2;
-      --beacon-soft: rgba(232,226,197,0.32);
-      --beacon-mid: rgba(81,103,162,0.34);
-      --income: #60693A;
-      --income-soft: rgba(232,226,197,0.32);
-      --income-mid: rgba(96,105,58,0.35);
+      --portfolio: #DB827F;
+      --portfolio-soft: rgba(255,233,218,0.32);
+      --portfolio-mid: rgba(219,130,127,0.34);
+      --beacon: #5E604D;
+      --beacon-soft: rgba(255,233,218,0.32);
+      --beacon-mid: rgba(94,96,77,0.34);
+      --income: #A19DA4;
+      --income-soft: rgba(255,233,218,0.32);
+      --income-mid: rgba(161,157,164,0.35);
       --green: #7da883;
       --red: #c96b62;
     }
@@ -19597,9 +19654,9 @@ for update using (true) with check (true);</pre>
       text-transform: uppercase;
     }
 
-    .tag.portfolio { background: var(--portfolio-soft); color: #C46428; }
-    .tag.beacon { background: var(--beacon-soft); color: #5167A2; }
-    .tag.income { background: var(--income-soft); color: #60693A; }
+    .tag.portfolio { background: var(--portfolio-soft); color: #DB827F; }
+    .tag.beacon { background: var(--beacon-soft); color: #5E604D; }
+    .tag.income { background: var(--income-soft); color: #A19DA4; }
 
     .title {
       outline: none;
@@ -21237,21 +21294,21 @@ for update using (true) with check (true);</pre>
     .task-card.portfolio .subtoggle-btn,
     .focus-task.portfolio .subtoggle-focus {
       background: var(--portfolio-soft) !important;
-      color: #C46428 !important;
+      color: #DB827F !important;
       border-color: rgba(191, 126, 138, 0.42) !important;
     }
 
     .task-card.beacon .subtoggle-btn,
     .focus-task.beacon .subtoggle-focus {
       background: var(--beacon-soft) !important;
-      color: #5167A2 !important;
+      color: #5E604D !important;
       border-color: rgba(128, 135, 199, 0.42) !important;
     }
 
     .task-card.income .subtoggle-btn,
     .focus-task.income .subtoggle-focus {
       background: var(--income-soft) !important;
-      color: #60693A !important;
+      color: #A19DA4 !important;
       border-color: rgba(185, 151, 84, 0.44) !important;
     }
 
@@ -21278,7 +21335,7 @@ for update using (true) with check (true);</pre>
       border-color: var(--portfolio) !important;
       box-shadow:
         0 8px 18px rgba(0,0,0,0.09),
-        inset 3px 0 0 rgba(196,100,40,0.32),
+        inset 3px 0 0 rgba(219,130,127,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68) !important;
     }
 
@@ -21290,7 +21347,7 @@ for update using (true) with check (true);</pre>
       border-color: var(--beacon) !important;
       box-shadow:
         0 8px 18px rgba(0,0,0,0.09),
-        inset 3px 0 0 rgba(81,103,162,0.32),
+        inset 3px 0 0 rgba(94,96,77,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68) !important;
     }
 
@@ -21302,7 +21359,7 @@ for update using (true) with check (true);</pre>
       border-color: var(--income) !important;
       box-shadow:
         0 8px 18px rgba(0,0,0,0.09),
-        inset 3px 0 0 rgba(96,105,58,0.32),
+        inset 3px 0 0 rgba(161,157,164,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68) !important;
     }
 
@@ -21314,7 +21371,7 @@ for update using (true) with check (true);</pre>
       bottom: 9px !important;
       width: 3px !important;
       border-radius: 0 999px 999px 0 !important;
-      background: rgba(196,100,40,0.32) !important;
+      background: rgba(219,130,127,0.32) !important;
       pointer-events: none !important;
       z-index: 5 !important;
     }
@@ -21373,7 +21430,7 @@ for update using (true) with check (true);</pre>
         min-height: 32px !important;
         padding: 0 13px !important;
         border: 1.7px solid rgba(46, 41, 35, 0.62) !important;
-        background: linear-gradient(180deg, rgba(245, 234, 209, 0.98), rgba(255, 250, 242, 0.96)) !important;
+        background: linear-gradient(180deg, rgba(255, 233, 218, 0.98), rgba(255, 250, 242, 0.96)) !important;
         color: #2e2923 !important;
         box-shadow:
           0 7px 16px rgba(46, 41, 35, 0.13),
@@ -21394,7 +21451,7 @@ for update using (true) with check (true);</pre>
       }
 
       body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover {
-        background: linear-gradient(180deg, rgba(245, 234, 209, 1), rgba(255, 253, 248, 1)) !important;
+        background: linear-gradient(180deg, rgba(255, 233, 218, 1), rgba(255, 253, 248, 1)) !important;
         border-color: rgba(46, 41, 35, 0.84) !important;
         transform: translateY(-1px) !important;
         box-shadow:
@@ -21461,9 +21518,9 @@ for update using (true) with check (true);</pre>
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #C46428 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5167A2 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #60693A !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #DB827F !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5E604D !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #A19DA4 !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.paused {
       background: #8f8e89 !important;
@@ -21565,7 +21622,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--portfolio) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(196,100,40,0.32),
+        inset 0 0 0 1px rgba(219,130,127,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -21575,7 +21632,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--beacon) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(81,103,162,0.32),
+        inset 0 0 0 1px rgba(94,96,77,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -21585,7 +21642,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--income) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(96,105,58,0.32),
+        inset 0 0 0 1px rgba(161,157,164,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -21626,18 +21683,18 @@ for update using (true) with check (true);</pre>
 
     body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
-      border-color: rgba(196,100,40,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(219,130,127,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
-      border-color: rgba(81,103,162,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(94,96,77,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
-      border-color: rgba(96,105,58,0.32) !important;
-      background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(161,157,164,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.92), rgba(248,248,245,0.96) 62%) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.running:not(.paused) .task-title,
@@ -21661,9 +21718,9 @@ for update using (true) with check (true);</pre>
       transform-origin: center !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #C46428 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5167A2 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #60693A !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #DB827F !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5E604D !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #A19DA4 !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
       content: "" !important;
@@ -21986,87 +22043,73 @@ for update using (true) with check (true);</pre>
     });
   <\/script>
 
-
-<style id="mobile-subtask-white-timer-bar-nanum-myeongjo-20260622">
-  /* 2026-06-22 · Final mobile timer/subtask visual correction. */
-  body.mobile-focus-mode .mobile-subtask,
-  body.mobile-focus-mode .mobile-subtask.portfolio,
-  body.mobile-focus-mode .mobile-subtask.beacon,
-  body.mobile-focus-mode .mobile-subtask.income,
-  body.mobile-focus-mode .mobile-subtask.running,
-  body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-    background: #fff !important;
-    background-color: #fff !important;
-    background-image: none !important;
+<style id="nova-palette-update-20260622">
+  :root {
+    --portfolio: #DB827F !important;
+    --portfolio-soft: #FFE9DA !important;
+    --beacon: #5E604D !important;
+    --beacon-soft: #FFE9DA !important;
+    --income: #A19DA4 !important;
+    --income-soft: #FFE9DA !important;
+    --brand-light: #FFE9DA !important;
   }
 
-  body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
-    content: none !important;
-    display: none !important;
+  .portfolio .weight-pill,
+  .portfolio .quota-line,
+  .portfolio .panel-quote-box,
+  .top-time-chip.portfolio,
+  .session-badge.portfolio,
+  .mobile-tag.portfolio,
+  .weekly-matrix-dot.active.portfolio,
+  .weekly-matrix-dot.partial.portfolio,
+  .clear-row-type.portfolio,
+  .clear-chip,
+  .load-chip,
+  .beacon .weight-pill,
+  .beacon .quota-line,
+  .beacon .panel-quote-box,
+  .top-time-chip.beacon,
+  .session-badge.beacon,
+  .mobile-tag.beacon,
+  .weekly-matrix-dot.active.beacon,
+  .weekly-matrix-dot.partial.beacon,
+  .clear-row-type.beacon,
+  .income .weight-pill,
+  .income .quota-line,
+  .income .panel-quote-box,
+  .top-time-chip.income,
+  .session-badge.income,
+  .mobile-tag.income,
+  .weekly-matrix-dot.active.income,
+  .weekly-matrix-dot.partial.income,
+  .clear-row-type.income {
+    background: #FFE9DA !important;
   }
 
-  body.mobile-focus-mode .mobile-subtask.portfolio { border-color: rgba(196,100,40,0.36) !important; }
-  body.mobile-focus-mode .mobile-subtask.beacon { border-color: rgba(81,103,162,0.36) !important; }
-  body.mobile-focus-mode .mobile-subtask.income { border-color: rgba(96,105,58,0.38) !important; }
-
-  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer { --timer-fill-color: #C46428; }
-
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer { --timer-fill-color: #5167A2; }
-
-  body.mobile-focus-mode .mobile-task.income .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer { --timer-fill-color: #60693A; }
-
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
   body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded),
   body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
+  body:not(.mobile-focus-mode) .pc-timer.running.portfolio {
+    background: linear-gradient(90deg, #DB827F 0%, #DB827F var(--timer-left, 100%), rgba(255,255,255,0.98) var(--timer-left, 100%), rgba(255,255,255,0.98) 100%) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
   body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded) {
-    background: linear-gradient(90deg,
-      var(--timer-fill-color, #2E3118) 0%,
-      var(--timer-fill-color, #2E3118) var(--timer-left, 100%),
-      #ffffff var(--timer-left, 100%),
-      #ffffff 100%) !important;
-    background-color: #ffffff !important;
-    border-color: rgba(24,24,24,0.12) !important;
-    color: #fff !important;
+  body:not(.mobile-focus-mode) .pc-timer.running.beacon {
+    background: linear-gradient(90deg, #5E604D 0%, #5E604D var(--timer-left, 100%), rgba(255,255,255,0.98) var(--timer-left, 100%), rgba(255,255,255,0.98) 100%) !important;
   }
 
-  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
-    color: var(--timer-fill-color, #2E3118) !important;
+  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded),
+  body:not(.mobile-focus-mode) .pc-timer.running.income {
+    background: linear-gradient(90deg, #A19DA4 0%, #A19DA4 var(--timer-left, 100%), rgba(255,255,255,0.98) var(--timer-left, 100%), rgba(255,255,255,0.98) 100%) !important;
   }
 
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before {
+  body.mobile-focus-mode .mobile-timer.progress-low:not(.paused):not(.exceeded) {
+    color: var(--timer-fill-color, currentColor) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
     background: currentColor !important;
-    box-shadow: none !important;
-  }
-
-  .quote-box,
-  .top-quote-box,
-  .panel-quote-box {
-    font-family: "Nanum Myeongjo", "Noto Serif KR", "Apple SD Gothic Neo", serif !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.015em !important;
-  }
-
-  .quote-box::placeholder,
-  .top-quote-box::placeholder,
-  .panel-quote-box::placeholder {
-    font-family: "Nanum Myeongjo", "Noto Serif KR", "Apple SD Gothic Neo", serif !important;
-    font-weight: 700 !important;
   }
 </style>
 
@@ -22428,12 +22471,12 @@ for update using (true) with check (true);</pre>
       border-radius: inherit;
     }
 
-    .mini-allocation-segment.portfolio { background: rgba(196,100,40,0.32); }
-    .mini-allocation-segment.portfolio span { background: #C46428; }
-    .mini-allocation-segment.beacon { background: rgba(81,103,162,0.32); }
-    .mini-allocation-segment.beacon span { background: #5167A2; }
-    .mini-allocation-segment.income { background: rgba(96,105,58,0.32); }
-    .mini-allocation-segment.income span { background: #60693A; }
+    .mini-allocation-segment.portfolio { background: rgba(219,130,127,0.32); }
+    .mini-allocation-segment.portfolio span { background: #DB827F; }
+    .mini-allocation-segment.beacon { background: rgba(94,96,77,0.32); }
+    .mini-allocation-segment.beacon span { background: #5E604D; }
+    .mini-allocation-segment.income { background: rgba(161,157,164,0.32); }
+    .mini-allocation-segment.income span { background: #A19DA4; }
 
     .mini-card {
       position: relative;
@@ -22485,15 +22528,15 @@ for update using (true) with check (true);</pre>
     }
 
     .mini-card.portfolio::before {
-      background: #C46428;
+      background: #DB827F;
     }
 
     .mini-card.beacon::before {
-      background: #5167A2;
+      background: #5E604D;
     }
 
     .mini-card.income::before {
-      background: #60693A;
+      background: #A19DA4;
     }
 
     .mini-subtask-card {
@@ -22575,11 +22618,11 @@ for update using (true) with check (true);</pre>
     }
 
     .mini-group-card.beacon .mini-parent-block-title {
-      color: #5167A2;
+      color: #5E604D;
     }
 
     .mini-group-card.income .mini-parent-block-title {
-      color: #60693A;
+      color: #A19DA4;
     }
 
     .mini-card.portfolio {
@@ -22587,14 +22630,14 @@ for update using (true) with check (true);</pre>
       border-color: rgba(18,18,18,0.88);
       box-shadow:
         0 8px 18px rgba(0,0,0,0.10),
-        inset 3px 0 0 rgba(196,100,40,0.32),
+        inset 3px 0 0 rgba(219,130,127,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62);
     }
 
     .mini-card.portfolio::before {
       width: 4px;
       opacity: 1;
-      background: rgba(196,100,40,0.32);
+      background: rgba(219,130,127,0.32);
     }
 
     .mini-card.portfolio .mini-task-title,
@@ -22762,9 +22805,9 @@ for update using (true) with check (true);</pre>
       color: #696963;
     }
 
-    .mini-done-row.portfolio { border-left: 3px solid rgba(196,100,40,0.32); }
-    .mini-done-row.beacon { border-left: 3px solid rgba(81,103,162,0.32); }
-    .mini-done-row.income { border-left: 3px solid rgba(96,105,58,0.32); }
+    .mini-done-row.portfolio { border-left: 3px solid rgba(219,130,127,0.32); }
+    .mini-done-row.beacon { border-left: 3px solid rgba(94,96,77,0.32); }
+    .mini-done-row.income { border-left: 3px solid rgba(161,157,164,0.32); }
 
     .mini-done-check {
       display: grid;
@@ -22914,25 +22957,25 @@ for update using (true) with check (true);</pre>
     body.mobile-focus-mode .mobile-task.running.portfolio {
       box-shadow:
         0 10px 22px rgba(0,0,0,0.12),
-        inset 4px 0 0 rgba(196,100,40,0.32),
+        inset 4px 0 0 rgba(219,130,127,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68),
-        0 0 0 2px rgba(196,100,40,0.32) !important;
+        0 0 0 2px rgba(219,130,127,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.running.beacon {
       box-shadow:
         0 10px 22px rgba(0,0,0,0.12),
-        inset 4px 0 0 rgba(81,103,162,0.32),
+        inset 4px 0 0 rgba(94,96,77,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68),
-        0 0 0 2px rgba(81,103,162,0.32) !important;
+        0 0 0 2px rgba(94,96,77,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-task.running.income {
       box-shadow:
         0 10px 22px rgba(0,0,0,0.12),
-        inset 4px 0 0 rgba(96,105,58,0.32),
+        inset 4px 0 0 rgba(161,157,164,0.32),
         inset 0 1px 0 rgba(255,255,255,0.68),
-        0 0 0 2px rgba(96,105,58,0.32) !important;
+        0 0 0 2px rgba(161,157,164,0.32) !important;
     }
 
     body.mobile-focus-mode .mobile-subtask.running {
@@ -22945,9 +22988,9 @@ for update using (true) with check (true);</pre>
         0 0 0 2px rgba(36,36,36,0.045) !important;
     }
 
-    body.mobile-focus-mode .mobile-subtask.running.portfolio { border-color: rgba(196,100,40,0.32) !important; }
-    body.mobile-focus-mode .mobile-subtask.running.beacon { border-color: rgba(81,103,162,0.32) !important; }
-    body.mobile-focus-mode .mobile-subtask.running.income { border-color: rgba(96,105,58,0.32) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.portfolio { border-color: rgba(219,130,127,0.32) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.beacon { border-color: rgba(94,96,77,0.32) !important; }
+    body.mobile-focus-mode .mobile-subtask.running.income { border-color: rgba(161,157,164,0.32) !important; }
 
     body.mobile-focus-mode .mobile-subtask.running::after {
       content: "집중중" !important;
@@ -23024,7 +23067,7 @@ for update using (true) with check (true);</pre>
         min-height: 32px !important;
         padding: 0 13px !important;
         border: 1.7px solid rgba(46, 41, 35, 0.62) !important;
-        background: linear-gradient(180deg, rgba(245, 234, 209, 0.98), rgba(255, 250, 242, 0.96)) !important;
+        background: linear-gradient(180deg, rgba(255, 233, 218, 0.98), rgba(255, 250, 242, 0.96)) !important;
         color: #2e2923 !important;
         box-shadow:
           0 7px 16px rgba(46, 41, 35, 0.13),
@@ -23045,7 +23088,7 @@ for update using (true) with check (true);</pre>
       }
 
       body:not(.mobile-focus-mode) .brand-actions .cloud-pull-btn:hover {
-        background: linear-gradient(180deg, rgba(245, 234, 209, 1), rgba(255, 253, 248, 1)) !important;
+        background: linear-gradient(180deg, rgba(255, 233, 218, 1), rgba(255, 253, 248, 1)) !important;
         border-color: rgba(46, 41, 35, 0.84) !important;
         transform: translateY(-1px) !important;
         box-shadow:
@@ -23112,9 +23155,9 @@ for update using (true) with check (true);</pre>
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 3px 9px rgba(0,0,0,0.08) !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #C46428 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5167A2 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #60693A !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio { background: #DB827F !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon { background: #5E604D !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income { background: #A19DA4 !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.paused {
       background: #8f8e89 !important;
@@ -23216,7 +23259,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--portfolio) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(196,100,40,0.32),
+        inset 0 0 0 1px rgba(219,130,127,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -23226,7 +23269,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--beacon) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(81,103,162,0.32),
+        inset 0 0 0 1px rgba(94,96,77,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -23236,7 +23279,7 @@ for update using (true) with check (true);</pre>
       border: var(--nova-pin-stroke) solid var(--income) !important;
       box-shadow:
         0 7px 16px rgba(0,0,0,0.055),
-        inset 0 0 0 1px rgba(96,105,58,0.32),
+        inset 0 0 0 1px rgba(161,157,164,0.32),
         inset 0 1px 0 rgba(255,255,255,0.62) !important;
     }
 
@@ -23277,18 +23320,18 @@ for update using (true) with check (true);</pre>
 
     body:not(.mobile-focus-mode) .task-card.running.portfolio:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.portfolio:not(.paused) {
-      border-color: rgba(196,100,40,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(219,130,127,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.beacon:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.beacon:not(.paused) {
-      border-color: rgba(81,103,162,0.32) !important;
-      background: linear-gradient(90deg, rgba(232,226,197,0.42), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(94,96,77,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.42), rgba(248,248,245,0.96) 62%) !important;
     }
     body:not(.mobile-focus-mode) .task-card.running.income:not(.paused),
     body:not(.mobile-focus-mode) .subtask-row.running.income:not(.paused) {
-      border-color: rgba(96,105,58,0.32) !important;
-      background: linear-gradient(90deg, rgba(245,234,209,0.92), rgba(248,248,245,0.96) 62%) !important;
+      border-color: rgba(161,157,164,0.32) !important;
+      background: linear-gradient(90deg, rgba(255,233,218,0.92), rgba(248,248,245,0.96) 62%) !important;
     }
 
     body:not(.mobile-focus-mode) .task-card.running:not(.paused) .task-title,
@@ -23312,9 +23355,9 @@ for update using (true) with check (true);</pre>
       transform-origin: center !important;
     }
 
-    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #C46428 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5167A2 !important; }
-    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #60693A !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.portfolio:not(.paused):not(.exceeded) { background: #DB827F !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.beacon:not(.paused):not(.exceeded) { background: #5E604D !important; }
+    body:not(.mobile-focus-mode) .pc-timer.running.income:not(.paused):not(.exceeded) { background: #A19DA4 !important; }
 
     body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)::before {
       content: "" !important;
@@ -24250,7 +24293,7 @@ for update using (true) with check (true);</pre>
       return `
         <svg class="report-trend-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="최근 7일 집중 추이">
           ${grid}
-          <path d="${areaPath}" fill="rgba(196,100,40,0.32)"></path>
+          <path d="${areaPath}" fill="rgba(219,130,127,0.32)"></path>
           <polyline points="${polyline}" fill="none" stroke="var(--portfolio)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></polyline>
           ${dots}
         </svg>
@@ -25122,17 +25165,17 @@ for update using (true) with check (true);</pre>
 
   body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
   body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded) {
-    background: #C46428 !important;
+    background: #DB827F !important;
   }
 
   body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
   body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded) {
-    background: #5167A2 !important;
+    background: #5E604D !important;
   }
 
   body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
   body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded) {
-    background: #60693A !important;
+    background: #A19DA4 !important;
   }
 
   body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
@@ -25151,21 +25194,21 @@ for update using (true) with check (true);</pre>
   }
 
   body.mobile-focus-mode .mobile-task.portfolio {
-    border-color: rgba(196,100,40,0.72) !important;
+    border-color: rgba(219,130,127,0.72) !important;
     border-color: color-mix(in srgb, var(--portfolio) 72%, #ffffff 28%) !important;
-    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(196,100,40,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(219,130,127,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
   }
 
   body.mobile-focus-mode .mobile-task.beacon {
-    border-color: rgba(81,103,162,0.72) !important;
+    border-color: rgba(94,96,77,0.72) !important;
     border-color: color-mix(in srgb, var(--beacon) 72%, #ffffff 28%) !important;
-    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(81,103,162,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(94,96,77,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
   }
 
   body.mobile-focus-mode .mobile-task.income {
-    border-color: rgba(96,105,58,0.74) !important;
+    border-color: rgba(161,157,164,0.74) !important;
     border-color: color-mix(in srgb, var(--income) 74%, #ffffff 26%) !important;
-    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(96,105,58,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    box-shadow: 0 7px 16px rgba(0,0,0,0.07), inset 3px 0 0 rgba(161,157,164,0.42), inset 0 1px 0 rgba(255,255,255,0.62) !important;
   }
 
   body.mobile-focus-mode .mobile-task.portfolio::before { background: var(--portfolio) !important; }
@@ -25175,31 +25218,31 @@ for update using (true) with check (true);</pre>
   body.mobile-focus-mode .mobile-task.pinned.portfolio,
   body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.portfolio {
     border-color: var(--portfolio) !important;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(196,100,40,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(219,130,127,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
   }
 
   body.mobile-focus-mode .mobile-task.pinned.beacon,
   body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.beacon {
     border-color: var(--beacon) !important;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(81,103,162,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(94,96,77,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
   }
 
   body.mobile-focus-mode .mobile-task.pinned.income,
   body.mobile-focus-mode .mobile-task.mobile-subtask-focus.pinned.income {
     border-color: var(--income) !important;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(96,105,58,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.09), inset 3px 0 0 rgba(161,157,164,0.54), inset 0 1px 0 rgba(255,255,255,0.62) !important;
   }
 
   body.mobile-focus-mode .mobile-subtask.portfolio {
-    border-color: rgba(196,100,40,0.34) !important;
+    border-color: rgba(219,130,127,0.34) !important;
   }
 
   body.mobile-focus-mode .mobile-subtask.beacon {
-    border-color: rgba(81,103,162,0.34) !important;
+    border-color: rgba(94,96,77,0.34) !important;
   }
 
   body.mobile-focus-mode .mobile-subtask.income {
-    border-color: rgba(96,105,58,0.36) !important;
+    border-color: rgba(161,157,164,0.36) !important;
   }
 
   @media (max-width: 380px) {
@@ -25213,6 +25256,32 @@ for update using (true) with check (true);</pre>
     body.mobile-focus-mode .mobile-target { font-size: 11px !important; }
     body.mobile-focus-mode .mobile-timer,
     body.mobile-focus-mode .mobile-subtask .mobile-timer { font-size: 11.8px !important; }
+  }
+</style>
+
+
+<style id="subtask-add-label-patch">
+  /* Change no-subtask + chip into a readable “하위 추가 +” button. */
+  .app .task-left-actions .subtask-add-chip {
+    width: auto !important;
+    min-width: 72px !important;
+    max-width: none !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 10.5px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  @media (max-width: 768px) {
+    body:not(.mobile-focus-mode) .task-left-actions .subtask-add-chip {
+      width: auto !important;
+      min-width: 74px !important;
+      max-width: none !important;
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      white-space: nowrap !important;
+    }
   }
 </style>
 
