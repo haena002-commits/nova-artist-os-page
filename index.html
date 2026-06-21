@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + mobile-circular-running-timer-20260622 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12743,140 +12743,6 @@ body:not(.mobile-focus-mode) .panel h2 { font-weight: 780 !important; }
     }
   </style>
 
-
-
-  <style id="nova-mobile-circular-running-timer-20260622">
-    /* Mobile only: while a timer is actively counting, the timer button becomes a compact circular counter.
-       Pause keeps the original pill button; restart activates this circular counter again. */
-    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded) {
-      --timer-active-color: #2E3118;
-      --timer-empty-color: rgba(230, 230, 226, 0.94);
-      position: relative !important;
-      isolation: isolate !important;
-      display: inline-flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 1px !important;
-      width: 72px !important;
-      min-width: 72px !important;
-      max-width: 72px !important;
-      height: 72px !important;
-      min-height: 72px !important;
-      max-height: 72px !important;
-      padding: 0 !important;
-      border: 0 !important;
-      border-radius: 50% !important;
-      overflow: hidden !important;
-      background:
-        radial-gradient(circle at center, rgba(248,248,245,0.98) 0 58%, transparent 59%),
-        conic-gradient(from -90deg, var(--timer-active-color) 0 var(--timer-left, 100%), var(--timer-empty-color) var(--timer-left, 100%) 100%) !important;
-      color: #2E3118 !important;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.78) !important;
-      text-shadow: none !important;
-      font-size: 13px !important;
-      font-weight: 820 !important;
-      line-height: 1.05 !important;
-      text-align: center !important;
-      font-variant-numeric: tabular-nums !important;
-      transform: none !important;
-      scale: 1 !important;
-      animation: none !important;
-      transition: background 0.14s linear, box-shadow 0.12s ease !important;
-    }
-
-    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
-      display: none !important;
-      content: none !important;
-      animation: none !important;
-    }
-
-    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::after {
-      content: attr(data-target-label) !important;
-      display: block !important;
-      margin-top: 2px !important;
-      color: #8a8a84 !important;
-      font-size: 9.5px !important;
-      font-weight: 680 !important;
-      line-height: 1 !important;
-      letter-spacing: 0 !important;
-      text-shadow: none !important;
-      white-space: nowrap !important;
-    }
-
-    body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded) {
-      color: #2E3118 !important;
-    }
-
-    body.mobile-focus-mode .mobile-timer.running[data-area="portfolio"]:not(.paused):not(.exceeded) { --timer-active-color: #6B5CFF; }
-    body.mobile-focus-mode .mobile-timer.running[data-area="beacon"]:not(.paused):not(.exceeded) { --timer-active-color: #5E604D; }
-    body.mobile-focus-mode .mobile-timer.running[data-area="income"]:not(.paused):not(.exceeded) { --timer-active-color: #A19DA4; }
-
-    body.mobile-focus-mode .mobile-subtask.running:not(.paused) {
-      grid-template-columns: 19px minmax(0, 1fr) 46px 76px !important;
-      min-height: 82px !important;
-      align-items: center !important;
-    }
-
-    body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
-      justify-self: end !important;
-      align-self: center !important;
-    }
-
-    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused),
-    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) {
-      min-height: 116px !important;
-    }
-
-    body.mobile-focus-mode .mobile-task-actions .mobile-timer.running:not(.paused):not(.exceeded) {
-      justify-self: end !important;
-      align-self: center !important;
-    }
-
-    body.mobile-focus-mode .mobile-task-actions:has(.mobile-timer.running:not(.paused):not(.exceeded)) {
-      min-height: 76px !important;
-      align-items: center !important;
-    }
-
-    @supports not selector(:has(*)) {
-      body.mobile-focus-mode .mobile-task-actions {
-        align-items: center !important;
-      }
-    }
-
-    @media (max-width: 380px) {
-      body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded) {
-        width: 66px !important;
-        min-width: 66px !important;
-        max-width: 66px !important;
-        height: 66px !important;
-        min-height: 66px !important;
-        max-height: 66px !important;
-        font-size: 12px !important;
-      }
-
-      body.mobile-focus-mode .mobile-subtask.running:not(.paused) {
-        grid-template-columns: 18px minmax(0, 1fr) 42px 68px !important;
-        min-height: 76px !important;
-      }
-    }
-  </style>
-
-
-
-  <style id="nova-quote-pretendard-hard-override-20260622">
-    /* Phrase/quote fields: remove handwritten-font remnants; keep the typed phrase in Pretendard only. */
-    body:not(.mobile-focus-mode) .quote-box,
-    body:not(.mobile-focus-mode) .top-quote-box,
-    body:not(.mobile-focus-mode) .panel-quote-box,
-    body:not(.mobile-focus-mode) .quote-box::placeholder,
-    body:not(.mobile-focus-mode) .top-quote-box::placeholder,
-    body:not(.mobile-focus-mode) .panel-quote-box::placeholder {
-      font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", sans-serif !important;
-      color: #3a3a37 !important;
-    }
-  </style>
-
 </head>
 
 <body>
@@ -19310,8 +19176,7 @@ for update using (true) with check (true);</pre>
       const subtasksHtml = remainingSubtasks.length
         ? `<div class="mobile-subtasks">${remainingSubtasks.map(subtask => mobileSubtaskHtml(area, task, subtask)).join("")}</div>`
         : "";
-      const parentTimerLabel = `${normalizeTargetMinutes(task.targetMinutes)} min`;
-      const parentTimerHtml = hasSubtasks ? "" : `<button class="mobile-timer ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="" data-target-label="${attrValue(parentTimerLabel)}">${escapeHtml(timerButtonText)}</button>`;
+      const parentTimerHtml = hasSubtasks ? "" : `<button class="mobile-timer ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>`;
       const taskMetaHtml = hasSubtasks
         ? `남은 예상 시간 ${escapeHtml(taskEstimatedText)}${fallback ? " · 핀 후보" : ""}`
         : `소요 ${escapeHtml(taskTotalText)} · 총 예상 ${escapeHtml(taskEstimatedText)}${fallback ? " · 핀 후보" : ""}`;
@@ -19365,7 +19230,7 @@ for update using (true) with check (true);</pre>
           <div class="mobile-task-actions mobile-subtask-focus-actions">
             <button class="mobile-pin active" data-mobile-action="toggleSubtaskPin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">PIN</button>
             <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
-            <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}" data-target-label="${attrValue(String(normalizeTargetMinutes(subtask.targetMinutes)) + " min")}">${escapeHtml(subButtonText)}</button>
+            <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
           </div>
         </article>`;
     }
@@ -19383,7 +19248,7 @@ for update using (true) with check (true);</pre>
           <button class="mobile-check" data-mobile-action="toggleSubtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">✓</button>
           <div class="mobile-subtask-title" contenteditable="true" data-mobile-edit="subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}</div>
           <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
-          <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}" data-target-label="${attrValue(String(normalizeTargetMinutes(subtask.targetMinutes)) + " min")}">${escapeHtml(subButtonText)}</button>
+          <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
         </div>`;
     }
 
@@ -22429,142 +22294,6 @@ for update using (true) with check (true);</pre>
   }
 </style>
 
-
-
-<style id="haena-final-mobile-timer-pretendard-20260622-v2">
-  /* Final override: timer pill progress must follow --timer-left; quote fields use Pretendard only. */
-  body,
-  button,
-  input,
-  textarea,
-  select,
-  [contenteditable="true"] {
-    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", sans-serif !important;
-  }
-
-  .quote-box,
-  .top-quote-box,
-  .panel-quote-box,
-  body:not(.mobile-focus-mode) .panel-quote-box,
-  body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
-  body:not(.mobile-focus-mode) .beacon .panel-quote-box,
-  body:not(.mobile-focus-mode) .income .panel-quote-box {
-    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", sans-serif !important;
-    font-size: 13.6px !important;
-    font-weight: 560 !important;
-    line-height: 1.38 !important;
-    letter-spacing: 0 !important;
-    color: #303235 !important;
-  }
-
-  .quote-box::placeholder,
-  .top-quote-box::placeholder,
-  .panel-quote-box::placeholder {
-    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", sans-serif !important;
-    font-weight: 500 !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer {
-    --timer-fill-color: #2E3118;
-    --timer-empty-color: rgba(255,255,255,0.98);
-    background-color: var(--timer-empty-color) !important;
-    background-image: none !important;
-    position: relative !important;
-    isolation: isolate !important;
-    overflow: hidden !important;
-    transform: none !important;
-    scale: 1 !important;
-    animation: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer,
-  body.mobile-focus-mode .mobile-timer[data-area="portfolio"] { --timer-fill-color: #DB827F; }
-
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer,
-  body.mobile-focus-mode .mobile-timer[data-area="beacon"] { --timer-fill-color: #5E604D; }
-
-  body.mobile-focus-mode .mobile-task.income .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer,
-  body.mobile-focus-mode .mobile-timer[data-area="income"] { --timer-fill-color: #A19DA4; }
-
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded) {
-    background-color: var(--timer-empty-color) !important;
-    background-image: linear-gradient(90deg,
-      var(--timer-fill-color) 0%,
-      var(--timer-fill-color) var(--timer-left, 100%),
-      var(--timer-empty-color) var(--timer-left, 100%),
-      var(--timer-empty-color) 100%) !important;
-    border-color: rgba(24,24,24,0.12) !important;
-    color: #ffffff !important;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.14) !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
-    color: var(--timer-fill-color) !important;
-    text-shadow: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
-    content: "" !important;
-    width: 7px !important;
-    height: 7px !important;
-    min-width: 7px !important;
-    flex: 0 0 7px !important;
-    border-radius: 999px !important;
-    background: currentColor !important;
-    box-shadow: none !important;
-    animation: mobileLiveDot 1.15s ease-out infinite !important;
-    transform: none !important;
-    scale: 1 !important;
-  }
-
-  /* 하위할일 row는 실행 중이어도 프로젝트색으로 채우지 않고 회색/화이트 계열 유지. */
-  body.mobile-focus-mode .mobile-subtask,
-  body.mobile-focus-mode .mobile-subtask.running,
-  body.mobile-focus-mode .mobile-subtask.running:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-    background: rgba(255,255,255,0.76) !important;
-    background-color: rgba(255,255,255,0.76) !important;
-    background-image: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-subtask.running::before,
-  body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
-    content: none !important;
-    display: none !important;
-  }
-</style>
-<script id="haena-final-mobile-timer-refresh-20260622-v2">
-  (function () {
-    function refreshHaenaTimerPills() {
-      if (typeof window.refreshMobileTimerPillVisuals === "function") {
-        window.refreshMobileTimerPillVisuals(document);
-      }
-    }
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", refreshHaenaTimerPills, { once: true });
-    } else {
-      refreshHaenaTimerPills();
-    }
-    window.addEventListener("pageshow", refreshHaenaTimerPills);
-  })();
-</script>
-
 </body>
 </html>`;
 
@@ -24177,142 +23906,6 @@ for update using (true) with check (true);</pre>
       if (event.key === "Escape") window.close();
     });
   <\/script>
-
-
-<style id="haena-final-mobile-timer-pretendard-20260622-v2">
-  /* Final override: timer pill progress must follow --timer-left; quote fields use Pretendard only. */
-  body,
-  button,
-  input,
-  textarea,
-  select,
-  [contenteditable="true"] {
-    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", sans-serif !important;
-  }
-
-  .quote-box,
-  .top-quote-box,
-  .panel-quote-box,
-  body:not(.mobile-focus-mode) .panel-quote-box,
-  body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
-  body:not(.mobile-focus-mode) .beacon .panel-quote-box,
-  body:not(.mobile-focus-mode) .income .panel-quote-box {
-    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", sans-serif !important;
-    font-size: 13.6px !important;
-    font-weight: 560 !important;
-    line-height: 1.38 !important;
-    letter-spacing: 0 !important;
-    color: #303235 !important;
-  }
-
-  .quote-box::placeholder,
-  .top-quote-box::placeholder,
-  .panel-quote-box::placeholder {
-    font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", sans-serif !important;
-    font-weight: 500 !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer {
-    --timer-fill-color: #2E3118;
-    --timer-empty-color: rgba(255,255,255,0.98);
-    background-color: var(--timer-empty-color) !important;
-    background-image: none !important;
-    position: relative !important;
-    isolation: isolate !important;
-    overflow: hidden !important;
-    transform: none !important;
-    scale: 1 !important;
-    animation: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer,
-  body.mobile-focus-mode .mobile-timer[data-area="portfolio"] { --timer-fill-color: #DB827F; }
-
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer,
-  body.mobile-focus-mode .mobile-timer[data-area="beacon"] { --timer-fill-color: #5E604D; }
-
-  body.mobile-focus-mode .mobile-task.income .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer,
-  body.mobile-focus-mode .mobile-timer[data-area="income"] { --timer-fill-color: #A19DA4; }
-
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded) {
-    background-color: var(--timer-empty-color) !important;
-    background-image: linear-gradient(90deg,
-      var(--timer-fill-color) 0%,
-      var(--timer-fill-color) var(--timer-left, 100%),
-      var(--timer-empty-color) var(--timer-left, 100%),
-      var(--timer-empty-color) 100%) !important;
-    border-color: rgba(24,24,24,0.12) !important;
-    color: #ffffff !important;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.14) !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
-    color: var(--timer-fill-color) !important;
-    text-shadow: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before {
-    content: "" !important;
-    width: 7px !important;
-    height: 7px !important;
-    min-width: 7px !important;
-    flex: 0 0 7px !important;
-    border-radius: 999px !important;
-    background: currentColor !important;
-    box-shadow: none !important;
-    animation: mobileLiveDot 1.15s ease-out infinite !important;
-    transform: none !important;
-    scale: 1 !important;
-  }
-
-  /* 하위할일 row는 실행 중이어도 프로젝트색으로 채우지 않고 회색/화이트 계열 유지. */
-  body.mobile-focus-mode .mobile-subtask,
-  body.mobile-focus-mode .mobile-subtask.running,
-  body.mobile-focus-mode .mobile-subtask.running:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-    background: rgba(255,255,255,0.76) !important;
-    background-color: rgba(255,255,255,0.76) !important;
-    background-image: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-subtask.running::before,
-  body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
-    content: none !important;
-    display: none !important;
-  }
-</style>
-<script id="haena-final-mobile-timer-refresh-20260622-v2">
-  (function () {
-    function refreshHaenaTimerPills() {
-      if (typeof window.refreshMobileTimerPillVisuals === "function") {
-        window.refreshMobileTimerPillVisuals(document);
-      }
-    }
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", refreshHaenaTimerPills, { once: true });
-    } else {
-      refreshHaenaTimerPills();
-    }
-    window.addEventListener("pageshow", refreshHaenaTimerPills);
-  })();
-</script>
-
 </body>
 </html>`;
 
@@ -26066,6 +25659,5 @@ for update using (true) with check (true);</pre>
     window.addEventListener("pageshow", refreshHaenaTimerPills);
   })();
 </script>
-
 </body>
 </html>
