@@ -12590,6 +12590,48 @@
     }
   </style>
 
+
+  <style id="pc-subtask-add-project-button-20260622">
+    /* PC main board: make the small subtask add + button more discoverable while keeping the compact round shape. */
+    body:not(.mobile-focus-mode) .task-card .task-left-actions .subtask-add-chip {
+      background: #F5EAD1 !important;
+      border-width: 1.5px !important;
+      border-style: solid !important;
+      font-weight: 900 !important;
+      box-shadow: 0 3px 8px rgba(72, 68, 60, 0.08), inset 0 1px 0 rgba(255,255,255,0.72) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.portfolio .task-left-actions .subtask-add-chip {
+      color: var(--portfolio) !important;
+      border-color: var(--portfolio) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.beacon .task-left-actions .subtask-add-chip {
+      color: var(--beacon) !important;
+      border-color: var(--beacon) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.income .task-left-actions .subtask-add-chip {
+      color: var(--income) !important;
+      border-color: var(--income) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.portfolio .task-left-actions .subtask-add-chip:hover {
+      background: #FFF4DA !important;
+      box-shadow: 0 4px 10px rgba(196,100,40,0.18), inset 0 1px 0 rgba(255,255,255,0.78) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.beacon .task-left-actions .subtask-add-chip:hover {
+      background: #FFF4DA !important;
+      box-shadow: 0 4px 10px rgba(81,103,162,0.18), inset 0 1px 0 rgba(255,255,255,0.78) !important;
+    }
+
+    body:not(.mobile-focus-mode) .task-card.income .task-left-actions .subtask-add-chip:hover {
+      background: #FFF4DA !important;
+      box-shadow: 0 4px 10px rgba(96,105,58,0.18), inset 0 1px 0 rgba(255,255,255,0.78) !important;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -14492,7 +14534,7 @@ for update using (true) with check (true);</pre>
       timer.textContent = text;
       timer.classList.toggle("paused", className.includes("paused"));
       timer.classList.toggle("exceeded", exceeded);
-      setMobileTimerProgressClass(timer, getSubjectTimerLeftPercent(payload.area, info.task, info.subtask));
+      timer.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(payload.area, info.task, info.subtask)}%`);
 
       const card = timer.closest(".mobile-task");
       if (card) {
@@ -15536,26 +15578,6 @@ for update using (true) with check (true);</pre>
       const stateInfo = getSubjectTimerState(area, task, subtask);
       const exceeded = stateInfo.visible && getCountdownSeconds(area, task, subtask) < 0;
       return `${stateInfo.visible ? "running" : ""} ${stateInfo.paused ? "paused" : ""} ${exceeded ? "exceeded" : ""}`.trim();
-    }
-
-
-    function setMobileTimerProgressClass(button, leftPercent) {
-      if (!button) return;
-      const safeLeftPercent = Math.max(0, Math.min(100, Math.round(Number(leftPercent) || 0)));
-      button.style.setProperty("--timer-left", `${safeLeftPercent}%`);
-      button.classList.toggle("progress-low", safeLeftPercent <= 50);
-    }
-
-    function refreshMobileTimerProgressClasses(scope = document) {
-      if (!scope || !scope.querySelectorAll) return;
-      scope.querySelectorAll('.mobile-timer[data-area]').forEach(button => {
-        const area = button.dataset.area;
-        const taskId = button.dataset.taskid;
-        const subtaskId = button.dataset.subtaskid || null;
-        const info = getTimerSubject(area, taskId, subtaskId);
-        if (!info) return;
-        setMobileTimerProgressClass(button, getSubjectTimerLeftPercent(area, info.task, info.subtask));
-      });
     }
 
 
@@ -18971,7 +18993,6 @@ for update using (true) with check (true);</pre>
         </main>`;
 
       renderSyncStatus();
-      refreshMobileTimerProgressClasses(root);
     }
 
     function mobileFocusItemHtml(item, fallback = false) {
@@ -21966,6 +21987,88 @@ for update using (true) with check (true);</pre>
   <\/script>
 
 
+<style id="mobile-subtask-white-timer-bar-nanum-myeongjo-20260622">
+  /* 2026-06-22 · Final mobile timer/subtask visual correction. */
+  body.mobile-focus-mode .mobile-subtask,
+  body.mobile-focus-mode .mobile-subtask.portfolio,
+  body.mobile-focus-mode .mobile-subtask.beacon,
+  body.mobile-focus-mode .mobile-subtask.income,
+  body.mobile-focus-mode .mobile-subtask.running,
+  body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused),
+  body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused),
+  body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
+    background: #fff !important;
+    background-color: #fff !important;
+    background-image: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-subtask.portfolio { border-color: rgba(196,100,40,0.36) !important; }
+  body.mobile-focus-mode .mobile-subtask.beacon { border-color: rgba(81,103,162,0.36) !important; }
+  body.mobile-focus-mode .mobile-subtask.income { border-color: rgba(96,105,58,0.38) !important; }
+
+  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer,
+  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer { --timer-fill-color: #C46428; }
+
+  body.mobile-focus-mode .mobile-task.beacon .mobile-timer,
+  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer { --timer-fill-color: #5167A2; }
+
+  body.mobile-focus-mode .mobile-task.income .mobile-timer,
+  body.mobile-focus-mode .mobile-subtask.income .mobile-timer { --timer-fill-color: #60693A; }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded) {
+    background: linear-gradient(90deg,
+      var(--timer-fill-color, #2E3118) 0%,
+      var(--timer-fill-color, #2E3118) var(--timer-left, 100%),
+      #ffffff var(--timer-left, 100%),
+      #ffffff 100%) !important;
+    background-color: #ffffff !important;
+    border-color: rgba(24,24,24,0.12) !important;
+    color: #fff !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
+    color: var(--timer-fill-color, #2E3118) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before {
+    background: currentColor !important;
+    box-shadow: none !important;
+  }
+
+  .quote-box,
+  .top-quote-box,
+  .panel-quote-box {
+    font-family: "Nanum Myeongjo", "Noto Serif KR", "Apple SD Gothic Neo", serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.015em !important;
+  }
+
+  .quote-box::placeholder,
+  .top-quote-box::placeholder,
+  .panel-quote-box::placeholder {
+    font-family: "Nanum Myeongjo", "Noto Serif KR", "Apple SD Gothic Neo", serif !important;
+    font-weight: 700 !important;
+  }
+</style>
 
 </body>
 </html>`;
@@ -25110,91 +25213,6 @@ for update using (true) with check (true);</pre>
     body.mobile-focus-mode .mobile-target { font-size: 11px !important; }
     body.mobile-focus-mode .mobile-timer,
     body.mobile-focus-mode .mobile-subtask .mobile-timer { font-size: 11.8px !important; }
-  }
-</style>
-
-
-
-<style id="mobile-subtask-white-timer-bar-nanum-myeongjo-20260622">
-  /* 2026-06-22 · Final mobile timer/subtask visual correction. */
-  body.mobile-focus-mode .mobile-subtask,
-  body.mobile-focus-mode .mobile-subtask.portfolio,
-  body.mobile-focus-mode .mobile-subtask.beacon,
-  body.mobile-focus-mode .mobile-subtask.income,
-  body.mobile-focus-mode .mobile-subtask.running,
-  body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused),
-  body.mobile-focus-mode .mobile-subtask.running.income:not(.paused) {
-    background: #fff !important;
-    background-color: #fff !important;
-    background-image: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
-    content: none !important;
-    display: none !important;
-  }
-
-  body.mobile-focus-mode .mobile-subtask.portfolio { border-color: rgba(196,100,40,0.36) !important; }
-  body.mobile-focus-mode .mobile-subtask.beacon { border-color: rgba(81,103,162,0.36) !important; }
-  body.mobile-focus-mode .mobile-subtask.income { border-color: rgba(96,105,58,0.38) !important; }
-
-  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer { --timer-fill-color: #C46428; }
-
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer { --timer-fill-color: #5167A2; }
-
-  body.mobile-focus-mode .mobile-task.income .mobile-timer,
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer { --timer-fill-color: #60693A; }
-
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded) {
-    background: linear-gradient(90deg,
-      var(--timer-fill-color, #2E3118) 0%,
-      var(--timer-fill-color, #2E3118) var(--timer-left, 100%),
-      #ffffff var(--timer-left, 100%),
-      #ffffff 100%) !important;
-    background-color: #ffffff !important;
-    border-color: rgba(24,24,24,0.12) !important;
-    color: #fff !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
-    color: var(--timer-fill-color, #2E3118) !important;
-  }
-
-  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
-  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
-  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before {
-    background: currentColor !important;
-    box-shadow: none !important;
-  }
-
-  .quote-box,
-  .top-quote-box,
-  .panel-quote-box {
-    font-family: "Nanum Myeongjo", "Noto Serif KR", "Apple SD Gothic Neo", serif !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.015em !important;
-  }
-
-  .quote-box::placeholder,
-  .top-quote-box::placeholder,
-  .panel-quote-box::placeholder {
-    font-family: "Nanum Myeongjo", "Noto Serif KR", "Apple SD Gothic Neo", serif !important;
-    font-weight: 700 !important;
   }
 </style>
 
