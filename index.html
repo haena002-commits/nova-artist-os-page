@@ -12587,6 +12587,9 @@
     }
   </style>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -16071,7 +16074,7 @@ for update using (true) with check (true);</pre>
             subToggle.classList.add("task-progress-badge");
             subToggle.title = task.subtasksCollapsed ? "하위 보기" : "하위 숨기기";
           } else {
-            subToggle.textContent = "+";
+            subToggle.textContent = "하위 추가 +";
             subToggle.classList.add("subtask-add-chip");
             subToggle.title = "하위 추가";
           }
@@ -25083,6 +25086,55 @@ for update using (true) with check (true);</pre>
     body.mobile-focus-mode .mobile-target { font-size: 11px !important; }
     body.mobile-focus-mode .mobile-timer,
     body.mobile-focus-mode .mobile-subtask .mobile-timer { font-size: 11.8px !important; }
+  }
+</style>
+
+
+<style id="subtask-add-label-patch">
+  /* Change no-subtask + chip into a readable “하위 추가 +” button. */
+  .app .task-left-actions .subtask-add-chip {
+    width: auto !important;
+    min-width: 72px !important;
+    max-width: none !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 10.5px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  @media (max-width: 768px) {
+    body:not(.mobile-focus-mode) .task-left-actions .subtask-add-chip {
+      width: auto !important;
+      min-width: 74px !important;
+      max-width: none !important;
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      white-space: nowrap !important;
+    }
+  }
+</style>
+
+
+
+<style id="input-copy-gaegu-font-patch-20260621">
+  /* Input copy only: use Gaegu for the editable phrase boxes, keep task/UI fonts unchanged. */
+  body .quote-box,
+  body:not(.mobile-focus-mode) .top-quote-box,
+  body:not(.mobile-focus-mode) .panel-quote-box,
+  body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+  body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+  body:not(.mobile-focus-mode) .income .panel-quote-box {
+    font-family: "Gaegu", "Pretendard Variable", "Pretendard", sans-serif !important;
+  }
+
+  body .quote-box::placeholder,
+  body:not(.mobile-focus-mode) .top-quote-box::placeholder,
+  body:not(.mobile-focus-mode) .panel-quote-box::placeholder,
+  body:not(.mobile-focus-mode) .portfolio .panel-quote-box::placeholder,
+  body:not(.mobile-focus-mode) .beacon .panel-quote-box::placeholder,
+  body:not(.mobile-focus-mode) .income .panel-quote-box::placeholder {
+    font-family: "Gaegu", "Pretendard Variable", "Pretendard", sans-serif !important;
   }
 </style>
 
