@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12632,6 +12632,134 @@
     }
   </style>
 
+
+  <style id="nova-mobile-timer-pill-final-20260622">
+    /* 2026-06-22 final override: mobile timer pill uses actual --timer-left percentage. */
+    body.mobile-focus-mode .mobile-timer {
+      --timer-active-color: #2E3118;
+      --timer-empty-color: rgba(220, 220, 216, 0.96);
+      --timer-left: 100%;
+      background-clip: padding-box !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer[data-area="portfolio"] { --timer-active-color: #DB827F; }
+    body.mobile-focus-mode .mobile-timer[data-area="beacon"] { --timer-active-color: #5E604D; }
+    body.mobile-focus-mode .mobile-timer[data-area="income"] { --timer-active-color: #A19DA4; }
+
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      background:
+        linear-gradient(
+          90deg,
+          var(--timer-active-color) 0%,
+          var(--timer-active-color) var(--timer-left, 100%),
+          var(--timer-empty-color) var(--timer-left, 100%),
+          var(--timer-empty-color) 100%
+        ) !important;
+      border-color: rgba(24, 24, 24, 0.10) !important;
+      color: #fff !important;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.12) !important;
+      transform: none !important;
+      scale: 1 !important;
+      animation: none !important;
+      font-variant-numeric: tabular-nums !important;
+      transition: background 0.14s linear, color 0.12s ease, border-color 0.12s ease !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded) {
+      color: var(--timer-active-color) !important;
+      text-shadow: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+    body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      width: 6px !important;
+      height: 6px !important;
+      border-radius: 999px !important;
+      background: currentColor !important;
+      box-shadow: 0 0 0 0 currentColor !important;
+      animation: mobileLiveDot 1.15s ease-out infinite !important;
+      flex: 0 0 6px !important;
+      transform: none !important;
+      scale: 1 !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.paused,
+    body.mobile-focus-mode .mobile-timer.running.paused {
+      background: #8f8e89 !important;
+      color: #fff !important;
+      border-color: #8f8e89 !important;
+      text-shadow: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.exceeded,
+    body.mobile-focus-mode .mobile-timer.running.exceeded {
+      background: #b6463d !important;
+      color: #fff !important;
+      border-color: #b6463d !important;
+      text-shadow: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-timer.paused::before,
+    body.mobile-focus-mode .mobile-timer.exceeded::before {
+      display: none !important;
+    }
+
+    /* Running subtask rows stay neutral grey; only the timer pill communicates elapsed state. */
+    body.mobile-focus-mode .mobile-subtask.running,
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused),
+    body.mobile-focus-mode .mobile-subtask.running.portfolio:not(.paused),
+    body.mobile-focus-mode .mobile-subtask.running.beacon:not(.paused),
+    body.mobile-focus-mode .mobile-subtask.running.income:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.beacon:not(.paused),
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.income:not(.paused) {
+      background: rgba(248, 248, 245, 0.96) !important;
+      background-image: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused) {
+      border-color: rgba(24,24,24,0.18) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.78), 0 3px 9px rgba(0,0,0,0.06) !important;
+    }
+
+    body.mobile-focus-mode .mobile-subtask.running:not(.paused)::before {
+      display: none !important;
+    }
+  </style>
+
+  <style id="nova-quote-dark-gray-20260622">
+    /* Phrase fields: keep the current handwriting-style font and size, but make typed text dark gray. */
+    body:not(.mobile-focus-mode) .quote-box,
+    body:not(.mobile-focus-mode) .top-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box,
+    body:not(.mobile-focus-mode) .quote-box.panel-quote-box,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box,
+    body:not(.mobile-focus-mode) .income .panel-quote-box,
+    body:not(.mobile-focus-mode) .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .portfolio .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .beacon .panel-quote-box:focus,
+    body:not(.mobile-focus-mode) .income .panel-quote-box:focus {
+      color: #3a3a37 !important;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -14531,10 +14659,19 @@ for update using (true) with check (true);</pre>
       const text = getSubjectButtonClock(payload.area, info.task, info.subtask);
       const className = getSubjectButtonClass(payload.area, info.task, info.subtask);
       const exceeded = String(text).startsWith("+");
+      const leftPercent = getSubjectTimerLeftPercent(payload.area, info.task, info.subtask);
       timer.textContent = text;
+      timer.classList.toggle("running", Boolean(className.includes("running")));
       timer.classList.toggle("paused", className.includes("paused"));
       timer.classList.toggle("exceeded", exceeded);
-      timer.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(payload.area, info.task, info.subtask)}%`);
+      timer.style.setProperty("--timer-left", `${leftPercent}%`);
+      applyMobileTimerPillState(timer, { area: payload.area, leftPercent });
+
+      const row = timer.closest(".mobile-subtask");
+      if (row) {
+        row.classList.toggle("running", Boolean(className.includes("running")));
+        row.classList.toggle("paused", className.includes("paused"));
+      }
 
       const card = timer.closest(".mobile-task");
       if (card) {
@@ -15519,6 +15656,47 @@ for update using (true) with check (true);</pre>
       const paused = running ? Boolean(state.activeTimer?.paused) : hasPausedCountdown(subject);
       const visible = running || hasPausedCountdown(subject);
       return { running, paused, visible };
+    }
+
+
+    function normalizePercentValue(value, fallback = 100) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return fallback;
+      return Math.max(0, Math.min(100, Math.round(numeric)));
+    }
+
+    function mobileTimerAreaColor(area) {
+      if (area === "portfolio") return "#DB827F";
+      if (area === "beacon") return "#5E604D";
+      if (area === "income") return "#A19DA4";
+      return "#2E3118";
+    }
+
+    function applyMobileTimerPillState(timer, options = {}) {
+      if (!timer) return;
+      const area = options.area || timer.dataset.area || "";
+      const rawLeft = options.leftPercent ?? timer.style.getPropertyValue("--timer-left") ?? timer.dataset.timerLeft;
+      const leftPercent = normalizePercentValue(String(rawLeft).replace("%", ""), 100);
+      timer.style.setProperty("--timer-left", `${leftPercent}%`);
+      timer.dataset.timerLeft = String(leftPercent);
+      timer.classList.toggle("timer-low-left", timer.classList.contains("running") && !timer.classList.contains("paused") && !timer.classList.contains("exceeded") && leftPercent <= 64);
+      timer.classList.toggle("timer-high-left", timer.classList.contains("running") && !timer.classList.contains("paused") && !timer.classList.contains("exceeded") && leftPercent > 64);
+      if (area) timer.style.setProperty("--timer-active-color", mobileTimerAreaColor(area));
+    }
+
+    function refreshMobileTimerPillVisuals(root = document) {
+      const scope = root && typeof root.querySelectorAll === "function" ? root : document;
+      scope.querySelectorAll(".mobile-timer").forEach(timer => {
+        const area = timer.dataset.area || "";
+        const taskId = timer.dataset.taskid || timer.dataset.taskId || "";
+        const subtaskId = timer.dataset.subtaskid || timer.dataset.subtaskId || "";
+        let leftPercent = Number.parseFloat(String(timer.style.getPropertyValue("--timer-left") || timer.dataset.timerLeft || "100").replace("%", ""));
+        if (area && taskId) {
+          const info = getTimerSubject(area, taskId, subtaskId || null);
+          if (info) leftPercent = getSubjectTimerLeftPercent(area, info.task, info.subtask);
+        }
+        applyMobileTimerPillState(timer, { area, leftPercent });
+      });
     }
 
     function isTaskInPausedCountdown(task) {
@@ -18992,6 +19170,7 @@ for update using (true) with check (true);</pre>
           </div>
         </main>`;
 
+      refreshMobileTimerPillVisuals(root);
       renderSyncStatus();
     }
 
