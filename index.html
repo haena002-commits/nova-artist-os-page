@@ -25666,5 +25666,51 @@ for update using (true) with check (true);</pre>
     window.addEventListener("pageshow", refreshHaenaTimerPills);
   })();
 </script>
+
+<style id="haena-mobile-timer-state-contrast-fix-20260622">
+  /* Mobile timer state contrast: keep countdown text readable in running / paused / idle states. */
+  body.mobile-focus-mode .mobile-timer:not(.running):not(.paused):not(.exceeded) {
+    background: rgba(255,255,255,0.98) !important;
+    background-image: none !important;
+    color: #565651 !important;
+    border-color: rgba(24,24,24,0.12) !important;
+    text-shadow: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
+    color: #fff !important;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.16) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-subtask.running:not(.paused) .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded)::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.paused,
+  body.mobile-focus-mode .mobile-timer.running.paused {
+    background: #8f8e89 !important;
+    background-image: none !important;
+    color: #fff !important;
+    border-color: #8f8e89 !important;
+    text-shadow: none !important;
+  }
+</style>
 </body>
 </html>
