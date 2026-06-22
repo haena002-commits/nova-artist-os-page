@@ -27065,8 +27065,6 @@ for update using (true) with check (true);</pre>
       ".timer-btn.running:not(.paused):not(.exceeded)",
       ".mini-timer-btn.running:not(.paused):not(.exceeded)"
     ].join(",");
-    const TIMER_CONTROL_SELECTOR = ".mobile-timer, .pc-timer, .timer-btn, .mini-timer-btn";
-
     let audioContext = null;
     let masterGain = null;
     let noiseSource = null;
@@ -27170,17 +27168,16 @@ for update using (true) with check (true);</pre>
     }
 
     function armFromUserGesture(event) {
-      const fromTimer = event.target && event.target.closest && event.target.closest(TIMER_CONTROL_SELECTOR);
-      if (!fromTimer && event.type !== "keydown") return;
       armedByUser = true;
       ensureAudioContext();
       setTimeout(syncNoise, 160);
     }
 
     document.addEventListener("pointerdown", armFromUserGesture, { passive: true });
+    document.addEventListener("touchstart", armFromUserGesture, { passive: true });
     document.addEventListener("keydown", armFromUserGesture);
     document.addEventListener("visibilitychange", syncNoise);
-    document.addEventListener("click", () => setTimeout(syncNoise, 180), true);
+    document.addEventListener("click", armFromUserGesture, true);
 
     const observer = new MutationObserver(syncNoise);
     observer.observe(document.documentElement, {
