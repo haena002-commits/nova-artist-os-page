@@ -26741,5 +26741,175 @@ for update using (true) with check (true);</pre>
   }
 </style>
 
+<style id="haena-tactile-timer-button-gap-20260622">
+  /* Mobile timer buttons: tactile capsule surface plus a 7px gap from the parent PIN button. */
+  body.mobile-focus-mode .mobile-timer {
+    border-radius: 999px !important;
+    border: 1px solid rgba(255,255,255,0.58) !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    letter-spacing: 0 !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.60),
+      inset 0 -1px 0 rgba(24,24,24,0.13),
+      0 3px 0 rgba(42,40,35,0.22),
+      0 8px 16px rgba(24,22,18,0.16) !important;
+    transition-property: background-color, background-image, border-color, box-shadow, color, filter, transform !important;
+    transition-duration: 130ms !important;
+    transition-timing-function: cubic-bezier(.2,.8,.2,1) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer:not(.running):not(.paused):not(.exceeded) {
+    background-color: #f8f7f3 !important;
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(246,244,239,0.98) 56%, rgba(231,227,219,0.98) 100%) !important;
+    border-color: rgba(24,24,24,0.10) !important;
+    color: #4a4740 !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.78) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded) {
+    background-color: var(--timer-empty-color, rgba(255,255,255,0.98)) !important;
+    background-image:
+      linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.08) 42%, rgba(0,0,0,0.10) 100%),
+      linear-gradient(90deg,
+        var(--timer-fill-color, #2E3118) 0%,
+        var(--timer-fill-color, #2E3118) var(--timer-left, 100%),
+        var(--timer-empty-color, rgba(255,255,255,0.98)) var(--timer-left, 100%),
+        var(--timer-empty-color, rgba(255,255,255,0.98)) 100%) !important;
+    border-color: rgba(255,255,255,0.48) !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.20) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded) {
+    color: var(--timer-fill-color, #2E3118) !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.82) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.paused,
+  body.mobile-focus-mode .mobile-timer.running.paused {
+    background-color: #85837d !important;
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.20), rgba(0,0,0,0.13)) !important;
+    border-color: rgba(255,255,255,0.32) !important;
+    color: #fff !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.exceeded,
+  body.mobile-focus-mode .mobile-timer.running.exceeded {
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(0,0,0,0.12)) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.38),
+      inset 0 -1px 0 rgba(0,0,0,0.16),
+      0 3px 0 rgba(104,32,28,0.22),
+      0 8px 16px rgba(104,32,28,0.18) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer:active {
+    transform: translateY(2px) !important;
+    box-shadow:
+      inset 0 1px 2px rgba(24,24,24,0.14),
+      inset 0 -1px 0 rgba(255,255,255,0.32),
+      0 1px 0 rgba(42,40,35,0.18),
+      0 4px 10px rgba(24,22,18,0.13) !important;
+    filter: saturate(1.04) brightness(0.98) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer:focus-visible {
+    outline: 2px solid rgba(46,49,24,0.42) !important;
+    outline-offset: 2px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group {
+    --parent-pin-timer-gap: 7px;
+    --parent-pin-width: 44px;
+    --parent-timer-width: 108px;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    grid-template-columns: var(--parent-timer-width) !important;
+    padding-right: calc(var(--parent-pin-width) + var(--parent-pin-timer-gap)) !important;
+    column-gap: 0 !important;
+    margin-top: var(--parent-pin-timer-gap) !important;
+    justify-content: end !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    width: var(--parent-timer-width) !important;
+    min-width: var(--parent-timer-width) !important;
+    max-width: var(--parent-timer-width) !important;
+  }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-task.mobile-parent-group {
+      --parent-timer-width: 104px;
+    }
+  }
+</style>
+
+<style id="haena-parent-pin-timer-vertical-stack-20260622">
+  /* Parent mobile card: PIN above timer, both right-aligned, with the same 7px gap as subtask rows. */
+  body.mobile-focus-mode .mobile-task.mobile-parent-group {
+    --parent-pin-timer-gap: 7px;
+    --parent-pin-width: 44px;
+    --parent-pin-height: 25px;
+    --parent-timer-width: 108px;
+    --parent-timer-height: 36px;
+    position: relative !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-main {
+    min-height: calc(var(--parent-pin-height) + var(--parent-pin-timer-gap) + var(--parent-timer-height)) !important;
+    padding-right: calc(var(--parent-timer-width) + 8px) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+    top: 0 !important;
+    right: 0 !important;
+    width: var(--parent-pin-width) !important;
+    min-width: var(--parent-pin-width) !important;
+    max-width: var(--parent-pin-width) !important;
+    height: var(--parent-pin-height) !important;
+    min-height: var(--parent-pin-height) !important;
+    max-height: var(--parent-pin-height) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    position: absolute !important;
+    top: calc(10px + var(--parent-pin-height) + var(--parent-pin-timer-gap)) !important;
+    right: 10px !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    width: var(--parent-timer-width) !important;
+    min-width: var(--parent-timer-width) !important;
+    max-width: var(--parent-timer-width) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    grid-template-columns: none !important;
+    column-gap: 0 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    width: var(--parent-timer-width) !important;
+    min-width: var(--parent-timer-width) !important;
+    max-width: var(--parent-timer-width) !important;
+    height: var(--parent-timer-height) !important;
+    min-height: var(--parent-timer-height) !important;
+    max-height: var(--parent-timer-height) !important;
+    justify-self: end !important;
+  }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-task.mobile-parent-group {
+      --parent-timer-width: 104px;
+    }
+  }
+</style>
+
 </body>
 </html>
