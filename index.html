@@ -15648,6 +15648,13 @@ for update using (true) with check (true);</pre>
       return Math.max(0, Math.min(100, Math.round(numeric)));
     }
 
+    function getTimerAreaColor(area) {
+      if (area === "portfolio") return "var(--portfolio)";
+      if (area === "beacon") return "var(--beacon)";
+      if (area === "income") return "var(--income)";
+      return "var(--ink)";
+    }
+
     function applyMobileTimerPillState(timer, options = {}) {
       if (!timer) return;
       const area = options.area || timer.dataset.area || "";
@@ -15657,7 +15664,7 @@ for update using (true) with check (true);</pre>
       timer.dataset.timerLeft = String(leftPercent);
       timer.classList.toggle("timer-low-left", timer.classList.contains("running") && !timer.classList.contains("paused") && !timer.classList.contains("exceeded") && leftPercent <= 64);
       timer.classList.toggle("timer-high-left", timer.classList.contains("running") && !timer.classList.contains("paused") && !timer.classList.contains("exceeded") && leftPercent > 64);
-      if (area) timer.style.setProperty("--timer-active-color", areaColor(area));
+      if (area) timer.style.setProperty("--timer-active-color", getTimerAreaColor(area));
     }
 
     function refreshMobileTimerPillVisuals(root = document) {
