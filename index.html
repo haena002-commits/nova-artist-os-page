@@ -14392,9 +14392,9 @@ for update using (true) with check (true);</pre>
         if (!ctx) return;
         const now = ctx.currentTime;
         // light coin-like ding: bright attack + short harmonic shimmer, no external audio asset.
-        playBellTone(ctx, 1046.5, now, 0.18, 0.048, "sine");
-        playBellTone(ctx, 1568.0, now + 0.018, 0.20, 0.030, "triangle");
-        playBellTone(ctx, 2093.0, now + 0.052, 0.16, 0.018, "sine");
+        playBellTone(ctx, 1046.5, now, 0.18, 0.096, "sine");
+        playBellTone(ctx, 1568.0, now + 0.018, 0.20, 0.060, "triangle");
+        playBellTone(ctx, 2093.0, now + 0.052, 0.16, 0.036, "sine");
       } catch (_) {
         // Sound is optional; silently skip when the browser blocks or cannot play it.
       }
@@ -14406,9 +14406,9 @@ for update using (true) with check (true);</pre>
         if (!ctx) return;
         const now = ctx.currentTime;
         // short bibik alert at about the same perceived level as the reward ding.
-        playBellTone(ctx, 1320, now, 0.075, 0.075, "square");
-        playBellTone(ctx, 1980, now + 0.085, 0.085, 0.070, "square");
-        playBellTone(ctx, 2640, now + 0.168, 0.070, 0.050, "sawtooth");
+        playBellTone(ctx, 1320, now, 0.075, 0.150, "square");
+        playBellTone(ctx, 1980, now + 0.085, 0.085, 0.140, "square");
+        playBellTone(ctx, 2640, now + 0.168, 0.070, 0.100, "sawtooth");
       } catch (_) {
         // Sound is optional; silently skip when the browser blocks or cannot play it.
       }
@@ -26309,9 +26309,9 @@ for update using (true) with check (true);</pre>
       const ctx = getNovaAudioContext();
       if (!ctx) return;
       const now = ctx.currentTime;
-      playBellTone(ctx, 1318.5, now, 0.15, 0.051, "sine");
-      playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.033, "triangle");
-      playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.015, "sine");
+      playBellTone(ctx, 1318.5, now, 0.15, 0.102, "sine");
+      playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.066, "triangle");
+      playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.030, "sine");
     } catch (_) {}
   };
 
@@ -26320,9 +26320,9 @@ for update using (true) with check (true);</pre>
       const ctx = getNovaAudioContext();
       if (!ctx) return;
       const now = ctx.currentTime;
-      playBellTone(ctx, 1320, now, 0.075, 0.075, "square");
-      playBellTone(ctx, 1980, now + 0.085, 0.085, 0.070, "square");
-      playBellTone(ctx, 2640, now + 0.168, 0.070, 0.050, "sawtooth");
+      playBellTone(ctx, 1320, now, 0.075, 0.150, "square");
+      playBellTone(ctx, 1980, now + 0.085, 0.085, 0.140, "square");
+      playBellTone(ctx, 2640, now + 0.168, 0.070, 0.100, "sawtooth");
     } catch (_) {}
   };
 </script>
@@ -27459,7 +27459,7 @@ for update using (true) with check (true);</pre>
       if (!audioContext) {
         audioContext = new AudioCtor();
         masterGain = audioContext.createGain();
-        masterGain.gain.value = 0.68;
+        masterGain.gain.value = 1.36;
         masterGain.connect(audioContext.destination);
       }
       if (audioContext.state === "suspended") {
