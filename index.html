@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12743,6 +12743,158 @@ body:not(.mobile-focus-mode) .panel h2 { font-weight: 780 !important; }
     }
   </style>
 
+
+
+  <style id="haena-parent-timer-overlap-subtimer-clean-20260622">
+    /* Parent owns the timer. Subtasks keep only estimate chips. Final mobile/PC overlap guard. */
+    body.mobile-focus-mode .mobile-task.mobile-parent-group {
+      padding-top: 10px !important;
+      overflow: hidden !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-main {
+      position: relative !important;
+      grid-template-columns: 22px minmax(0, 1fr) !important;
+      padding-right: 58px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-content {
+      min-width: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+      position: absolute !important;
+      top: 0 !important;
+      right: 0 !important;
+      z-index: 10 !important;
+      width: 44px !important;
+      min-width: 44px !important;
+      max-width: 44px !important;
+      height: 25px !important;
+      min-height: 25px !important;
+      max-height: 25px !important;
+      padding: 0 !important;
+      border-radius: 999px !important;
+      font-size: 9.5px !important;
+      line-height: 1 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      display: grid !important;
+      grid-template-columns: 96px 142px !important;
+      justify-content: end !important;
+      justify-items: stretch !important;
+      align-items: center !important;
+      column-gap: 16px !important;
+      margin-top: 18px !important;
+      padding-left: 22px !important;
+      padding-right: 2px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+      grid-column: 1 !important;
+      width: 96px !important;
+      min-width: 96px !important;
+      max-width: 96px !important;
+      height: 31px !important;
+      min-height: 31px !important;
+      max-height: 31px !important;
+      padding: 0 8px !important;
+      text-align: center !important;
+      justify-self: stretch !important;
+      pointer-events: none !important;
+      cursor: default !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+      grid-column: 2 !important;
+      width: 142px !important;
+      min-width: 142px !important;
+      max-width: 142px !important;
+      height: 31px !important;
+      min-height: 31px !important;
+      max-height: 31px !important;
+      padding: 0 12px !important;
+      justify-self: stretch !important;
+      overflow: hidden !important;
+      font-variant-numeric: tabular-nums !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask {
+      grid-template-columns: 19px minmax(0, 1fr) 52px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-target {
+      grid-column: 3 !important;
+      width: 52px !important;
+      min-width: 52px !important;
+      max-width: 52px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-timer,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-timer,
+    body:not(.mobile-focus-mode) .subtask-row > .pc-timer {
+      display: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      display: inline-block !important;
+      width: 7px !important;
+      height: 7px !important;
+      min-width: 7px !important;
+      flex: 0 0 7px !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.62) !important;
+      animation: mobileLiveDot 1.05s ease-out infinite !important;
+      transform: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused)::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row {
+      grid-template-columns: 8px 22px minmax(0, 1fr) 58px 28px 22px !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-pin { grid-column: 5 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-delete { grid-column: 6 !important; }
+
+    @media (max-width: 380px) {
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+        grid-template-columns: 92px 132px !important;
+        column-gap: 12px !important;
+        margin-top: 18px !important;
+      }
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+        width: 92px !important;
+        min-width: 92px !important;
+        max-width: 92px !important;
+        font-size: 10.1px !important;
+      }
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+        width: 132px !important;
+        min-width: 132px !important;
+        max-width: 132px !important;
+        padding: 0 10px !important;
+        font-size: 11.8px !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -15576,6 +15728,17 @@ for update using (true) with check (true);</pre>
       return `${getTaskTargetMinutesForDisplay(task)}m`;
     }
 
+    function formatHoursMinutesCompact(seconds) {
+      const totalMinutes = Math.max(0, Math.floor((Number(seconds) || 0) / 60));
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      return `${hours}h${String(minutes).padStart(2, "0")}m`;
+    }
+
+    function formatTaskTargetHoursMinutes(task) {
+      return formatHoursMinutesCompact(getTaskTargetSeconds(task));
+    }
+
     function targetPresetOptionsHtml(currentMinutes) {
       const current = normalizeTargetMinutes(currentMinutes);
       const presets = TIMER_TARGET_PRESETS;
@@ -16257,7 +16420,7 @@ for update using (true) with check (true);</pre>
         if (!task.done && totalSubtasks > 0) {
           const remainingEstimate = document.createElement("div");
           remainingEstimate.className = "task-remaining-estimate";
-          remainingEstimate.textContent = `남은 예상 시간 ${formatEstimatedDuration(getTaskRemainingEstimatedSeconds(task))}`;
+          remainingEstimate.textContent = `소요 ${formatHoursMinutesCompact(getTaskTotalFocusSeconds(area, task))}`;
           content.appendChild(remainingEstimate);
         }
         content.appendChild(meta);
@@ -16369,12 +16532,25 @@ for update using (true) with check (true);</pre>
             };
             leftActionRow.appendChild(targetSelect);
             leftActionRow.appendChild(createPcCounterButton(area, task, null));
+          } else {
+            const parentTotal = document.createElement("button");
+            parentTotal.className = "target-btn main-parent-total";
+            parentTotal.type = "button";
+            parentTotal.textContent = `합계 ${formatTaskTargetHoursMinutes(task)}`;
+            parentTotal.title = "하위항목 예상시간 합계입니다. 하위항목 시간을 수정하면 자동 반영됩니다.";
+            parentTotal.onpointerdown = event => event.stopPropagation();
+            parentTotal.onclick = event => {
+              event.preventDefault();
+              event.stopPropagation();
+            };
+            leftActionRow.appendChild(parentTotal);
+            leftActionRow.appendChild(createPcCounterButton(area, task, null));
           }
 
           const targetButton = document.createElement("button");
           targetButton.className = "target-btn main-target-hidden";
           targetButton.type = "button";
-          targetButton.textContent = formatTaskTargetMinutes(task);
+          targetButton.textContent = hasSubtaskTargets(task) ? formatTaskTargetHoursMinutes(task) : formatTaskTargetMinutes(task);
           targetButton.title = hasSubtaskTargets(task)
             ? "하위항목 목표 시간 합계입니다. 각 하위항목 시간을 수정하면 자동 반영됩니다."
             : "예상 집중 시간을 분 단위로 설정";
@@ -16653,13 +16829,10 @@ for update using (true) with check (true);</pre>
               deleteSubtask(area, task.id, subtask.id);
             };
 
-            const subTimer = createPcCounterButton(area, task, subtask);
-
             row.appendChild(subDragHandle);
             row.appendChild(subCheck);
             row.appendChild(subTitle);
             row.appendChild(subTargetSelect);
-            row.appendChild(subTimer);
             row.appendChild(subPin);
             row.appendChild(subDel);
             subtaskList.appendChild(row);
@@ -17892,6 +18065,10 @@ for update using (true) with check (true);</pre>
         return;
       }
       subtaskId = subtaskId || null;
+      const parentForTimer = getTask(area, taskId);
+      if (subtaskId && parentForTimer && Array.isArray(parentForTimer.subtasks) && parentForTimer.subtasks.length > 0) {
+        subtaskId = null;
+      }
       if (timerMatches(area, taskId, subtaskId)) {
         if (state.activeTimer.paused) {
           const now = new Date();
@@ -18930,7 +19107,7 @@ for update using (true) with check (true);</pre>
         if (action === "toggleSubtaskPin") { toggleSubtaskPin(area, taskId, subtaskId); didCloudPushChange = true; }
         if (action === "toggleTimer") { toggleTimer(area, taskId, subtaskId); pushMobileFocusChangeNow(); return; }
         if (action === "setTarget") {
-          const current = (target.textContent || "25").replace(/[^0-9]/g, "") || "25";
+          const current = target.dataset.currentTarget || (target.textContent || "25").replace(/[^0-9]/g, "") || "25";
           openMobileTargetPicker(root, area, taskId, subtaskId, current);
           return;
         }
@@ -18982,8 +19159,15 @@ for update using (true) with check (true);</pre>
     }
 
     function getMobileFocusItems() {
-      const pinned = sortFocusItemsForMini(getFocusedTasks());
-      return { items: pinned, fallback: false };
+      const byParent = new Map();
+      sortFocusItemsForMini(getFocusedTasks()).forEach(item => {
+        if (!item?.task) return;
+        const key = `${item.area}::${item.task.id}`;
+        if (!byParent.has(key) || item.type === "task") {
+          byParent.set(key, { area: item.area, task: item.task, type: "task", scheduled: item.scheduled, fromSubtaskPin: item.type === "subtask" });
+        }
+      });
+      return { items: sortFocusItemsForMini([...byParent.values()]), fallback: false };
     }
 
     function getMobileCompletedFocusItems() {
@@ -19158,7 +19342,6 @@ for update using (true) with check (true);</pre>
     }
 
     function mobileFocusItemHtml(item, fallback = false) {
-      if (item?.subtask) return mobileSubtaskFocusHtml(item.area, item.task, item.subtask, fallback);
       return mobileTaskHtml(item.area, item.task, fallback);
     }
 
@@ -19171,35 +19354,32 @@ for update using (true) with check (true);</pre>
       const timerButtonClass = getSubjectButtonClass(area, task, null);
       const timerButtonExceeded = String(timerButtonText).startsWith("+");
       const timerLeftPercent = getSubjectTimerLeftPercent(area, task, null);
-      const taskTotalText = formatDuration(getTaskTotalFocusSeconds(area, task));
+      const taskTotalText = formatHoursMinutesCompact(getTaskTotalFocusSeconds(area, task));
       const hasSubtasks = (task.subtasks || []).length > 0;
       const remainingSubtasks = (task.subtasks || []).filter(subtask => !subtask.done);
-      const hasRunningSubtask = remainingSubtasks.some(subtask => timerMatches(area, task.id, subtask.id) && !getSubjectTimerState(area, task, subtask).paused);
+      const parentFocusActive = Boolean(task.pinned || remainingSubtasks.some(subtask => subtask.pinned));
+      const hasRunningSubtask = false;
       const hasRunningSingleTask = !hasSubtasks && isTaskTimerRunning && !isPaused;
-      const remainingEstimateSeconds = hasSubtasks
-        ? remainingSubtasks.reduce((sum, subtask) => sum + getSubtaskEstimatedSeconds(subtask), 0)
-        : getTaskEstimatedSeconds(task);
-      const taskEstimatedText = formatEstimatedDuration(remainingEstimateSeconds);
       const subtasksHtml = remainingSubtasks.length
         ? `<div class="mobile-subtasks">${remainingSubtasks.map(subtask => mobileSubtaskHtml(area, task, subtask)).join("")}</div>`
         : "";
-      const parentTimerHtml = hasSubtasks ? "" : `<button class="mobile-timer ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>`;
-      const taskMetaHtml = hasSubtasks
-        ? `남은 예상 시간 ${escapeHtml(taskEstimatedText)}${fallback ? " · 핀 후보" : ""}`
-        : `소요 ${escapeHtml(taskTotalText)} · 총 예상 ${escapeHtml(taskEstimatedText)}${fallback ? " · 핀 후보" : ""}`;
+      const parentTimerHtml = `<button class="mobile-timer ${hasSubtasks ? "mobile-parent-timer" : ""} ${timerButtonClass} ${timerButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(timerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="">${escapeHtml(timerButtonText)}</button>`;
+      const taskMetaHtml = `소요 ${escapeHtml(taskTotalText)}${hasSubtasks ? ` · 합계 ${escapeHtml(formatTaskTargetHoursMinutes(task))}` : ""}${fallback ? " · 핀 후보" : ""}`;
       const parentPinInlineHtml = hasSubtasks
-        ? `<button class="mobile-pin mobile-parent-pin-inline ${task.pinned ? "active" : ""}" data-mobile-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">PIN</button>`
+        ? `<button class="mobile-pin mobile-parent-pin-inline ${parentFocusActive ? "active" : ""}" data-mobile-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">PIN</button>`
         : "";
       const actionsHtml = hasSubtasks
-        ? ""
+        ? `<div class="mobile-task-actions mobile-parent-actions">
+            ${parentTimerHtml}
+          </div>`
         : `<div class="mobile-task-actions mobile-single-actions">
             <button class="mobile-pin ${task.pinned ? "active" : ""}" data-mobile-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">PIN</button>
-            <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" title="${hasSubtaskTargets(task) ? "하위항목 시간 합계" : "목표 시간 수정"}">${escapeHtml(formatTaskTargetMinutes(task))}</button>
+            <button class="mobile-target" data-mobile-action="setTarget" data-current-target="${escapeHtml(normalizeTargetMinutes(task.targetMinutes))}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" title="목표 시간 수정">${escapeHtml(formatTaskTargetMinutes(task))}</button>
             ${parentTimerHtml}
           </div>`;
 
       return `
-        <article class="mobile-task ${escapeHtml(area)} ${task.pinned ? "pinned" : ""} ${hasSubtasks ? "mobile-parent-group" : "mobile-single-task"} ${hasRunningSubtask ? "has-running-subtask" : ""} ${hasRunningSingleTask ? "has-running-single" : ""} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
+        <article class="mobile-task ${escapeHtml(area)} ${parentFocusActive ? "pinned" : ""} ${hasSubtasks ? "mobile-parent-group" : "mobile-single-task"} ${hasRunningSubtask ? "has-running-subtask" : ""} ${hasRunningSingleTask ? "has-running-single" : ""} ${taskRunning ? "running" : ""} ${isPaused ? "paused" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">
           <div class="mobile-task-main">
             <button class="mobile-check" data-mobile-action="toggleTask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}">✓</button>
             <div class="mobile-task-content">
@@ -19231,13 +19411,12 @@ for update using (true) with check (true);</pre>
             <div>
               <div class="mobile-parent-title">${escapeHtml("상위: " + task.title)}</div>
               <div class="mobile-task-title" contenteditable="true" data-mobile-edit="subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}</div>
-              <div class="mobile-task-meta">소요 ${escapeHtml(subTotalText)} · 예상 ${escapeHtml(subEstimatedText)}${fallback ? " · 핀 후보" : ""}</div>
+              <div class="mobile-task-meta">소요 ${escapeHtml(formatHoursMinutesCompact(getSubtaskTotalFocusSeconds(area, task, subtask)))}${fallback ? " · 핀 후보" : ""}</div>
             </div>
           </div>
           <div class="mobile-task-actions mobile-subtask-focus-actions">
             <button class="mobile-pin active" data-mobile-action="toggleSubtaskPin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">PIN</button>
             <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
-            <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
           </div>
         </article>`;
     }
@@ -19255,7 +19434,6 @@ for update using (true) with check (true);</pre>
           <button class="mobile-check" data-mobile-action="toggleSubtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">✓</button>
           <div class="mobile-subtask-title" contenteditable="true" data-mobile-edit="subtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subtask.title)}</div>
           <button class="mobile-target" data-mobile-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>
-          <button class="mobile-timer ${subButtonClass} ${subButtonExceeded ? "exceeded" : ""}" style="--timer-left:${escapeHtml(subTimerLeftPercent)}%;" data-mobile-action="toggleTimer" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">${escapeHtml(subButtonText)}</button>
         </div>`;
     }
 
@@ -21859,6 +22037,158 @@ for update using (true) with check (true);</pre>
     }
   </style>
 
+
+
+  <style id="haena-parent-timer-overlap-subtimer-clean-20260622">
+    /* Parent owns the timer. Subtasks keep only estimate chips. Final mobile/PC overlap guard. */
+    body.mobile-focus-mode .mobile-task.mobile-parent-group {
+      padding-top: 10px !important;
+      overflow: hidden !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-main {
+      position: relative !important;
+      grid-template-columns: 22px minmax(0, 1fr) !important;
+      padding-right: 58px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-content {
+      min-width: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+      position: absolute !important;
+      top: 0 !important;
+      right: 0 !important;
+      z-index: 10 !important;
+      width: 44px !important;
+      min-width: 44px !important;
+      max-width: 44px !important;
+      height: 25px !important;
+      min-height: 25px !important;
+      max-height: 25px !important;
+      padding: 0 !important;
+      border-radius: 999px !important;
+      font-size: 9.5px !important;
+      line-height: 1 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      display: grid !important;
+      grid-template-columns: 96px 142px !important;
+      justify-content: end !important;
+      justify-items: stretch !important;
+      align-items: center !important;
+      column-gap: 16px !important;
+      margin-top: 18px !important;
+      padding-left: 22px !important;
+      padding-right: 2px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+      grid-column: 1 !important;
+      width: 96px !important;
+      min-width: 96px !important;
+      max-width: 96px !important;
+      height: 31px !important;
+      min-height: 31px !important;
+      max-height: 31px !important;
+      padding: 0 8px !important;
+      text-align: center !important;
+      justify-self: stretch !important;
+      pointer-events: none !important;
+      cursor: default !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+      grid-column: 2 !important;
+      width: 142px !important;
+      min-width: 142px !important;
+      max-width: 142px !important;
+      height: 31px !important;
+      min-height: 31px !important;
+      max-height: 31px !important;
+      padding: 0 12px !important;
+      justify-self: stretch !important;
+      overflow: hidden !important;
+      font-variant-numeric: tabular-nums !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask {
+      grid-template-columns: 19px minmax(0, 1fr) 52px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-target {
+      grid-column: 3 !important;
+      width: 52px !important;
+      min-width: 52px !important;
+      max-width: 52px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-timer,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-timer,
+    body:not(.mobile-focus-mode) .subtask-row > .pc-timer {
+      display: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      display: inline-block !important;
+      width: 7px !important;
+      height: 7px !important;
+      min-width: 7px !important;
+      flex: 0 0 7px !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.62) !important;
+      animation: mobileLiveDot 1.05s ease-out infinite !important;
+      transform: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused)::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row {
+      grid-template-columns: 8px 22px minmax(0, 1fr) 58px 28px 22px !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-pin { grid-column: 5 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-delete { grid-column: 6 !important; }
+
+    @media (max-width: 380px) {
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+        grid-template-columns: 92px 132px !important;
+        column-gap: 12px !important;
+        margin-top: 18px !important;
+      }
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+        width: 92px !important;
+        min-width: 92px !important;
+        max-width: 92px !important;
+        font-size: 10.1px !important;
+      }
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+        width: 132px !important;
+        min-width: 132px !important;
+        max-width: 132px !important;
+        padding: 0 10px !important;
+        font-size: 11.8px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="wrap">
@@ -22298,6 +22628,273 @@ for update using (true) with check (true);</pre>
   body.mobile-focus-mode .mobile-timer.progress-low:not(.paused):not(.exceeded),
   body.mobile-focus-mode .mobile-timer.progress-low:not(.paused):not(.exceeded)::before {
     color: var(--timer-fill-color, currentColor) !important;
+  }
+</style>
+
+
+<style id="haena-parent-timer-layout-fix-20260622">
+  /* Parent-sum timer layout: parent owns the timer, subtasks keep only estimate chips. */
+  body:not(.mobile-focus-mode) .task-left-actions .main-parent-total {
+    min-width: 72px !important;
+    padding: 0 9px !important;
+    pointer-events: none !important;
+    color: #555753 !important;
+    background: rgba(255,255,255,0.68) !important;
+  }
+
+  body:not(.mobile-focus-mode) .task-left-actions .pc-timer {
+    min-width: 86px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  body:not(.mobile-focus-mode) .task-remaining-estimate {
+    font-size: 10.8px !important;
+    font-weight: 680 !important;
+    color: #777772 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group {
+    padding-top: 9px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-content {
+    padding-right: 56px !important;
+    min-width: 0 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-meta {
+    margin-top: 2px !important;
+    font-size: 10.2px !important;
+    line-height: 1.1 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+    position: absolute !important;
+    top: 9px !important;
+    right: 9px !important;
+    z-index: 5 !important;
+    width: 43px !important;
+    min-width: 43px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    font-size: 9.5px !important;
+    font-weight: 820 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    display: grid !important;
+    grid-template-columns: 82px minmax(108px, 1fr) !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin-top: 7px !important;
+    padding-left: 22px !important;
+    padding-right: 0 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+    width: 82px !important;
+    min-width: 82px !important;
+    max-width: 82px !important;
+    padding: 0 6px !important;
+    pointer-events: none !important;
+    cursor: default !important;
+    font-size: 10.6px !important;
+    color: #565651 !important;
+    background: rgba(255,255,255,0.78) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    min-width: 108px !important;
+    width: 100% !important;
+    justify-self: stretch !important;
+    padding-left: 13px !important;
+    padding-right: 13px !important;
+    font-size: 12.2px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask {
+    grid-template-columns: 19px minmax(0,1fr) 46px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-timer {
+    display: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused) {
+    border-color: var(--timer-active-color, rgba(24,24,24,0.54)) !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.64) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused)::after {
+    content: "" !important;
+    position: absolute !important;
+    right: 8px !important;
+    top: 38px !important;
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 999px !important;
+    background: var(--timer-active-color, #2E3118) !important;
+    animation: mobileLiveDot 1.15s ease-out infinite !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.portfolio { --timer-active-color: var(--portfolio); }
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.beacon { --timer-active-color: var(--beacon); }
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.income { --timer-active-color: var(--income); }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      grid-template-columns: 78px minmax(104px, 1fr) !important;
+      gap: 6px !important;
+    }
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+      width: 78px !important;
+      min-width: 78px !important;
+      max-width: 78px !important;
+      font-size: 10.2px !important;
+    }
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+      min-width: 104px !important;
+    }
+  }
+</style>
+
+
+
+<style id="haena-parent-timer-spacing-live-dot-20260622">
+  /* Parent timer mobile layout: separate PIN from timer row, keep parent timer readable, add live-dot. */
+  body.mobile-focus-mode .mobile-task.mobile-parent-group {
+    padding-top: 10px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-content {
+    padding-right: 66px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 14 !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    height: 25px !important;
+    min-height: 25px !important;
+    max-height: 25px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    font-size: 9.5px !important;
+    line-height: 1 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    display: grid !important;
+    grid-template-columns: 92px 132px !important;
+    justify-content: end !important;
+    justify-items: stretch !important;
+    align-items: center !important;
+    column-gap: 12px !important;
+    margin-top: 13px !important;
+    padding-left: 22px !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+    grid-column: 1 !important;
+    width: 92px !important;
+    min-width: 92px !important;
+    max-width: 92px !important;
+    height: 31px !important;
+    min-height: 31px !important;
+    max-height: 31px !important;
+    padding: 0 8px !important;
+    text-align: center !important;
+    justify-self: stretch !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    grid-column: 2 !important;
+    width: 132px !important;
+    min-width: 132px !important;
+    max-width: 132px !important;
+    height: 31px !important;
+    min-height: 31px !important;
+    max-height: 31px !important;
+    padding: 0 12px !important;
+    justify-self: stretch !important;
+    overflow: hidden !important;
+    font-variant-numeric: tabular-nums !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused) .mobile-parent-timer.running:not(.paused):not(.exceeded) {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused) .mobile-parent-timer.running:not(.paused):not(.exceeded)::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 7px !important;
+    height: 7px !important;
+    min-width: 7px !important;
+    flex: 0 0 7px !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.62) !important;
+    animation: mobileLiveDot 1.05s ease-out infinite !important;
+    transform: none !important;
+  }
+
+  /* The running cue now lives inside the timer pill, not as a loose card dot. */
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused)::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtasks {
+    margin-top: 9px !important;
+  }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-content {
+      padding-right: 60px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      grid-template-columns: 88px 124px !important;
+      column-gap: 10px !important;
+      margin-top: 12px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+      width: 88px !important;
+      min-width: 88px !important;
+      max-width: 88px !important;
+      font-size: 10.1px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+      width: 124px !important;
+      min-width: 124px !important;
+      max-width: 124px !important;
+      padding: 0 10px !important;
+      font-size: 11.8px !important;
+    }
   }
 </style>
 
@@ -23638,6 +24235,158 @@ for update using (true) with check (true);</pre>
         animation: none !important;
         transform: none !important;
         scale: 1 !important;
+      }
+    }
+  </style>
+
+
+  <style id="haena-parent-timer-overlap-subtimer-clean-20260622">
+    /* Parent owns the timer. Subtasks keep only estimate chips. Final mobile/PC overlap guard. */
+    body.mobile-focus-mode .mobile-task.mobile-parent-group {
+      padding-top: 10px !important;
+      overflow: hidden !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-main {
+      position: relative !important;
+      grid-template-columns: 22px minmax(0, 1fr) !important;
+      padding-right: 58px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-content {
+      min-width: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+      position: absolute !important;
+      top: 0 !important;
+      right: 0 !important;
+      z-index: 10 !important;
+      width: 44px !important;
+      min-width: 44px !important;
+      max-width: 44px !important;
+      height: 25px !important;
+      min-height: 25px !important;
+      max-height: 25px !important;
+      padding: 0 !important;
+      border-radius: 999px !important;
+      font-size: 9.5px !important;
+      line-height: 1 !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      display: grid !important;
+      grid-template-columns: 96px 142px !important;
+      justify-content: end !important;
+      justify-items: stretch !important;
+      align-items: center !important;
+      column-gap: 16px !important;
+      margin-top: 18px !important;
+      padding-left: 22px !important;
+      padding-right: 2px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+      grid-column: 1 !important;
+      width: 96px !important;
+      min-width: 96px !important;
+      max-width: 96px !important;
+      height: 31px !important;
+      min-height: 31px !important;
+      max-height: 31px !important;
+      padding: 0 8px !important;
+      text-align: center !important;
+      justify-self: stretch !important;
+      pointer-events: none !important;
+      cursor: default !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+      grid-column: 2 !important;
+      width: 142px !important;
+      min-width: 142px !important;
+      max-width: 142px !important;
+      height: 31px !important;
+      min-height: 31px !important;
+      max-height: 31px !important;
+      padding: 0 12px !important;
+      justify-self: stretch !important;
+      overflow: hidden !important;
+      font-variant-numeric: tabular-nums !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask {
+      grid-template-columns: 19px minmax(0, 1fr) 52px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-target {
+      grid-column: 3 !important;
+      width: 52px !important;
+      min-width: 52px !important;
+      max-width: 52px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-timer,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-timer,
+    body:not(.mobile-focus-mode) .subtask-row > .pc-timer {
+      display: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded) {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded)::before {
+      content: "" !important;
+      display: inline-block !important;
+      width: 7px !important;
+      height: 7px !important;
+      min-width: 7px !important;
+      flex: 0 0 7px !important;
+      border-radius: 999px !important;
+      background: #fff !important;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.62) !important;
+      animation: mobileLiveDot 1.05s ease-out infinite !important;
+      transform: none !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused)::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row {
+      grid-template-columns: 8px 22px minmax(0, 1fr) 58px 28px 22px !important;
+    }
+
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-pin { grid-column: 5 !important; }
+    body:not(.mobile-focus-mode) .subtask-row > .subtask-delete { grid-column: 6 !important; }
+
+    @media (max-width: 380px) {
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+        grid-template-columns: 92px 132px !important;
+        column-gap: 12px !important;
+        margin-top: 18px !important;
+      }
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+        width: 92px !important;
+        min-width: 92px !important;
+        max-width: 92px !important;
+        font-size: 10.1px !important;
+      }
+      body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+        width: 132px !important;
+        min-width: 132px !important;
+        max-width: 132px !important;
+        padding: 0 10px !important;
+        font-size: 11.8px !important;
       }
     }
   </style>
@@ -25712,5 +26461,285 @@ for update using (true) with check (true);</pre>
     text-shadow: none !important;
   }
 </style>
+
+
+<style id="haena-mobile-parent-final-layout-20260622">
+  /* Final mobile parent timer layout: PIN stays top-right, timer row sits below with clear spacing. */
+  body.mobile-focus-mode .mobile-task.mobile-parent-group {
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 10px 9px 8px 11px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-main {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 22px minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: 7px !important;
+    padding-right: 58px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-content {
+    min-width: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-title {
+    max-width: 100% !important;
+    padding-right: 0 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-meta {
+    margin-top: 2px !important;
+    font-size: 10.2px !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 12 !important;
+    width: 43px !important;
+    min-width: 43px !important;
+    max-width: 43px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    font-size: 9.5px !important;
+    font-weight: 820 !important;
+    line-height: 1 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    display: grid !important;
+    grid-template-columns: 106px 142px !important;
+    justify-content: end !important;
+    justify-items: stretch !important;
+    align-items: center !important;
+    column-gap: 14px !important;
+    row-gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 18px !important;
+    padding-left: 22px !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+    grid-column: 1 !important;
+    width: 106px !important;
+    min-width: 106px !important;
+    max-width: 106px !important;
+    height: 31px !important;
+    min-height: 31px !important;
+    max-height: 31px !important;
+    padding: 0 8px !important;
+    text-align: center !important;
+    justify-self: stretch !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    pointer-events: none !important;
+    cursor: default !important;
+    font-size: 10.8px !important;
+    line-height: 1 !important;
+    color: #565651 !important;
+    background: rgba(255,255,255,0.78) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    grid-column: 2 !important;
+    width: 142px !important;
+    min-width: 142px !important;
+    max-width: 142px !important;
+    height: 31px !important;
+    min-height: 31px !important;
+    max-height: 31px !important;
+    padding: 0 12px !important;
+    justify-self: stretch !important;
+    overflow: hidden !important;
+    font-size: 12.2px !important;
+    font-weight: 820 !important;
+    letter-spacing: -0.01em !important;
+    font-variant-numeric: tabular-nums !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded) {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-timer.running:not(.paused):not(.exceeded)::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 7px !important;
+    height: 7px !important;
+    min-width: 7px !important;
+    flex: 0 0 7px !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    animation: mobileLiveDot 1.05s ease-out infinite !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused)::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask {
+    grid-template-columns: 19px minmax(0, 1fr) 52px !important;
+    column-gap: 5px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-target {
+    grid-column: 3 !important;
+    width: 52px !important;
+    min-width: 52px !important;
+    max-width: 52px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtask .mobile-timer,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-timer,
+  body:not(.mobile-focus-mode) .subtask-row > .pc-timer {
+    display: none !important;
+  }
+
+  body:not(.mobile-focus-mode) .subtask-row {
+    grid-template-columns: 8px 22px minmax(0, 1fr) 58px 28px 22px !important;
+  }
+
+  body:not(.mobile-focus-mode) .subtask-row > .subtask-pin { grid-column: 5 !important; }
+  body:not(.mobile-focus-mode) .subtask-row > .subtask-delete { grid-column: 6 !important; }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      grid-template-columns: 98px 132px !important;
+      column-gap: 12px !important;
+      margin-top: 18px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+      width: 98px !important;
+      min-width: 98px !important;
+      max-width: 98px !important;
+      padding: 0 6px !important;
+      font-size: 10.2px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+      width: 132px !important;
+      min-width: 132px !important;
+      max-width: 132px !important;
+      padding: 0 10px !important;
+      font-size: 11.8px !important;
+    }
+  }
+</style>
+
+
+<style id="haena-mobile-parent-touch-layout-fix-20260622">
+  /* Mobile focus parent timer: align PIN with the parent title line, tighten vertical gap, enlarge timer touch area, and separate the subtask divider. */
+  body.mobile-focus-mode .mobile-task.mobile-parent-group {
+    padding: 10px 10px 9px 11px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-main {
+    min-height: 34px !important;
+    margin-bottom: 0 !important;
+    padding-right: 58px !important;
+    align-items: start !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+    top: 0 !important;
+    right: 0 !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    height: 25px !important;
+    min-height: 25px !important;
+    max-height: 25px !important;
+    align-self: start !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    grid-template-columns: 150px !important;
+    column-gap: 0 !important;
+    margin-top: 9px !important;
+    padding-left: 22px !important;
+    padding-right: 0 !important;
+    align-items: center !important;
+    justify-content: end !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+    display: none !important;
+    width: 108px !important;
+    min-width: 108px !important;
+    max-width: 108px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    line-height: 1 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    grid-column: 1 !important;
+    width: 150px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    padding: 0 13px !important;
+    line-height: 1 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-subtasks {
+    margin-top: 11px !important;
+    padding-top: 9px !important;
+    border-top: 1px dashed rgba(24,24,24,0.12) !important;
+  }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+      grid-template-columns: 140px !important;
+      column-gap: 0 !important;
+      margin-top: 9px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-total {
+      display: none !important;
+      width: 100px !important;
+      min-width: 100px !important;
+      max-width: 100px !important;
+      height: 33px !important;
+      min-height: 33px !important;
+      max-height: 33px !important;
+      font-size: 10.1px !important;
+    }
+
+    body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+      width: 140px !important;
+      min-width: 140px !important;
+      max-width: 140px !important;
+      height: 36px !important;
+      min-height: 36px !important;
+      max-height: 36px !important;
+      font-size: 11.8px !important;
+    }
+  }
+</style>
+
 </body>
 </html>
