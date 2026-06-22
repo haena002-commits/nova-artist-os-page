@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14392,9 +14392,9 @@ for update using (true) with check (true);</pre>
         if (!ctx) return;
         const now = ctx.currentTime;
         // light coin-like ding: bright attack + short harmonic shimmer, no external audio asset.
-        playBellTone(ctx, 1046.5, now, 0.18, 0.032, "sine");
-        playBellTone(ctx, 1568.0, now + 0.018, 0.20, 0.020, "triangle");
-        playBellTone(ctx, 2093.0, now + 0.052, 0.16, 0.012, "sine");
+        playBellTone(ctx, 1046.5, now, 0.18, 0.048, "sine");
+        playBellTone(ctx, 1568.0, now + 0.018, 0.20, 0.030, "triangle");
+        playBellTone(ctx, 2093.0, now + 0.052, 0.16, 0.018, "sine");
       } catch (_) {
         // Sound is optional; silently skip when the browser blocks or cannot play it.
       }
@@ -14406,8 +14406,9 @@ for update using (true) with check (true);</pre>
         if (!ctx) return;
         const now = ctx.currentTime;
         // short bibik alert at about the same perceived level as the reward ding.
-        playBellTone(ctx, 720, now, 0.09, 0.030, "square");
-        playBellTone(ctx, 960, now + 0.115, 0.10, 0.028, "square");
+        playBellTone(ctx, 1320, now, 0.075, 0.075, "square");
+        playBellTone(ctx, 1980, now + 0.085, 0.085, 0.070, "square");
+        playBellTone(ctx, 2640, now + 0.168, 0.070, 0.050, "sawtooth");
       } catch (_) {
         // Sound is optional; silently skip when the browser blocks or cannot play it.
       }
@@ -22917,6 +22918,7 @@ for update using (true) with check (true);</pre>
       focusWin.document.open();
       focusWin.document.write(popupHtml);
       focusWin.document.close();
+      window.__haenaInstallTimerContrastText?.(focusWin.document);
     }
 
     const MINI_FOCUS_WIDTH = 340;
@@ -23086,6 +23088,10 @@ for update using (true) with check (true);</pre>
         return `<button class="mini-target-btn" type="button" data-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}" title="예상 시간 수정">${escapeHtml(normalizeTargetMinutes(subtask.targetMinutes))}m</button>`;
       }
 
+      function miniTaskTargetHtml(area, task) {
+        return `<button class="mini-target-btn mini-single-target" type="button" data-action="setTarget" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="" title="예상 시간 수정">${escapeHtml(formatTaskTargetMinutes(task))}</button>`;
+      }
+
       function miniTaskMetaHtml(area, task) {
         const spentText = formatHoursMinutesCompact(getTaskTotalFocusSeconds(area, task));
         return `소요 ${escapeHtml(spentText)}<br>총 예상 시간 ${escapeHtml(formatTaskTargetHoursMinutes(task))}`;
@@ -23119,7 +23125,7 @@ for update using (true) with check (true);</pre>
               </div>
               <button class="mini-pin ${parentFocusActive ? "active" : ""}" type="button" data-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" title="PIN">PIN</button>
             </div>
-            <div class="mini-main-timer-wrap">${miniParentTimerHtml(area, task)}</div>
+            <div class="mini-main-timer-wrap">${!hasSubtasks ? miniTaskTargetHtml(area, task) : ""}${miniParentTimerHtml(area, task)}</div>
             ${subtasksHtml}
           </article>
         `;
@@ -24535,6 +24541,37 @@ for update using (true) with check (true);</pre>
       right: 10px !important;
       top: 43px !important;
       z-index: 5 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 7px !important;
+    }
+
+    .mini-single-card .mini-card-main {
+      padding-right: 166px !important;
+    }
+
+    .mini-single-target {
+      flex: 0 0 52px !important;
+      width: 52px !important;
+      min-width: 52px !important;
+      max-width: 52px !important;
+      height: 30px !important;
+      min-height: 30px !important;
+      max-height: 30px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(46,41,35,0.09) !important;
+      background: rgba(255,255,255,0.86) !important;
+      color: #45443f !important;
+      padding: 0 !important;
+      font-size: 11px !important;
+      font-weight: 860 !important;
+      line-height: 1 !important;
+      cursor: pointer !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.78), 0 2px 6px rgba(0,0,0,0.035) !important;
     }
 
     .mini-parent-timer {
@@ -24651,11 +24688,72 @@ for update using (true) with check (true);</pre>
         padding-right: 94px !important;
       }
 
+      .mini-single-card .mini-card-main {
+        padding-right: 0 !important;
+      }
+
+      .mini-single-target {
+        flex-basis: 46px !important;
+        width: 46px !important;
+        min-width: 46px !important;
+        max-width: 46px !important;
+      }
+
       .mini-parent-timer {
         width: 96px !important;
         min-width: 96px !important;
         max-width: 96px !important;
       }
+    }
+
+    /* 2026-06-22 · PC mini: no-subtask cards keep readable text width; target + timer flow below meta. */
+    .mini-single-card .mini-card-main {
+      padding-right: 0 !important;
+      min-height: 0 !important;
+      grid-template-columns: 22px minmax(0, 1fr) 48px !important;
+      align-items: start !important;
+    }
+
+    .mini-single-card .mini-card-content {
+      min-width: 0 !important;
+      padding-right: 2px !important;
+    }
+
+    .mini-single-card .mini-task-title {
+      display: block !important;
+      max-width: none !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      word-break: keep-all !important;
+      overflow-wrap: anywhere !important;
+    }
+
+    .mini-single-card .mini-task-meta {
+      white-space: normal !important;
+    }
+
+    .mini-single-card .mini-main-timer-wrap {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      margin-top: 8px !important;
+      margin-left: auto !important;
+      display: flex !important;
+      width: fit-content !important;
+      max-width: 100% !important;
+      justify-content: flex-end !important;
+      align-items: center !important;
+      gap: 8px !important;
+      z-index: 5 !important;
+    }
+
+    .mini-single-card .mini-single-target {
+      flex: 0 0 52px !important;
+      width: 52px !important;
+      min-width: 52px !important;
+      max-width: 52px !important;
     }
   </style>
 </head>
@@ -24915,6 +25013,12 @@ for update using (true) with check (true);</pre>
         send("toggleSubtask", [target.dataset.area, target.dataset.taskid, target.dataset.subtaskid]);
       }
 
+      if (target.dataset.action === "togglePin") {
+        event.preventDefault();
+        event.stopPropagation();
+        send("togglePin", [target.dataset.area, target.dataset.taskid]);
+      }
+
       if (target.dataset.action === "toggleTimer") {
         send("toggleTimer", [target.dataset.area, target.dataset.taskid, target.dataset.subtaskid || null]);
       }
@@ -24936,6 +25040,7 @@ for update using (true) with check (true);</pre>
       miniFocusWin.document.open();
       miniFocusWin.document.write(popupHtml);
       miniFocusWin.document.close();
+      window.__haenaInstallTimerContrastText?.(miniFocusWin.document);
       fitMiniFocusWindow();
     }
 
@@ -26204,9 +26309,9 @@ for update using (true) with check (true);</pre>
       const ctx = getNovaAudioContext();
       if (!ctx) return;
       const now = ctx.currentTime;
-      playBellTone(ctx, 1318.5, now, 0.15, 0.034, "sine");
-      playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.022, "triangle");
-      playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.010, "sine");
+      playBellTone(ctx, 1318.5, now, 0.15, 0.051, "sine");
+      playBellTone(ctx, 1975.5, now + 0.018, 0.18, 0.033, "triangle");
+      playBellTone(ctx, 2637.0, now + 0.055, 0.13, 0.015, "sine");
     } catch (_) {}
   };
 
@@ -26215,8 +26320,9 @@ for update using (true) with check (true);</pre>
       const ctx = getNovaAudioContext();
       if (!ctx) return;
       const now = ctx.currentTime;
-      playBellTone(ctx, 740, now, 0.085, 0.030, "square");
-      playBellTone(ctx, 980, now + 0.11, 0.095, 0.028, "square");
+      playBellTone(ctx, 1320, now, 0.075, 0.075, "square");
+      playBellTone(ctx, 1980, now + 0.085, 0.085, 0.070, "square");
+      playBellTone(ctx, 2640, now + 0.168, 0.070, 0.050, "sawtooth");
     } catch (_) {}
   };
 </script>
@@ -27336,7 +27442,11 @@ for update using (true) with check (true);</pre>
     let noiseSource = null;
     let noiseGain = null;
     let noiseFilter = null;
+    let rainSheetSource = null;
+    let rainSheetGain = null;
+    let rainSheetFilter = null;
     let syncTimer = null;
+    let rainTimer = null;
     let armedByUser = false;
 
     function hasActiveTimer() {
@@ -27349,7 +27459,7 @@ for update using (true) with check (true);</pre>
       if (!audioContext) {
         audioContext = new AudioCtor();
         masterGain = audioContext.createGain();
-        masterGain.gain.value = 0.34;
+        masterGain.gain.value = 0.68;
         masterGain.connect(audioContext.destination);
       }
       if (audioContext.state === "suspended") {
@@ -27359,15 +27469,31 @@ for update using (true) with check (true);</pre>
     }
 
     function createNoiseBuffer() {
-      const seconds = 2;
+      const seconds = 3;
       const sampleRate = audioContext.sampleRate;
-      const buffer = audioContext.createBuffer(1, seconds * sampleRate, sampleRate);
+      const buffer = audioContext.createBuffer(1, Math.ceil(seconds * sampleRate), sampleRate);
       const data = buffer.getChannelData(0);
       let previous = 0;
       for (let i = 0; i < data.length; i += 1) {
         const white = Math.random() * 2 - 1;
-        previous = previous * 0.985 + white * 0.015;
-        data[i] = (white * 0.42 + previous * 1.25) * 0.58;
+        previous = previous * 0.992 + white * 0.008;
+        data[i] = (previous * 2.2 + white * 0.08) * 0.5;
+      }
+      return buffer;
+    }
+
+    function createRainSheetBuffer() {
+      const seconds = 3;
+      const sampleRate = audioContext.sampleRate;
+      const buffer = audioContext.createBuffer(1, Math.ceil(seconds * sampleRate), sampleRate);
+      const data = buffer.getChannelData(0);
+      let soft = 0;
+      let shimmer = 0;
+      for (let i = 0; i < data.length; i += 1) {
+        const white = Math.random() * 2 - 1;
+        soft = soft * 0.72 + white * 0.28;
+        shimmer = shimmer * 0.35 + white * 0.65;
+        data[i] = (soft * 0.38 + shimmer * 0.62) * 0.32;
       }
       return buffer;
     }
@@ -27384,22 +27510,110 @@ for update using (true) with check (true);</pre>
       noiseSource.loop = true;
 
       noiseFilter.type = "lowpass";
-      noiseFilter.frequency.setValueAtTime(2200, now);
-      noiseFilter.Q.setValueAtTime(0.55, now);
+      noiseFilter.frequency.setValueAtTime(1150, now);
+      noiseFilter.Q.setValueAtTime(0.35, now);
 
       noiseGain.gain.setValueAtTime(0.0001, now);
-      noiseGain.gain.linearRampToValueAtTime(0.075, now + 0.35);
+      noiseGain.gain.linearRampToValueAtTime(0.24, now + 0.45);
 
       noiseSource.connect(noiseFilter);
       noiseFilter.connect(noiseGain);
       noiseGain.connect(masterGain);
       noiseSource.start(now);
+      startRainSheet(now);
+      scheduleRainDrop();
+    }
+
+    function startRainSheet(now) {
+      if (rainSheetSource || !audioContext || audioContext.state !== "running") return;
+      rainSheetSource = audioContext.createBufferSource();
+      rainSheetGain = audioContext.createGain();
+      rainSheetFilter = audioContext.createBiquadFilter();
+
+      rainSheetSource.buffer = createRainSheetBuffer();
+      rainSheetSource.loop = true;
+
+      rainSheetFilter.type = "bandpass";
+      rainSheetFilter.frequency.setValueAtTime(1650, now);
+      rainSheetFilter.Q.setValueAtTime(0.48, now);
+
+      rainSheetGain.gain.setValueAtTime(0.0001, now);
+      rainSheetGain.gain.linearRampToValueAtTime(0.095, now + 0.8);
+
+      rainSheetSource.connect(rainSheetFilter);
+      rainSheetFilter.connect(rainSheetGain);
+      rainSheetGain.connect(masterGain);
+      rainSheetSource.start(now);
+    }
+
+    function createRainDropBuffer() {
+      const seconds = 0.24;
+      const sampleRate = audioContext.sampleRate;
+      const buffer = audioContext.createBuffer(1, Math.ceil(seconds * sampleRate), sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i += 1) {
+        const t = i / data.length;
+        const envelope = Math.pow(1 - t, 5.4) * Math.min(1, t * 18);
+        data[i] = (Math.random() * 2 - 1) * envelope * 0.52;
+      }
+      return buffer;
+    }
+
+    function playRainDrop() {
+      if (!audioContext || audioContext.state !== "running" || !noiseSource || !hasActiveTimer()) return;
+      const now = audioContext.currentTime;
+      const volumeTier = [0.58, 0.86, 1.12][Math.floor(Math.random() * 3)];
+      const dropGain = audioContext.createGain();
+      const dropFilter = audioContext.createBiquadFilter();
+      const click = audioContext.createBufferSource();
+      const bodyGain = audioContext.createGain();
+      const body = audioContext.createOscillator();
+
+      dropFilter.type = "lowpass";
+      dropFilter.frequency.setValueAtTime(520 + Math.random() * 210, now);
+      dropFilter.Q.setValueAtTime(0.5, now);
+
+      dropGain.gain.setValueAtTime(0.0001, now);
+      dropGain.gain.exponentialRampToValueAtTime((0.14 + Math.random() * 0.055) * volumeTier, now + 0.024);
+      dropGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.38);
+
+      click.buffer = createRainDropBuffer();
+      body.type = "sine";
+      body.frequency.setValueAtTime(128 + Math.random() * 32, now);
+      body.frequency.exponentialRampToValueAtTime(74 + Math.random() * 14, now + 0.22);
+      bodyGain.gain.setValueAtTime(0.0001, now);
+      bodyGain.gain.exponentialRampToValueAtTime((0.075 + Math.random() * 0.032) * volumeTier, now + 0.03);
+      bodyGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
+
+      click.connect(dropFilter);
+      dropFilter.connect(dropGain);
+      dropGain.connect(masterGain);
+      body.connect(bodyGain);
+      bodyGain.connect(masterGain);
+
+      click.start(now);
+      body.start(now);
+      body.stop(now + 0.44);
+    }
+
+    function scheduleRainDrop() {
+      if (rainTimer || !noiseSource || !hasActiveTimer()) return;
+      const delay = 2300 + Math.random() * 4300;
+      rainTimer = setTimeout(() => {
+        rainTimer = null;
+        playRainDrop();
+        scheduleRainDrop();
+      }, delay);
     }
 
     function stopNoise() {
       if (syncTimer) {
         clearTimeout(syncTimer);
         syncTimer = null;
+      }
+      if (rainTimer) {
+        clearTimeout(rainTimer);
+        rainTimer = null;
       }
       if (noiseGain && audioContext) {
         const now = audioContext.currentTime;
@@ -27409,13 +27623,28 @@ for update using (true) with check (true);</pre>
           noiseGain.gain.linearRampToValueAtTime(0.0001, now + 0.22);
         } catch (_) {}
       }
+      if (rainSheetGain && audioContext) {
+        const now = audioContext.currentTime;
+        try {
+          rainSheetGain.gain.cancelScheduledValues(now);
+          rainSheetGain.gain.setValueAtTime(Math.max(0.0001, rainSheetGain.gain.value || 0.0001), now);
+          rainSheetGain.gain.linearRampToValueAtTime(0.0001, now + 0.32);
+        } catch (_) {}
+      }
       if (noiseSource && audioContext) {
         const sourceToStop = noiseSource;
         try { sourceToStop.stop(audioContext.currentTime + 0.25); } catch (_) {}
       }
+      if (rainSheetSource && audioContext) {
+        const sheetToStop = rainSheetSource;
+        try { sheetToStop.stop(audioContext.currentTime + 0.34); } catch (_) {}
+      }
       noiseSource = null;
       noiseGain = null;
       noiseFilter = null;
+      rainSheetSource = null;
+      rainSheetGain = null;
+      rainSheetFilter = null;
     }
 
     function syncNoise() {
@@ -27452,6 +27681,108 @@ for update using (true) with check (true);</pre>
       attributes: true,
       attributeFilter: ["class", "style", "disabled", "data-paused", "data-exceeded"]
     });
+  })();
+</script>
+
+<script id="haena-timer-contrast-text-sync-20260622">
+  (() => {
+    const STYLE_ID = "haena-timer-contrast-text-20260622";
+    const TIMER_TEXT_SELECTOR = [
+      ".mobile-timer",
+      ".mobile-parent-timer",
+      ".pc-timer",
+      ".timer-btn",
+      ".mini-timer-btn"
+    ].join(",");
+    const TIMER_RUNNING_SELECTOR = [
+      "body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)",
+      "body.mobile-focus-mode .mobile-parent-timer.running:not(.paused):not(.exceeded)",
+      "body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)",
+      ".timer-btn.running:not(.paused):not(.exceeded)",
+      ".mini-timer-btn.running:not(.paused):not(.exceeded)"
+    ].join(",");
+    const TIMER_CSS = `
+      ${TIMER_RUNNING_SELECTOR} {
+        position: relative !important;
+        color: transparent !important;
+        text-shadow: none !important;
+      }
+      ${TIMER_RUNNING_SELECTOR}::before {
+        background: #fff !important;
+        color: #fff !important;
+      }
+      ${TIMER_RUNNING_SELECTOR}::after {
+        content: attr(data-timer-text);
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: inherit;
+        box-sizing: border-box;
+        color: #fff;
+        font: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        line-height: inherit;
+        font-variant-numeric: tabular-nums;
+        text-shadow: none;
+        mix-blend-mode: difference;
+        pointer-events: none;
+      }
+    `;
+
+    function timerOwnText(el) {
+      let text = "";
+      el.childNodes.forEach((node) => {
+        if (node.nodeType === 3) text += node.textContent || "";
+      });
+      return (text || el.textContent || "").trim();
+    }
+
+    function installTimerContrastText(doc = document) {
+      if (!doc || !doc.documentElement) return;
+      const win = doc.defaultView || window;
+      if (!doc.getElementById(STYLE_ID)) {
+        const style = doc.createElement("style");
+        style.id = STYLE_ID;
+        style.textContent = TIMER_CSS;
+        (doc.head || doc.documentElement).appendChild(style);
+      }
+
+      function sync(root = doc) {
+        const timers = root.matches?.(TIMER_TEXT_SELECTOR)
+          ? [root]
+          : Array.from(root.querySelectorAll?.(TIMER_TEXT_SELECTOR) || []);
+        timers.forEach((timer) => {
+          const text = timerOwnText(timer);
+          if (text && timer.getAttribute("data-timer-text") !== text) {
+            timer.setAttribute("data-timer-text", text);
+          }
+        });
+      }
+
+      sync();
+      if (doc.__haenaTimerContrastTextInstalled) return;
+      try { Object.defineProperty(doc, "__haenaTimerContrastTextInstalled", { value: true }); }
+      catch (_) { doc.__haenaTimerContrastTextInstalled = true; }
+      doc.addEventListener("DOMContentLoaded", () => sync(), { once: true });
+      const observer = new win.MutationObserver((mutations) => {
+        if (mutations.some((mutation) => mutation.type === "characterData" || mutation.type === "childList")) {
+          win.requestAnimationFrame(() => sync());
+        }
+      });
+      observer.observe(doc.documentElement, {
+        subtree: true,
+        childList: true,
+        characterData: true
+      });
+      win.setInterval(sync, 600);
+    }
+
+    window.__haenaInstallTimerContrastText = installTimerContrastText;
+    installTimerContrastText(document);
   })();
 </script>
 
