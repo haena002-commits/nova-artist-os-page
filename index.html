@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 + midnight-active-timer-date-guard-20260624 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12895,6 +12895,68 @@ body:not(.mobile-focus-mode) .panel h2 { font-weight: 780 !important; }
       }
     }
   </style>
+
+
+  <style id="deadline-bridge-no-overflow-20260624">
+    /* 2026-06-24: NEXT CLASS D-day text overflow fix.
+       Keep the status inside the card by letting the right column shrink instead of using max-content. */
+    body:not(.mobile-focus-mode) .deadline-bridge-card {
+      overflow: hidden !important;
+    }
+
+    body:not(.mobile-focus-mode) .deadline-bridge-head {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr) !important;
+      overflow: hidden !important;
+    }
+
+    body:not(.mobile-focus-mode) .deadline-bridge-head span {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+    }
+
+    body:not(.mobile-focus-mode) .deadline-bridge-status {
+      min-width: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      justify-self: stretch !important;
+      text-align: right !important;
+      overflow: hidden !important;
+      text-overflow: clip !important;
+      white-space: nowrap !important;
+      font-size: clamp(16px, 1.16vw, 20px) !important;
+      letter-spacing: -0.06em !important;
+      padding: 0 !important;
+    }
+
+    @media (max-width: 768px) {
+      body:not(.mobile-focus-mode) .deadline-bridge-head {
+        grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr) !important;
+        gap: 8px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-status {
+        font-size: clamp(15.5px, 4.75vw, 18px) !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      body:not(.mobile-focus-mode) .deadline-bridge-head {
+        grid-template-columns: minmax(0, 0.66fr) minmax(0, 1.34fr) !important;
+        gap: 6px !important;
+      }
+
+      body:not(.mobile-focus-mode) .deadline-bridge-status {
+        font-size: 15px !important;
+        letter-spacing: -0.075em !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -14629,9 +14691,19 @@ for update using (true) with check (true);</pre>
       return Math.max(0, getActiveElapsedSeconds() - getActiveLoggedElapsedSeconds());
     }
 
+    function getActiveTimerDateKey() {
+      if (!state.activeTimer) return "";
+      return state.activeTimer.dateKey || getTodayKey(new Date(getActiveTimerStartedMs()));
+    }
+
+    function shouldCountActiveTimerForDate(dateKey = getTodayKey()) {
+      return Boolean(state.activeTimer && getActiveTimerDateKey() === dateKey);
+    }
+
     function getTodaySummaryWithRunning() {
-      const summary = getDateLogSummary(getTodayKey());
-      if (state.activeTimer) {
+      const todayKey = getTodayKey();
+      const summary = getDateLogSummary(todayKey);
+      if (shouldCountActiveTimerForDate(todayKey)) {
         const runningSeconds = getActiveUnloggedSeconds();
         if (AREA_ORDER.includes(state.activeTimer.area)) summary[state.activeTimer.area] += runningSeconds;
       }
@@ -19542,11 +19614,7 @@ for update using (true) with check (true);</pre>
       const tasks = getFocusedTasks();
       const weekly = getWeeklyScore();
       const portfolioDaily = getAreaProgress("portfolio");
-      const todaySummary = getDateLogSummary(getTodayKey());
-      if (state.activeTimer) {
-        const runningSeconds = getActiveElapsedSeconds();
-        todaySummary[state.activeTimer.area] += runningSeconds;
-      }
+      const todaySummary = getTodaySummaryWithRunning();
       const focusTotal = todaySummary.portfolio + todaySummary.beacon + todaySummary.income;
       const pinnedEstimatedSeconds = tasks.reduce((sum, item) => sum + getFocusItemEstimatedSeconds(item), 0);
       const pinnedSpentSeconds = tasks.reduce((sum, item) => sum + getFocusItemSpentSeconds(item), 0);
