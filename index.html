@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 + midnight-active-timer-date-guard-20260624 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 + midnight-active-timer-date-guard-20260624 + pc-mini-board-order-wrap-time-20260624 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14599,13 +14599,29 @@ for update using (true) with check (true);</pre>
       return [...items].sort((a, b) => {
         const areaRank = miniAreaSortRank(a.area) - miniAreaSortRank(b.area);
         if (areaRank !== 0) return areaRank;
-        const aSub = a.type === "subtask" ? 1 : 0;
-        const bSub = b.type === "subtask" ? 1 : 0;
-        if (aSub !== bSub) return aSub - bSub;
-        const aTitle = a.subtask?.title || a.task?.title || "";
-        const bTitle = b.subtask?.title || b.task?.title || "";
-        return String(aTitle).localeCompare(String(bTitle), "ko");
+        const aTaskOrder = Number.isFinite(Number(a.order)) ? Number(a.order) : 0;
+        const bTaskOrder = Number.isFinite(Number(b.order)) ? Number(b.order) : 0;
+        if (aTaskOrder !== bTaskOrder) return aTaskOrder - bTaskOrder;
+        const aSubOrder = Number.isFinite(Number(a.subOrder)) ? Number(a.subOrder) : -1;
+        const bSubOrder = Number.isFinite(Number(b.subOrder)) ? Number(b.subOrder) : -1;
+        return aSubOrder - bSubOrder;
       });
+    }
+
+    function splitLeadingTimeRangeTitle(value) {
+      const raw = String(value || "").trim();
+      const match = raw.match(/^(\d{1,2}:\d{2})\s*(?:-|~|–|—)\s*(\d{1,2}:\d{2})(?:\s+|$)(.*)$/);
+      if (!match) return { time: "", text: raw };
+      return {
+        time: `${match[1]} - ${match[2]}`,
+        text: String(match[3] || "").trim() || raw
+      };
+    }
+
+    function miniTitleBlockHtml(title, className) {
+      const parts = splitLeadingTimeRangeTitle(title);
+      const timeHtml = parts.time ? `<span class="mini-title-time">${escapeHtml(parts.time)}</span>` : "";
+      return `<div class="${className}">${timeHtml}<span class="mini-title-text">${escapeHtml(parts.text)}</span></div>`;
     }
 
     function getAreaProgress(area) {
@@ -17765,23 +17781,16 @@ for update using (true) with check (true);</pre>
       const pinned = [];
 
       AREA_ORDER.forEach(area => {
-        sortTasksForDisplay(state.tasks[area]).forEach(task => {
+        sortTasksForDisplay(state.tasks[area]).forEach((task, taskIndex) => {
           if (task.done || task.later) return;
-          if (isTaskFocusPinned(task)) pinned.push({ area, task, type: "task", scheduled: isScheduledForToday(task) });
-          (task.subtasks || []).forEach(subtask => {
-            if (!subtask.done && subtask.pinned) pinned.push({ area, task, subtask, type: "subtask" });
+          if (isTaskFocusPinned(task)) pinned.push({ area, task, type: "task", scheduled: isScheduledForToday(task), order: taskIndex, subOrder: -1 });
+          (task.subtasks || []).forEach((subtask, subtaskIndex) => {
+            if (!subtask.done && subtask.pinned) pinned.push({ area, task, subtask, type: "subtask", order: taskIndex, subOrder: subtaskIndex });
           });
         });
       });
 
-      return sortFocusItemsForMini(pinned).sort((a, b) => {
-        const areaRank = miniAreaSortRank(a.area) - miniAreaSortRank(b.area);
-        if (areaRank !== 0) return areaRank;
-        const aActive = a.area === state.focusArea && a.task?.id === state.focusTaskId;
-        const bActive = b.area === state.focusArea && b.task?.id === state.focusTaskId;
-        if (aActive !== bActive) return aActive ? -1 : 1;
-        return 0;
-      });
+      return sortFocusItemsForMini(pinned);
     }
 
     function getTodayRemainingCheckCount() {
@@ -23229,7 +23238,7 @@ for update using (true) with check (true);</pre>
               ${remainingSubtasks.map(subtask => `
                 <div class="mini-subtask ${escapeHtml(area)} ${subtask.done ? "done" : ""}" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}">
                   <button class="mini-check sub ${subtask.done ? "done" : ""}" data-action="toggleSubtask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" data-subtaskid="${attrValue(subtask.id)}" aria-label="toggle subtask">${subtask.done ? "✓" : ""}</button>
-                  <div class="mini-subtask-title">${escapeHtml(subtask.title)}</div>
+                  ${miniTitleBlockHtml(subtask.title, "mini-subtask-title")}
                   ${miniSubtaskTargetHtml(area, task, subtask)}
                 </div>
               `).join("")}
@@ -23240,7 +23249,7 @@ for update using (true) with check (true);</pre>
             <div class="mini-card-main">
               <button class="mini-check ${task.done ? "done" : ""}" data-action="toggleTask" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" aria-label="toggle task">${task.done ? "✓" : ""}</button>
               <div class="mini-card-content">
-                <div class="mini-task-title">${escapeHtml(task.title)}</div>
+                ${miniTitleBlockHtml(task.title, "mini-task-title")}
                 <div class="mini-task-meta">${miniTaskMetaHtml(area, task)}</div>
               </div>
               <button class="mini-pin ${parentFocusActive ? "active" : ""}" type="button" data-action="togglePin" data-area="${attrValue(area)}" data-taskid="${attrValue(task.id)}" title="PIN">PIN</button>
@@ -24874,6 +24883,46 @@ for update using (true) with check (true);</pre>
       width: 52px !important;
       min-width: 52px !important;
       max-width: 52px !important;
+    }
+
+    /* 2026-06-24 · PC mini: keep board order + wrap long scheduled titles instead of ellipsis. */
+    .mini-task-title,
+    .mini-subtask-title {
+      display: block !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      overflow-wrap: anywhere !important;
+      word-break: keep-all !important;
+    }
+
+    .mini-subtask {
+      align-items: center !important;
+      min-height: 38px !important;
+      height: auto !important;
+      border-radius: 14px !important;
+    }
+
+    .mini-title-time,
+    .mini-title-text {
+      display: block !important;
+      min-width: 0 !important;
+    }
+
+    .mini-title-time {
+      margin-bottom: 2px !important;
+      color: #6f6d65 !important;
+      font-size: 11px !important;
+      line-height: 1.12 !important;
+      font-weight: 920 !important;
+      letter-spacing: -0.01em !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    .mini-title-text {
+      color: inherit !important;
     }
   </style>
 </head>
