@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14828,7 +14828,21 @@ for update using (true) with check (true);</pre>
     }
 
     function getLiveTimerLoopDelay() {
-      return document.visibilityState === "hidden" ? 4000 : 1000;
+      // Low-power timer UI: actual elapsed time is still calculated from Date.now(),
+      // but visual refreshes are intentionally sparse to keep video/audio playback smooth.
+      if (document.visibilityState === "hidden") return 60000;
+
+      try {
+        if (state.activeTimer) {
+          const info = getTimerSubject(state.activeTimer.area, state.activeTimer.taskId, state.activeTimer.subtaskId || null);
+          if (info) {
+            const remaining = Math.abs(getCountdownSeconds(info.area, info.task, info.subtask));
+            if (remaining <= 60) return 5000;
+          }
+        }
+      } catch (_) {}
+
+      return 15000;
     }
 
     function stopLiveTimerLoop() {
@@ -22912,6 +22926,44 @@ for update using (true) with check (true);</pre>
   }
 </style>
 
+
+<style id="nova-low-power-timer-ui-20260623">
+  /* Low-power timer mode: state stays clear, but continuous UI animation is disabled. */
+  .mobile-timer.running,
+  .mobile-parent-timer.running,
+  .pc-timer.running,
+  .timer-btn.running,
+  .mini-timer-btn.running,
+  body.mobile-focus-mode .mobile-timer.running,
+  body:not(.mobile-focus-mode) .pc-timer.running {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .mobile-timer.running::before,
+  .mobile-timer.running::after,
+  .mobile-parent-timer.running::before,
+  .mobile-parent-timer.running::after,
+  .pc-timer.running::before,
+  .pc-timer.running::after,
+  .timer-btn.running::before,
+  .timer-btn.running::after,
+  .mini-timer-btn.running::before,
+  .mini-timer-btn.running::after {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .mobile-subtask.running,
+  .mobile-task.running,
+  .task-card.running,
+  .subtask-row.running,
+  .mini-card.running,
+  .mini-subtask.running {
+    animation: none !important;
+  }
+</style>
+
 </body>
 </html>`;
 
@@ -27426,363 +27478,188 @@ for update using (true) with check (true);</pre>
   }
 </style>
 
-<script id="haena-quiet-timer-tick-20260622">
-  (() => {
-    if (window.__haenaQuietTimerTickInstalled) return;
-    window.__haenaQuietTimerTickInstalled = true;
 
-    const ACTIVE_TIMER_SELECTOR = [
-      ".mobile-timer.running:not(.paused):not(.exceeded)",
-      "body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)",
-      ".timer-btn.running:not(.paused):not(.exceeded)",
-      ".mini-timer-btn.running:not(.paused):not(.exceeded)"
-    ].join(",");
-    let audioContext = null;
-    let masterGain = null;
-    let noiseSource = null;
-    let noiseGain = null;
-    let noiseFilter = null;
-    let rainSheetSource = null;
-    let rainSheetGain = null;
-    let rainSheetFilter = null;
-    let syncTimer = null;
-    let rainTimer = null;
-    let armedByUser = false;
 
-    function hasActiveTimer() {
-      return !document.hidden && Boolean(document.querySelector(ACTIVE_TIMER_SELECTOR));
-    }
 
-    function ensureAudioContext() {
-      const AudioCtor = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtor) return null;
-      if (!audioContext) {
-        audioContext = new AudioCtor();
-        masterGain = audioContext.createGain();
-        masterGain.gain.value = 1.36;
-        masterGain.connect(audioContext.destination);
-      }
-      if (audioContext.state === "suspended") {
-        audioContext.resume().catch(() => {});
-      }
-      return audioContext;
-    }
 
-    function createNoiseBuffer() {
-      const seconds = 3;
-      const sampleRate = audioContext.sampleRate;
-      const buffer = audioContext.createBuffer(1, Math.ceil(seconds * sampleRate), sampleRate);
-      const data = buffer.getChannelData(0);
-      let previous = 0;
-      for (let i = 0; i < data.length; i += 1) {
-        const white = Math.random() * 2 - 1;
-        previous = previous * 0.992 + white * 0.008;
-        data[i] = (previous * 2.2 + white * 0.08) * 0.5;
-      }
-      return buffer;
-    }
+<style id="nova-mobile-timer-state-unify-20260623">
+  /* Mobile timer final state model: match PC mini behavior, remove progress-fill split backgrounds, keep touch target stable. */
+  body.mobile-focus-mode .mobile-task-actions,
+  body.mobile-focus-mode .mobile-single-actions,
+  body.mobile-focus-mode .mobile-parent-actions,
+  body.mobile-focus-mode .mobile-subtask-focus-actions {
+    position: relative !important;
+    z-index: 40 !important;
+    pointer-events: auto !important;
+  }
 
-    function createRainSheetBuffer() {
-      const seconds = 3;
-      const sampleRate = audioContext.sampleRate;
-      const buffer = audioContext.createBuffer(1, Math.ceil(seconds * sampleRate), sampleRate);
-      const data = buffer.getChannelData(0);
-      let soft = 0;
-      let shimmer = 0;
-      for (let i = 0; i < data.length; i += 1) {
-        const white = Math.random() * 2 - 1;
-        soft = soft * 0.72 + white * 0.28;
-        shimmer = shimmer * 0.35 + white * 0.65;
-        data[i] = (soft * 0.38 + shimmer * 0.62) * 0.32;
-      }
-      return buffer;
-    }
+  body.mobile-focus-mode .mobile-timer,
+  body.mobile-focus-mode .mobile-task .mobile-timer,
+  body.mobile-focus-mode .mobile-subtask .mobile-timer,
+  body.mobile-focus-mode .mobile-parent-timer,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    position: relative !important;
+    z-index: 45 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    isolation: isolate !important;
+    background: rgba(255,255,255,0.88) !important;
+    background-image: none !important;
+    background-color: rgba(255,255,255,0.88) !important;
+    border-color: rgba(46,41,35,0.16) !important;
+    color: #343431 !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.76), 0 2px 6px rgba(0,0,0,0.035) !important;
+    transform: none !important;
+    animation: none !important;
+    transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease, box-shadow 0.12s ease !important;
+  }
 
-    function startNoise() {
-      if (!audioContext || audioContext.state !== "running" || noiseSource) return;
+  body.mobile-focus-mode .mobile-timer::after,
+  body.mobile-focus-mode .mobile-parent-timer::after,
+  body.mobile-focus-mode .mobile-task .mobile-timer::after,
+  body.mobile-focus-mode .mobile-subtask .mobile-timer::after {
+    content: none !important;
+    display: none !important;
+  }
 
-      const now = audioContext.currentTime;
-      noiseSource = audioContext.createBufferSource();
-      noiseGain = audioContext.createGain();
-      noiseFilter = audioContext.createBiquadFilter();
+  body.mobile-focus-mode .mobile-timer:not(.running)::before,
+  body.mobile-focus-mode .mobile-parent-timer:not(.running)::before,
+  body.mobile-focus-mode .mobile-timer.paused::before,
+  body.mobile-focus-mode .mobile-parent-timer.paused::before,
+  body.mobile-focus-mode .mobile-timer.exceeded::before,
+  body.mobile-focus-mode .mobile-parent-timer.exceeded::before {
+    content: none !important;
+    display: none !important;
+  }
 
-      noiseSource.buffer = createNoiseBuffer();
-      noiseSource.loop = true;
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.beacon .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.income .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.portfolio .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.beacon .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.income .mobile-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused) .mobile-parent-timer.running:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer.running:not(.paused):not(.exceeded) {
+    background: #2E3118 !important;
+    background-image: none !important;
+    background-color: #2E3118 !important;
+    border-color: #2E3118 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 3px 9px rgba(0,0,0,0.10) !important;
+    transform: none !important;
+    animation: none !important;
+  }
 
-      noiseFilter.type = "lowpass";
-      noiseFilter.frequency.setValueAtTime(1150, now);
-      noiseFilter.Q.setValueAtTime(0.35, now);
+  body.mobile-focus-mode .mobile-timer.running.progress-low:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-timer.progress-low:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-timer.progress-low:not(.paused):not(.exceeded)::before {
+    color: #fff !important;
+  }
 
-      noiseGain.gain.setValueAtTime(0.0001, now);
-      noiseGain.gain.linearRampToValueAtTime(0.24, now + 0.45);
+  body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused) .mobile-parent-timer.running:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer.running:not(.paused):not(.exceeded)::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 7px !important;
+    height: 7px !important;
+    min-width: 7px !important;
+    flex: 0 0 7px !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    pointer-events: none !important;
+  }
 
-      noiseSource.connect(noiseFilter);
-      noiseFilter.connect(noiseGain);
-      noiseGain.connect(masterGain);
-      noiseSource.start(now);
-      startRainSheet(now);
-      scheduleRainDrop();
-    }
+  body.mobile-focus-mode .mobile-timer.paused,
+  body.mobile-focus-mode .mobile-timer.running.paused,
+  body.mobile-focus-mode .mobile-parent-timer.paused,
+  body.mobile-focus-mode .mobile-parent-timer.running.paused,
+  body.mobile-focus-mode .mobile-task .mobile-timer.paused,
+  body.mobile-focus-mode .mobile-task .mobile-timer.running.paused,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer.paused,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer.running.paused {
+    background: #8a8a84 !important;
+    background-image: none !important;
+    background-color: #8a8a84 !important;
+    border-color: #8a8a84 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 3px 9px rgba(0,0,0,0.08) !important;
+  }
 
-    function startRainSheet(now) {
-      if (rainSheetSource || !audioContext || audioContext.state !== "running") return;
-      rainSheetSource = audioContext.createBufferSource();
-      rainSheetGain = audioContext.createGain();
-      rainSheetFilter = audioContext.createBiquadFilter();
+  body.mobile-focus-mode .mobile-timer.exceeded,
+  body.mobile-focus-mode .mobile-timer.running.exceeded,
+  body.mobile-focus-mode .mobile-parent-timer.exceeded,
+  body.mobile-focus-mode .mobile-parent-timer.running.exceeded,
+  body.mobile-focus-mode .mobile-task .mobile-timer.exceeded,
+  body.mobile-focus-mode .mobile-task .mobile-timer.running.exceeded,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer.exceeded,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer.running.exceeded {
+    background: #A40000 !important;
+    background-image: none !important;
+    background-color: #A40000 !important;
+    border-color: #A40000 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 3px 9px rgba(164,0,0,0.14) !important;
+  }
 
-      rainSheetSource.buffer = createRainSheetBuffer();
-      rainSheetSource.loop = true;
+  body.mobile-focus-mode .mobile-parent-timer,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer {
+    border-radius: 8px !important;
+    min-height: 31px !important;
+    cursor: pointer !important;
+  }
 
-      rainSheetFilter.type = "bandpass";
-      rainSheetFilter.frequency.setValueAtTime(1650, now);
-      rainSheetFilter.Q.setValueAtTime(0.48, now);
+  body.mobile-focus-mode .mobile-task.mobile-parent-group.running:not(.paused)::after,
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single:not(.paused)::after,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running:not(.paused)::after {
+    content: none !important;
+    display: none !important;
+  }
+</style>
 
-      rainSheetGain.gain.setValueAtTime(0.0001, now);
-      rainSheetGain.gain.linearRampToValueAtTime(0.095, now + 0.8);
+<script id="nova-mobile-timer-tap-guard-20260623">
+  (function () {
+    document.addEventListener("click", function (event) {
+      if (!document.body || !document.body.classList.contains("mobile-focus-mode")) return;
+      var root = document.getElementById("mobileFocusRoot");
+      if (!root) return;
+      var target = event.target && event.target.closest ? event.target.closest("#mobileFocusRoot [data-mobile-action='toggleTimer']") : null;
+      if (!target) return;
 
-      rainSheetSource.connect(rainSheetFilter);
-      rainSheetFilter.connect(rainSheetGain);
-      rainSheetGain.connect(masterGain);
-      rainSheetSource.start(now);
-    }
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === "function") event.stopImmediatePropagation();
 
-    function createRainDropBuffer() {
-      const seconds = 0.24;
-      const sampleRate = audioContext.sampleRate;
-      const buffer = audioContext.createBuffer(1, Math.ceil(seconds * sampleRate), sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < data.length; i += 1) {
-        const t = i / data.length;
-        const envelope = Math.pow(1 - t, 5.4) * Math.min(1, t * 18);
-        data[i] = (Math.random() * 2 - 1) * envelope * 0.52;
-      }
-      return buffer;
-    }
+      var area = target.dataset.area;
+      var taskId = target.dataset.taskid;
+      var subtaskId = target.dataset.subtaskid || null;
+      if (!area || !taskId) return;
 
-    function playRainDrop() {
-      if (!audioContext || audioContext.state !== "running" || !noiseSource || !hasActiveTimer()) return;
-      const now = audioContext.currentTime;
-      const volumeTier = [0.58, 0.86, 1.12][Math.floor(Math.random() * 3)];
-      const dropGain = audioContext.createGain();
-      const dropFilter = audioContext.createBiquadFilter();
-      const click = audioContext.createBufferSource();
-      const bodyGain = audioContext.createGain();
-      const body = audioContext.createOscillator();
-
-      dropFilter.type = "lowpass";
-      dropFilter.frequency.setValueAtTime(520 + Math.random() * 210, now);
-      dropFilter.Q.setValueAtTime(0.5, now);
-
-      dropGain.gain.setValueAtTime(0.0001, now);
-      dropGain.gain.exponentialRampToValueAtTime((0.14 + Math.random() * 0.055) * volumeTier, now + 0.024);
-      dropGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.38);
-
-      click.buffer = createRainDropBuffer();
-      body.type = "sine";
-      body.frequency.setValueAtTime(128 + Math.random() * 32, now);
-      body.frequency.exponentialRampToValueAtTime(74 + Math.random() * 14, now + 0.22);
-      bodyGain.gain.setValueAtTime(0.0001, now);
-      bodyGain.gain.exponentialRampToValueAtTime((0.075 + Math.random() * 0.032) * volumeTier, now + 0.03);
-      bodyGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
-
-      click.connect(dropFilter);
-      dropFilter.connect(dropGain);
-      dropGain.connect(masterGain);
-      body.connect(bodyGain);
-      bodyGain.connect(masterGain);
-
-      click.start(now);
-      body.start(now);
-      body.stop(now + 0.44);
-    }
-
-    function scheduleRainDrop() {
-      if (rainTimer || !noiseSource || !hasActiveTimer()) return;
-      const delay = 2300 + Math.random() * 4300;
-      rainTimer = setTimeout(() => {
-        rainTimer = null;
-        playRainDrop();
-        scheduleRainDrop();
-      }, delay);
-    }
-
-    function stopNoise() {
-      if (syncTimer) {
-        clearTimeout(syncTimer);
-        syncTimer = null;
-      }
-      if (rainTimer) {
-        clearTimeout(rainTimer);
-        rainTimer = null;
-      }
-      if (noiseGain && audioContext) {
-        const now = audioContext.currentTime;
-        try {
-          noiseGain.gain.cancelScheduledValues(now);
-          noiseGain.gain.setValueAtTime(Math.max(0.0001, noiseGain.gain.value || 0.0001), now);
-          noiseGain.gain.linearRampToValueAtTime(0.0001, now + 0.22);
-        } catch (_) {}
-      }
-      if (rainSheetGain && audioContext) {
-        const now = audioContext.currentTime;
-        try {
-          rainSheetGain.gain.cancelScheduledValues(now);
-          rainSheetGain.gain.setValueAtTime(Math.max(0.0001, rainSheetGain.gain.value || 0.0001), now);
-          rainSheetGain.gain.linearRampToValueAtTime(0.0001, now + 0.32);
-        } catch (_) {}
-      }
-      if (noiseSource && audioContext) {
-        const sourceToStop = noiseSource;
-        try { sourceToStop.stop(audioContext.currentTime + 0.25); } catch (_) {}
-      }
-      if (rainSheetSource && audioContext) {
-        const sheetToStop = rainSheetSource;
-        try { sheetToStop.stop(audioContext.currentTime + 0.34); } catch (_) {}
-      }
-      noiseSource = null;
-      noiseGain = null;
-      noiseFilter = null;
-      rainSheetSource = null;
-      rainSheetGain = null;
-      rainSheetFilter = null;
-    }
-
-    function syncNoise() {
-      if (!armedByUser || !hasActiveTimer()) {
-        stopNoise();
-        return;
-      }
-      ensureAudioContext();
-      startNoise();
-      if (!syncTimer) {
-        syncTimer = setTimeout(() => {
-          syncTimer = null;
-          syncNoise();
-        }, 700);
-      }
-    }
-
-    function armFromUserGesture(event) {
-      armedByUser = true;
-      ensureAudioContext();
-      setTimeout(syncNoise, 160);
-    }
-
-    document.addEventListener("pointerdown", armFromUserGesture, { passive: true });
-    document.addEventListener("touchstart", armFromUserGesture, { passive: true });
-    document.addEventListener("keydown", armFromUserGesture);
-    document.addEventListener("visibilitychange", syncNoise);
-    document.addEventListener("click", armFromUserGesture, true);
-
-    const observer = new MutationObserver(syncNoise);
-    observer.observe(document.documentElement, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      attributeFilter: ["class", "style", "disabled", "data-paused", "data-exceeded"]
-    });
-  })();
-</script>
-
-<script id="haena-timer-contrast-text-sync-20260622">
-  (() => {
-    const STYLE_ID = "haena-timer-contrast-text-20260622";
-    const TIMER_TEXT_SELECTOR = [
-      ".mobile-timer",
-      ".mobile-parent-timer",
-      ".pc-timer",
-      ".timer-btn",
-      ".mini-timer-btn"
-    ].join(",");
-    const TIMER_RUNNING_SELECTOR = [
-      "body.mobile-focus-mode .mobile-timer.running:not(.paused):not(.exceeded)",
-      "body.mobile-focus-mode .mobile-parent-timer.running:not(.paused):not(.exceeded)",
-      "body:not(.mobile-focus-mode) .pc-timer.running:not(.paused):not(.exceeded)",
-      ".timer-btn.running:not(.paused):not(.exceeded)",
-      ".mini-timer-btn.running:not(.paused):not(.exceeded)"
-    ].join(",");
-    const TIMER_CSS = `
-      ${TIMER_RUNNING_SELECTOR} {
-        position: relative !important;
-        color: transparent !important;
-        text-shadow: none !important;
-      }
-      ${TIMER_RUNNING_SELECTOR}::before {
-        background: #fff !important;
-        color: #fff !important;
-      }
-      ${TIMER_RUNNING_SELECTOR}::after {
-        content: attr(data-timer-text);
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: inherit;
-        box-sizing: border-box;
-        color: #fff;
-        font: inherit;
-        font-weight: inherit;
-        letter-spacing: inherit;
-        line-height: inherit;
-        font-variant-numeric: tabular-nums;
-        text-shadow: none;
-        mix-blend-mode: difference;
-        pointer-events: none;
-      }
-    `;
-
-    function timerOwnText(el) {
-      let text = "";
-      el.childNodes.forEach((node) => {
-        if (node.nodeType === 3) text += node.textContent || "";
-      });
-      return (text || el.textContent || "").trim();
-    }
-
-    function installTimerContrastText(doc = document) {
-      if (!doc || !doc.documentElement) return;
-      const win = doc.defaultView || window;
-      if (!doc.getElementById(STYLE_ID)) {
-        const style = doc.createElement("style");
-        style.id = STYLE_ID;
-        style.textContent = TIMER_CSS;
-        (doc.head || doc.documentElement).appendChild(style);
-      }
-
-      function sync(root = doc) {
-        const timers = root.matches?.(TIMER_TEXT_SELECTOR)
-          ? [root]
-          : Array.from(root.querySelectorAll?.(TIMER_TEXT_SELECTOR) || []);
-        timers.forEach((timer) => {
-          const text = timerOwnText(timer);
-          if (text && timer.getAttribute("data-timer-text") !== text) {
-            timer.setAttribute("data-timer-text", text);
-          }
-        });
-      }
-
-      sync();
-      if (doc.__haenaTimerContrastTextInstalled) return;
-      try { Object.defineProperty(doc, "__haenaTimerContrastTextInstalled", { value: true }); }
-      catch (_) { doc.__haenaTimerContrastTextInstalled = true; }
-      doc.addEventListener("DOMContentLoaded", () => sync(), { once: true });
-      const observer = new win.MutationObserver((mutations) => {
-        if (mutations.some((mutation) => mutation.type === "characterData" || mutation.type === "childList")) {
-          win.requestAnimationFrame(() => sync());
-        }
-      });
-      observer.observe(doc.documentElement, {
-        subtree: true,
-        childList: true,
-        characterData: true
-      });
-      win.setInterval(sync, 600);
-    }
-
-    window.__haenaInstallTimerContrastText = installTimerContrastText;
-    installTimerContrastText(document);
+      if (typeof toggleTimer === "function") toggleTimer(area, taskId, subtaskId);
+      if (typeof pushMobileFocusChangeNow === "function") pushMobileFocusChangeNow();
+    }, true);
   })();
 </script>
 
