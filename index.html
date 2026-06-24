@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 + midnight-active-timer-date-guard-20260624 + pc-mini-board-order-wrap-time-20260624 + timer-no-asmr-progress-state-20260624 + timer-running-text-contrast-20260624 + delete-confirm-timer-log-cleanup-20260624 + flat-confirm-pin-ui-20260624 + pin-clip-icon-flat-centered-20260624 + parent-timer-retarget-on-subtask-add-delete-20260624 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 + midnight-active-timer-date-guard-20260624 + pc-mini-board-order-wrap-time-20260624 + timer-no-asmr-progress-state-20260624 + timer-running-text-contrast-20260624 + delete-confirm-timer-log-cleanup-20260624 + flat-confirm-pin-ui-20260624 + pin-clip-icon-flat-centered-20260624 + parent-timer-retarget-on-subtask-add-delete-20260624 + pc-main-autocommit-clicktimer-autopin-20260624 + mobile-stroke-pin-timer-unify-20260624 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13518,6 +13518,26 @@ for update using (true) with check (true);</pre>
       return Boolean(task && !task.done && !task.later && task.pinned);
     }
 
+    function applyScheduledAutoPinsForToday(options = {}) {
+      const todayKey = getTodayKey();
+      let changed = false;
+      AREA_ORDER.forEach(area => {
+        (state.tasks[area] || []).forEach(task => {
+          if (!task || task.done || task.later) return;
+          if (!isScheduledForToday(task)) return;
+          if (task.autoPinnedDateKey === todayKey) return;
+          task.pinned = true;
+          task.autoPinnedDateKey = todayKey;
+          if (Array.isArray(task.subtasks)) {
+            task.subtasks = task.subtasks.map(subtask => ({ ...subtask, pinned: false }));
+          }
+          changed = true;
+        });
+      });
+      if (changed && !options.skipSave) saveState({ immediate: Boolean(options.immediate) });
+      return changed;
+    }
+
     function timestampForDone(isDone, existing) {
       if (!isDone) return null;
       return existing || new Date().toISOString();
@@ -13533,6 +13553,7 @@ for update using (true) with check (true);</pre>
         later: !isDone && Boolean(task.later),
         pinned: !isDone && !task.later && Boolean(task.pinned),
         scheduledDay: normalizeScheduledDay(task.scheduledDay),
+        autoPinnedDateKey: String(task.autoPinnedDateKey || ""),
         focusSeconds: Number(task.focusSeconds) || 0,
         targetMinutes: normalizeTargetMinutes(task.targetMinutes),
         timerResumeElapsedSeconds: Math.max(0, Math.floor(Number(task.timerResumeElapsedSeconds) || 0)),
@@ -14060,6 +14081,7 @@ for update using (true) with check (true);</pre>
           "later",
           "pinned",
           "scheduledDay",
+          "autoPinnedDateKey",
           "focusSeconds",
           "targetMinutes",
           "timerResumeElapsedSeconds",
@@ -17285,8 +17307,15 @@ for update using (true) with check (true);</pre>
 
       AREA_ORDER.forEach(area => {
         const input = document.getElementById(`${area}Input`);
+        if (!input) return;
         input.addEventListener("keydown", event => {
-          if (event.key === "Enter") addTask(area);
+          if (event.key === "Enter") {
+            event.preventDefault();
+            addTask(area);
+          }
+        });
+        input.addEventListener("blur", () => {
+          if (input.value.trim()) addTask(area);
         });
       });
 
@@ -17660,6 +17689,11 @@ for update using (true) with check (true);</pre>
 
       pushUndoSnapshot();
       task.scheduledDay = nextDay;
+      if (isScheduledForToday(task)) {
+        task.pinned = true;
+        task.autoPinnedDateKey = getTodayKey();
+        if (Array.isArray(task.subtasks)) task.subtasks = task.subtasks.map(subtask => ({ ...subtask, pinned: false }));
+      }
       saveState();
       render();
     }
@@ -26573,18 +26607,21 @@ for update using (true) with check (true);</pre>
     bindInputs();
     setupMobileFocusMode();
     const initialWeeklyMaintenance = applyWeeklyBoundaryMaintenance({ showToast: true });
-    if (initialWeeklyMaintenance.changed) saveState({ immediate: true });
+    const initialScheduledAutoPins = applyScheduledAutoPinsForToday({ skipSave: true });
+    if (initialWeeklyMaintenance.changed || initialScheduledAutoPins) saveState({ immediate: true });
     if (mobileFocusMode) {
       initCloudSync({ silent: true }).finally(() => {
         const maintenanceResult = applyWeeklyBoundaryMaintenance({ showToast: true });
-        if (maintenanceResult.changed) saveState({ immediate: true });
+        const scheduledAutoPins = applyScheduledAutoPinsForToday({ skipSave: true });
+        if (maintenanceResult.changed || scheduledAutoPins) saveState({ immediate: true });
         render();
       });
     } else {
       render();
       initCloudSync().finally(() => {
         const maintenanceResult = applyWeeklyBoundaryMaintenance({ showToast: true });
-        if (maintenanceResult.changed) {
+        const scheduledAutoPins = applyScheduledAutoPinsForToday({ skipSave: true });
+        if (maintenanceResult.changed || scheduledAutoPins) {
           saveState({ immediate: true });
           render();
         }
@@ -26601,6 +26638,11 @@ for update using (true) with check (true);</pre>
       }
       if (ensureWeeklyRunState({ recordToday: true })) {
         saveLocalStateOnly();
+        render();
+        return;
+      }
+      if (applyScheduledAutoPinsForToday({ skipSave: true })) {
+        saveState();
         render();
         return;
       }
@@ -28235,6 +28277,256 @@ for update using (true) with check (true);</pre>
 </style>
 
 <style id="haena-parent-timer-retarget-note-20260624"></style>
+
+
+
+<style id="haena-pc-main-autocommit-clicktimer-autopin-20260624">
+  /* PC main board: task input blur-add, clickable timers, ivory subtask add button, scheduled auto-PIN support. */
+  body:not(.mobile-focus-mode) .task-left-actions .pc-timer,
+  body:not(.mobile-focus-mode) .pc-timer[data-live-timer="pc"] {
+    min-width: 98px !important;
+    width: auto !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body:not(.mobile-focus-mode) .pc-timer.view-only,
+  body:not(.mobile-focus-mode) .pc-timer.view-only:not(.running):not(.paused):not(.exceeded) {
+    cursor: pointer !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body:not(.mobile-focus-mode) .pc-timer[data-live-timer="pc"]:hover {
+    filter: brightness(0.985) saturate(1.02) !important;
+  }
+
+  body:not(.mobile-focus-mode) .task-card .task-left-actions .subtask-add-chip,
+  body:not(.mobile-focus-mode) .task-card.portfolio .task-left-actions .subtask-add-chip,
+  body:not(.mobile-focus-mode) .task-card.beacon .task-left-actions .subtask-add-chip,
+  body:not(.mobile-focus-mode) .task-card.income .task-left-actions .subtask-add-chip,
+  body:not(.mobile-focus-mode) .task-card .task-left-actions .subtask-add-chip:hover,
+  body:not(.mobile-focus-mode) .task-card.portfolio .task-left-actions .subtask-add-chip:hover,
+  body:not(.mobile-focus-mode) .task-card.beacon .task-left-actions .subtask-add-chip:hover,
+  body:not(.mobile-focus-mode) .task-card.income .task-left-actions .subtask-add-chip:hover {
+    background: var(--task-input-flat-bg, #F5F0DC) !important;
+    background-image: none !important;
+    border-color: var(--task-input-flat-border, #DED7B9) !important;
+    color: #6f6257 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+</style>
+
+<script id="haena-pc-main-timer-click-bridge-20260624">
+  (function () {
+    document.addEventListener("click", function (event) {
+      if (document.body && document.body.classList.contains("mobile-focus-mode")) return;
+      var target = event.target && event.target.closest ? event.target.closest('.pc-timer[data-live-timer="pc"]') : null;
+      if (!target || target.disabled) return;
+      var area = target.dataset.area;
+      var taskId = target.dataset.taskid;
+      var subtaskId = target.dataset.subtaskid || null;
+      if (!area || !taskId) return;
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === "function") event.stopImmediatePropagation();
+      if (typeof window.toggleTimer === "function") window.toggleTimer(area, taskId, subtaskId);
+    }, true);
+  })();
+</script>
+
+
+
+<style id="haena-mobile-stroke-pin-timer-unify-20260624">
+  /* 2026-06-24 · Mobile focus cleanup
+     1) remove black stroke from running Portfolio cards
+     2) unify parent/single timer widths
+     3) show mobile PIN as text + clip icon without overlap */
+  body.mobile-focus-mode {
+    --haena-mobile-timer-w: 142px;
+    --haena-mobile-pin-w: 58px;
+    --haena-mobile-pin-h: 28px;
+  }
+
+  /* Portfolio running card: previous generic running rule forced a black border/shadow. Keep Portfolio color instead. */
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused),
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused) {
+    border-color: rgba(219,130,127,0.92) !important;
+    background: #fbf2f3 !important;
+    box-shadow:
+      0 12px 25px rgba(219,130,127,0.11),
+      inset 7px 0 0 #DB827F,
+      inset 0 1px 0 rgba(255,255,255,0.72),
+      0 0 0 3px rgba(219,130,127,0.26) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-single-task.has-running-single.portfolio:not(.paused)::before,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus.running.portfolio:not(.paused)::before {
+    background: #DB827F !important;
+    opacity: 1 !important;
+  }
+
+  /* Parent and normal task timer buttons should read as the same width. */
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions {
+    grid-template-columns: 64px var(--haena-mobile-timer-w) !important;
+    justify-content: end !important;
+    justify-items: stretch !important;
+    column-gap: 10px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-target,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-target {
+    width: 64px !important;
+    min-width: 64px !important;
+    max-width: 64px !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-timer,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-timer,
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-actions .mobile-parent-timer,
+  body.mobile-focus-mode .mobile-parent-timer {
+    width: var(--haena-mobile-timer-w) !important;
+    min-width: var(--haena-mobile-timer-w) !important;
+    max-width: var(--haena-mobile-timer-w) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group {
+    --parent-timer-width: var(--haena-mobile-timer-w) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-main {
+    padding-right: calc(var(--haena-mobile-timer-w) + 8px) !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-task-actions.mobile-parent-actions {
+    width: var(--haena-mobile-timer-w) !important;
+    min-width: var(--haena-mobile-timer-w) !important;
+    max-width: var(--haena-mobile-timer-w) !important;
+  }
+
+  /* Mobile PIN: show the word PIN + clip icon. Previous mask was absolutely centered, so it overlapped the label. */
+  body.mobile-focus-mode .mobile-pin,
+  body.mobile-focus-mode .mobile-parent-pin-inline,
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-pin,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-pin {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    width: var(--haena-mobile-pin-w) !important;
+    min-width: var(--haena-mobile-pin-w) !important;
+    max-width: var(--haena-mobile-pin-w) !important;
+    height: var(--haena-mobile-pin-h) !important;
+    min-height: var(--haena-mobile-pin-h) !important;
+    max-height: var(--haena-mobile-pin-h) !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.01em !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-pin:not(.active),
+  body.mobile-focus-mode .mobile-parent-pin-inline:not(.active) {
+    background: rgba(255,255,255,0.82) !important;
+    border: 1px solid rgba(24,24,24,0.12) !important;
+    color: #555650 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.portfolio .mobile-pin.active,
+  body.mobile-focus-mode .mobile-task.portfolio .mobile-parent-pin-inline.active {
+    background: #DB827F !important;
+    border-color: #DB827F !important;
+    color: #fff !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.beacon .mobile-pin.active,
+  body.mobile-focus-mode .mobile-task.beacon .mobile-parent-pin-inline.active {
+    background: #5E604D !important;
+    border-color: #5E604D !important;
+    color: #fff !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.income .mobile-pin.active,
+  body.mobile-focus-mode .mobile-task.income .mobile-parent-pin-inline.active {
+    background: #A19DA4 !important;
+    border-color: #A19DA4 !important;
+    color: #fff !important;
+  }
+
+  body.mobile-focus-mode .mobile-pin::before,
+  body.mobile-focus-mode .mobile-parent-pin-inline::before,
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-pin::before,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-pin::before {
+    content: "" !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    display: inline-block !important;
+    width: 11px !important;
+    height: 11px !important;
+    min-width: 11px !important;
+    flex: 0 0 11px !important;
+    background: currentColor !important;
+    color: currentColor !important;
+    -webkit-text-fill-color: currentColor !important;
+    -webkit-mask-image: var(--nova-pin-clip-mask) !important;
+    mask-image: var(--nova-pin-clip-mask) !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center center !important;
+    mask-position: center center !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    box-shadow: none !important;
+    pointer-events: none !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-pin,
+  body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-pin {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 80 !important;
+  }
+
+  body.mobile-focus-mode .mobile-task.mobile-parent-group .mobile-parent-pin-inline {
+    top: 0 !important;
+    right: 0 !important;
+    z-index: 80 !important;
+  }
+
+  @media (max-width: 380px) {
+    body.mobile-focus-mode {
+      --haena-mobile-timer-w: 132px;
+      --haena-mobile-pin-w: 54px;
+    }
+    body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions {
+      grid-template-columns: 60px var(--haena-mobile-timer-w) !important;
+      column-gap: 8px !important;
+    }
+    body.mobile-focus-mode .mobile-task.mobile-single-task .mobile-task-actions .mobile-target,
+    body.mobile-focus-mode .mobile-task.mobile-subtask-focus .mobile-task-actions .mobile-target {
+      width: 60px !important;
+      min-width: 60px !important;
+      max-width: 60px !important;
+    }
+  }
+</style>
 
 </body>
 </html>
