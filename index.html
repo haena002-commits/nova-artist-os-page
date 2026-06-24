@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>NOVA ARTIST OS</title>
-  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 + midnight-active-timer-date-guard-20260624 + pc-mini-board-order-wrap-time-20260624 -->
+  <!-- patched: supabase-rest-fallback-20260616 + mobile-quickadd-actual-source-20260617 + mobile-mini-complete-log-20260617 + mobile-timer-fixed-size-20260621 + mobile-timer-no-scale-v2-20260621 + pc-timer-view-only-guard-20260621 + mobile-timer-button-unify-20260621 + pc-mini-single-target-20260622 + pc-mini-single-layout-pin-v2-20260622 + palette-update-20260622 + mobile-timer-pill-final-20260622 + quote-dark-gray-20260622 + final-timer-pretendard-v2-20260622 + parent-sum-layout-20260622 + parent-timer-spacing-live-dot-20260622 + parent-timer-overlap-subtimer-clean-20260622 + mobile-parent-final-layout-20260622 + mobile-parent-touch-layout-fix-20260622 + timer-low-power-ui-20260623 + mobile-timer-state-unify-20260623 + midnight-active-timer-date-guard-20260624 + pc-mini-board-order-wrap-time-20260624 + timer-no-asmr-progress-state-20260624 + timer-running-text-contrast-20260624 -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23fffaf2%22/%3E%0A%20%20%3Cpath%20d%3D%22M32%209l4.8%2012.7L50%2017.8l-6.8%2012%2011.3%207.9-13.7%201.2%201.8%2013.6L32%2043.8%2021.4%2052.5l1.8-13.6-13.7-1.2L20.8%2029.8%2014%2017.8l13.2%203.9L32%209z%22%20fill%3D%22%232e2923%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%229%22%20fill%3D%22%23c9787f%22/%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%224%22%20fill%3D%22%23fffaf2%22/%3E%0A%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15864,7 +15864,12 @@ for update using (true) with check (true);</pre>
 
     function getTimerLeftPercent(countdownSeconds, targetSeconds) {
       const target = Math.max(1, Math.floor(Number(targetSeconds) || 1));
-      const left = Math.max(0, Math.min(target, Math.floor(Number(countdownSeconds) || 0)));
+      const remaining = Math.floor(Number(countdownSeconds) || 0);
+      if (remaining < 0) {
+        const overrun = Math.max(0, Math.min(target, Math.abs(remaining)));
+        return Math.round((overrun / target) * 100);
+      }
+      const left = Math.max(0, Math.min(target, remaining));
       return Math.round((left / target) * 100);
     }
 
@@ -16024,7 +16029,10 @@ for update using (true) with check (true);</pre>
       button.dataset.liveTimer = "pc";
       button.textContent = text;
       button.title = getPcTimerButtonTitle(area, task, subtask);
-      button.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(area, task, subtask)}%`);
+      const buttonLeftPercent = getSubjectTimerLeftPercent(area, task, subtask);
+      button.style.setProperty("--timer-left", `${buttonLeftPercent}%`);
+      button.classList.toggle("timer-low-left", className.includes("running") && !className.includes("paused") && !exceeded && buttonLeftPercent <= 64);
+      button.classList.toggle("timer-high-left", className.includes("running") && !className.includes("paused") && !exceeded && buttonLeftPercent > 64);
       button.disabled = Boolean(task.done || task.later || (subtask && subtask.done));
       button.setAttribute("aria-disabled", "true");
       button.classList.add("view-only");
@@ -16049,7 +16057,10 @@ for update using (true) with check (true);</pre>
       button.textContent = text;
       button.title = getPcTimerButtonTitle(area, info.task, info.subtask);
       button.className = `target-btn pc-timer ${area} ${className} ${exceeded ? "exceeded" : ""}`.trim();
-      button.style.setProperty("--timer-left", `${getSubjectTimerLeftPercent(area, info.task, info.subtask)}%`);
+      const buttonLeftPercent = getSubjectTimerLeftPercent(area, info.task, info.subtask);
+      button.style.setProperty("--timer-left", `${buttonLeftPercent}%`);
+      button.classList.toggle("timer-low-left", className.includes("running") && !className.includes("paused") && !exceeded && buttonLeftPercent <= 64);
+      button.classList.toggle("timer-high-left", className.includes("running") && !className.includes("paused") && !exceeded && buttonLeftPercent > 64);
       button.disabled = Boolean(info.task.done || info.task.later || info.subject.done);
       return true;
     }
@@ -22374,7 +22385,12 @@ for update using (true) with check (true);</pre>
         ? pausedElapsed
         : pausedElapsed + Math.max(0, Math.floor((Date.now() - Number(payload.startedAtMs || Date.now())) / 1000));
       var target = Math.max(1, Math.floor(Number(payload.targetSeconds) || 1500));
-      var left = Math.max(0, Math.min(target, target - elapsed));
+      var remaining = target - elapsed;
+      if (remaining < 0) {
+        var overrun = Math.max(0, Math.min(target, Math.abs(remaining)));
+        return Math.round((overrun / target) * 100);
+      }
+      var left = Math.max(0, Math.min(target, remaining));
       return Math.round((left / target) * 100);
     }
 
@@ -22413,19 +22429,20 @@ for update using (true) with check (true);</pre>
         button.classList.toggle("exceeded", exceeded);
         button.dataset.exceeded = exceeded ? "true" : "false";
         button.dataset.paused = payload.paused ? "true" : "false";
-        button.style.setProperty("--timer-left", localTimerLeftPercent(payload) + "%");
+        var timerLeftNow = localTimerLeftPercent(payload);
+        button.style.setProperty("--timer-left", timerLeftNow + "%");
+        button.classList.toggle("timer-low-left", !payload.paused && !exceeded && timerLeftNow <= 64);
+        button.classList.toggle("timer-high-left", !payload.paused && !exceeded && timerLeftNow > 64);
         if (exceeded) {
-          button.style.setProperty("background", "#A40000", "important");
-          button.style.setProperty("background-color", "#A40000", "important");
-          button.style.setProperty("background-image", "none", "important");
+          button.style.setProperty("background-color", "#B95650", "important");
+          button.style.setProperty("background-image", "linear-gradient(90deg, #A40000 0%, #A40000 var(--timer-left, 0%), #B95650 var(--timer-left, 0%), #B95650 100%)", "important");
           button.style.setProperty("border-color", "#A40000", "important");
           button.style.setProperty("color", "#fff", "important");
         } else if (payload.paused) {
-          button.style.setProperty("background", "#9b938a", "important");
-          button.style.setProperty("background-color", "#9b938a", "important");
-          button.style.setProperty("background-image", "none", "important");
-          button.style.setProperty("border-color", "#9b938a", "important");
-          button.style.setProperty("color", "#fff", "important");
+          button.style.setProperty("background-color", "rgba(255,255,255,0.72)", "important");
+          button.style.setProperty("background-image", "linear-gradient(90deg, #b2b0aa 0%, #b2b0aa var(--timer-left, 100%), rgba(255,255,255,0.72) var(--timer-left, 100%), rgba(255,255,255,0.72) 100%)", "important");
+          button.style.setProperty("border-color", "#b2b0aa", "important");
+          button.style.setProperty("color", "#343431", "important");
         } else {
           button.style.removeProperty("background");
           button.style.removeProperty("background-color");
@@ -23041,6 +23058,37 @@ for update using (true) with check (true);</pre>
   }
 </style>
 
+
+
+<style id="haena-popup-timer-progress-state-20260624">
+  .timer-btn.paused:not(.exceeded),
+  .timer-btn.running.paused:not(.exceeded),
+  .mini-timer-btn.paused:not(.exceeded),
+  .mini-timer-btn.running.paused:not(.exceeded),
+  .mini-parent-timer.paused:not(.exceeded),
+  .mini-parent-timer.running.paused:not(.exceeded) {
+    background-color: rgba(255,255,255,0.72) !important;
+    background-image: linear-gradient(90deg, #b2b0aa 0%, #b2b0aa var(--timer-left, 100%), rgba(255,255,255,0.72) var(--timer-left, 100%), rgba(255,255,255,0.72) 100%) !important;
+    border-color: #b2b0aa !important;
+    color: #343431 !important;
+    text-shadow: none !important;
+  }
+
+  .timer-btn.exceeded,
+  .timer-btn.running.exceeded,
+  .timer-btn.paused.exceeded,
+  .timer-btn.running.paused.exceeded,
+  .mini-timer-btn.exceeded,
+  .mini-timer-btn.running.exceeded,
+  .mini-parent-timer.exceeded,
+  .mini-parent-timer.running.exceeded {
+    background-color: #B95650 !important;
+    background-image: linear-gradient(90deg, #A40000 0%, #A40000 var(--timer-left, 0%), #B95650 var(--timer-left, 0%), #B95650 100%) !important;
+    border-color: #A40000 !important;
+    color: #fff !important;
+    text-shadow: 0 1px 0 rgba(80,20,16,0.32) !important;
+  }
+</style>
 </body>
 </html>`;
 
@@ -25081,7 +25129,12 @@ for update using (true) with check (true);</pre>
         ? pausedElapsed
         : pausedElapsed + Math.max(0, Math.floor((Date.now() - Number(payload.startedAtMs || Date.now())) / 1000));
       var target = Math.max(1, Math.floor(Number(payload.targetSeconds) || 1500));
-      var left = Math.max(0, Math.min(target, target - elapsed));
+      var remaining = target - elapsed;
+      if (remaining < 0) {
+        var overrun = Math.max(0, Math.min(target, Math.abs(remaining)));
+        return Math.round((overrun / target) * 100);
+      }
+      var left = Math.max(0, Math.min(target, remaining));
       return Math.round((left / target) * 100);
     }
 
@@ -25111,7 +25164,10 @@ for update using (true) with check (true);</pre>
         button.classList.toggle("exceeded", exceeded);
         button.dataset.exceeded = exceeded ? "true" : "false";
         button.dataset.paused = payload.paused ? "true" : "false";
-        button.style.setProperty("--timer-left", localTimerLeftPercent(payload) + "%");
+        var timerLeftNow = localTimerLeftPercent(payload);
+        button.style.setProperty("--timer-left", timerLeftNow + "%");
+        button.classList.toggle("timer-low-left", !payload.paused && !exceeded && timerLeftNow <= 64);
+        button.classList.toggle("timer-high-left", !payload.paused && !exceeded && timerLeftNow > 64);
       });
 
       if (payload.pinnedEta) {
@@ -25203,6 +25259,37 @@ for update using (true) with check (true);</pre>
       if (event.key === "Escape") window.close();
     });
   <\/script>
+
+
+<style id="haena-popup-timer-progress-state-20260624">
+  .timer-btn.paused:not(.exceeded),
+  .timer-btn.running.paused:not(.exceeded),
+  .mini-timer-btn.paused:not(.exceeded),
+  .mini-timer-btn.running.paused:not(.exceeded),
+  .mini-parent-timer.paused:not(.exceeded),
+  .mini-parent-timer.running.paused:not(.exceeded) {
+    background-color: rgba(255,255,255,0.72) !important;
+    background-image: linear-gradient(90deg, #b2b0aa 0%, #b2b0aa var(--timer-left, 100%), rgba(255,255,255,0.72) var(--timer-left, 100%), rgba(255,255,255,0.72) 100%) !important;
+    border-color: #b2b0aa !important;
+    color: #343431 !important;
+    text-shadow: none !important;
+  }
+
+  .timer-btn.exceeded,
+  .timer-btn.running.exceeded,
+  .timer-btn.paused.exceeded,
+  .timer-btn.running.paused.exceeded,
+  .mini-timer-btn.exceeded,
+  .mini-timer-btn.running.exceeded,
+  .mini-parent-timer.exceeded,
+  .mini-parent-timer.running.exceeded {
+    background-color: #B95650 !important;
+    background-image: linear-gradient(90deg, #A40000 0%, #A40000 var(--timer-left, 0%), #B95650 var(--timer-left, 0%), #B95650 100%) !important;
+    border-color: #A40000 !important;
+    color: #fff !important;
+    text-shadow: 0 1px 0 rgba(80,20,16,0.32) !important;
+  }
+</style>
 </body>
 </html>`;
 
@@ -27777,6 +27864,193 @@ for update using (true) with check (true);</pre>
       if (typeof toggleTimer === "function") toggleTimer(area, taskId, subtaskId);
       if (typeof pushMobileFocusChangeNow === "function") pushMobileFocusChangeNow();
     }, true);
+  })();
+</script>
+
+
+
+<style id="haena-timer-no-asmr-progress-state-20260624">
+  /* 2026-06-24 · Timer audio/performance pass:
+     - no continuous timer ASMR/noise layer
+     - keep completion / exceeded alert sounds
+     - paused timer keeps the same progress position in gray
+     - exceeded timer becomes red and fills again by overrun amount */
+  :root {
+    --timer-paused-fill-final: #b2b0aa;
+    --timer-paused-empty-final: rgba(255,255,255,0.74);
+    --timer-overrun-fill-final: #A40000;
+    --timer-overrun-empty-final: #B95650;
+  }
+
+  body.mobile-focus-mode .mobile-timer.paused:not(.exceeded),
+  body.mobile-focus-mode .mobile-timer.running.paused:not(.exceeded),
+  body.mobile-focus-mode .mobile-parent-timer.paused:not(.exceeded),
+  body.mobile-focus-mode .mobile-parent-timer.running.paused:not(.exceeded),
+  body:not(.mobile-focus-mode) .pc-timer.paused:not(.exceeded),
+  body:not(.mobile-focus-mode) .pc-timer.running.paused:not(.exceeded),
+  body:not(.mobile-focus-mode) .mini-timer-btn.paused:not(.exceeded),
+  body:not(.mobile-focus-mode) .mini-timer-btn.running.paused:not(.exceeded),
+  .timer-btn.paused:not(.exceeded),
+  .timer-btn.running.paused:not(.exceeded) {
+    background-color: var(--timer-paused-empty-final) !important;
+    background-image: linear-gradient(90deg,
+      var(--timer-paused-fill-final) 0%,
+      var(--timer-paused-fill-final) var(--timer-left, 100%),
+      var(--timer-paused-empty-final) var(--timer-left, 100%),
+      var(--timer-paused-empty-final) 100%) !important;
+    border-color: var(--timer-paused-fill-final) !important;
+    color: #343431 !important;
+    text-shadow: none !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.42), 0 2px 7px rgba(0,0,0,0.055) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.exceeded,
+  body.mobile-focus-mode .mobile-timer.running.exceeded,
+  body.mobile-focus-mode .mobile-parent-timer.exceeded,
+  body.mobile-focus-mode .mobile-parent-timer.running.exceeded,
+  body:not(.mobile-focus-mode) .pc-timer.exceeded,
+  body:not(.mobile-focus-mode) .pc-timer.running.exceeded,
+  body:not(.mobile-focus-mode) .mini-timer-btn.exceeded,
+  body:not(.mobile-focus-mode) .mini-timer-btn.running.exceeded,
+  .timer-btn.exceeded,
+  .timer-btn.running.exceeded,
+  .timer-btn.paused.exceeded,
+  .timer-btn.running.paused.exceeded {
+    background-color: var(--timer-overrun-empty-final) !important;
+    background-image: linear-gradient(90deg,
+      var(--timer-overrun-fill-final) 0%,
+      var(--timer-overrun-fill-final) var(--timer-left, 0%),
+      var(--timer-overrun-empty-final) var(--timer-left, 0%),
+      var(--timer-overrun-empty-final) 100%) !important;
+    border-color: var(--timer-overrun-fill-final) !important;
+    color: #fff !important;
+    text-shadow: 0 1px 0 rgba(80,20,16,0.32) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 3px 9px rgba(164,0,0,0.14) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.paused::before,
+  body.mobile-focus-mode .mobile-parent-timer.paused::before,
+  body.mobile-focus-mode .mobile-timer.exceeded::before,
+  body.mobile-focus-mode .mobile-parent-timer.exceeded::before,
+  body:not(.mobile-focus-mode) .pc-timer.paused::before,
+  body:not(.mobile-focus-mode) .pc-timer.exceeded::before,
+  body:not(.mobile-focus-mode) .mini-timer-btn.paused::before,
+  body:not(.mobile-focus-mode) .mini-timer-btn.exceeded::before,
+  .timer-btn.paused::before,
+  .timer-btn.exceeded::before {
+    content: none !important;
+    display: none !important;
+    animation: none !important;
+  }
+</style>
+
+
+<style id="haena-timer-running-text-contrast-20260624">
+  /* Running timer contrast fix: when the remaining-fill is short, the label sits on the white side, so switch text to dark. */
+  body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-parent-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body:not(.mobile-focus-mode) .pc-timer.running.timer-low-left:not(.paused):not(.exceeded),
+  body:not(.mobile-focus-mode) .mini-timer-btn.running.timer-low-left:not(.paused):not(.exceeded),
+  .timer-btn.running.timer-low-left:not(.paused):not(.exceeded) {
+    color: #2E3118 !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.74), 0 0 2px rgba(255,255,255,0.54) !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running.timer-low-left:not(.paused):not(.exceeded)::before,
+  body.mobile-focus-mode .mobile-parent-timer.running.timer-low-left:not(.paused):not(.exceeded)::before,
+  body:not(.mobile-focus-mode) .pc-timer.running.timer-low-left:not(.paused):not(.exceeded)::before,
+  body:not(.mobile-focus-mode) .mini-timer-btn.running.timer-low-left:not(.paused):not(.exceeded)::before,
+  .timer-btn.running.timer-low-left:not(.paused):not(.exceeded)::before {
+    background: #2E3118 !important;
+    color: #2E3118 !important;
+  }
+
+  body.mobile-focus-mode .mobile-timer.running.timer-high-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-parent-timer.running.timer-high-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-task.running .mobile-timer.running.timer-high-left:not(.paused):not(.exceeded),
+  body.mobile-focus-mode .mobile-subtask.running .mobile-timer.running.timer-high-left:not(.paused):not(.exceeded),
+  body:not(.mobile-focus-mode) .pc-timer.running.timer-high-left:not(.paused):not(.exceeded),
+  body:not(.mobile-focus-mode) .mini-timer-btn.running.timer-high-left:not(.paused):not(.exceeded),
+  .timer-btn.running.timer-high-left:not(.paused):not(.exceeded) {
+    color: #fff !important;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.16) !important;
+  }
+</style>
+
+<script id="haena-timer-contrast-class-refresh-20260624">
+  (function () {
+    function readTimerLeft(button) {
+      var raw = button.style.getPropertyValue("--timer-left") || button.dataset.timerLeft || "100";
+      var value = parseFloat(String(raw).replace("%", ""));
+      if (!Number.isFinite(value)) value = 100;
+      return Math.max(0, Math.min(100, value));
+    }
+
+    function refreshTimerContrast(root) {
+      var scope = root && typeof root.querySelectorAll === "function" ? root : document;
+      scope.querySelectorAll(".mobile-timer, .mobile-parent-timer, .pc-timer, .mini-timer-btn, .timer-btn").forEach(function (button) {
+        var active = button.classList.contains("running") && !button.classList.contains("paused") && !button.classList.contains("exceeded");
+        var left = readTimerLeft(button);
+        button.classList.toggle("timer-low-left", active && left <= 64);
+        button.classList.toggle("timer-high-left", active && left > 64);
+      });
+    }
+
+    window.refreshHaenaTimerContrast = refreshTimerContrast;
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function () { refreshTimerContrast(document); }, { once: true });
+    } else {
+      refreshTimerContrast(document);
+    }
+    window.addEventListener("pageshow", function () { refreshTimerContrast(document); });
+    window.addEventListener("message", function () { setTimeout(function () { refreshTimerContrast(document); }, 0); });
+    document.addEventListener("click", function () { setTimeout(function () { refreshTimerContrast(document); }, 0); }, true);
+  })();
+</script>
+
+<script id="haena-timer-no-asmr-safety-20260624">
+  (function () {
+    function stopNode(node) {
+      try { if (node && typeof node.stop === "function") node.stop(0); } catch (_) {}
+      try { if (node && typeof node.disconnect === "function") node.disconnect(); } catch (_) {}
+    }
+
+    function stopTimerNoiseLayer() {
+      [
+        "novaTimerNoiseSource",
+        "novaTimerNoiseNode",
+        "novaTimerAsmrSource",
+        "novaTimerAsmrNode",
+        "novaAmbientTimerSource",
+        "novaAmbientTimerNode"
+      ].forEach(function (key) {
+        if (window[key]) {
+          stopNode(window[key]);
+          window[key] = null;
+        }
+      });
+      try {
+        if (typeof window.stopNovaTimerNoise === "function" && window.stopNovaTimerNoise !== stopTimerNoiseLayer) {
+          window.stopNovaTimerNoise();
+        }
+      } catch (_) {}
+    }
+
+    window.startNovaTimerNoise = function () {};
+    window.playNovaTimerNoise = function () {};
+    window.startTimerNoise = function () {};
+    window.playTimerNoise = function () {};
+    window.startTimerAsmr = function () {};
+    window.playTimerAsmr = function () {};
+    window.stopNovaTimerNoise = stopTimerNoiseLayer;
+    window.stopTimerNoise = stopTimerNoiseLayer;
+    window.stopTimerAsmr = stopTimerNoiseLayer;
+
+    stopTimerNoiseLayer();
+    document.addEventListener("visibilitychange", stopTimerNoiseLayer);
+    window.addEventListener("pagehide", stopTimerNoiseLayer);
   })();
 </script>
 
