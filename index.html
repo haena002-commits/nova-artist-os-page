@@ -8,11 +8,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="WEEKLY">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="월요일부터 일요일까지 기록하는 HAENA WEEKLY 체크리스트">
+  <meta name="description" content="월요일부터 일요일까지 기록하는 WEEKLY 체크리스트">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./icon-180.png">
   <link rel="icon" href="./icon-180.png">
-  <title>HAENA WEEKLY</title>
+  <title>WEEKLY</title>
   <style>
     :root{
       color-scheme:light;--bg:#f1eee7;--card:#fffdf8;--ink:#1f2622;
@@ -59,7 +59,7 @@
 <body>
   <div class="app">
     <header class="top">
-      <div class="row"><span class="eyebrow">HAENA WEEKLY</span><button class="icon" id="settings" aria-label="설정">⋯</button></div>
+      <div class="row"><span class="eyebrow">WEEKLY</span><button class="icon" id="settings" aria-label="설정">⋯</button></div>
       <div class="week-nav"><button class="icon" id="prev" aria-label="이전 주">‹</button><div class="week-center"><h1 id="weekTitle">이번 주</h1><p class="range" id="range"></p><button class="home-week" id="homeWeek">이번 주로</button></div><button class="icon" id="next" aria-label="다음 주">›</button></div>
       <section class="score"><div class="score-label"><span>WEEK SCORE</span><strong id="percent">0%</strong></div><div class="track" id="scoreTrack" role="img" aria-label="주간 달성 현황"><div class="score-segment score-done" id="doneFill"></div><div class="score-segment score-missed" id="missedFill"></div><div class="score-segment score-remaining" id="remainingFill"></div></div><p id="scoreCopy">첫 체크를 시작해 보세요.</p></section>
     </header>
@@ -134,7 +134,7 @@
     function remove(){if(!activeItem||!window.confirm('“'+activeItem.title+'” 항목을 삭제할까요?'))return;var a=items(ensure(currentMonday),activeItem.type,activeItem.day),i=a.findIndex(function(x){return x.id===activeItem.id});if(i>=0)a.splice(i,1);save('삭제했어요.');byId('actionDialog').close();activeItem=null;render()}
     function toast(message){var el=byId('toast');clearTimeout(toastTimer);el.textContent=message;el.classList.add('show');toastTimer=setTimeout(function(){el.classList.remove('show')},1800)}
     function carry(){var prev=state.weeks[dateKey(addDays(currentMonday,-7))];if(!prev)return toast('저장된 지난주 기록이 없어요.');var w=ensure(currentMonday),added=0;function unique(target,source){(source||[]).filter(function(x){return!x.done}).forEach(function(x){if(!target.some(function(y){return y.title===x.title})){target.push(task(x.title));added++}})}prev.days.forEach(function(a){unique(w.days[0],a)});unique(w.finish,prev.finish);(prev.art||[]).filter(function(x){return Number(x.count||0)<Number(x.target||5)}).forEach(function(x){if(!w.art.some(function(y){return y.title===x.title})){w.art.push(artTask(x.title,x.target||5));added++}});save();render();byId('settingsDialog').close();toast(added?added+'개를 이번 주로 옮겼어요.':'이어받을 미완료 항목이 없어요.')}
-    function backup(){var blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='haena-weekly-backup-'+dateKey(new Date())+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1000);toast('백업 파일을 만들었어요.')}
+    function backup(){var blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='weekly-backup-'+dateKey(new Date())+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1000);toast('백업 파일을 만들었어요.')}
     function restore(file){if(!file)return;var r=new FileReader();r.onload=function(){try{var p=JSON.parse(r.result);if(!p||p.version!==1||!p.weeks)throw Error();if(!window.confirm('현재 기록을 백업 파일의 기록으로 바꿀까요?'))return;state=p;save();byId('settingsDialog').close();render();toast('백업 기록을 불러왔어요.')}catch(e){toast('읽을 수 없는 백업 파일이에요.')}};r.readAsText(file)}
     function reset(){if(!window.confirm('이번 주의 체크 표시와 누적 횟수를 모두 지울까요? 할 일 이름과 목표 횟수는 남아 있어요.'))return;var w=ensure(currentMonday);w.days.forEach(function(a){a.forEach(function(x){x.done=false})});w.finish.forEach(function(x){x.done=false});w.art.forEach(function(x){x.count=0;x.checks={};x.done=false});w.routines.forEach(function(x){for(var i=0;i<7;i++)delete x.checks[dateKey(addDays(currentMonday,i))]});save();render();byId('settingsDialog').close();toast('이번 주 기록을 초기화했어요.')}
     document.addEventListener('touchstart',function(e){if(e.touches.length!==1||e.target.closest('button,input'))return;var row=e.target.closest('[data-reorder-type]');if(!row)return;var touch=e.changedTouches[0];cancelReorderHold();reorder.row=row;reorder.container=row.parentElement;reorder.touchId=touch.identifier;reorder.startX=touch.clientX;reorder.startY=touch.clientY;reorder.type=row.dataset.reorderType;reorder.day=row.dataset.reorderDay;reorder.timer=setTimeout(beginReorder,420)},{passive:true});
