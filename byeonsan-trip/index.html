@@ -267,13 +267,38 @@ body.editing [contenteditable="true"]{
 body.editing .item{position:relative}
 .item-edit-tools{display:none}
 body.editing .item-edit-tools{
-  grid-column:1/-1;display:flex;justify-content:flex-end;margin-top:3px;padding-top:6px;
+  grid-column:1/-1;display:flex;justify-content:space-between;gap:7px;margin-top:3px;padding-top:6px;
   border-top:1px dashed rgba(90,111,115,.16)
 }
-.item-delete{
+.item-delete,.restaurant-add,.restaurant-remove{
   min-height:28px;padding:0 9px;border-radius:9px;border:1px solid #efd5d2;
   background:#fff7f6;color:#a6534d;font:850 10px/1 inherit;cursor:pointer
 }
+.restaurant-add{border-color:#bfe2de;background:#effaf8;color:#197a72}
+.restaurant-option{position:relative}
+.restaurant-option-edit{display:none}
+body.editing .restaurant-option-edit{display:flex;flex:0 0 auto}
+.restaurant-remove{min-height:25px;padding:0 7px;font-size:9px}
+.restaurant-dialog{
+  width:min(440px,calc(100vw - 28px));padding:0;border:0;border-radius:23px;
+  background:#fbfdfc;color:var(--ink);box-shadow:0 28px 70px rgba(21,47,54,.32)
+}
+.restaurant-dialog::backdrop{background:rgba(17,35,41,.48);backdrop-filter:blur(3px)}
+.restaurant-form{padding:20px}
+.restaurant-form h2{margin:0 0 5px;font-size:20px;letter-spacing:-.045em}
+.restaurant-form p{margin:0 0 16px;color:var(--sub);font-size:11px;line-height:1.55}
+.restaurant-field{display:grid;gap:6px;margin-top:11px;color:#4e6267;font-size:11px;font-weight:900}
+.restaurant-field input{
+  width:100%;min-height:42px;padding:0 12px;border:1px solid #d9e4e2;border-radius:12px;
+  background:#fff;color:var(--ink);font:750 13px/1.3 inherit;outline:none
+}
+.restaurant-field input:focus{border-color:#49bdb5;box-shadow:0 0 0 3px rgba(24,184,173,.12)}
+.restaurant-dialog-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:17px}
+.restaurant-dialog-actions button{
+  min-height:38px;padding:0 14px;border:1px solid #d9e4e2;border-radius:11px;
+  background:#fff;color:#526468;font:900 11px/1 inherit;cursor:pointer
+}
+.restaurant-dialog-actions .primary{background:#16b8ad;border-color:#16b8ad;color:#fff}
 body.editing a{cursor:not-allowed}
 @media (max-width:640px){
   .edit-toggle{right:11px;bottom:11px}
@@ -340,7 +365,7 @@ body.editing a{cursor:not-allowed}
         <span class="day-chip">🦀 갯벌 · 가족 메인 데이</span>
       </div>
       <div class="timeline">
-        <div class="item"><div class="time">08:00 - 09:00</div><div><div class="title"><span class="icon">🥐</span>호텔 조식</div><p class="desc">천천히 아침 식사.</p></div></div>
+        <div class="item food"><div class="time">08:00 - 09:00</div><div><div class="title"><span class="icon">🥐</span>호텔 조식</div><p class="desc">천천히 아침 식사.</p></div></div>
         <div class="item"><div class="time">09:30 - 10:10</div><div><div class="title"><span class="icon">🎒</span>갯벌 준비</div><p class="desc">신발, 수건, 여벌옷, 비닐봉투 챙기기.</p></div></div>
         <div class="item move"><div class="time">10:20 - 10:45</div><div><div class="title"><span class="icon">🚙</span>모항 갯벌로 이동 <span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">네이버 지도</a></span></div></div></div>
         <div class="item major"><div class="time">10:50 - 12:10</div><div><div class="title"><span class="icon">🪣</span>갯벌 체험 <span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">네이버 지도</a></span></div><p class="desc">부모님 포함 5명 모두 함께 체험.</p></div></div>
@@ -357,7 +382,7 @@ body.editing a{cursor:not-allowed}
         <span class="day-chip">🧳 체크아웃 · 점심 후 귀가</span>
       </div>
       <div class="timeline">
-        <div class="item"><div class="time">08:00 - 09:00</div><div><div class="title"><span class="icon">🍞</span>호텔 조식</div><p class="desc">아침 식사 후 체크아웃 준비.</p></div></div>
+        <div class="item food"><div class="time">08:00 - 09:00</div><div><div class="title"><span class="icon">🍞</span>호텔 조식</div><p class="desc">아침 식사 후 체크아웃 준비.</p></div></div>
         <div class="item"><div class="time">10:00 - 10:40</div><div><div class="title"><span class="icon">🧺</span>짐 정리</div><p class="desc">체크아웃 전 짐 마무리.</p></div></div>
         <div class="item"><div class="time">11:00 - 11:15</div><div><div class="title"><span class="icon">🛎️</span>체크아웃</div><p class="desc">체크아웃 후 바로 점심 장소로 이동.</p></div></div>
         <div class="item food meal-lunch"><div class="time">11:30 - 12:20</div><div><div class="title"><span class="icon">🍲</span>점심</div><p class="desc">점심 식사 후 바로 귀가.</p></div></div>
@@ -396,6 +421,25 @@ body.editing a{cursor:not-allowed}
   </div>
   <input class="editor-file" id="draftFileInput" type="file" accept=".json,application/json">
 </section>
+<dialog class="restaurant-dialog" id="restaurantDialog">
+  <form class="restaurant-form" id="restaurantForm">
+    <h2>식당 후보 추가</h2>
+    <p>식당이 정해지지 않은 식사 칸에 후보를 추가할 수 있어요.</p>
+    <label class="restaurant-field">식당 이름
+      <input id="restaurantNameInput" type="text" required placeholder="예: 변산맛집">
+    </label>
+    <label class="restaurant-field">메인 메뉴
+      <input id="restaurantMenuInput" type="text" placeholder="예: 바지락칼국수 · 백합죽">
+    </label>
+    <label class="restaurant-field">네이버 지도 링크
+      <input id="restaurantMapInput" type="url" inputmode="url" placeholder="비워두면 식당 이름으로 지도 검색">
+    </label>
+    <div class="restaurant-dialog-actions">
+      <button id="cancelRestaurantBtn" type="button">취소</button>
+      <button class="primary" type="submit">식당 추가</button>
+    </div>
+  </form>
+</dialog>
 <script>
 (function(){
   const STORAGE_KEY="byeonsan-trip-draft-v1";
@@ -404,8 +448,14 @@ body.editing a{cursor:not-allowed}
   const dock=document.getElementById("editorDock");
   const status=document.getElementById("editorStatus");
   const fileInput=document.getElementById("draftFileInput");
+  const restaurantDialog=document.getElementById("restaurantDialog");
+  const restaurantForm=document.getElementById("restaurantForm");
+  const restaurantNameInput=document.getElementById("restaurantNameInput");
+  const restaurantMenuInput=document.getElementById("restaurantMenuInput");
+  const restaurantMapInput=document.getElementById("restaurantMapInput");
   let editing=false;
   let saveTimer=0;
+  let activeFoodItem=null;
 
   function validDraft(data){
     return data&&typeof data.html==="string"&&data.html.includes('class="panels"')&&data.html.includes('id="day1"');
@@ -424,6 +474,13 @@ body.editing a{cursor:not-allowed}
     }
   }
 
+  function upgradeDraftMarkup(){
+    document.querySelectorAll(".item").forEach(item=>{
+      const title=item.querySelector(".title")?.textContent||"";
+      if(title.includes("호텔 조식"))item.classList.add("food");
+    });
+  }
+
   function setStatus(message){
     status.textContent=message;
     clearTimeout(setStatus.timer);
@@ -432,7 +489,7 @@ body.editing a{cursor:not-allowed}
 
   function cleanClone(){
     const clone=wrap().cloneNode(true);
-    clone.querySelectorAll(".item-edit-tools").forEach(node=>node.remove());
+    clone.querySelectorAll(".item-edit-tools,.restaurant-option-edit").forEach(node=>node.remove());
     clone.querySelectorAll("[contenteditable]").forEach(node=>node.removeAttribute("contenteditable"));
     clone.querySelectorAll("[spellcheck]").forEach(node=>node.removeAttribute("spellcheck"));
     return clone;
@@ -488,16 +545,86 @@ body.editing a{cursor:not-allowed}
     }
   }
 
+  function updatePickerLabel(picker){
+    const count=picker.querySelectorAll(".restaurant-option").length;
+    const label=picker.querySelector("summary span:first-child");
+    if(label)label.textContent=`식당 후보 ${count}곳 보기`;
+  }
+
+  function ensureRestaurantPicker(item){
+    let picker=item.querySelector(".restaurant-picker");
+    if(picker)return picker;
+    picker=document.createElement("details");
+    picker.className="restaurant-picker";
+    picker.innerHTML='<summary><span>식당 후보 0곳 보기</span><span class="picker-chevron" aria-hidden="true">⌄</span></summary><div class="restaurant-list"></div>';
+    item.children[1].appendChild(picker);
+    return picker;
+  }
+
+  function openRestaurantDialog(item){
+    activeFoodItem=item;
+    restaurantForm.reset();
+    restaurantDialog.showModal();
+    setTimeout(()=>restaurantNameInput.focus(),50);
+  }
+
+  function addRestaurantOption(item,name,menu,mapUrl){
+    const picker=ensureRestaurantPicker(item);
+    const list=picker.querySelector(".restaurant-list");
+    const option=document.createElement("div");
+    option.className="restaurant-option";
+    const safeMap=mapUrl.trim()||"https://map.naver.com/p/search/"+encodeURIComponent(name);
+    option.innerHTML='<div class="restaurant-name"><span class="restaurant-rank">후보</span><span class="restaurant-copy"><strong></strong><span class="main-menu"></span></span></div><div class="restaurant-actions"><a class="place-link map" target="_blank" rel="noopener">네이버 지도</a></div>';
+    option.querySelector("strong").textContent=name;
+    option.querySelector(".main-menu").textContent=menu?" - "+menu:"";
+    option.querySelector("a").href=safeMap;
+    list.appendChild(option);
+    updatePickerLabel(picker);
+    picker.open=true;
+    refreshEditables();
+    saveDraft("식당 추가됨");
+  }
+
+  function addRestaurantRemoveTool(option){
+    if(option.querySelector(".restaurant-option-edit"))return;
+    const tools=document.createElement("div");
+    tools.className="restaurant-option-edit";
+    tools.innerHTML='<button class="restaurant-remove" type="button">후보 삭제</button>';
+    tools.querySelector("button").addEventListener("click",()=>{
+      if(!confirm("이 식당 후보를 삭제할까요?"))return;
+      const picker=option.closest(".restaurant-picker");
+      option.remove();
+      if(!picker.querySelector(".restaurant-option"))picker.remove();
+      else updatePickerLabel(picker);
+      saveDraft("식당 후보 삭제됨");
+    });
+    option.appendChild(tools);
+  }
+
   function addDeleteTool(item){
     if(item.querySelector(".item-edit-tools"))return;
     const tools=document.createElement("div");
     tools.className="item-edit-tools";
-    tools.innerHTML='<button class="item-delete" type="button">이 일정 삭제</button>';
-    tools.querySelector("button").addEventListener("click",()=>{
+    if(item.classList.contains("food")){
+      const add=document.createElement("button");
+      add.className="restaurant-add";
+      add.type="button";
+      add.textContent="+ 식당 추가";
+      add.addEventListener("click",()=>openRestaurantDialog(item));
+      tools.appendChild(add);
+    }else{
+      tools.appendChild(document.createElement("span"));
+    }
+    const remove=document.createElement("button");
+    remove.className="item-delete";
+    remove.type="button";
+    remove.textContent="이 일정 삭제";
+    remove.addEventListener("click",()=>{
       if(!confirm("이 일정을 삭제할까요?"))return;
       item.remove();
       saveDraft("일정 삭제됨");
     });
+    tools.appendChild(remove);
     item.appendChild(tools);
   }
 
@@ -506,6 +633,10 @@ body.editing a{cursor:not-allowed}
     document.querySelectorAll(".item").forEach(item=>{
       if(editing)addDeleteTool(item);
       else item.querySelector(".item-edit-tools")?.remove();
+    });
+    document.querySelectorAll(".restaurant-option").forEach(option=>{
+      if(editing)addRestaurantRemoveTool(option);
+      else option.querySelector(".restaurant-option-edit")?.remove();
     });
   }
 
@@ -611,6 +742,7 @@ body.editing a{cursor:not-allowed}
   }
 
   const restored=restoreDraft();
+  upgradeDraftMarkup();
   normalizeTitles();
   toggle.classList.toggle("has-draft",restored);
   toggle.addEventListener("click",()=>setEditing(true));
@@ -626,6 +758,15 @@ body.editing a{cursor:not-allowed}
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   });
+  document.getElementById("cancelRestaurantBtn").addEventListener("click",()=>restaurantDialog.close());
+  restaurantForm.addEventListener("submit",event=>{
+    event.preventDefault();
+    const name=restaurantNameInput.value.trim();
+    if(!name||!activeFoodItem)return;
+    addRestaurantOption(activeFoodItem,name,restaurantMenuInput.value.trim(),restaurantMapInput.value.trim());
+    restaurantDialog.close();
+  });
+  restaurantDialog.addEventListener("close",()=>{activeFoodItem=null});
   fileInput.addEventListener("change",()=>{
     if(fileInput.files&&fileInput.files[0])importDraft(fileInput.files[0]);
   });
@@ -640,3 +781,4 @@ body.editing a{cursor:not-allowed}
 </script>
 </body>
 </html>
+
