@@ -84,7 +84,7 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
 }
 .ampm-divider span{white-space:nowrap}
 .item{
-  display:grid;grid-template-columns:66px 1fr;gap:11px;align-items:start;
+  display:grid;grid-template-columns:92px 1fr;gap:11px;align-items:start;
   border:1px solid var(--line);border-radius:18px;padding:12px 10px;background:linear-gradient(180deg,#fff 0%, #fffdfa 100%)
 }
 .item.food{
@@ -98,8 +98,18 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
   color:#9a6031;
 }
 .item.food .title{color:#8a5830}
+.item.move{
+  align-items:center;padding:7px 10px;background:rgba(255,255,255,.58);
+  border-color:#eee7df;box-shadow:none
+}
+.item.move .time{
+  padding:5px 4px;background:#f5f7f7;border-color:#e4e9e9;color:#718187;font-size:12px
+}
+.item.move .title{margin-bottom:0;color:#746d66;font-size:13px;font-weight:700}
+.item.move .icon{font-size:13px}
+.item.move .place-link{padding:4px 7px;opacity:.82}
 .time{
-  font-size:13px;font-weight:900;color:var(--accent);padding-top:2px;
+  font-size:12px;font-weight:900;color:var(--accent);padding-top:2px;white-space:nowrap;
   background:#f2f7f8;border-radius:12px;text-align:center;padding:7px 4px;border:1px solid #dce7ea
 }
 .title{font-size:15px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -136,6 +146,8 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
   min-width:0;padding:9px 10px;border:1px solid #f1ddc7;border-radius:13px;background:rgba(255,255,255,.74)
 }
 .restaurant-name{display:flex;align-items:center;gap:7px;min-width:0;font-size:13px;color:#6f4b2e}
+.restaurant-copy{min-width:0;line-height:1.45;overflow-wrap:anywhere}
+.main-menu{font-size:11px;font-weight:700;color:#9a7558}
 .restaurant-name strong{overflow-wrap:anywhere}
 .restaurant-rank{
   flex:0 0 auto;padding:3px 6px;border-radius:999px;background:#ffe4c7;
@@ -149,11 +161,11 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
   .tabs label{min-height:46px;font-size:14px;border-radius:14px}
   .panels .panel{border-radius:22px;padding:15px 11px}
   .date-title{font-size:21px}
-  .item{grid-template-columns:62px 1fr;gap:10px}
+  .item{grid-template-columns:88px 1fr;gap:9px}
   .title{font-size:15px}
   .desc{font-size:13px}
 }
-@media (max-width:360px){
+@media (max-width:420px){
   .restaurant-option{align-items:flex-start;flex-direction:column;gap:7px}
   .restaurant-actions{align-self:flex-end}
 }
@@ -188,16 +200,16 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
         <span class="day-chip">🌤️ 도착 · 카페 · 체크인</span>
       </div>
       <div class="timeline">
-        <div class="item"><div class="time">08:00</div><div><div class="title"><span class="icon">🚗</span>집에서 출발</div><p class="desc">휴게소 1회 포함해서 여유 있게 이동.</p></div></div>
+        <div class="item move"><div class="time">08:00 - 11:50</div><div><div class="title"><span class="icon">🚗</span>집에서 출발</div></div></div>
         <div class="ampm-divider"><span>오후</span></div>
-        <div class="item food"><div class="time">12:00</div><div><div class="title"><span class="icon">🍽️</span>도착 후 점심</div><p class="desc">부안/변산 도착 후 점심.</p><details class="restaurant-picker"><summary><span>추천 식당 3곳 보기</span><span class="picker-chevron" aria-hidden="true">⌄</span></summary><div class="restaurant-list"><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 1</span><strong>백합식당</strong></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+백합식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20백합식당" target="_blank" rel="noopener">지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 2</span><strong>바다마을식당</strong></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+바다마을식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20바다마을식당" target="_blank" rel="noopener">지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 3</span><strong>군산식당</strong></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+군산식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20군산식당" target="_blank" rel="noopener">지도</a></div></div></div></details></div></div>
-        <div class="item"><div class="time">13:10</div><div><div class="title"><span class="icon">🌊</span>적벽강 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+적벽강" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20적벽강" target="_blank" rel="noopener">지도</a></span></div><p class="desc">20~30분 정도 가볍게 바다와 절벽 구경.</p></div></div>
-        <div class="item"><div class="time">13:45</div><div><div class="title"><span class="icon">☕</span>카페909 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+카페909" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20카페909" target="_blank" rel="noopener">지도</a></span></div><p class="desc">바다 보면서 쉬고 아이도 잠깐 놀기.</p></div></div>
-        <div class="item"><div class="time">14:40</div><div><div class="title"><span class="icon">🚙</span>소노벨 변산으로 이동 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=소노벨+변산" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">지도</a></span></div><p class="desc">15시 체크인 맞춰 이동.</p></div></div>
-        <div class="item"><div class="time">15:00</div><div><div class="title"><span class="icon">🏨</span>소노벨 변산 체크인 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=소노벨+변산" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">지도</a></span></div><p class="desc">짐 정리 후 수영장 준비.</p></div></div>
-        <div class="item"><div class="time">16:00</div><div><div class="title"><span class="icon">🏊</span>오션플레이 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=소노벨+변산+오션플레이" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산%20오션플레이" target="_blank" rel="noopener">지도</a></span></div><p class="desc">남편, 아이와 함께 물놀이.</p></div></div>
-        <div class="item"><div class="time">16:00</div><div><div class="title"><span class="icon">🌿</span>부모님 휴식</div><p class="desc">객실 휴식 또는 리조트 주변 산책.</p></div></div>
-        <div class="item food"><div class="time">18:30</div><div><div class="title"><span class="icon">🐟</span>저녁</div><p class="desc">회 저녁.</p></div></div>
+        <div class="item food"><div class="time">12:00 - 13:00</div><div><div class="title"><span class="icon">🍽️</span>도착 후 점심</div><p class="desc">부안/변산 도착 후 점심.</p><details class="restaurant-picker"><summary><span>추천 식당 3곳 보기</span><span class="picker-chevron" aria-hidden="true">⌄</span></summary><div class="restaurant-list"><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 1</span><span class="restaurant-copy"><strong>백합식당</strong><span class="main-menu"> - 백합돌솥밥 · 백합죽 · 백합탕</span></span></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+백합식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20백합식당" target="_blank" rel="noopener">지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 2</span><span class="restaurant-copy"><strong>바다마을식당</strong><span class="main-menu"> - 바지락칼국수 · 백합죽</span></span></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+바다마을식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20바다마을식당" target="_blank" rel="noopener">지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 3</span><span class="restaurant-copy"><strong>군산식당</strong><span class="main-menu"> - 백합정식</span></span></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+군산식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20군산식당" target="_blank" rel="noopener">지도</a></div></div></div></details></div></div>
+        <div class="item"><div class="time">13:10 - 13:35</div><div><div class="title"><span class="icon">🌊</span>적벽강 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+적벽강" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20적벽강" target="_blank" rel="noopener">지도</a></span></div><p class="desc">20~30분 정도 가볍게 바다와 절벽 구경.</p></div></div>
+        <div class="item"><div class="time">13:45 - 14:30</div><div><div class="title"><span class="icon">☕</span>카페909 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+카페909" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20카페909" target="_blank" rel="noopener">지도</a></span></div><p class="desc">바다 보면서 쉬고 아이도 잠깐 놀기.</p></div></div>
+        <div class="item move"><div class="time">14:40 - 14:55</div><div><div class="title"><span class="icon">🚙</span>소노벨 변산으로 이동 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=소노벨+변산" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">지도</a></span></div></div></div>
+        <div class="item"><div class="time">15:00 - 15:40</div><div><div class="title"><span class="icon">🏨</span>소노벨 변산 체크인 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=소노벨+변산" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">지도</a></span></div><p class="desc">짐 정리 후 수영장 준비.</p></div></div>
+        <div class="item"><div class="time">16:00 - 18:00</div><div><div class="title"><span class="icon">🏊</span>오션플레이 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=소노벨+변산+오션플레이" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산%20오션플레이" target="_blank" rel="noopener">지도</a></span></div><p class="desc">남편, 아이와 함께 물놀이.</p></div></div>
+        <div class="item"><div class="time">16:00 - 18:00</div><div><div class="title"><span class="icon">🌿</span>부모님 휴식</div><p class="desc">객실 휴식 또는 리조트 주변 산책.</p></div></div>
+        <div class="item food"><div class="time">18:30 - 20:00</div><div><div class="title"><span class="icon">🐟</span>저녁</div><p class="desc">회 저녁.</p></div></div>
       </div>
     </section>
 
@@ -207,14 +219,14 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
         <span class="day-chip">🦀 갯벌 · 가족 메인 데이</span>
       </div>
       <div class="timeline">
-        <div class="item"><div class="time">08:00</div><div><div class="title"><span class="icon">🥐</span>호텔 조식</div><p class="desc">천천히 아침 식사.</p></div></div>
-        <div class="item"><div class="time">09:30</div><div><div class="title"><span class="icon">🎒</span>갯벌 준비</div><p class="desc">신발, 수건, 여벌옷, 비닐봉투 챙기기.</p></div></div>
-        <div class="item"><div class="time">10:20</div><div><div class="title"><span class="icon">🚙</span>모항 갯벌로 이동 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+모항+갯벌체험장" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">지도</a></span></div><p class="desc">모항 갯벌 쪽으로 이동.</p></div></div>
-        <div class="item"><div class="time">10:50</div><div><div class="title"><span class="icon">🪣</span>갯벌 체험 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+모항+갯벌체험장" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">지도</a></span></div><p class="desc">부모님 포함 5명 모두 함께 체험.</p></div></div>
+        <div class="item"><div class="time">08:00 - 09:00</div><div><div class="title"><span class="icon">🥐</span>호텔 조식</div><p class="desc">천천히 아침 식사.</p></div></div>
+        <div class="item"><div class="time">09:30 - 10:10</div><div><div class="title"><span class="icon">🎒</span>갯벌 준비</div><p class="desc">신발, 수건, 여벌옷, 비닐봉투 챙기기.</p></div></div>
+        <div class="item move"><div class="time">10:20 - 10:45</div><div><div class="title"><span class="icon">🚙</span>모항 갯벌로 이동 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+모항+갯벌체험장" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">지도</a></span></div></div></div>
+        <div class="item"><div class="time">10:50 - 12:10</div><div><div class="title"><span class="icon">🪣</span>갯벌 체험 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+모항+갯벌체험장" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">지도</a></span></div><p class="desc">부모님 포함 5명 모두 함께 체험.</p></div></div>
         <div class="ampm-divider"><span>오후</span></div>
-        <div class="item food"><div class="time">12:30</div><div><div class="title"><span class="icon">🍜</span>점심</div><p class="desc">정리하고 근처에서 점심.</p></div></div>
-        <div class="item"><div class="time">14:30</div><div><div class="title"><span class="icon">😌</span>숙소 휴식</div><p class="desc">전원 쉬는 시간.</p></div></div>
-        <div class="item food"><div class="time">18:00</div><div><div class="title"><span class="icon">🥩</span>저녁</div><p class="desc">소고기 저녁.</p></div></div>
+        <div class="item food"><div class="time">12:30 - 13:40</div><div><div class="title"><span class="icon">🍜</span>점심</div><p class="desc">정리하고 근처에서 점심.</p></div></div>
+        <div class="item"><div class="time">14:30 - 17:30</div><div><div class="title"><span class="icon">😌</span>숙소 휴식</div><p class="desc">전원 쉬는 시간.</p></div></div>
+        <div class="item food"><div class="time">18:00 - 19:30</div><div><div class="title"><span class="icon">🥩</span>저녁</div><p class="desc">소고기 저녁.</p></div></div>
       </div>
     </section>
 
@@ -224,12 +236,12 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
         <span class="day-chip">🧳 체크아웃 · 점심 후 귀가</span>
       </div>
       <div class="timeline">
-        <div class="item"><div class="time">08:00</div><div><div class="title"><span class="icon">🍞</span>호텔 조식</div><p class="desc">아침 식사 후 체크아웃 준비.</p></div></div>
-        <div class="item"><div class="time">10:00</div><div><div class="title"><span class="icon">🧺</span>짐 정리</div><p class="desc">체크아웃 전 짐 마무리.</p></div></div>
-        <div class="item"><div class="time">11:00</div><div><div class="title"><span class="icon">🛎️</span>체크아웃</div><p class="desc">체크아웃 후 바로 점심 장소로 이동.</p></div></div>
-        <div class="item food"><div class="time">11:30</div><div><div class="title"><span class="icon">🍲</span>점심</div><p class="desc">점심 식사 후 바로 귀가.</p></div></div>
+        <div class="item"><div class="time">08:00 - 09:00</div><div><div class="title"><span class="icon">🍞</span>호텔 조식</div><p class="desc">아침 식사 후 체크아웃 준비.</p></div></div>
+        <div class="item"><div class="time">10:00 - 10:40</div><div><div class="title"><span class="icon">🧺</span>짐 정리</div><p class="desc">체크아웃 전 짐 마무리.</p></div></div>
+        <div class="item"><div class="time">11:00 - 11:15</div><div><div class="title"><span class="icon">🛎️</span>체크아웃</div><p class="desc">체크아웃 후 바로 점심 장소로 이동.</p></div></div>
+        <div class="item food"><div class="time">11:30 - 12:20</div><div><div class="title"><span class="icon">🍲</span>점심</div><p class="desc">점심 식사 후 바로 귀가.</p></div></div>
         <div class="ampm-divider"><span>오후</span></div>
-        <div class="item"><div class="time">12:30</div><div><div class="title"><span class="icon">🏠</span>귀가 출발</div><p class="desc">9/2 첫출근을 위해 여유 있게 올라가기.</p></div></div>
+        <div class="item move"><div class="time">12:30 - 16:30</div><div><div class="title"><span class="icon">🏠</span>귀가 출발</div></div></div>
       </div>
       <div class="footer-note">첫출근 전날이라 9/1은 무리하지 않고 점심 후 바로 올라오는 흐름.</div>
     </section>
