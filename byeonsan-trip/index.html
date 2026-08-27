@@ -52,7 +52,10 @@ body{
   background:linear-gradient(115deg,rgba(255,255,255,.12),transparent 34%);
 }
 .hero-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:1}
-.hero-kicker{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;text-shadow:0 2px 14px rgba(0,0,0,.28)}
+.hero-kicker{
+  font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;
+  text-shadow:0 2px 14px rgba(0,0,0,.28)
+}
 .hero-pin{
   display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border-radius:999px;
   background:rgba(238,248,248,.18);border:1px solid rgba(255,255,255,.24);
@@ -61,80 +64,297 @@ body{
 }
 .hero-copy{margin-top:auto;position:relative;z-index:1;max-width:560px}
 .eyebrow{margin:0 0 8px;font-size:13px;font-weight:800;color:#c9f4ef;letter-spacing:-.02em}
-h1{margin:0;font-size:clamp(40px,8vw,56px);line-height:.98;letter-spacing:-.065em;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.28)}
+h1{
+  margin:0;font-size:clamp(40px,8vw,56px);line-height:.98;letter-spacing:-.065em;
+  color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.28)
+}
 h1 span{color:#5ee0d6}
-.hero-lede{margin:11px 0 0;max-width:430px;color:rgba(255,255,255,.84);font-size:13px;line-height:1.6;font-weight:600;text-shadow:0 2px 14px rgba(0,0,0,.26)}
+.hero-lede{
+  margin:11px 0 0;max-width:430px;color:rgba(255,255,255,.84);
+  font-size:13px;line-height:1.6;font-weight:600;text-shadow:0 2px 14px rgba(0,0,0,.26)
+}
 .hero-facts{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;padding-bottom:2px;position:relative;z-index:1}
-.hero-facts span{display:inline-flex;align-items:center;min-height:30px;padding:6px 10px;border-radius:999px;background:rgba(245,251,251,.16);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:11px;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,.10)}
+.hero-facts span{
+  display:inline-flex;align-items:center;min-height:30px;padding:6px 10px;border-radius:999px;
+  background:rgba(245,251,251,.16);border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  font-size:11px;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,.10)
+}
 input[type=radio]{position:absolute;opacity:0;pointer-events:none}
-.tabs{position:relative;z-index:4;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:-10px 14px 16px;padding:6px;border-radius:21px;background:rgba(249,252,251,.92);border:1px solid rgba(255,255,255,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 36px rgba(29,52,59,.17)}
-.tabs label{display:flex;align-items:center;justify-content:center;min-height:45px;border:0;border-radius:15px;background:transparent;color:#6a797d;font-size:13px;font-weight:900;cursor:pointer;user-select:none;transition:.2s ease}
-#tab1:checked ~ .tabs label[for=tab1],#tab2:checked ~ .tabs label[for=tab2],#tab3:checked ~ .tabs label[for=tab3]{background:linear-gradient(135deg,#20c7bc,#11aaa1);color:#fff;box-shadow:0 8px 18px rgba(24,184,173,.28)}
-.panels .panel{display:none;padding:18px 14px 16px;border-radius:30px;background:rgba(246,249,248,.96);border:1px solid rgba(255,255,255,.78);box-shadow:var(--shadow)}
-#tab1:checked ~ .panels #day1,#tab2:checked ~ .panels #day2,#tab3:checked ~ .panels #day3{display:block}
+.tabs{
+  position:relative;z-index:4;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  margin:-10px 14px 16px;padding:6px;border-radius:21px;
+  background:rgba(249,252,251,.92);border:1px solid rgba(255,255,255,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 18px 36px rgba(29,52,59,.17)
+}
+.tabs label{
+  display:flex;align-items:center;justify-content:center;min-height:45px;
+  border:0;border-radius:15px;background:transparent;color:#6a797d;
+  font-size:13px;font-weight:900;cursor:pointer;user-select:none;transition:.2s ease
+}
+#tab1:checked ~ .tabs label[for=tab1],
+#tab2:checked ~ .tabs label[for=tab2],
+#tab3:checked ~ .tabs label[for=tab3],
+#tab4:checked ~ .tabs label[for=tab4]{
+  background:linear-gradient(135deg,#20c7bc,#11aaa1);
+  color:#fff;box-shadow:0 8px 18px rgba(24,184,173,.28)
+}
+.panels .panel{
+  display:none;padding:18px 14px 16px;border-radius:30px;
+  background:rgba(246,249,248,.96);border:1px solid rgba(255,255,255,.78);
+  box-shadow:var(--shadow)
+}
+#tab1:checked ~ .panels #day1,
+#tab2:checked ~ .panels #day2,
+#tab3:checked ~ .panels #day3,
+#tab4:checked ~ .panels #restaurants{display:block}
 .day-head{display:flex;justify-content:space-between;align-items:center;gap:9px;margin:0 3px 14px;flex-wrap:wrap}
 .date-title{font-size:24px;font-weight:950;letter-spacing:-.055em;margin:0}
-.day-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-size:11px;font-weight:900;background:var(--teal-soft);color:#39716d;border:1px solid #cfebe8}
+.day-chip{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;
+  font-size:11px;font-weight:900;background:var(--teal-soft);color:#39716d;border:1px solid #cfebe8
+}
 .timeline{display:grid;gap:10px}
-.ampm-divider{display:flex;align-items:center;gap:10px;margin:3px 5px 1px;color:#96a2a5;font-size:9px;font-weight:900;letter-spacing:.18em}
+.ampm-divider{
+  display:flex;align-items:center;gap:10px;margin:3px 5px 1px;
+  color:#96a2a5;font-size:9px;font-weight:900;letter-spacing:.18em
+}
 .ampm-divider:before,.ampm-divider:after{content:"";height:1px;flex:1;background:#dfe7e6}
 .ampm-divider span{white-space:nowrap}
-.item{display:grid;grid-template-columns:92px 1fr;gap:11px;align-items:start;padding:12px 11px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.96);box-shadow:var(--shadow-soft)}
-.item.food{background:linear-gradient(145deg,#fff4bd 0%,#fffbed 100%);border-color:#ecd889;box-shadow:0 9px 24px rgba(181,149,48,.10)}
+.item{
+  display:grid;grid-template-columns:100px minmax(0,1fr);gap:11px;align-items:start;
+  padding:12px 11px;border:1px solid var(--line);border-radius:20px;
+  background:rgba(255,255,255,.96);box-shadow:var(--shadow-soft)
+}
+.item>*{min-width:0}
+.item.food{
+  background:linear-gradient(145deg,#fff4bd 0%,#fffbed 100%);
+  border-color:#ecd889;box-shadow:0 9px 24px rgba(181,149,48,.10)
+}
 .item.major{border:1.5px solid rgba(16,143,135,.48)}
-.item.move{align-items:center;padding:7px 10px;background:var(--gray-card);border-color:#d8dfdd;box-shadow:none}
-.time{padding:7px 5px;border:2px solid #c5d1cf;border-radius:12px;text-align:center;background:#fff;color:#52676c;font-size:12px;font-weight:950;white-space:nowrap;letter-spacing:-.03em}
+.item.move{
+  align-items:center;padding:7px 10px;background:var(--gray-card);
+  border-color:#d8dfdd;box-shadow:none
+}
+.time{
+  width:100%;min-width:0;max-width:100%;overflow:hidden;
+  padding:7px 3px;border:2px solid #c5d1cf;border-radius:12px;text-align:center;
+  background:#fff;color:#52676c;
+  font-size:11.5px;line-height:1.2;font-weight:950;font-variant-numeric:tabular-nums;
+  white-space:nowrap;overflow-wrap:normal;word-break:keep-all;letter-spacing:-.055em
+}
 .item.food .time{background:#fff;color:#52676c;border-color:#c5d1cf}
-.item.food.meal-lunch{background:linear-gradient(145deg,#fff4bd 0%,#fffbed 100%);border-color:#ecd889;box-shadow:0 9px 24px rgba(181,149,48,.10)}
+.item.food.meal-lunch{
+  background:linear-gradient(145deg,#fff4bd 0%,#fffbed 100%);
+  border-color:#ecd889;box-shadow:0 9px 24px rgba(181,149,48,.10)
+}
 .item.food.meal-lunch .time{background:#fff;color:#52676c;border-color:#c5d1cf}
 .item.food.meal-lunch .title{color:#6f5920}
-.item.cafe{background:linear-gradient(145deg,#fff9ec 0%,#fffdf7 100%);border-color:#eee1c9;box-shadow:0 8px 22px rgba(151,125,86,.07)}
+.item.cafe{
+  background:linear-gradient(145deg,#fff9ec 0%,#fffdf7 100%);
+  border-color:#eee1c9;box-shadow:0 8px 22px rgba(151,125,86,.07)
+}
 .item.cafe .time{background:#fff;color:#52676c;border-color:#c5d1cf}
 .item.cafe .title{color:#655947}
 .item.move .time{padding:5px 4px;background:#fff;color:#52676c;border-color:#c5d1cf;font-size:11px}
-.title{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px;font-size:15px;font-weight:900;letter-spacing:-.025em}
+.title{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  margin-bottom:4px;font-size:15px;font-weight:900;letter-spacing:-.025em
+}
 .item.food .title{color:#6f5920}
 .item.move .title{margin-bottom:0;color:#667377;font-size:13px;font-weight:800}
 .icon{font-size:15px}
 .item.move .icon{font-size:13px}
 .desc{margin:0;color:var(--sub);font-size:12px;line-height:1.55}
-.footer-note{margin-top:12px;padding:12px 13px;border-radius:16px;background:#e7f5f3;border:1px solid #cde7e3;color:#47716d;font-size:12px;line-height:1.55}
+.footer-note{
+  margin-top:12px;padding:12px 13px;border-radius:16px;
+  background:#e7f5f3;border:1px solid #cde7e3;color:#47716d;font-size:12px;line-height:1.55
+}
 .actions{display:inline-flex;gap:5px;flex-wrap:wrap;vertical-align:middle}
-.place-link{display:inline-flex;align-items:center;justify-content:center;padding:5px 8px;border-radius:999px;border:1px solid transparent;font-size:10px;font-weight:900;text-decoration:none;white-space:nowrap;transition:.18s ease}
+.place-link{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:5px 8px;border-radius:999px;border:1px solid transparent;
+  font-size:10px;font-weight:900;text-decoration:none;white-space:nowrap;transition:.18s ease
+}
 .place-link.search{background:#e4f6f2;border-color:#cde8e1;color:#237264}
 .place-link.map{background:#e8eff4;border-color:#d4e0e7;color:#3f6071}
 .item.move .place-link{padding:4px 7px;opacity:.76}
 .place-link:active{transform:scale(.97)}
-.restaurant-picker{margin-top:10px}
-.restaurant-picker summary{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:9px 11px;border:1px solid #e7c39b;border-radius:13px;list-style:none;cursor:pointer;user-select:none;background:rgba(255,244,229,.84);color:#7d4c2b;font-size:11px;font-weight:950}
-.restaurant-picker summary::-webkit-details-marker{display:none}
-.picker-chevron{font-size:14px;line-height:1;transition:transform .2s ease}
-.restaurant-picker[open] .picker-chevron{transform:rotate(180deg)}
-.restaurant-list{display:grid;gap:7px;margin-top:8px;padding-top:8px;border-top:1px dashed #e4c7a7}
-.restaurant-option{display:flex;align-items:center;justify-content:space-between;gap:9px;min-width:0;padding:9px 10px;border:1px solid rgba(194,145,97,.18);border-radius:13px;background:rgba(255,255,255,.72);position:relative}
-.restaurant-name{display:flex;align-items:center;gap:7px;min-width:0;font-size:12px;color:#65452e}
-.restaurant-copy{min-width:0;line-height:1.45;overflow-wrap:anywhere}
-.main-menu{font-size:10px;font-weight:800;color:#96735a}
-.restaurant-name strong{overflow-wrap:anywhere}
-.restaurant-rank{flex:0 0 auto;padding:3px 6px;border-radius:999px;background:#ffe2c2;color:#94582f;font-size:9px;font-weight:950}
-.restaurant-actions{display:flex;gap:5px;flex:0 0 auto}
-@media (max-width:640px){.wrap{padding:10px 9px 30px}.hero{min-height:315px;padding:18px 18px 26px;border-radius:29px;background-position:58% 58%}.hero-kicker{font-size:10px}.hero-pin{font-size:10px}h1{font-size:42px}.hero-lede{max-width:330px;font-size:12px}.tabs{margin:-10px 10px 14px}.tabs label{min-height:44px;font-size:12px}.panels .panel{padding:15px 10px 13px;border-radius:26px}.date-title{font-size:22px}.item{grid-template-columns:88px 1fr;gap:9px;padding:11px 9px}.title{font-size:14px}.desc{font-size:12px}}
-@media (max-width:420px){.restaurant-option{align-items:flex-start;flex-direction:column;gap:7px}.restaurant-actions{align-self:flex-end}}
-@media (max-width:350px){.hero{min-height:300px}h1{font-size:38px}.hero-lede{display:none}.hero-facts span{padding:5px 8px}}
-.edit-toggle{position:fixed;right:18px;bottom:18px;z-index:90;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:10px 15px;border:1px solid rgba(255,255,255,.8);border-radius:999px;background:linear-gradient(135deg,#20c7bc,#0fa49b);color:#fff;font:900 12px/1 inherit;box-shadow:0 14px 32px rgba(22,77,76,.25);cursor:pointer}
-.edit-toggle.has-draft:after{content:"";width:7px;height:7px;border-radius:50%;background:#ffe28b;box-shadow:0 0 0 2px rgba(255,255,255,.5)}
-.editor-dock{position:fixed;left:50%;bottom:12px;z-index:100;transform:translateX(-50%);width:min(760px,calc(100vw - 18px));padding:14px;border-radius:22px;background:rgba(248,251,250,.97);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 22px 52px rgba(21,47,54,.26)}
+.meal-restaurant-field{
+  display:flex;align-items:center;gap:7px;margin-top:8px;color:#746638;
+  font-size:10px;font-weight:900
+}
+.meal-restaurant-field>span{flex:0 0 auto}
+.meal-restaurant-input{
+  width:100%;min-width:0;height:34px;padding:0 10px;border:1px solid #e3ce86;border-radius:10px;
+  background:rgba(255,255,255,.9);color:var(--ink);font-family:inherit;font-size:12px;font-weight:800;line-height:1;outline:none
+}
+.meal-restaurant-input:focus{border-color:#c79d2e;box-shadow:0 0 0 3px rgba(199,157,46,.12)}
+.food-guide-intro{margin:-3px 3px 14px;color:var(--sub);font-size:12px;line-height:1.6}
+.food-guide-head-actions{display:flex;align-items:center;gap:7px}
+.food-guide-add{
+  display:none;min-height:34px;padding:0 11px;border:1px solid #16b8ad;border-radius:11px;
+  background:#16b8ad;color:#fff;font:900 10px/1 inherit;cursor:pointer
+}
+body.editing .food-guide-add{display:inline-flex;align-items:center}
+.food-guide-grid{display:grid;gap:10px}
+.food-card{
+  position:relative;padding:13px;border:1px solid rgba(194,145,97,.24);border-radius:18px;
+  background:linear-gradient(145deg,#fffaf0,#fff);box-shadow:var(--shadow-soft)
+}
+.food-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.food-card-copy{min-width:0}
+.food-card-title-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.food-card-name{font-size:15px;font-weight:950;letter-spacing:-.025em;overflow-wrap:anywhere}
+.food-card-menu{margin:4px 0 0;color:#8c745d;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
+.food-complete-badge{
+  display:none;padding:4px 7px;border-radius:999px;background:#dff4ef;color:#16776e;
+  font-size:9px;font-weight:950;white-space:nowrap
+}
+.food-card.visited .food-card-name{text-decoration:line-through;text-decoration-thickness:1.5px;color:#80908e}
+.food-card.visited .food-complete-badge{display:inline-flex}
+.food-card-planner{
+  display:grid;grid-template-columns:minmax(100px,1fr) 92px 92px auto;gap:7px;
+  align-items:end;margin-top:12px;padding-top:10px;border-top:1px dashed #eadcc9
+}
+.food-schedule-field{display:grid;gap:5px;color:#6a7779;font-size:9px;font-weight:900}
+.food-schedule-field select,.food-schedule-field input{
+  width:100%;min-width:0;height:36px;padding:0 8px;border:1px solid #d8e3e1;border-radius:10px;
+  background:#fff;color:#405459;font-family:inherit;font-size:11px;font-weight:850;line-height:1;outline:none
+}
+.food-schedule-btn{
+  height:36px;padding:0 11px;border:1px solid #16b8ad;border-radius:10px;
+  background:#effaf8;color:#16776e;font:900 10px/1 inherit;white-space:nowrap;cursor:pointer
+}
+.food-card-footer{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:9px;flex-wrap:wrap}
+.food-visited-label{display:inline-flex;align-items:center;gap:6px;color:#52676c;font-size:10px;font-weight:900;cursor:pointer}
+.food-visited-label input{position:static;width:17px;height:17px;opacity:1;pointer-events:auto;accent-color:#18b8ad}
+.food-card-status{color:#78878a;font-size:10px;font-weight:800}
+.food-card-edit-tools{display:none}
+body.editing .food-card-edit-tools{display:flex;justify-content:flex-end;margin-top:8px}
+.food-card-delete{
+  min-height:28px;padding:0 9px;border:1px solid #efd5d2;border-radius:9px;
+  background:#fff7f6;color:#a6534d;font:850 10px/1 inherit;cursor:pointer
+}
+.item.restaurant-completed .editable-title-text{text-decoration:line-through;text-decoration-thickness:1.5px;color:#80908e}
+.restaurant-complete-badge{
+  display:none;padding:3px 6px;border-radius:999px;background:#dff4ef;color:#16776e;
+  font-size:9px;font-weight:950;white-space:nowrap
+}
+.item.restaurant-completed .restaurant-complete-badge{display:inline-flex}
+@media (max-width:640px){
+  .wrap{padding:10px 9px 30px}
+  .hero{min-height:315px;padding:18px 18px 26px;border-radius:29px;background-position:58% 58%}
+  .hero-kicker{font-size:10px}
+  .hero-pin{font-size:10px}
+  h1{font-size:42px}
+  .hero-lede{max-width:330px;font-size:12px}
+  .tabs{margin:-10px 10px 14px}
+  .tabs label{min-height:44px;font-size:11px}
+  .panels .panel{padding:15px 10px 13px;border-radius:26px}
+  .date-title{font-size:22px}
+  .item{grid-template-columns:96px minmax(0,1fr);gap:8px;padding:11px 9px}
+  .time{padding-inline:2px;font-size:clamp(10px,2.85vw,11.5px);letter-spacing:-.065em}
+  .title{font-size:14px}
+  .desc{font-size:12px}
+  .food-card-planner{grid-template-columns:1fr 1fr}
+  .food-schedule-field.day{grid-column:1/-1}
+  .food-schedule-btn{grid-column:1/-1}
+}
+@media (max-width:350px){
+  .hero{min-height:300px}
+  h1{font-size:38px}
+  .hero-lede{display:none}
+  .hero-facts span{padding:5px 8px}
+}
+
+/* Local itinerary editor */
+.edit-toggle{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:44px;padding:10px 15px;border:1px solid rgba(255,255,255,.8);border-radius:999px;
+  background:linear-gradient(135deg,#20c7bc,#0fa49b);color:#fff;
+  font:900 12px/1 inherit;box-shadow:0 14px 32px rgba(22,77,76,.25);cursor:pointer
+}
+.edit-toggle.has-draft:after{
+  content:"";width:7px;height:7px;border-radius:50%;background:#ffe28b;box-shadow:0 0 0 2px rgba(255,255,255,.5)
+}
+.editor-dock{
+  position:fixed;left:50%;bottom:12px;z-index:100;transform:translateX(-50%);
+  width:min(760px,calc(100vw - 18px));padding:14px;border-radius:22px;
+  background:rgba(248,251,250,.97);border:1px solid rgba(255,255,255,.9);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 22px 52px rgba(21,47,54,.26)
+}
 .editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
 .editor-title{margin:0;font-size:15px;font-weight:950;letter-spacing:-.03em}
 .editor-help{margin:3px 0 0;color:#6d7b80;font-size:10px;line-height:1.5}
 .editor-status{flex:0 0 auto;color:#14847c;font-size:10px;font-weight:900}
 .editor-controls{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.editor-select,.editor-btn{min-height:36px;border-radius:11px;border:1px solid #d8e3e1;background:#fff;color:#405459;font:850 11px/1 inherit}
-.editor-select{padding:0 30px 0 10px}.editor-btn{padding:0 11px;cursor:pointer}.editor-btn.primary{background:#16b8ad;border-color:#16b8ad;color:#fff}.editor-btn.warn{background:#fff8ed;border-color:#efddc0;color:#8a653c}.editor-file{display:none}
-body.editing{padding-bottom:150px}body.editing [contenteditable="true"]{outline:1.5px dashed rgba(13,143,135,.48);outline-offset:2px;border-radius:5px;cursor:text}body.editing .item{position:relative}.item-edit-tools{display:none}body.editing .item-edit-tools{grid-column:1/-1;display:flex;justify-content:space-between;gap:7px;margin-top:3px;padding-top:6px;border-top:1px dashed rgba(90,111,115,.16)}
-.item-delete,.restaurant-add,.restaurant-remove{min-height:28px;padding:0 9px;border-radius:9px;border:1px solid #efd5d2;background:#fff7f6;color:#a6534d;font:850 10px/1 inherit;cursor:pointer}.restaurant-add{border-color:#bfe2de;background:#effaf8;color:#197a72}.restaurant-option-edit{display:none}body.editing .restaurant-option-edit{display:flex;flex:0 0 auto}.restaurant-remove{min-height:25px;padding:0 7px;font-size:9px}
-.restaurant-dialog{width:min(440px,calc(100vw - 28px));padding:0;border:0;border-radius:23px;background:#fbfdfc;color:var(--ink);box-shadow:0 28px 70px rgba(21,47,54,.32)}.restaurant-dialog::backdrop{background:rgba(17,35,41,.48);backdrop-filter:blur(3px)}.restaurant-form{padding:20px}.restaurant-form h2{margin:0 0 5px;font-size:20px;letter-spacing:-.045em}.restaurant-form p{margin:0 0 16px;color:var(--sub);font-size:11px;line-height:1.55}.restaurant-field{display:grid;gap:6px;margin-top:11px;color:#4e6267;font-size:11px;font-weight:900}.restaurant-field input{width:100%;min-height:42px;padding:0 12px;border:1px solid #d9e4e2;border-radius:12px;background:#fff;color:var(--ink);font:750 13px/1.3 inherit;outline:none}.restaurant-field input:focus{border-color:#49bdb5;box-shadow:0 0 0 3px rgba(24,184,173,.12)}.restaurant-dialog-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:17px}.restaurant-dialog-actions button{min-height:38px;padding:0 14px;border:1px solid #d9e4e2;border-radius:11px;background:#fff;color:#526468;font:900 11px/1 inherit;cursor:pointer}.restaurant-dialog-actions .primary{background:#16b8ad;border-color:#16b8ad;color:#fff}body.editing a{cursor:not-allowed}
-@media (max-width:640px){.edit-toggle{right:11px;bottom:11px}.editor-dock{bottom:7px;padding:12px;border-radius:19px}.editor-head{margin-bottom:8px}.editor-controls{gap:5px}.editor-select,.editor-btn{min-height:34px;font-size:10px}body.editing{padding-bottom:205px}}
+.editor-select,.editor-btn{
+  min-height:36px;border-radius:11px;border:1px solid #d8e3e1;background:#fff;color:#405459;
+  font:850 11px/1 inherit
+}
+.editor-select{padding:0 30px 0 10px}
+.editor-btn{padding:0 11px;cursor:pointer}
+.editor-btn.primary{background:#16b8ad;border-color:#16b8ad;color:#fff}
+.editor-btn.warn{background:#fff8ed;border-color:#efddc0;color:#8a653c}
+.editor-file{display:none}
+body.editing{padding-bottom:150px}
+body.editing [contenteditable="true"]{
+  outline:1.5px dashed rgba(13,143,135,.48);outline-offset:2px;border-radius:5px;cursor:text
+}
+body.editing .item{position:relative}
+.item-edit-tools{display:none}
+body.editing .item-edit-tools{
+  grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:7px;
+  flex-wrap:wrap;margin-top:3px;padding-top:6px;
+  border-top:1px dashed rgba(90,111,115,.16)
+}
+.item-icon-editor,.item-edit-actions{display:flex;align-items:center;gap:6px}
+.item-icon-editor{color:#607377;font-size:10px;font-weight:900}
+.item-icon-input{
+  width:46px;height:30px;padding:0 5px;border:1px solid #c9dcda;border-radius:9px;
+  background:#fff;color:var(--ink);font:800 17px/1 inherit;text-align:center;outline:none
+}
+.item-icon-input:focus{border-color:#49bdb5;box-shadow:0 0 0 3px rgba(24,184,173,.12)}
+.item-delete{
+  min-height:28px;padding:0 9px;border-radius:9px;border:1px solid #efd5d2;
+  background:#fff7f6;color:#a6534d;font:850 10px/1 inherit;cursor:pointer
+}
+.restaurant-dialog{
+  width:min(440px,calc(100vw - 28px));padding:0;border:0;border-radius:23px;
+  background:#fbfdfc;color:var(--ink);box-shadow:0 28px 70px rgba(21,47,54,.32)
+}
+.restaurant-dialog::backdrop{background:rgba(17,35,41,.48);backdrop-filter:blur(3px)}
+.restaurant-form{padding:20px}
+.restaurant-form h2{margin:0 0 5px;font-size:20px;letter-spacing:-.045em}
+.restaurant-form p{margin:0 0 16px;color:var(--sub);font-size:11px;line-height:1.55}
+.restaurant-field{display:grid;gap:6px;margin-top:11px;color:#4e6267;font-size:11px;font-weight:900}
+.restaurant-field input{
+  width:100%;min-height:42px;padding:0 12px;border:1px solid #d9e4e2;border-radius:12px;
+  background:#fff;color:var(--ink);font:750 13px/1.3 inherit;outline:none
+}
+.restaurant-field input:focus{border-color:#49bdb5;box-shadow:0 0 0 3px rgba(24,184,173,.12)}
+.restaurant-dialog-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:17px}
+.restaurant-dialog-actions button{
+  min-height:38px;padding:0 14px;border:1px solid #d9e4e2;border-radius:11px;
+  background:#fff;color:#526468;font:900 11px/1 inherit;cursor:pointer
+}
+.restaurant-dialog-actions .primary{background:#16b8ad;border-color:#16b8ad;color:#fff}
+body.editing a{cursor:not-allowed}
+@media (max-width:640px){
+  .edit-toggle{right:11px;bottom:11px}
+  .editor-dock{bottom:7px;padding:12px;border-radius:19px}
+  .editor-head{margin-bottom:8px}
+  .editor-controls{gap:5px}
+  .editor-select,.editor-btn{min-height:34px;font-size:10px}
+  .item-edit-tools{align-items:flex-start}
+  .item-edit-actions{margin-left:auto}
+  body.editing{padding-bottom:205px}
+}
 @media print{.edit-toggle,.editor-dock{display:none!important}}
 </style>
 </head>
@@ -164,13 +384,13 @@ body.editing{padding-bottom:150px}body.editing [contenteditable="true"]{outline:
       <div class="timeline">
         <div class="item move"><div class="time">08:00 - 11:50</div><div><div class="title"><span class="icon">🚗</span><span class="editable-title-text">집에서 출발</span></div></div></div>
         <div class="ampm-divider"><span>오후</span></div>
-        <div class="item food meal-lunch"><div class="time">12:00 - 13:00</div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text">도착 후 근처 점심</span></div><p class="desc">부안/변산 도착 후 점심.</p><details class="restaurant-picker"><summary><span>추천 식당 3곳 보기</span><span class="picker-chevron" aria-hidden="true">⌄</span></summary><div class="restaurant-list"><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 1</span><span class="restaurant-copy"><strong>백합식당</strong><span class="main-menu"> - 백합돌솥밥 · 백합죽 · 백합탕</span></span></div><div class="restaurant-actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20백합식당" target="_blank" rel="noopener">네이버 지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 2</span><span class="restaurant-copy"><strong>바다마을식당</strong><span class="main-menu"> - 바지락칼국수 · 백합죽</span></span></div><div class="restaurant-actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20바다마을식당" target="_blank" rel="noopener">네이버 지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 3</span><span class="restaurant-copy"><strong>군산식당</strong><span class="main-menu"> - 백합정식</span></span></div><div class="restaurant-actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20군산식당" target="_blank" rel="noopener">네이버 지도</a></div></div></div></details></div></div>
-        <div class="item major"><div class="time">13:10 - 13:35</div><div><div class="title"><span class="icon">🌊</span><span class="editable-title-text">적벽강</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20적벽강" target="_blank" rel="noopener">네이버 지도</a></span></div><p class="desc">입실 전 가볍게 바다와 절벽 구경.</p></div></div>
-        <div class="item cafe"><div class="time">13:45 - 14:30</div><div><div class="title"><span class="icon">☕</span><span class="editable-title-text">카페909</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20카페909" target="_blank" rel="noopener">네이버 지도</a></span></div><p class="desc">바다 보면서 커피 한 잔</p></div></div>
-        <div class="item move"><div class="time">14:40 - 14:55</div><div><div class="title"><span class="icon">🚗</span><span class="editable-title-text">소노벨 변산으로 이동</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">네이버 지도</a></span></div></div></div>
-        <div class="item"><div class="time">15:00 - 15:40</div><div><div class="title"><span class="icon">🏨</span><span class="editable-title-text">소노벨 변산 - 체크인</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">네이버 지도</a></span></div><p class="desc">짐 정리 후 수영장 준비.</p></div></div>
-        <div class="item major"><div class="time">16:00 - 17:00</div><div><div class="title"><span class="icon">🚶</span><span class="editable-title-text">호텔 구경 &amp; 근처 산책</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산%20오션플레이" target="_blank" rel="noopener">네이버 지도</a></span></div><p class="desc">저녁 식사 전</p></div></div>
-        <div class="item food"><div class="time">17:30 - 19:00</div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text">저녁 · 횟집</span></div><p class="desc">회 맛집</p><details class="restaurant-picker"><summary><span>횟집 3곳 보기</span><span class="picker-chevron" aria-hidden="true">⌄</span></summary><div class="restaurant-list"><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">후보 1</span><strong>청상어횟집</strong></div><div class="restaurant-actions"><a class="place-link map" href="https://naver.me/FuzD6L2o" target="_blank" rel="noopener">네이버 지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">후보 2</span><strong>변산반도횟집</strong></div><div class="restaurant-actions"><a class="place-link map" href="https://naver.me/G65tM2lT" target="_blank" rel="noopener">네이버 지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">후보 3</span><strong>격포어촌계회센터</strong></div><div class="restaurant-actions"><a class="place-link map" href="https://naver.me/GubHKmGf" target="_blank" rel="noopener">네이버 지도</a></div></div></div></details></div></div>
+        <div class="item food meal-lunch"><div class="time">12:00 - 13:00</div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text">도착 후 근처 점심</span></div><p class="desc">부안/변산 도착 후 점심.</p></div></div>
+        <div class="item major"><div class="time">13:10 - 13:35</div><div><div class="title"><span class="icon">🌊</span><span class="editable-title-text">적벽강</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20적벽강" target="_blank" rel="noopener">지도</a></span></div><p class="desc">입실 전 가볍게 바다와 절벽 구경.</p></div></div>
+        <div class="item cafe"><div class="time">13:45 - 14:30</div><div><div class="title"><span class="icon">☕</span><span class="editable-title-text">카페909</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20카페909" target="_blank" rel="noopener">지도</a></span></div><p class="desc">바다 보면서 커피 한 잔</p></div></div>
+        <div class="item move"><div class="time">14:40 - 14:55</div><div><div class="title"><span class="icon">🚗</span><span class="editable-title-text">소노벨 변산으로 이동</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">지도</a></span></div></div></div>
+        <div class="item"><div class="time">15:00 - 15:40</div><div><div class="title"><span class="icon">🏨</span><span class="editable-title-text">소노벨 변산 - 체크인</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">지도</a></span></div><p class="desc">짐 정리 후 수영장 준비.</p></div></div>
+        <div class="item major"><div class="time">16:00 - 17:00</div><div><div class="title"><span class="icon">🚶</span><span class="editable-title-text">호텔 구경 &amp; 근처 산책</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산%20오션플레이" target="_blank" rel="noopener">지도</a></span></div><p class="desc">저녁 식사 전</p></div></div>
+        <div class="item food"><div class="time">17:30 - 19:00</div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text">저녁 · 횟집</span></div><p class="desc">회 맛집</p></div></div>
       </div>
     </section>
     <section class="panel" id="day2">
@@ -178,8 +398,8 @@ body.editing{padding-bottom:150px}body.editing [contenteditable="true"]{outline:
       <div class="timeline">
         <div class="item food"><div class="time">07:40 - 08:40</div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text">호텔 조식</span></div><p class="desc">여유롭게 아침 식사</p></div></div>
         <div class="item"><div class="time">08:50 - 9:10</div><div><div class="title"><span class="icon">🎒</span><span class="editable-title-text">갯벌체험 준비</span></div><p class="desc">헌 양말, 장갑, 모자, 타월, 조개를 담아 갈 통, 여벌옷, 비닐봉투</p></div></div>
-        <div class="item move"><div class="time">9:15 - 9:30</div><div><div class="title"><span class="icon">🚗</span><span class="editable-title-text">고사포해수욕장 이동 (차 15분)</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">네이버 지도</a></span></div></div></div>
-        <div class="item major"><div class="time">9:30 - 11:10</div><div><div class="title"><span class="icon">🪣</span><span class="editable-title-text">고사포해수욕장 - 갯벌 체험</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">네이버 지도</a></span></div><p class="desc">조개잡기 체험 신나게!</p></div></div>
+        <div class="item move"><div class="time">9:15 - 9:30</div><div><div class="title"><span class="icon">🚗</span><span class="editable-title-text">고사포해수욕장 이동 (차 15분)</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">지도</a></span></div></div></div>
+        <div class="item major"><div class="time">9:30 - 11:10</div><div><div class="title"><span class="icon">🪣</span><span class="editable-title-text">고사포해수욕장 - 갯벌 체험</span><span class="actions"><a class="place-link map" href="https://map.naver.com/p/search/부안%20모항%20갯벌체험장" target="_blank" rel="noopener">지도</a></span></div><p class="desc">조개잡기 체험 신나게!</p></div></div>
         <div class="item move"><div class="time">11:10 - 11:30</div><div><div class="title"><span class="icon">🚗</span><span class="editable-title-text">숙소 복귀</span></div><p class="desc">설명을 입력하세요.</p></div></div>
         <div class="item"><div class="time">11:30 - 12:30</div><div><div class="title"><span class="icon">🚿</span><span class="editable-title-text">샤워 및 휴식</span></div><p class="desc"><br></p></div></div>
         <div class="ampm-divider"><span>오후</span></div>
@@ -205,14 +425,51 @@ body.editing{padding-bottom:150px}body.editing [contenteditable="true"]{outline:
 </div>
 <button class="edit-toggle" id="editToggle" type="button" aria-controls="editorDock">✏️ 일정 편집</button>
 <section class="editor-dock" id="editorDock" hidden aria-label="일정 편집 도구">
-  <div class="editor-head"><div><h2 class="editor-title">내 일정 편집</h2><p class="editor-help">수정 내용은 이 기기에 자동 저장됩니다. 최종 정리할 때 ‘편집본 다운로드’ 파일을 보내주세요.</p></div><span class="editor-status" id="editorStatus">준비됨</span></div>
+  <div class="editor-head">
+    <div>
+      <h2 class="editor-title">내 일정 편집</h2>
+      <p class="editor-help">수정 내용은 이 기기에 자동 저장됩니다. 최종 정리할 때 ‘편집본 다운로드’ 파일을 보내주세요.</p>
+    </div>
+    <span class="editor-status" id="editorStatus">준비됨</span>
+  </div>
   <div class="editor-controls">
-    <select class="editor-select" id="itemKind" aria-label="추가할 일정 종류"><option value="normal">일반 일정</option><option value="major">핵심 일정</option><option value="food">식사</option><option value="move">이동</option><option value="cafe">카페</option></select>
-    <button class="editor-btn primary" id="addItemBtn" type="button">+ 현재 날짜에 추가</button><button class="editor-btn" id="sortItemsBtn" type="button">시간순 정렬</button><button class="editor-btn" id="saveDraftBtn" type="button">저장</button><button class="editor-btn" id="downloadDraftBtn" type="button">편집본 다운로드</button><button class="editor-btn" id="copyDraftBtn" type="button">편집본 복사</button><button class="editor-btn" id="importDraftBtn" type="button">불러오기</button><button class="editor-btn warn" id="resetDraftBtn" type="button">공개본 복원</button><button class="editor-btn" id="closeEditorBtn" type="button">편집 끝</button>
+    <select class="editor-select" id="itemKind" aria-label="추가할 일정 종류">
+      <option value="normal">일반 일정</option>
+      <option value="major">핵심 일정</option>
+      <option value="food">식사</option>
+      <option value="move">이동</option>
+      <option value="cafe">카페</option>
+    </select>
+    <button class="editor-btn primary" id="addItemBtn" type="button">+ 현재 날짜에 추가</button>
+    <button class="editor-btn" id="sortItemsBtn" type="button">시간순 정렬</button>
+    <button class="editor-btn" id="saveDraftBtn" type="button">저장</button>
+    <button class="editor-btn" id="downloadDraftBtn" type="button">편집본 다운로드</button>
+    <button class="editor-btn" id="copyDraftBtn" type="button">편집본 복사</button>
+    <button class="editor-btn" id="importDraftBtn" type="button">불러오기</button>
+    <button class="editor-btn warn" id="resetDraftBtn" type="button">공개본 복원</button>
+    <button class="editor-btn" id="closeEditorBtn" type="button">편집 끝</button>
   </div>
   <input class="editor-file" id="draftFileInput" type="file" accept=".json,application/json">
 </section>
-<dialog class="restaurant-dialog" id="restaurantDialog"><form class="restaurant-form" id="restaurantForm"><h2>식당 후보 추가</h2><p>식당이 정해지지 않은 식사 칸에 후보를 추가할 수 있어요.</p><label class="restaurant-field">식당 이름<input id="restaurantNameInput" type="text" required placeholder="예: 변산맛집"></label><label class="restaurant-field">메인 메뉴<input id="restaurantMenuInput" type="text" placeholder="예: 바지락칼국수 · 백합죽"></label><label class="restaurant-field">네이버 지도 링크<input id="restaurantMapInput" type="url" inputmode="url" placeholder="비워두면 식당 이름으로 지도 검색"></label><div class="restaurant-dialog-actions"><button id="cancelRestaurantBtn" type="button">취소</button><button class="primary" type="submit">식당 추가</button></div></form></dialog>
+<dialog class="restaurant-dialog" id="restaurantDialog">
+  <form class="restaurant-form" id="restaurantForm">
+    <h2>맛집 추가</h2>
+    <p>맛집 리스트에 새 식당을 추가합니다. 일정 날짜와 시간은 추가 후 선택할 수 있어요.</p>
+    <label class="restaurant-field">식당 이름
+      <input id="restaurantNameInput" type="text" required placeholder="예: 변산맛집">
+    </label>
+    <label class="restaurant-field">메인 메뉴
+      <input id="restaurantMenuInput" type="text" placeholder="예: 바지락칼국수 · 백합죽">
+    </label>
+    <label class="restaurant-field">지도 링크
+      <input id="restaurantMapInput" type="url" inputmode="url" placeholder="비워두면 식당 이름으로 지도 검색">
+    </label>
+    <div class="restaurant-dialog-actions">
+      <button id="cancelRestaurantBtn" type="button">취소</button>
+      <button class="primary" type="submit">맛집 추가</button>
+    </div>
+  </form>
+</dialog>
 <script>
 (function(){
   const STORAGE_KEY="byeonsan-trip-draft-v1";
@@ -226,54 +483,529 @@ body.editing{padding-bottom:150px}body.editing [contenteditable="true"]{outline:
   const restaurantNameInput=document.getElementById("restaurantNameInput");
   const restaurantMenuInput=document.getElementById("restaurantMenuInput");
   const restaurantMapInput=document.getElementById("restaurantMapInput");
-  let editing=false,saveTimer=0,activeFoodItem=null;
-  function validDraft(data){return data&&typeof data.html==="string"&&data.html.includes('class="panels"')&&data.html.includes('id="day1"')}
-  function restoreDraft(){const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return false;try{const data=JSON.parse(raw);if(!validDraft(data))return false;wrap().innerHTML=data.html;return true}catch(error){return false}}
-  function upgradeDraftMarkup(){document.querySelectorAll(".item").forEach(item=>{const title=item.querySelector(".title")?.textContent||"";if(title.includes("호텔 조식"))item.classList.add("food")})}
-  function normalizeScheduleIcons(root=document){
-    root.querySelectorAll(".item").forEach(item=>{
-      const icon=item.querySelector(".icon");if(!icon)return;
-      const title=(item.querySelector(".editable-title-text")||item.querySelector(".title"))?.textContent.trim()||"";
-      if(item.classList.contains("food")){icon.textContent="🍽️";return}
-      if(item.classList.contains("move")){icon.textContent="🚗";return}
-      if(/적벽강/.test(title))icon.textContent="🌊";
-      else if(/카페/.test(title))icon.textContent="☕";
-      else if(/체크인/.test(title))icon.textContent="🏨";
-      else if(/호텔 구경|산책/.test(title))icon.textContent="🚶";
-      else if(/갯벌.*준비/.test(title))icon.textContent="🎒";
-      else if(/갯벌.*체험/.test(title))icon.textContent="🪣";
-      else if(/샤워/.test(title))icon.textContent="🚿";
-      else if(/오션플레이|물놀이/.test(title))icon.textContent="🏊";
-      else if(/휴식/.test(title))icon.textContent="😌";
-      else if(/짐 정리/.test(title))icon.textContent="🧳";
-      else if(/체크아웃/.test(title))icon.textContent="🛎️";
+  const DEFAULT_RESTAURANTS=[
+    {name:"백합식당",menu:"백합돌솥밥 · 백합죽 · 백합탕",mapUrl:"https://map.naver.com/p/search/부안%20백합식당",day:"day1",start:"12:00",end:"13:00"},
+    {name:"바다마을식당",menu:"바지락칼국수 · 백합죽",mapUrl:"https://map.naver.com/p/search/부안%20바다마을식당",day:"day1",start:"12:00",end:"13:00"},
+    {name:"군산식당",menu:"백합정식",mapUrl:"https://map.naver.com/p/search/부안%20군산식당",day:"day1",start:"12:00",end:"13:00"},
+    {name:"청상어횟집",menu:"회 · 해산물",mapUrl:"https://naver.me/FuzD6L2o",day:"day1",start:"17:30",end:"19:00"},
+    {name:"변산반도횟집",menu:"회 · 해산물",mapUrl:"https://naver.me/G65tM2lT",day:"day1",start:"17:30",end:"19:00"},
+    {name:"격포어촌계회센터",menu:"회 · 해산물",mapUrl:"https://naver.me/GubHKmGf",day:"day1",start:"17:30",end:"19:00"}
+  ];
+  let editing=false;
+  let saveTimer=0;
+
+  function validDraft(data){
+    return data&&typeof data.html==="string"&&data.html.includes('class="panels"')&&data.html.includes('id="day1"');
+  }
+
+  function restoreDraft(){
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw)return false;
+    try{
+      const data=JSON.parse(raw);
+      if(!validDraft(data))return false;
+      wrap().innerHTML=data.html;
+      return true;
+    }catch(error){
+      return false;
+    }
+  }
+
+  function restaurantId(name){
+    let hash=0;
+    [...name].forEach(char=>{hash=((hash<<5)-hash)+char.codePointAt(0);hash|=0});
+    return "restaurant-"+Math.abs(hash||Date.now());
+  }
+
+  function createRestaurantCard(data){
+    const card=document.createElement("article");
+    card.className="food-card";
+    card.dataset.restaurantId=data.id||restaurantId(data.name);
+    card.innerHTML='<div class="food-card-top"><div class="food-card-copy"><div class="food-card-title-row"><strong class="food-card-name"></strong><span class="food-complete-badge">✓ 완료</span></div><p class="food-card-menu"></p></div><a class="place-link map" target="_blank" rel="noopener">지도</a></div><div class="food-card-planner"><label class="food-schedule-field day"><span>날짜</span><select class="food-day" aria-label="방문 날짜"><option value="day1">8/30 일</option><option value="day2">8/31 월</option><option value="day3">9/1 화</option></select></label><label class="food-schedule-field"><span>시작</span><input class="food-start" type="time" aria-label="시작 시간"></label><label class="food-schedule-field"><span>종료</span><input class="food-end" type="time" aria-label="종료 시간"></label><button class="food-schedule-btn" type="button">일정에 넣기</button></div><div class="food-card-footer"><label class="food-visited-label"><input class="food-visited" type="checkbox"> 다녀옴</label><span class="food-card-status">아직 일정 없음</span></div>';
+    card.querySelector(".food-card-name").textContent=data.name;
+    card.querySelector(".food-card-menu").textContent=data.menu||"메뉴를 입력하세요";
+    const map=card.querySelector("a");
+    map.href=data.mapUrl||"https://map.naver.com/p/search/"+encodeURIComponent(data.name);
+    card.querySelector(".food-day").value=data.day||"day1";
+    card.querySelector(".food-start").value=data.start||"12:00";
+    card.querySelector(".food-end").value=data.end||"13:00";
+    return card;
+  }
+
+  function collectLegacyRestaurants(){
+    const seen=new Set();
+    return [...document.querySelectorAll(".restaurant-option")].map(option=>{
+      const name=option.querySelector("strong")?.textContent.trim()||"";
+      const menu=(option.querySelector(".main-menu")?.textContent||"").replace(/^\s*-\s*/,"").trim();
+      const mapUrl=option.querySelector("a")?.href||"";
+      const times=option.closest(".item")?.querySelector(".time")?.textContent.match(/\d{1,2}:\d{2}/g)||[];
+      const normalizeTime=value=>value?value.replace(/^(\d):/,"0$1:"):"";
+      const start=normalizeTime(times[0])||"12:00";
+      const end=normalizeTime(times[1])||"13:00";
+      const dinner=Number(start.slice(0,2))>=16;
+      return {name,menu:menu||(dinner?"회 · 해산물":""),mapUrl,day:"day1",start,end};
+    }).filter(data=>data.name&&!seen.has(data.name)&&seen.add(data.name));
+  }
+
+  function ensureRestaurantTab(restaurants=[]){
+    const root=wrap();
+    const tabs=root.querySelector(".tabs");
+    if(!root.querySelector("#tab4")){
+      const input=document.createElement("input");
+      input.type="radio";input.name="tripday";input.id="tab4";
+      root.insertBefore(input,tabs);
+    }
+    if(!tabs.querySelector('label[for="tab4"]')){
+      const label=document.createElement("label");
+      label.htmlFor="tab4";label.textContent="맛집";tabs.appendChild(label);
+    }
+    let panel=root.querySelector("#restaurants");
+    if(!panel){
+      panel=document.createElement("section");
+      panel.className="panel";panel.id="restaurants";
+      panel.innerHTML='<div class="day-head"><h2 class="date-title">맛집 리스트</h2><div class="food-guide-head-actions"><span class="day-chip">🍴 후보 · 일정 · 방문 기록</span><button class="food-guide-add" id="addRestaurantBtn" type="button">+ 맛집 추가</button></div></div><p class="food-guide-intro">가고 싶은 식당을 날짜와 시간에 넣고, 다녀온 뒤 체크하면 일정과 방문 기록에 함께 완료 표시됩니다.</p><div class="food-guide-grid" id="foodGuideGrid"></div>';
+      root.querySelector(".panels").appendChild(panel);
+    }
+    const grid=panel.querySelector("#foodGuideGrid");
+    if(!grid.querySelector(".food-card")){
+      (restaurants.length?restaurants:DEFAULT_RESTAURANTS).forEach(data=>grid.appendChild(createRestaurantCard(data)));
+    }
+  }
+
+  function ensureMealRestaurantFields(){
+    document.querySelectorAll(".item.food").forEach(item=>{
+      item.querySelector(".restaurant-picker")?.remove();
+      if(item.querySelector(".meal-restaurant-field"))return;
+      const field=document.createElement("label");
+      field.className="meal-restaurant-field";
+      field.innerHTML='<span>식당</span><input class="meal-restaurant-input" type="text" placeholder="식당 이름 입력" autocomplete="off">';
+      const title=item.querySelector(".editable-title-text")?.textContent.trim()||[...item.querySelector(".title")?.childNodes||[]].filter(node=>node.nodeType===Node.TEXT_NODE).map(node=>node.textContent.trim()).filter(Boolean).join(" ")||"식사";
+      field.querySelector("input").setAttribute("aria-label",`${title} 식당 이름`);
+      item.children[1]?.appendChild(field);
     });
   }
-  function setStatus(message){status.textContent=message;clearTimeout(setStatus.timer);setStatus.timer=setTimeout(()=>{status.textContent=editing?"자동 저장 중":"준비됨"},1800)}
-  function cleanClone(){normalizeScheduleIcons();const clone=wrap().cloneNode(true);clone.querySelectorAll(".item-edit-tools,.restaurant-option-edit").forEach(node=>node.remove());clone.querySelectorAll("[contenteditable]").forEach(node=>node.removeAttribute("contenteditable"));clone.querySelectorAll("[spellcheck]").forEach(node=>node.removeAttribute("spellcheck"));return clone}
-  function saveDraft(message){const payload={version:1,updatedAt:new Date().toISOString(),html:cleanClone().innerHTML};localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));toggle.classList.add("has-draft");setStatus(message||"저장됨");return payload}
-  function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveDraft("자동 저장됨"),450)}
-  function normalizeTitles(root=document){root.querySelectorAll(".title").forEach(title=>{if(title.querySelector(".editable-title-text"))return;const textNodes=[...title.childNodes].filter(node=>node.nodeType===Node.TEXT_NODE&&node.textContent.trim());if(!textNodes.length)return;const label=document.createElement("span");label.className="editable-title-text";label.textContent=textNodes.map(node=>node.textContent.trim()).join(" ");title.insertBefore(label,title.querySelector(".actions"));textNodes.forEach(node=>node.remove())})}
-  function editableNodes(){return document.querySelectorAll([".hero-kicker",".hero-pin",".eyebrow","h1",".hero-lede",".hero-facts span",".date-title",".day-chip",".time",".editable-title-text",".desc",".footer-note",".restaurant-name strong",".main-menu",".restaurant-picker summary span:first-child"].join(","))}
-  function setNodeEditable(node,on){if(on){node.setAttribute("contenteditable","true");node.setAttribute("spellcheck","false");node.querySelectorAll(".icon,.actions,.place-link").forEach(child=>child.setAttribute("contenteditable","false"))}else{node.removeAttribute("contenteditable");node.removeAttribute("spellcheck");node.querySelectorAll("[contenteditable]").forEach(child=>child.removeAttribute("contenteditable"))}}
-  function updatePickerLabel(picker){const count=picker.querySelectorAll(".restaurant-option").length;const label=picker.querySelector("summary span:first-child");if(label)label.textContent=`식당 후보 ${count}곳 보기`}
-  function ensureRestaurantPicker(item){let picker=item.querySelector(".restaurant-picker");if(picker)return picker;picker=document.createElement("details");picker.className="restaurant-picker";picker.innerHTML='<summary><span>식당 후보 0곳 보기</span><span class="picker-chevron" aria-hidden="true">⌄</span></summary><div class="restaurant-list"></div>';item.children[1].appendChild(picker);return picker}
-  function openRestaurantDialog(item){activeFoodItem=item;restaurantForm.reset();restaurantDialog.showModal();setTimeout(()=>restaurantNameInput.focus(),50)}
-  function addRestaurantOption(item,name,menu,mapUrl){const picker=ensureRestaurantPicker(item),list=picker.querySelector(".restaurant-list"),option=document.createElement("div"),safeMap=mapUrl.trim()||"https://map.naver.com/p/search/"+encodeURIComponent(name);option.className="restaurant-option";option.innerHTML='<div class="restaurant-name"><span class="restaurant-rank">후보</span><span class="restaurant-copy"><strong></strong><span class="main-menu"></span></span></div><div class="restaurant-actions"><a class="place-link map" target="_blank" rel="noopener">네이버 지도</a></div>';option.querySelector("strong").textContent=name;option.querySelector(".main-menu").textContent=menu?" - "+menu:"";option.querySelector("a").href=safeMap;list.appendChild(option);updatePickerLabel(picker);picker.open=true;refreshEditables();saveDraft("식당 추가됨")}
-  function addRestaurantRemoveTool(option){if(option.querySelector(".restaurant-option-edit"))return;const tools=document.createElement("div");tools.className="restaurant-option-edit";tools.innerHTML='<button class="restaurant-remove" type="button">후보 삭제</button>';tools.querySelector("button").addEventListener("click",()=>{if(!confirm("이 식당 후보를 삭제할까요?"))return;const picker=option.closest(".restaurant-picker");option.remove();if(!picker.querySelector(".restaurant-option"))picker.remove();else updatePickerLabel(picker);saveDraft("식당 후보 삭제됨")});option.appendChild(tools)}
-  function addDeleteTool(item){if(item.querySelector(".item-edit-tools"))return;const tools=document.createElement("div");tools.className="item-edit-tools";if(item.classList.contains("food")){const add=document.createElement("button");add.className="restaurant-add";add.type="button";add.textContent="+ 식당 추가";add.addEventListener("click",()=>openRestaurantDialog(item));tools.appendChild(add)}else tools.appendChild(document.createElement("span"));const remove=document.createElement("button");remove.className="item-delete";remove.type="button";remove.textContent="이 일정 삭제";remove.addEventListener("click",()=>{if(!confirm("이 일정을 삭제할까요?"))return;item.remove();saveDraft("일정 삭제됨")});tools.appendChild(remove);item.appendChild(tools)}
-  function refreshEditables(){normalizeScheduleIcons();editableNodes().forEach(node=>setNodeEditable(node,editing));document.querySelectorAll(".item").forEach(item=>{if(editing)addDeleteTool(item);else item.querySelector(".item-edit-tools")?.remove()});document.querySelectorAll(".restaurant-option").forEach(option=>{if(editing)addRestaurantRemoveTool(option);else option.querySelector(".restaurant-option-edit")?.remove()})}
-  function setEditing(on){if(editing===on)return;editing=on;if(!on)saveDraft("저장됨");document.body.classList.toggle("editing",on);dock.hidden=!on;toggle.hidden=on;refreshEditables();if(on)setStatus("수정 가능")}
-  function currentPanel(){const selected=document.querySelector('input[name="tripday"]:checked')?.id||"tab1";const map={tab1:"#day1",tab2:"#day2",tab3:"#day3"};return document.querySelector(map[selected])}
-  function addSchedule(){const type=document.getElementById("itemKind").value;const config={normal:{className:"item",icon:"📌"},major:{className:"item major",icon:"⭐"},food:{className:"item food",icon:"🍽️"},move:{className:"item move",icon:"🚗"},cafe:{className:"item cafe",icon:"☕"}}[type];const item=document.createElement("div");item.className=config.className;item.innerHTML='<div class="time">00:00 - 00:00</div><div><div class="title"><span class="icon">'+config.icon+'</span><span class="editable-title-text">새 일정</span></div><p class="desc">설명을 입력하세요.</p></div>';currentPanel().querySelector(".timeline").appendChild(item);refreshEditables();saveDraft("새 일정 추가됨");item.scrollIntoView({behavior:"smooth",block:"center"})}
-  function startMinutes(item){const match=item.querySelector(".time")?.textContent.match(/(\d{1,2}):(\d{2})/);return match?Number(match[1])*60+Number(match[2]):9999}
-  function sortCurrentDay(){const timeline=currentPanel().querySelector(".timeline"),divider=timeline.querySelector(".ampm-divider"),items=[...timeline.children].filter(node=>node.classList.contains("item"));items.sort((a,b)=>startMinutes(a)-startMinutes(b));divider?.remove();items.forEach(item=>timeline.appendChild(item));const firstAfternoon=items.find(item=>startMinutes(item)>=720);if(firstAfternoon){const line=divider||document.createElement("div");line.className="ampm-divider";line.innerHTML="<span>오후</span>";timeline.insertBefore(line,firstAfternoon)}saveDraft("시간순 정렬됨")}
-  function downloadDraft(){const payload=saveDraft("다운로드 준비됨"),link=document.createElement("a");link.href="data:application/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(payload,null,2));link.download="byeonsan-trip-draft.json";document.body.appendChild(link);link.click();link.remove()}
-  async function copyDraft(){const payload=saveDraft("복사 준비됨"),text=JSON.stringify(payload);try{await navigator.clipboard.writeText(text);setStatus("편집본 복사됨")}catch(error){const area=document.createElement("textarea");area.value=text;area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();document.execCommand("copy");area.remove();setStatus("편집본 복사됨")}}
-  function importDraft(file){const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!validDraft(data))throw new Error("invalid");localStorage.setItem(STORAGE_KEY,JSON.stringify(data));location.reload()}catch(error){alert("올바른 변산 여행 편집본 파일이 아닙니다.")}};reader.readAsText(file)}
-  const restored=restoreDraft();upgradeDraftMarkup();normalizeTitles();normalizeScheduleIcons();toggle.classList.toggle("has-draft",restored);
-  toggle.addEventListener("click",()=>setEditing(true));document.getElementById("closeEditorBtn").addEventListener("click",()=>setEditing(false));document.getElementById("addItemBtn").addEventListener("click",addSchedule);document.getElementById("sortItemsBtn").addEventListener("click",sortCurrentDay);document.getElementById("saveDraftBtn").addEventListener("click",()=>saveDraft("저장됨"));document.getElementById("downloadDraftBtn").addEventListener("click",downloadDraft);document.getElementById("copyDraftBtn").addEventListener("click",copyDraft);document.getElementById("importDraftBtn").addEventListener("click",()=>fileInput.click());document.getElementById("resetDraftBtn").addEventListener("click",()=>{if(!confirm("이 기기에 저장된 편집 내용을 지우고 공개본으로 돌아갈까요?"))return;localStorage.removeItem(STORAGE_KEY);location.reload()});document.getElementById("cancelRestaurantBtn").addEventListener("click",()=>restaurantDialog.close());
-  restaurantForm.addEventListener("submit",event=>{event.preventDefault();const name=restaurantNameInput.value.trim();if(!name||!activeFoodItem)return;addRestaurantOption(activeFoodItem,name,restaurantMenuInput.value.trim(),restaurantMapInput.value.trim());restaurantDialog.close()});restaurantDialog.addEventListener("close",()=>{activeFoodItem=null});fileInput.addEventListener("change",()=>{if(fileInput.files&&fileInput.files[0])importDraft(fileInput.files[0])});document.addEventListener("input",event=>{if(editing&&event.target.closest('[contenteditable="true"]')){normalizeScheduleIcons();scheduleSave()}});document.addEventListener("click",event=>{if(editing&&event.target.closest("a"))event.preventDefault()},true);window.addEventListener("beforeunload",()=>{if(editing)saveDraft()});
+
+  function upgradeDraftMarkup(){
+    const legacyRestaurants=collectLegacyRestaurants();
+    document.querySelectorAll(".item").forEach(item=>{
+      const title=item.querySelector(".title")?.textContent||"";
+      if(title.includes("호텔 조식"))item.classList.add("food");
+    });
+    document.querySelectorAll("a.place-link.map").forEach(link=>{link.textContent="지도"});
+    ensureRestaurantTab(legacyRestaurants);
+    document.querySelectorAll(".restaurant-picker").forEach(picker=>picker.remove());
+    ensureMealRestaurantFields();
+    document.querySelectorAll(".food-card").forEach(card=>{
+      const visited=card.querySelector(".food-visited")?.checked||card.dataset.visited==="true";
+      if(card.querySelector(".food-visited"))card.querySelector(".food-visited").checked=visited;
+      updateVisitState(card,visited);
+    });
+  }
+
+  function setStatus(message){
+    status.textContent=message;
+    clearTimeout(setStatus.timer);
+    setStatus.timer=setTimeout(()=>{status.textContent=editing?"자동 저장 중":"준비됨"},1800);
+  }
+
+  function cleanClone(){
+    const clone=wrap().cloneNode(true);
+    const liveFields=wrap().querySelectorAll("input,select,textarea");
+    const cloneFields=clone.querySelectorAll("input,select,textarea");
+    liveFields.forEach((field,index)=>{
+      const copy=cloneFields[index];
+      if(!copy)return;
+      if(field.tagName==="SELECT"){
+        [...copy.options].forEach((option,optionIndex)=>option.toggleAttribute("selected",field.options[optionIndex]?.selected||false));
+      }else{
+        copy.setAttribute("value",field.value);
+        if(field.type==="checkbox"||field.type==="radio")copy.toggleAttribute("checked",field.checked);
+      }
+    });
+    clone.querySelectorAll(".item-edit-tools,.food-card-edit-tools").forEach(node=>node.remove());
+    clone.querySelectorAll("[contenteditable]").forEach(node=>node.removeAttribute("contenteditable"));
+    clone.querySelectorAll("[spellcheck]").forEach(node=>node.removeAttribute("spellcheck"));
+    return clone;
+  }
+
+  function saveDraft(message){
+    const payload={
+      version:2,
+      updatedAt:new Date().toISOString(),
+      html:cleanClone().innerHTML
+    };
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));
+    toggle.classList.add("has-draft");
+    setStatus(message||"저장됨");
+    return payload;
+  }
+
+  function scheduleSave(){
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(()=>saveDraft("자동 저장됨"),450);
+  }
+
+  function normalizeTitles(root=document){
+    root.querySelectorAll(".title").forEach(title=>{
+      if(title.querySelector(".editable-title-text"))return;
+      const textNodes=[...title.childNodes].filter(node=>node.nodeType===Node.TEXT_NODE&&node.textContent.trim());
+      if(!textNodes.length)return;
+      const label=document.createElement("span");
+      label.className="editable-title-text";
+      label.textContent=textNodes.map(node=>node.textContent.trim()).join(" ");
+      title.insertBefore(label,title.querySelector(".actions"));
+      textNodes.forEach(node=>node.remove());
+    });
+  }
+
+  function editableNodes(){
+    return document.querySelectorAll([
+      ".hero-kicker",".hero-pin",".eyebrow","h1",".hero-lede",".hero-facts span",
+      ".date-title",".day-chip",".time",".editable-title-text",".desc",".footer-note",
+      ".food-card-name",".food-card-menu"
+    ].join(","));
+  }
+
+  function setNodeEditable(node,on){
+    if(on){
+      node.setAttribute("contenteditable","true");
+      node.setAttribute("spellcheck","false");
+      node.querySelectorAll(".icon,.actions,.place-link").forEach(child=>child.setAttribute("contenteditable","false"));
+    }else{
+      node.removeAttribute("contenteditable");
+      node.removeAttribute("spellcheck");
+      node.querySelectorAll("[contenteditable]").forEach(child=>child.removeAttribute("contenteditable"));
+    }
+  }
+
+  function openRestaurantDialog(){
+    restaurantForm.reset();
+    restaurantDialog.showModal();
+    setTimeout(()=>restaurantNameInput.focus(),50);
+  }
+
+  function addRestaurantCard(name,menu,mapUrl){
+    const grid=document.getElementById("foodGuideGrid");
+    const baseId=restaurantId(name);
+    let id=baseId;
+    let suffix=2;
+    while([...grid.querySelectorAll(".food-card")].some(card=>card.dataset.restaurantId===id))id=baseId+"-"+suffix++;
+    const card=createRestaurantCard({id,name,menu,mapUrl});
+    grid.appendChild(card);
+    refreshEditables();
+    saveDraft("맛집 추가됨");
+    card.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+
+  function addFoodCardDeleteTool(card){
+    if(card.querySelector(".food-card-edit-tools"))return;
+    const tools=document.createElement("div");
+    tools.className="food-card-edit-tools";
+    tools.innerHTML='<button class="food-card-delete" type="button">이 맛집 삭제</button>';
+    tools.querySelector("button").addEventListener("click",()=>{
+      if(!confirm("이 맛집을 목록에서 삭제할까요? 등록된 일정은 그대로 유지됩니다."))return;
+      card.remove();
+      saveDraft("맛집 삭제됨");
+    });
+    card.appendChild(tools);
+  }
+
+  function linkedSchedule(card){
+    return [...document.querySelectorAll(".item.restaurant-schedule")].find(item=>item.dataset.restaurantId===card.dataset.restaurantId)||null;
+  }
+
+  function dayLabel(day){
+    return {day1:"8/30",day2:"8/31",day3:"9/1"}[day]||"8/30";
+  }
+
+  function updateVisitState(card,visited){
+    card.classList.toggle("visited",visited);
+    card.dataset.visited=String(visited);
+    const item=linkedSchedule(card);
+    if(item){
+      item.classList.toggle("restaurant-completed",visited);
+      item.dataset.visited=String(visited);
+      const desc=item.querySelector(".desc");
+      const day=card.dataset.scheduledDay||card.querySelector(".food-day").value;
+      const start=card.dataset.scheduledStart||card.querySelector(".food-start").value;
+      if(desc)desc.textContent=visited?`${dayLabel(day)} ${start} 방문 완료.`:"맛집 리스트에서 등록한 식사 일정.";
+    }
+    const status=card.querySelector(".food-card-status");
+    if(card.dataset.scheduledDay){
+      const range=`${card.dataset.scheduledStart}–${card.dataset.scheduledEnd}`;
+      status.textContent=visited?`${dayLabel(card.dataset.scheduledDay)} ${range} 방문 완료`:`${dayLabel(card.dataset.scheduledDay)} ${range} 일정 등록`;
+    }else{
+      status.textContent=visited?"날짜와 시간을 선택해 주세요":"아직 일정 없음";
+    }
+  }
+
+  function sortTimeline(timeline){
+    const divider=timeline.querySelector(".ampm-divider");
+    const items=[...timeline.children].filter(node=>node.classList.contains("item"));
+    items.sort((a,b)=>startMinutes(a)-startMinutes(b));
+    divider?.remove();
+    items.forEach(item=>timeline.appendChild(item));
+    const firstAfternoon=items.find(item=>startMinutes(item)>=720);
+    if(firstAfternoon){
+      const line=divider||document.createElement("div");
+      line.className="ampm-divider";
+      line.innerHTML="<span>오후</span>";
+      timeline.insertBefore(line,firstAfternoon);
+    }
+  }
+
+  function scheduleRestaurant(card){
+    const name=card.querySelector(".food-card-name").textContent.trim()||"식당";
+    const day=card.querySelector(".food-day").value;
+    const start=card.querySelector(".food-start").value;
+    const end=card.querySelector(".food-end").value;
+    if(!start||!end){alert("시작 시간과 종료 시간을 입력해 주세요.");return false}
+    if(start>=end){alert("종료 시간은 시작 시간보다 늦게 입력해 주세요.");return false}
+    const panel=document.getElementById(day);
+    const timeline=panel.querySelector(".timeline");
+    let item=linkedSchedule(card);
+    if(!item){
+      item=document.createElement("div");
+      item.className="item food restaurant-schedule";
+      item.dataset.restaurantId=card.dataset.restaurantId;
+      item.innerHTML='<div class="time"></div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text"></span><span class="restaurant-complete-badge">✓ 완료</span><span class="actions"><a class="place-link map" target="_blank" rel="noopener">지도</a></span></div><p class="desc">맛집 리스트에서 등록한 식사 일정.</p><label class="meal-restaurant-field"><span>식당</span><input class="meal-restaurant-input" type="text" autocomplete="off"></label></div>';
+    }
+    item.classList.toggle("meal-lunch",Number(start.slice(0,2))>=11&&Number(start.slice(0,2))<16);
+    item.querySelector(".time").textContent=`${start} - ${end}`;
+    item.querySelector(".editable-title-text").textContent=name;
+    item.querySelector(".meal-restaurant-input").value=name;
+    item.querySelector(".meal-restaurant-input").setAttribute("aria-label",`${name} 식당 이름`);
+    const map=item.querySelector("a");
+    map.href=card.querySelector("a.place-link.map").href;
+    timeline.appendChild(item);
+    card.dataset.scheduledDay=day;
+    card.dataset.scheduledStart=start;
+    card.dataset.scheduledEnd=end;
+    updateVisitState(card,card.querySelector(".food-visited").checked);
+    sortTimeline(timeline);
+    refreshEditables();
+    saveDraft(card.classList.contains("visited")?"방문 완료됨":"맛집 일정 등록됨");
+    return true;
+  }
+
+  function addDeleteTool(item){
+    if(item.querySelector(".item-edit-tools"))return;
+    const tools=document.createElement("div");
+    tools.className="item-edit-tools";
+    const icon=item.querySelector(".icon");
+    const iconEditor=document.createElement("label");
+    iconEditor.className="item-icon-editor";
+    iconEditor.innerHTML='<span>아이콘</span><input class="item-icon-input" type="text" inputmode="text" maxlength="16" autocomplete="off">';
+    const iconInput=iconEditor.querySelector("input");
+    let savedIcon=icon?.textContent.trim()||"📌";
+    iconInput.value=savedIcon;
+    iconInput.setAttribute("aria-label",`${item.querySelector(".editable-title-text")?.textContent.trim()||"일정"} 아이콘`);
+    iconInput.addEventListener("input",()=>{
+      if(icon)icon.textContent=iconInput.value.trim();
+      scheduleSave();
+    });
+    iconInput.addEventListener("blur",()=>{
+      if(!iconInput.value.trim()){
+        iconInput.value=savedIcon;
+        if(icon)icon.textContent=savedIcon;
+      }else{
+        savedIcon=iconInput.value.trim();
+      }
+      saveDraft("아이콘 저장됨");
+    });
+    tools.appendChild(iconEditor);
+    const actions=document.createElement("div");
+    actions.className="item-edit-actions";
+    const remove=document.createElement("button");
+    remove.className="item-delete";
+    remove.type="button";
+    remove.textContent="이 일정 삭제";
+    remove.addEventListener("click",()=>{
+      if(!confirm("이 일정을 삭제할까요?"))return;
+      if(item.classList.contains("restaurant-schedule")){
+        const card=[...document.querySelectorAll(".food-card")].find(node=>node.dataset.restaurantId===item.dataset.restaurantId);
+        if(card){
+          delete card.dataset.scheduledDay;
+          delete card.dataset.scheduledStart;
+          delete card.dataset.scheduledEnd;
+          card.querySelector(".food-card-status").textContent="아직 일정 없음";
+        }
+      }
+      item.remove();
+      saveDraft("일정 삭제됨");
+    });
+    actions.appendChild(remove);
+    tools.appendChild(actions);
+    item.appendChild(tools);
+  }
+
+  function refreshEditables(){
+    editableNodes().forEach(node=>setNodeEditable(node,editing));
+    document.querySelectorAll(".item").forEach(item=>{
+      if(editing)addDeleteTool(item);
+      else item.querySelector(".item-edit-tools")?.remove();
+    });
+    document.querySelectorAll(".food-card").forEach(card=>{
+      if(editing)addFoodCardDeleteTool(card);
+      else card.querySelector(".food-card-edit-tools")?.remove();
+    });
+  }
+
+  function setEditing(on){
+    if(editing===on)return;
+    editing=on;
+    if(!on)saveDraft("저장됨");
+    document.body.classList.toggle("editing",on);
+    dock.hidden=!on;
+    toggle.hidden=on;
+    refreshEditables();
+    if(on)setStatus("수정 가능");
+  }
+
+  function currentPanel(showWarning=false){
+    const selected=document.querySelector('input[name="tripday"]:checked')?.id||"tab1";
+    const map={tab1:"#day1",tab2:"#day2",tab3:"#day3"};
+    if(!map[selected]){
+      if(showWarning)alert("일정을 추가하거나 정렬할 날짜 탭을 먼저 선택해 주세요.");
+      return null;
+    }
+    return document.querySelector(map[selected]);
+  }
+
+  function addSchedule(){
+    const panel=currentPanel(true);
+    if(!panel)return;
+    const type=document.getElementById("itemKind").value;
+    const config={
+      normal:{className:"item",icon:"📌"},
+      major:{className:"item major",icon:"⭐"},
+      food:{className:"item food",icon:"🍽️"},
+      move:{className:"item move",icon:"🚗"},
+      cafe:{className:"item cafe",icon:"☕"}
+    }[type];
+    const item=document.createElement("div");
+    item.className=config.className;
+    item.innerHTML='<div class="time">00:00 - 00:00</div><div><div class="title"><span class="icon">'+config.icon+'</span><span class="editable-title-text">새 일정</span></div><p class="desc">설명을 입력하세요.</p></div>';
+    panel.querySelector(".timeline").appendChild(item);
+    if(type==="food")ensureMealRestaurantFields();
+    refreshEditables();
+    saveDraft("새 일정 추가됨");
+    item.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+
+  function startMinutes(item){
+    const match=item.querySelector(".time")?.textContent.match(/(\d{1,2}):(\d{2})/);
+    return match?Number(match[1])*60+Number(match[2]):9999;
+  }
+
+  function sortCurrentDay(){
+    const panel=currentPanel(true);
+    if(!panel)return;
+    sortTimeline(panel.querySelector(".timeline"));
+    saveDraft("시간순 정렬됨");
+  }
+
+  function downloadDraft(){
+    const payload=saveDraft("다운로드 준비됨");
+    const link=document.createElement("a");
+    link.href="data:application/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(payload,null,2));
+    link.download="byeonsan-trip-draft.json";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  async function copyDraft(){
+    const payload=saveDraft("복사 준비됨");
+    const text=JSON.stringify(payload);
+    try{
+      await navigator.clipboard.writeText(text);
+      setStatus("편집본 복사됨");
+    }catch(error){
+      const area=document.createElement("textarea");
+      area.value=text;
+      area.style.position="fixed";
+      area.style.opacity="0";
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      area.remove();
+      setStatus("편집본 복사됨");
+    }
+  }
+
+  function importDraft(file){
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const data=JSON.parse(reader.result);
+        if(!validDraft(data))throw new Error("invalid");
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+        location.reload();
+      }catch(error){
+        alert("올바른 변산 여행 편집본 파일이 아닙니다.");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  const restored=restoreDraft();
+  upgradeDraftMarkup();
+  normalizeTitles();
+  toggle.classList.toggle("has-draft",restored);
+  toggle.addEventListener("click",()=>setEditing(true));
+  document.getElementById("closeEditorBtn").addEventListener("click",()=>setEditing(false));
+  document.getElementById("addItemBtn").addEventListener("click",addSchedule);
+  document.getElementById("sortItemsBtn").addEventListener("click",sortCurrentDay);
+  document.getElementById("saveDraftBtn").addEventListener("click",()=>saveDraft("저장됨"));
+  document.getElementById("downloadDraftBtn").addEventListener("click",downloadDraft);
+  document.getElementById("copyDraftBtn").addEventListener("click",copyDraft);
+  document.getElementById("importDraftBtn").addEventListener("click",()=>fileInput.click());
+  document.getElementById("resetDraftBtn").addEventListener("click",()=>{
+    if(!confirm("이 기기에 저장된 편집 내용을 지우고 공개본으로 돌아갈까요?"))return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
+  document.getElementById("cancelRestaurantBtn").addEventListener("click",()=>restaurantDialog.close());
+  restaurantForm.addEventListener("submit",event=>{
+    event.preventDefault();
+    const name=restaurantNameInput.value.trim();
+    if(!name)return;
+    addRestaurantCard(name,restaurantMenuInput.value.trim(),restaurantMapInput.value.trim());
+    restaurantDialog.close();
+  });
+  fileInput.addEventListener("change",()=>{
+    if(fileInput.files&&fileInput.files[0])importDraft(fileInput.files[0]);
+  });
+  document.addEventListener("input",event=>{
+    if(editing&&event.target.closest('[contenteditable="true"]'))scheduleSave();
+    if(event.target.matches(".meal-restaurant-input")){
+      const item=event.target.closest(".restaurant-schedule");
+      if(item)item.querySelector(".editable-title-text").textContent=event.target.value.trim()||"식사";
+      scheduleSave();
+    }
+  });
+  document.addEventListener("change",event=>{
+    if(event.target.matches(".food-day,.food-start,.food-end"))scheduleSave();
+    if(event.target.matches(".food-visited")){
+      const card=event.target.closest(".food-card");
+      if(event.target.checked){
+        if(!scheduleRestaurant(card))event.target.checked=false;
+      }else{
+        updateVisitState(card,false);
+        saveDraft("완료 표시 해제됨");
+      }
+    }
+  });
+  document.addEventListener("click",event=>{
+    if(event.target.closest(".food-guide-add"))openRestaurantDialog();
+    const scheduleButton=event.target.closest(".food-schedule-btn");
+    if(scheduleButton)scheduleRestaurant(scheduleButton.closest(".food-card"));
+  });
+  document.addEventListener("click",event=>{
+    if(editing&&event.target.closest("a"))event.preventDefault();
+  },true);
+  window.addEventListener("beforeunload",()=>{if(editing)saveDraft()});
 })();
 </script>
 </body>
