@@ -227,6 +227,63 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
   .hero-lede{display:none}
   .hero-facts span{padding:5px 8px}
 }
+
+/* Local itinerary editor */
+.edit-toggle{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:44px;padding:10px 15px;border:1px solid rgba(255,255,255,.8);border-radius:999px;
+  background:linear-gradient(135deg,#20c7bc,#0fa49b);color:#fff;
+  font:900 12px/1 inherit;box-shadow:0 14px 32px rgba(22,77,76,.25);cursor:pointer
+}
+.edit-toggle.has-draft:after{
+  content:"";width:7px;height:7px;border-radius:50%;background:#ffe28b;box-shadow:0 0 0 2px rgba(255,255,255,.5)
+}
+.editor-dock{
+  position:fixed;left:50%;bottom:12px;z-index:100;transform:translateX(-50%);
+  width:min(760px,calc(100vw - 18px));padding:14px;border-radius:22px;
+  background:rgba(248,251,250,.97);border:1px solid rgba(255,255,255,.9);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 22px 52px rgba(21,47,54,.26)
+}
+.editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.editor-title{margin:0;font-size:15px;font-weight:950;letter-spacing:-.03em}
+.editor-help{margin:3px 0 0;color:#6d7b80;font-size:10px;line-height:1.5}
+.editor-status{flex:0 0 auto;color:#14847c;font-size:10px;font-weight:900}
+.editor-controls{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.editor-select,.editor-btn{
+  min-height:36px;border-radius:11px;border:1px solid #d8e3e1;background:#fff;color:#405459;
+  font:850 11px/1 inherit
+}
+.editor-select{padding:0 30px 0 10px}
+.editor-btn{padding:0 11px;cursor:pointer}
+.editor-btn.primary{background:#16b8ad;border-color:#16b8ad;color:#fff}
+.editor-btn.warn{background:#fff8ed;border-color:#efddc0;color:#8a653c}
+.editor-file{display:none}
+body.editing{padding-bottom:150px}
+body.editing [contenteditable="true"]{
+  outline:1.5px dashed rgba(13,143,135,.48);outline-offset:2px;border-radius:5px;cursor:text
+}
+body.editing .item{position:relative}
+.item-edit-tools{display:none}
+body.editing .item-edit-tools{
+  grid-column:1/-1;display:flex;justify-content:flex-end;margin-top:3px;padding-top:6px;
+  border-top:1px dashed rgba(90,111,115,.16)
+}
+.item-delete{
+  min-height:28px;padding:0 9px;border-radius:9px;border:1px solid #efd5d2;
+  background:#fff7f6;color:#a6534d;font:850 10px/1 inherit;cursor:pointer
+}
+body.editing a{cursor:not-allowed}
+@media (max-width:640px){
+  .edit-toggle{right:11px;bottom:11px}
+  .editor-dock{bottom:7px;padding:12px;border-radius:19px}
+  .editor-head{margin-bottom:8px}
+  .editor-controls{gap:5px}
+  .editor-select,.editor-btn{min-height:34px;font-size:10px}
+  body.editing{padding-bottom:205px}
+}
+@media print{.edit-toggle,.editor-dock{display:none!important}}
 </style>
 </head>
 <body>
@@ -311,5 +368,275 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
     </section>
   </div>
 </div>
+<button class="edit-toggle" id="editToggle" type="button" aria-controls="editorDock">✏️ 일정 편집</button>
+<section class="editor-dock" id="editorDock" hidden aria-label="일정 편집 도구">
+  <div class="editor-head">
+    <div>
+      <h2 class="editor-title">내 일정 편집</h2>
+      <p class="editor-help">수정 내용은 이 기기에 자동 저장됩니다. 최종 정리할 때 ‘편집본 다운로드’ 파일을 보내주세요.</p>
+    </div>
+    <span class="editor-status" id="editorStatus">준비됨</span>
+  </div>
+  <div class="editor-controls">
+    <select class="editor-select" id="itemKind" aria-label="추가할 일정 종류">
+      <option value="normal">일반 일정</option>
+      <option value="major">핵심 일정</option>
+      <option value="food">식사</option>
+      <option value="move">이동</option>
+      <option value="cafe">카페</option>
+    </select>
+    <button class="editor-btn primary" id="addItemBtn" type="button">+ 현재 날짜에 추가</button>
+    <button class="editor-btn" id="sortItemsBtn" type="button">시간순 정렬</button>
+    <button class="editor-btn" id="saveDraftBtn" type="button">저장</button>
+    <button class="editor-btn" id="downloadDraftBtn" type="button">편집본 다운로드</button>
+    <button class="editor-btn" id="copyDraftBtn" type="button">편집본 복사</button>
+    <button class="editor-btn" id="importDraftBtn" type="button">불러오기</button>
+    <button class="editor-btn warn" id="resetDraftBtn" type="button">공개본 복원</button>
+    <button class="editor-btn" id="closeEditorBtn" type="button">편집 끝</button>
+  </div>
+  <input class="editor-file" id="draftFileInput" type="file" accept=".json,application/json">
+</section>
+<script>
+(function(){
+  const STORAGE_KEY="byeonsan-trip-draft-v1";
+  const wrap=()=>document.querySelector(".wrap");
+  const toggle=document.getElementById("editToggle");
+  const dock=document.getElementById("editorDock");
+  const status=document.getElementById("editorStatus");
+  const fileInput=document.getElementById("draftFileInput");
+  let editing=false;
+  let saveTimer=0;
+
+  function validDraft(data){
+    return data&&typeof data.html==="string"&&data.html.includes('class="panels"')&&data.html.includes('id="day1"');
+  }
+
+  function restoreDraft(){
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw)return false;
+    try{
+      const data=JSON.parse(raw);
+      if(!validDraft(data))return false;
+      wrap().innerHTML=data.html;
+      return true;
+    }catch(error){
+      return false;
+    }
+  }
+
+  function setStatus(message){
+    status.textContent=message;
+    clearTimeout(setStatus.timer);
+    setStatus.timer=setTimeout(()=>{status.textContent=editing?"자동 저장 중":"준비됨"},1800);
+  }
+
+  function cleanClone(){
+    const clone=wrap().cloneNode(true);
+    clone.querySelectorAll(".item-edit-tools").forEach(node=>node.remove());
+    clone.querySelectorAll("[contenteditable]").forEach(node=>node.removeAttribute("contenteditable"));
+    clone.querySelectorAll("[spellcheck]").forEach(node=>node.removeAttribute("spellcheck"));
+    return clone;
+  }
+
+  function saveDraft(message){
+    const payload={
+      version:1,
+      updatedAt:new Date().toISOString(),
+      html:cleanClone().innerHTML
+    };
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));
+    toggle.classList.add("has-draft");
+    setStatus(message||"저장됨");
+    return payload;
+  }
+
+  function scheduleSave(){
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(()=>saveDraft("자동 저장됨"),450);
+  }
+
+  function normalizeTitles(root=document){
+    root.querySelectorAll(".title").forEach(title=>{
+      if(title.querySelector(".editable-title-text"))return;
+      const textNodes=[...title.childNodes].filter(node=>node.nodeType===Node.TEXT_NODE&&node.textContent.trim());
+      if(!textNodes.length)return;
+      const label=document.createElement("span");
+      label.className="editable-title-text";
+      label.textContent=textNodes.map(node=>node.textContent.trim()).join(" ");
+      title.insertBefore(label,title.querySelector(".actions"));
+      textNodes.forEach(node=>node.remove());
+    });
+  }
+
+  function editableNodes(){
+    return document.querySelectorAll([
+      ".hero-kicker",".hero-pin",".eyebrow","h1",".hero-lede",".hero-facts span",
+      ".date-title",".day-chip",".time",".editable-title-text",".desc",".footer-note",
+      ".restaurant-name strong",".main-menu",".restaurant-picker summary span:first-child"
+    ].join(","));
+  }
+
+  function setNodeEditable(node,on){
+    if(on){
+      node.setAttribute("contenteditable","true");
+      node.setAttribute("spellcheck","false");
+      node.querySelectorAll(".icon,.actions,.place-link").forEach(child=>child.setAttribute("contenteditable","false"));
+    }else{
+      node.removeAttribute("contenteditable");
+      node.removeAttribute("spellcheck");
+      node.querySelectorAll("[contenteditable]").forEach(child=>child.removeAttribute("contenteditable"));
+    }
+  }
+
+  function addDeleteTool(item){
+    if(item.querySelector(".item-edit-tools"))return;
+    const tools=document.createElement("div");
+    tools.className="item-edit-tools";
+    tools.innerHTML='<button class="item-delete" type="button">이 일정 삭제</button>';
+    tools.querySelector("button").addEventListener("click",()=>{
+      if(!confirm("이 일정을 삭제할까요?"))return;
+      item.remove();
+      saveDraft("일정 삭제됨");
+    });
+    item.appendChild(tools);
+  }
+
+  function refreshEditables(){
+    editableNodes().forEach(node=>setNodeEditable(node,editing));
+    document.querySelectorAll(".item").forEach(item=>{
+      if(editing)addDeleteTool(item);
+      else item.querySelector(".item-edit-tools")?.remove();
+    });
+  }
+
+  function setEditing(on){
+    if(editing===on)return;
+    editing=on;
+    if(!on)saveDraft("저장됨");
+    document.body.classList.toggle("editing",on);
+    dock.hidden=!on;
+    toggle.hidden=on;
+    refreshEditables();
+    if(on)setStatus("수정 가능");
+  }
+
+  function currentPanel(){
+    const selected=document.querySelector('input[name="tripday"]:checked')?.id||"tab1";
+    const map={tab1:"#day1",tab2:"#day2",tab3:"#day3"};
+    return document.querySelector(map[selected]);
+  }
+
+  function addSchedule(){
+    const type=document.getElementById("itemKind").value;
+    const config={
+      normal:{className:"item",icon:"📌"},
+      major:{className:"item major",icon:"⭐"},
+      food:{className:"item food",icon:"🍽️"},
+      move:{className:"item move",icon:"🚗"},
+      cafe:{className:"item cafe",icon:"☕"}
+    }[type];
+    const item=document.createElement("div");
+    item.className=config.className;
+    item.innerHTML='<div class="time">00:00 - 00:00</div><div><div class="title"><span class="icon">'+config.icon+'</span><span class="editable-title-text">새 일정</span></div><p class="desc">설명을 입력하세요.</p></div>';
+    currentPanel().querySelector(".timeline").appendChild(item);
+    refreshEditables();
+    saveDraft("새 일정 추가됨");
+    item.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+
+  function startMinutes(item){
+    const match=item.querySelector(".time")?.textContent.match(/(\d{1,2}):(\d{2})/);
+    return match?Number(match[1])*60+Number(match[2]):9999;
+  }
+
+  function sortCurrentDay(){
+    const timeline=currentPanel().querySelector(".timeline");
+    const divider=timeline.querySelector(".ampm-divider");
+    const items=[...timeline.children].filter(node=>node.classList.contains("item"));
+    items.sort((a,b)=>startMinutes(a)-startMinutes(b));
+    divider?.remove();
+    items.forEach(item=>timeline.appendChild(item));
+    const firstAfternoon=items.find(item=>startMinutes(item)>=720);
+    if(firstAfternoon){
+      const line=divider||document.createElement("div");
+      line.className="ampm-divider";
+      line.innerHTML="<span>오후</span>";
+      timeline.insertBefore(line,firstAfternoon);
+    }
+    saveDraft("시간순 정렬됨");
+  }
+
+  function downloadDraft(){
+    const payload=saveDraft("다운로드 준비됨");
+    const link=document.createElement("a");
+    link.href="data:application/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(payload,null,2));
+    link.download="byeonsan-trip-draft.json";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  async function copyDraft(){
+    const payload=saveDraft("복사 준비됨");
+    const text=JSON.stringify(payload);
+    try{
+      await navigator.clipboard.writeText(text);
+      setStatus("편집본 복사됨");
+    }catch(error){
+      const area=document.createElement("textarea");
+      area.value=text;
+      area.style.position="fixed";
+      area.style.opacity="0";
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand("copy");
+      area.remove();
+      setStatus("편집본 복사됨");
+    }
+  }
+
+  function importDraft(file){
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const data=JSON.parse(reader.result);
+        if(!validDraft(data))throw new Error("invalid");
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+        location.reload();
+      }catch(error){
+        alert("올바른 변산 여행 편집본 파일이 아닙니다.");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  const restored=restoreDraft();
+  normalizeTitles();
+  toggle.classList.toggle("has-draft",restored);
+  toggle.addEventListener("click",()=>setEditing(true));
+  document.getElementById("closeEditorBtn").addEventListener("click",()=>setEditing(false));
+  document.getElementById("addItemBtn").addEventListener("click",addSchedule);
+  document.getElementById("sortItemsBtn").addEventListener("click",sortCurrentDay);
+  document.getElementById("saveDraftBtn").addEventListener("click",()=>saveDraft("저장됨"));
+  document.getElementById("downloadDraftBtn").addEventListener("click",downloadDraft);
+  document.getElementById("copyDraftBtn").addEventListener("click",copyDraft);
+  document.getElementById("importDraftBtn").addEventListener("click",()=>fileInput.click());
+  document.getElementById("resetDraftBtn").addEventListener("click",()=>{
+    if(!confirm("이 기기에 저장된 편집 내용을 지우고 공개본으로 돌아갈까요?"))return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
+  fileInput.addEventListener("change",()=>{
+    if(fileInput.files&&fileInput.files[0])importDraft(fileInput.files[0]);
+  });
+  document.addEventListener("input",event=>{
+    if(editing&&event.target.closest('[contenteditable="true"]'))scheduleSave();
+  });
+  document.addEventListener("click",event=>{
+    if(editing&&event.target.closest("a"))event.preventDefault();
+  },true);
+  window.addEventListener("beforeunload",()=>{if(editing)saveDraft()});
+})();
+</script>
 </body>
 </html>
