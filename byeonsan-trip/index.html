@@ -118,6 +118,30 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
 .place-link.search{background:#eef7f2;border-color:#d3e6dc;color:#37654f}
 .place-link.map{background:#edf3fb;border-color:#d7e3f7;color:#3d5d8f}
 .place-link:active{transform:scale(.98)}
+.restaurant-picker{margin-top:10px}
+.restaurant-picker summary{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  list-style:none;cursor:pointer;user-select:none;
+  width:100%;padding:9px 11px;border:1px solid #edc99f;border-radius:13px;
+  background:#fff1df;color:#87552e;font-size:12px;font-weight:900
+}
+.restaurant-picker summary::-webkit-details-marker{display:none}
+.picker-chevron{font-size:15px;line-height:1;transition:transform .2s ease}
+.restaurant-picker[open] .picker-chevron{transform:rotate(180deg)}
+.restaurant-list{
+  display:grid;gap:8px;margin-top:8px;padding-top:8px;border-top:1px dashed #ebcfaf
+}
+.restaurant-option{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  min-width:0;padding:9px 10px;border:1px solid #f1ddc7;border-radius:13px;background:rgba(255,255,255,.74)
+}
+.restaurant-name{display:flex;align-items:center;gap:7px;min-width:0;font-size:13px;color:#6f4b2e}
+.restaurant-name strong{overflow-wrap:anywhere}
+.restaurant-rank{
+  flex:0 0 auto;padding:3px 6px;border-radius:999px;background:#ffe4c7;
+  color:#9a6031;font-size:10px;font-weight:900
+}
+.restaurant-actions{display:flex;gap:5px;flex:0 0 auto}
 @media (max-width:640px){
   .wrap{padding:14px 12px 28px}
   .hero{padding:24px 16px 18px;border-radius:24px}
@@ -128,6 +152,10 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
   .item{grid-template-columns:62px 1fr;gap:10px}
   .title{font-size:15px}
   .desc{font-size:13px}
+}
+@media (max-width:360px){
+  .restaurant-option{align-items:flex-start;flex-direction:column;gap:7px}
+  .restaurant-actions{align-self:flex-end}
 }
 </style>
 </head>
@@ -162,7 +190,7 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
       <div class="timeline">
         <div class="item"><div class="time">08:00</div><div><div class="title"><span class="icon">🚗</span>집에서 출발</div><p class="desc">휴게소 1회 포함해서 여유 있게 이동.</p></div></div>
         <div class="ampm-divider"><span>오후</span></div>
-        <div class="item food"><div class="time">12:00</div><div><div class="title"><span class="icon">🍽️</span>도착 후 점심</div><p class="desc">부안/변산 도착 후 점심.</p></div></div>
+        <div class="item food"><div class="time">12:00</div><div><div class="title"><span class="icon">🍽️</span>도착 후 점심</div><p class="desc">부안/변산 도착 후 점심.</p><details class="restaurant-picker"><summary><span>추천 식당 3곳 보기</span><span class="picker-chevron" aria-hidden="true">⌄</span></summary><div class="restaurant-list"><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 1</span><strong>백합식당</strong></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+백합식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20백합식당" target="_blank" rel="noopener">지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 2</span><strong>바다마을식당</strong></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+바다마을식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20바다마을식당" target="_blank" rel="noopener">지도</a></div></div><div class="restaurant-option"><div class="restaurant-name"><span class="restaurant-rank">추천 3</span><strong>군산식당</strong></div><div class="restaurant-actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+군산식당" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20군산식당" target="_blank" rel="noopener">지도</a></div></div></div></details></div></div>
         <div class="item"><div class="time">13:10</div><div><div class="title"><span class="icon">🌊</span>적벽강 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+적벽강" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20적벽강" target="_blank" rel="noopener">지도</a></span></div><p class="desc">20~30분 정도 가볍게 바다와 절벽 구경.</p></div></div>
         <div class="item"><div class="time">13:45</div><div><div class="title"><span class="icon">☕</span>카페909 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=부안+카페909" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/부안%20카페909" target="_blank" rel="noopener">지도</a></span></div><p class="desc">바다 보면서 쉬고 아이도 잠깐 놀기.</p></div></div>
         <div class="item"><div class="time">14:40</div><div><div class="title"><span class="icon">🚙</span>소노벨 변산으로 이동 <span class="actions"><a class="place-link search" href="https://search.naver.com/search.naver?query=소노벨+변산" target="_blank" rel="noopener">네이버</a><a class="place-link map" href="https://map.naver.com/p/search/소노벨%20변산" target="_blank" rel="noopener">지도</a></span></div><p class="desc">15시 체크인 맞춰 이동.</p></div></div>
