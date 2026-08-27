@@ -53,17 +53,17 @@ body{
 }
 .hero-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:1}
 .hero-kicker{
-  font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;
+  font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;
   text-shadow:0 2px 14px rgba(0,0,0,.28)
 }
 .hero-pin{
   display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border-radius:999px;
   background:rgba(238,248,248,.18);border:1px solid rgba(255,255,255,.24);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  font-size:11px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.10)
+  font-size:12px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.10)
 }
 .hero-copy{margin-top:auto;position:relative;z-index:1;max-width:560px}
-.eyebrow{margin:0 0 8px;font-size:13px;font-weight:800;color:#c9f4ef;letter-spacing:-.02em}
+.eyebrow{margin:0 0 8px;font-size:14px;font-weight:800;color:#c9f4ef;letter-spacing:-.02em}
 h1{
   margin:0;font-size:clamp(40px,8vw,56px);line-height:.98;letter-spacing:-.065em;
   color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.28)
@@ -71,14 +71,14 @@ h1{
 h1 span{color:#5ee0d6}
 .hero-lede{
   margin:11px 0 0;max-width:430px;color:rgba(255,255,255,.84);
-  font-size:13px;line-height:1.6;font-weight:600;text-shadow:0 2px 14px rgba(0,0,0,.26)
+  font-size:14px;line-height:1.6;font-weight:650;text-shadow:0 2px 14px rgba(0,0,0,.26)
 }
 .hero-facts{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;padding-bottom:2px;position:relative;z-index:1}
 .hero-facts span{
   display:inline-flex;align-items:center;min-height:30px;padding:6px 10px;border-radius:999px;
   background:rgba(245,251,251,.16);border:1px solid rgba(255,255,255,.22);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  font-size:11px;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,.10)
+  font-size:12px;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,.10)
 }
 input[type=radio]{position:absolute;opacity:0;pointer-events:none}
 .tabs{
@@ -92,12 +92,12 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
 .tabs label{
   display:flex;align-items:center;justify-content:center;min-height:45px;
   border:0;border-radius:15px;background:transparent;color:#6a797d;
-  font-size:13px;font-weight:900;cursor:pointer;user-select:none;transition:.2s ease
+  font-size:14px;font-weight:900;cursor:pointer;user-select:none;transition:.2s ease
 }
 .tabs label[for=tab4]{
   gap:5px;background:#fff5e7;border:1px solid #f0d8b5;color:#8a5b2c
 }
-.tabs label[for=tab4]::before{content:"🍴";font-size:12px}
+.tabs label[for=tab4]::before{content:"🍴";font-size:14px}
 #tab1:checked ~ .tabs label[for=tab1],
 #tab2:checked ~ .tabs label[for=tab2],
 #tab3:checked ~ .tabs label[for=tab3]{
@@ -118,15 +118,15 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
 #tab3:checked ~ .panels #day3,
 #tab4:checked ~ .panels #restaurants{display:block}
 .day-head{display:flex;justify-content:space-between;align-items:center;gap:9px;margin:0 3px 14px;flex-wrap:wrap}
-.date-title{font-size:24px;font-weight:950;letter-spacing:-.055em;margin:0}
+.date-title{font-size:26px;font-weight:950;letter-spacing:-.055em;margin:0}
 .day-chip{
   display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;
-  font-size:11px;font-weight:900;background:var(--teal-soft);color:#39716d;border:1px solid #cfebe8
+  font-size:12px;font-weight:900;background:var(--teal-soft);color:#39716d;border:1px solid #cfebe8
 }
 .timeline{display:grid;gap:10px}
 .ampm-divider{
   display:flex;align-items:center;gap:10px;margin:3px 5px 1px;
-  color:#96a2a5;font-size:9px;font-weight:900;letter-spacing:.18em
+  color:#879598;font-size:10px;font-weight:900;letter-spacing:.16em
 }
 .ampm-divider:before,.ampm-divider:after{content:"";height:1px;flex:1;background:#dfe7e6}
 .ampm-divider span{white-space:nowrap}
@@ -149,7 +149,7 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
   width:100%;min-width:0;max-width:100%;overflow:hidden;
   padding:7px 3px;border:2px solid #c5d1cf;border-radius:12px;text-align:center;
   background:#fff;color:#52676c;
-  font-size:11.5px;line-height:1.2;font-weight:950;font-variant-numeric:tabular-nums;
+  font-size:12.5px;line-height:1.2;font-weight:950;font-variant-numeric:tabular-nums;
   white-space:nowrap;overflow-wrap:normal;word-break:keep-all;letter-spacing:-.055em
 }
 .item.food .time{background:#fff;color:#52676c;border-color:#c5d1cf}
@@ -163,74 +163,68 @@ input[type=radio]{position:absolute;opacity:0;pointer-events:none}
   border-color:#eee1c9;box-shadow:0 8px 22px rgba(151,125,86,.07)
 }
 .item.cafe .time{background:#fff;color:#52676c;border-color:#c5d1cf}
-.item.move .time,.item.minor .time{padding:5px 4px;background:#fff;color:#52676c;border-color:#c5d1cf;font-size:11px}
+.item.move .time,.item.minor .time{padding:5px 4px;background:#fff;color:#52676c;border-color:#c5d1cf;font-size:12px}
 .title{
   display:flex;align-items:center;gap:6px;flex-wrap:wrap;
-  margin-bottom:4px;color:var(--ink);font-size:15px;font-weight:900;letter-spacing:-.025em
+  margin-bottom:4px;color:var(--ink);font-size:16px;font-weight:900;letter-spacing:-.025em
 }
-.item:not(.move):not(.minor) .title{color:var(--ink);font-size:15px;font-weight:900}
-.item.move .title,.item.minor .title{margin-bottom:0;color:#667377;font-size:13px;font-weight:800}
-.icon{font-size:15px}
-.item.move .icon,.item.minor .icon{font-size:13px}
-.desc{margin:0;color:var(--sub);font-size:12px;line-height:1.55}
-.item:not(.move):not(.minor) .desc{color:var(--sub);font-size:12px;font-weight:500}
-.footer-note{
-  margin-top:12px;padding:12px 13px;border-radius:16px;
-  background:#e7f5f3;border:1px solid #cde7e3;color:#47716d;font-size:12px;line-height:1.55
-}
+.item:not(.move):not(.minor) .title{color:var(--ink);font-size:16px;font-weight:900}
+.item.move .title,.item.minor .title{margin-bottom:0;color:#5f6d71;font-size:14px;font-weight:850}
+.icon{font-size:16px}
+.item.move .icon,.item.minor .icon{font-size:14px}
+.desc{margin:0;color:var(--sub);font-size:13px;line-height:1.6}
+.item:not(.move):not(.minor) .desc{color:var(--sub);font-size:13px;font-weight:550}
 .actions{display:inline-flex;gap:5px;flex-wrap:wrap;vertical-align:middle}
 .place-link{
   display:inline-flex;align-items:center;justify-content:center;
   padding:5px 8px;border-radius:999px;border:1px solid transparent;
-  font-size:10px;font-weight:900;text-decoration:none;white-space:nowrap;transition:.18s ease
+  font-size:11px;font-weight:900;text-decoration:none;white-space:nowrap;transition:.18s ease
 }
 .place-link.search{background:#e4f6f2;border-color:#cde8e1;color:#237264}
 .place-link.map{background:#e8eff4;border-color:#d4e0e7;color:#3f6071}
 .item.move .place-link,.item.minor .place-link{padding:4px 7px;opacity:.76}
 .place-link:active{transform:scale(.97)}
-.meal-restaurant-field{
-  display:flex;align-items:center;gap:7px;margin-top:8px;color:#746638;
-  font-size:10px;font-weight:900
-}
-.meal-restaurant-field>span{flex:0 0 auto}
-.meal-restaurant-input{
-  width:100%;min-width:0;height:34px;padding:0 10px;border:1px solid #e3ce86;border-radius:10px;
-  background:rgba(255,255,255,.9);color:var(--ink);font-family:inherit;font-size:12px;font-weight:800;line-height:1;outline:none
-}
-.meal-restaurant-input:focus{border-color:#c79d2e;box-shadow:0 0 0 3px rgba(199,157,46,.12)}
-.food-guide-intro{margin:-3px 3px 11px;color:var(--sub);font-size:11px;line-height:1.5}
+.food-guide-intro{margin:-3px 3px 11px;color:var(--sub);font-size:13px;line-height:1.55}
 .food-guide-head-actions{display:flex;align-items:center;gap:7px}
 .food-guide-add{
   display:none;min-height:34px;padding:0 11px;border:1px solid #16b8ad;border-radius:11px;
-  background:#16b8ad;color:#fff;font:900 10px/1 inherit;cursor:pointer
+  background:#16b8ad;color:#fff;font:900 11px/1 inherit;cursor:pointer
 }
 body.editing .food-guide-add{display:inline-flex;align-items:center}
 .food-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .food-card{
   position:relative;padding:10px 11px;border:1px solid rgba(194,145,97,.24);border-radius:14px;
-  background:linear-gradient(145deg,#fffaf0,#fff);box-shadow:0 5px 14px rgba(57,70,75,.06)
+  background:linear-gradient(145deg,#fff7cf,#fffdf2);box-shadow:0 5px 14px rgba(57,70,75,.06)
 }
-.food-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.food-card .place-link{padding:4px 7px;font-size:9px}
+.food-card.meal-lunch{background:linear-gradient(145deg,#fff7cf,#fffdf2);border-color:#e7d486}
+.food-card.meal-dinner{background:linear-gradient(145deg,#ffe8dc,#fff8f4);border-color:#e9bda7}
+.food-card-top{
+  position:relative;display:flex;align-items:center;gap:8px;min-height:48px;padding:2px 28px 2px 2px;
+  border-radius:10px;color:inherit;text-decoration:none;cursor:pointer;outline:none
+}
+.food-card-top::after{content:"↗";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:#9a6f3f;font-size:18px;font-weight:950}
+.food-card.meal-dinner .food-card-top::after{color:#aa5e42}
+.food-card-top:hover{background:rgba(255,255,255,.38)}
+.food-card-top:focus-visible{box-shadow:0 0 0 3px rgba(24,184,173,.2)}
 .food-card-copy{min-width:0}
 .food-card-title-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.food-card-name{font-size:14px;font-weight:950;letter-spacing:-.025em;overflow-wrap:anywhere}
-.food-card-menu{margin:2px 0 0;color:#8c745d;font-size:10.5px;line-height:1.4;overflow-wrap:anywhere}
+.food-card-name{font-size:16px;font-weight:950;letter-spacing:-.025em;overflow-wrap:anywhere}
+.food-card-menu{margin:3px 0 0;color:#796652;font-size:12.5px;line-height:1.45;overflow-wrap:anywhere}
 .food-meal-tag{
   display:inline-flex;padding:3px 6px;border-radius:999px;background:#fff0c7;color:#8c681e;
-  font-size:8px;font-weight:950;line-height:1;white-space:nowrap
+  font-size:10px;font-weight:950;line-height:1;white-space:nowrap
 }
 .food-meal-tag.dinner{background:#ffe6dc;color:#a35235}
 .food-complete-badge{
   display:none;padding:3px 6px;border-radius:999px;background:#dff4ef;color:#16776e;
-  font-size:8px;font-weight:950;white-space:nowrap
+  font-size:10px;font-weight:950;white-space:nowrap
 }
 .food-card.visited .food-card-name{text-decoration:line-through;text-decoration-thickness:1.5px;color:#80908e}
 .food-card.visited .food-complete-badge{display:inline-flex}
 .food-card-plan{margin-top:7px;border-top:1px dashed #eadcc9}
 .food-card-plan summary{
   display:flex;align-items:center;justify-content:space-between;min-height:27px;
-  color:#7e6a57;font-size:9px;font-weight:950;cursor:pointer;list-style:none
+  color:#6d5d4e;font-size:11px;font-weight:950;cursor:pointer;list-style:none
 }
 .food-card-plan summary::-webkit-details-marker{display:none}
 .food-card-plan summary::after{content:"＋";color:#b67b3d;font-size:13px}
@@ -239,19 +233,19 @@ body.editing .food-guide-add{display:inline-flex;align-items:center}
   display:grid;grid-template-columns:minmax(84px,1fr) 78px 78px auto;gap:5px;
   align-items:end;padding-top:7px
 }
-.food-schedule-field{display:grid;gap:3px;color:#6a7779;font-size:8px;font-weight:900}
+.food-schedule-field{display:grid;gap:3px;color:#59696c;font-size:10px;font-weight:900}
 .food-schedule-field select,.food-schedule-field input{
   width:100%;min-width:0;height:31px;padding:0 6px;border:1px solid #d8e3e1;border-radius:8px;
-  background:#fff;color:#405459;font-family:inherit;font-size:10px;font-weight:850;line-height:1;outline:none
+  background:#fff;color:#405459;font-family:inherit;font-size:12px;font-weight:850;line-height:1;outline:none
 }
 .food-schedule-btn{
   height:31px;padding:0 8px;border:1px solid #16b8ad;border-radius:8px;
-  background:#effaf8;color:#16776e;font:900 9px/1 inherit;white-space:nowrap;cursor:pointer
+  background:#effaf8;color:#16776e;font:900 11px/1 inherit;white-space:nowrap;cursor:pointer
 }
 .food-card-footer{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:7px;flex-wrap:wrap}
-.food-visited-label{display:inline-flex;align-items:center;gap:5px;color:#52676c;font-size:9px;font-weight:900;cursor:pointer}
-.food-visited-label input{position:static;width:15px;height:15px;opacity:1;pointer-events:auto;accent-color:#18b8ad}
-.food-card-status{color:#78878a;font-size:9px;font-weight:800}
+.food-visited-label{display:inline-flex;align-items:center;gap:5px;color:#465b60;font-size:11px;font-weight:900;cursor:pointer}
+.food-visited-label input{position:static;width:17px;height:17px;opacity:1;pointer-events:auto;accent-color:#18b8ad}
+.food-card-status{color:#66777a;font-size:11px;font-weight:800}
 .food-card-edit-tools{display:none}
 body.editing .food-card-edit-tools{display:flex;justify-content:flex-end;margin-top:8px}
 .food-card-delete{
@@ -261,24 +255,25 @@ body.editing .food-card-edit-tools{display:flex;justify-content:flex-end;margin-
 .item.restaurant-completed .editable-title-text{text-decoration:line-through;text-decoration-thickness:1.5px;color:#80908e}
 .restaurant-complete-badge{
   display:none;padding:3px 6px;border-radius:999px;background:#dff4ef;color:#16776e;
-  font-size:9px;font-weight:950;white-space:nowrap
+  font-size:10px;font-weight:950;white-space:nowrap
 }
 .item.restaurant-completed .restaurant-complete-badge{display:inline-flex}
 @media (max-width:640px){
   .wrap{padding:10px 9px 30px}
   .hero{min-height:315px;padding:18px 18px 26px;border-radius:29px;background-position:58% 58%}
-  .hero-kicker{font-size:10px}
-  .hero-pin{font-size:10px}
+  .hero-kicker{font-size:11px}
+  .hero-pin{font-size:11px}
   h1{font-size:42px}
-  .hero-lede{max-width:330px;font-size:12px}
+  .hero-lede{max-width:330px;font-size:13px}
   .tabs{margin:-10px 10px 14px}
-  .tabs label{min-height:44px;font-size:11px}
+  .tabs label{min-height:46px;font-size:12.5px}
   .panels .panel{padding:15px 10px 13px;border-radius:26px}
-  .date-title{font-size:22px}
+  .date-title{font-size:24px}
   .item{grid-template-columns:92px minmax(0,1fr);gap:8px;padding:11px 9px}
-  .time{padding-inline:1px;font-size:clamp(9.5px,2.7vw,11px);letter-spacing:-.075em}
-  .title{font-size:14px}
-  .desc{font-size:12px}
+  .time{padding-inline:1px;font-size:clamp(10.5px,2.9vw,12px);letter-spacing:-.08em}
+  .item:not(.move):not(.minor) .title{font-size:15.5px}
+  .item.move .title,.item.minor .title{font-size:14px}
+  .desc,.item:not(.move):not(.minor) .desc{font-size:13px}
   .food-guide-grid{grid-template-columns:1fr;gap:7px}
   .food-card-planner{grid-template-columns:1fr 1fr}
   .food-schedule-field.day{grid-column:1/-1}
@@ -440,7 +435,6 @@ body.editing a{cursor:not-allowed}
         <div class="ampm-divider"><span>오후</span></div>
         <div class="item move"><div class="time">12:30 - 16:30</div><div><div class="title"><span class="icon">🚗</span><span class="editable-title-text">귀가 출발</span></div></div></div>
       </div>
-      <div class="footer-note">컴백홈~</div>
     </section>
   </div>
 </div>
@@ -555,10 +549,36 @@ body.editing a{cursor:not-allowed}
     const label=mealTagLabel(card.querySelector(".food-start")?.value);
     tag.textContent=label;
     tag.classList.toggle("dinner",label.startsWith("저녁"));
+    card.classList.toggle("meal-lunch",label.startsWith("점심"));
+    card.classList.toggle("meal-dinner",label.startsWith("저녁"));
+  }
+
+  function restaurantMapUrl(card){
+    const name=card.querySelector(".food-card-name")?.textContent.trim()||"식당";
+    return card.dataset.mapUrl||card.querySelector("a.place-link.map")?.href||"https://map.naver.com/p/search/"+encodeURIComponent(name);
+  }
+
+  function prepareRestaurantMapTarget(card){
+    card.dataset.mapUrl=restaurantMapUrl(card);
+    card.querySelector("a.place-link.map")?.remove();
+    let top=card.querySelector(".food-card-top");
+    if(!top)return;
+    if(top.tagName!=="A"){
+      const link=document.createElement("a");
+      link.className=top.className;
+      while(top.firstChild)link.appendChild(top.firstChild);
+      top.replaceWith(link);
+      top=link;
+    }
+    top.href=card.dataset.mapUrl;
+    top.target="_blank";
+    top.rel="noopener";
+    top.setAttribute("aria-label",`${card.querySelector(".food-card-name")?.textContent.trim()||"식당"} 네이버 지도 열기`);
   }
 
   function compactFoodCard(card){
     syncFoodMealTag(card);
+    prepareRestaurantMapTarget(card);
     if(card.querySelector(".food-card-plan"))return;
     const planner=card.querySelector(".food-card-planner");
     const footer=card.querySelector(".food-card-footer");
@@ -577,15 +597,15 @@ body.editing a{cursor:not-allowed}
     const card=document.createElement("article");
     card.className="food-card";
     card.dataset.restaurantId=data.id||restaurantId(data.name);
-    card.innerHTML='<div class="food-card-top"><div class="food-card-copy"><div class="food-card-title-row"><strong class="food-card-name"></strong><span class="food-meal-tag"></span><span class="food-complete-badge">✓ 완료</span></div><p class="food-card-menu"></p></div><a class="place-link map" target="_blank" rel="noopener">지도</a></div><details class="food-card-plan"><summary>일정 설정 · 방문 기록</summary><div class="food-card-planner"><label class="food-schedule-field day"><span>날짜</span><select class="food-day" aria-label="방문 날짜"><option value="day1">8/30 일</option><option value="day2">8/31 월</option><option value="day3">9/1 화</option></select></label><label class="food-schedule-field"><span>시작</span><input class="food-start" type="time" aria-label="시작 시간"></label><label class="food-schedule-field"><span>종료</span><input class="food-end" type="time" aria-label="종료 시간"></label><button class="food-schedule-btn" type="button">일정에 넣기</button></div><div class="food-card-footer"><label class="food-visited-label"><input class="food-visited" type="checkbox"> 다녀옴</label><span class="food-card-status">아직 일정 없음</span></div></details>';
+    card.innerHTML='<a class="food-card-top" target="_blank" rel="noopener"><div class="food-card-copy"><div class="food-card-title-row"><strong class="food-card-name"></strong><span class="food-meal-tag"></span><span class="food-complete-badge">✓ 완료</span></div><p class="food-card-menu"></p></div></a><details class="food-card-plan"><summary>일정 설정 · 방문 기록</summary><div class="food-card-planner"><label class="food-schedule-field day"><span>날짜</span><select class="food-day" aria-label="방문 날짜"><option value="day1">8/30 일</option><option value="day2">8/31 월</option><option value="day3">9/1 화</option></select></label><label class="food-schedule-field"><span>시작</span><input class="food-start" type="time" aria-label="시작 시간"></label><label class="food-schedule-field"><span>종료</span><input class="food-end" type="time" aria-label="종료 시간"></label><button class="food-schedule-btn" type="button">일정에 넣기</button></div><div class="food-card-footer"><label class="food-visited-label"><input class="food-visited" type="checkbox"> 다녀옴</label><span class="food-card-status">아직 일정 없음</span></div></details>';
     card.querySelector(".food-card-name").textContent=data.name;
     card.querySelector(".food-card-menu").textContent=data.menu||"메뉴를 입력하세요";
-    const map=card.querySelector("a");
-    map.href=data.mapUrl||"https://map.naver.com/p/search/"+encodeURIComponent(data.name);
+    card.dataset.mapUrl=data.mapUrl||"https://map.naver.com/p/search/"+encodeURIComponent(data.name);
     card.querySelector(".food-day").value=data.day||"day1";
     card.querySelector(".food-start").value=data.start||"12:00";
     card.querySelector(".food-end").value=data.end||"13:00";
     syncFoodMealTag(card);
+    prepareRestaurantMapTarget(card);
     return card;
   }
 
@@ -629,17 +649,8 @@ body.editing a{cursor:not-allowed}
     }
   }
 
-  function ensureMealRestaurantFields(){
-    document.querySelectorAll(".item.food").forEach(item=>{
-      item.querySelector(".restaurant-picker")?.remove();
-      if(item.querySelector(".meal-restaurant-field"))return;
-      const field=document.createElement("label");
-      field.className="meal-restaurant-field";
-      field.innerHTML='<span>식당</span><input class="meal-restaurant-input" type="text" placeholder="식당 이름 입력" autocomplete="off">';
-      const title=item.querySelector(".editable-title-text")?.textContent.trim()||[...item.querySelector(".title")?.childNodes||[]].filter(node=>node.nodeType===Node.TEXT_NODE).map(node=>node.textContent.trim()).filter(Boolean).join(" ")||"식사";
-      field.querySelector("input").setAttribute("aria-label",`${title} 식당 이름`);
-      item.children[1]?.appendChild(field);
-    });
+  function removeMealRestaurantFields(){
+    document.querySelectorAll(".restaurant-picker,.meal-restaurant-field").forEach(node=>node.remove());
   }
 
   function normalizeScheduleCategories(){
@@ -674,7 +685,8 @@ body.editing a{cursor:not-allowed}
     document.querySelectorAll("a.place-link.map").forEach(link=>{link.textContent="지도"});
     ensureRestaurantTab(legacyRestaurants);
     document.querySelectorAll(".restaurant-picker").forEach(picker=>picker.remove());
-    ensureMealRestaurantFields();
+    removeMealRestaurantFields();
+    document.querySelectorAll(".footer-note").forEach(note=>note.remove());
     normalizeScheduleCategories();
     document.querySelectorAll(".food-card").forEach(card=>{
       compactFoodCard(card);
@@ -743,7 +755,7 @@ body.editing a{cursor:not-allowed}
   function editableNodes(){
     return document.querySelectorAll([
       ".hero-kicker",".hero-pin",".eyebrow","h1",".hero-lede",".hero-facts span",
-      ".date-title",".day-chip",".time",".editable-title-text",".desc",".footer-note",
+      ".date-title",".day-chip",".time",".editable-title-text",".desc",
       ".food-card-name",".food-card-menu"
     ].join(","));
   }
@@ -850,15 +862,14 @@ body.editing a{cursor:not-allowed}
       item=document.createElement("div");
       item.className="item food restaurant-schedule";
       item.dataset.restaurantId=card.dataset.restaurantId;
-      item.innerHTML='<div class="time"></div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text"></span><span class="restaurant-complete-badge">✓ 완료</span><span class="actions"><a class="place-link map" target="_blank" rel="noopener">지도</a></span></div><p class="desc">맛집 리스트에서 등록한 식사 일정.</p><label class="meal-restaurant-field"><span>식당</span><input class="meal-restaurant-input" type="text" autocomplete="off"></label></div>';
+      item.innerHTML='<div class="time"></div><div><div class="title"><span class="icon">🍽️</span><span class="editable-title-text"></span><span class="restaurant-complete-badge">✓ 완료</span><span class="actions"><a class="place-link map" target="_blank" rel="noopener">지도</a></span></div><p class="desc">맛집 리스트에서 등록한 식사 일정.</p></div>';
     }
+    item.querySelector(".meal-restaurant-field")?.remove();
     item.classList.toggle("meal-lunch",Number(start.slice(0,2))>=11&&Number(start.slice(0,2))<16);
     item.querySelector(".time").textContent=`${start} - ${end}`;
     item.querySelector(".editable-title-text").textContent=name;
-    item.querySelector(".meal-restaurant-input").value=name;
-    item.querySelector(".meal-restaurant-input").setAttribute("aria-label",`${name} 식당 이름`);
     const map=item.querySelector("a");
-    map.href=card.querySelector("a.place-link.map").href;
+    map.href=restaurantMapUrl(card);
     timeline.appendChild(item);
     card.dataset.scheduledDay=day;
     card.dataset.scheduledStart=start;
@@ -979,7 +990,6 @@ body.editing a{cursor:not-allowed}
     item.className=config.className;
     item.innerHTML='<div class="time">00:00 - 00:00</div><div><div class="title"><span class="icon">'+config.icon+'</span><span class="editable-title-text">새 일정</span></div><p class="desc">설명을 입력하세요.</p></div>';
     panel.querySelector(".timeline").appendChild(item);
-    if(type==="food")ensureMealRestaurantFields();
     refreshEditables();
     saveDraft("새 일정 추가됨");
     item.scrollIntoView({behavior:"smooth",block:"center"});
@@ -1071,11 +1081,6 @@ body.editing a{cursor:not-allowed}
   });
   document.addEventListener("input",event=>{
     if(editing&&event.target.closest('[contenteditable="true"]'))scheduleSave();
-    if(event.target.matches(".meal-restaurant-input")){
-      const item=event.target.closest(".restaurant-schedule");
-      if(item)item.querySelector(".editable-title-text").textContent=event.target.value.trim()||"식사";
-      scheduleSave();
-    }
   });
   document.addEventListener("change",event=>{
     if(event.target.matches(".food-day,.food-start,.food-end")){
