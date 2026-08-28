@@ -1,7 +1,7 @@
 (()=>{
   const KEY="byeonsan-trip-draft-v4";
   const LEGACY="byeonsan-trip-draft-v1";
-  const MEAL_PATCH_KEY="byeonsan-meal-plan-2026-08-28-v1";
+  const MEAL_PATCH_KEY="byeonsan-meal-plan-2026-08-28-v2";
 
   const BASE=[
     {name:"청상어횟집",category:"sashimi",menu:"회 · 해산물",walk:"10",hours:"12:00–21:30",mapUrl:"https://naver.me/FuzD6L2o"},
@@ -18,7 +18,7 @@
     {name:"마식당",category:"lunch",menu:"화덕 생선구이 · 한식",walk:"7",hours:"09:00–16:00 · LO 15:10",notice:"⚠️ 9/1 화요일 휴무",address:"전북 부안군 격포항길 13 마식당",mapUrl:"https://naver.me/FNt085gG"},
     {name:"채석강맛집",category:"lunch",menu:"간장게장 · 새우장 · 생선구이 · 백합찜 · 해물칼국수",distanceText:"🚗 가까운 차량 이동",hours:"일 08:00–21:00 · 월 09:00–21:00",notice:"⚠️ 9/1 화요일 휴무",address:"전북 부안군 변산면 변산해변로 25",mapUrl:"https://map.naver.com/p/search/부안%20채석강맛집"},
     {name:"김인경 원조 바지락죽",category:"lunch",menu:"뽕잎바지락죽 · 인삼바지락죽 · 바지락뽕잎전",distanceText:"🚗 차량 이동",hours:"08:00–19:00 · BT 15:00–16:00",notice:"월요일 오후 운영 정보는 출처별 차이 있음",address:"전북 부안군 변산면 묵정길 18",mapUrl:"https://map.naver.com/p/search/부안%20김인경%20원조%20바지락죽"},
-    {name:"변산명인바지락죽",category:"lunch",menu:"인삼바지락죽 · 바지락전 · 바지락회무침",distanceText:"🚗 차량 이동",hours:"08:40–18:10 · BT 15:00–16:00",address:"전북 부안군 변산해변로 794",mapUrl:"https://naver.me/FM9FKE2o"}
+    {name:"변산명인바지락죽",category:"lunch",menu:"인삼바지락죽 · 바지락전 · 바지락회무침",distanceText:"🚗 차량 이동",hours:"08:40–18:10 · BT 15:00–16:00",address:"전북 부안군 변산면 변산해변로 794",mapUrl:"https://naver.me/539GsEnx"}
   ];
 
   const CATS={sashimi:"횟집",grill:"고기&",lunch:"점심"};
@@ -139,7 +139,7 @@
 
   const RECOMMENDED_MEALS={
     day1:{
-      "12:00 - 13:00":{title:"점심 · 채석강맛집",desc:"게장 · 생선구이 · 백합찜",mapUrl:"https://map.naver.com/p/search/부안%20채석강맛집"},
+      "12:00 - 13:00":{title:"점심 · 변산명인바지락죽",desc:"인삼바지락죽 · 바지락전",mapUrl:"https://naver.me/539GsEnx"},
       "17:30 - 19:00":{title:"저녁 · 변산반도횟집",desc:"도보 이동 회 · 해산물",mapUrl:"https://naver.me/G65tM2lT"}
     },
     day2:{
@@ -157,6 +157,7 @@
     [/^(?:소노벨 변산 - 체크인|호텔 구경 & 근처 산책|체크아웃|호텔 조식)$/,"https://map.naver.com/p/search/소노벨%20변산"],
     [/^고사포해수욕장 - 갯벌 체험$/,"https://map.naver.com/p/search/부안%20고사포해수욕장"],
     [/^오션플레이$/,"https://map.naver.com/p/search/소노벨%20변산%20오션플레이"],
+    [/^점심 · 변산명인바지락죽$/,"https://naver.me/539GsEnx"],
     [/^점심 · 채석강맛집$/,"https://map.naver.com/p/search/부안%20채석강맛집"],
     [/^저녁 · 변산반도횟집$/,"https://naver.me/G65tM2lT"],
     [/^점심 · 바다마을식당$/,"https://map.naver.com/p/search/부안%20바다마을식당"],
