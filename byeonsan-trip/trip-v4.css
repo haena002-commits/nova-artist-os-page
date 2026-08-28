@@ -20,3 +20,10 @@ input[type=radio].tab-radio{position:absolute;opacity:0;pointer-events:none}.tab
 .time{font-size:12.5px}
 @media(max-width:640px){.item{grid-template-columns:92px minmax(0,1fr)}.food-card-top{display:flex;min-height:52px}}
 @media(max-width:390px){.food-card-top{display:flex}}
+
+/* Consistent time boxes */
+.item{grid-template-columns:104px minmax(0,1fr)}
+.time{display:flex;align-items:center;justify-content:center;width:104px;min-width:104px;max-width:104px;height:48px;min-height:48px;padding:0 5px;overflow:hidden;text-overflow:clip;font-size:12px;line-height:1;letter-spacing:-.055em;font-variant-numeric:tabular-nums}
+.item.move .time,.item.minor .time{height:48px;min-height:48px;padding:0 5px;font-size:12px}
+@media(max-width:640px){.item{grid-template-columns:100px minmax(0,1fr)}.time,.item.move .time,.item.minor .time{width:100px;min-width:100px;max-width:100px;height:46px;min-height:46px;font-size:clamp(10.5px,2.85vw,11.5px);letter-spacing:-.06em}}
+@media(max-width:360px){.item{grid-template-columns:94px minmax(0,1fr)}.time,.item.move .time,.item.minor .time{width:94px;min-width:94px;max-width:94px;font-size:10.5px;letter-spacing:-.07em}}
