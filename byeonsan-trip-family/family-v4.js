@@ -83,6 +83,30 @@
     }
   };
 
+  const SCHEDULE_LINK_RULES=[
+    [/^적벽강$/,"https://map.naver.com/p/search/부안%20적벽강"],
+    [/^카페909$/,"https://map.naver.com/p/search/부안%20카페909"],
+    [/^(?:소노벨 변산으로 이동|소노벨 변산 - 체크인|호텔 구경 & 근처 산책|숙소 복귀|체크아웃|호텔 조식)$/,"https://map.naver.com/p/search/소노벨%20변산"],
+    [/^고사포해수욕장 이동(?:\s*\(차\s*15분\))?$/,"https://map.naver.com/p/search/부안%20고사포해수욕장"],
+    [/^고사포해수욕장 - 갯벌 체험$/,"https://map.naver.com/p/search/부안%20고사포해수욕장"],
+    [/^오션플레이$/,"https://map.naver.com/p/search/소노벨%20변산%20오션플레이"],
+    [/^점심 · 채석강맛집$/,"https://map.naver.com/p/search/부안%20채석강맛집"],
+    [/^저녁 · 변산반도횟집$/,"https://naver.me/G65tM2lT"],
+    [/^점심 · 바다마을식당$/,"https://map.naver.com/p/search/부안%20바다마을식당"],
+    [/^저녁 · 채석강해물전골조개찜막회$/,"https://map.naver.com/p/search/부안%20채석강해물전골조개찜막회"],
+    [/^점심 · 김인경 원조 바지락죽$/,"https://map.naver.com/p/search/부안%20김인경%20원조%20바지락죽"]
+  ];
+
+  function auditScheduleLinks(){
+    document.querySelectorAll(".item").forEach(i=>{
+      const title=i.querySelector(".editable-title-text")?.textContent.trim()||"";
+      const rule=SCHEDULE_LINK_RULES.find(([pattern])=>pattern.test(title));
+      if(!rule)return;
+      i.dataset.link=rule[1];
+      i.classList.add("link-item");
+    });
+  }
+
   function applyRecommendedMeals(){
     Object.entries(RECOMMENDED_MEALS).forEach(([day,slots])=>{
       const timeline=document.querySelector(`#${day} .timeline`);
@@ -104,6 +128,7 @@
   render();
   normalizeLinks();
   applyRecommendedMeals();
+  auditScheduleLinks();
 
   document.addEventListener("click",e=>{
     const b=e.target.closest(".food-category-tab");
