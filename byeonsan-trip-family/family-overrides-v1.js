@@ -19,5 +19,14 @@
     }
   }
 
+  function loadCafeAddon(){
+    if(document.querySelector('script[data-family-cafes="1"]'))return;
+    const s=document.createElement("script");
+    s.src="family-cafes-v1.js";
+    s.dataset.familyCafes="1";
+    document.body.appendChild(s);
+  }
+
   applyFamilyOverrides();
+  loadCafeAddon();
 })();
