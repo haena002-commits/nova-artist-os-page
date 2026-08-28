@@ -139,15 +139,15 @@
 
   const RECOMMENDED_MEALS={
     day1:{
-      "12:00 - 13:00":{title:"점심 · 채석강맛집",desc:"게장 · 생선구이 · 백합찜 중심으로 여행 첫 끼.",mapUrl:"https://map.naver.com/p/search/부안%20채석강맛집"},
-      "17:30 - 19:00":{title:"저녁 · 변산반도횟집",desc:"도보 이동 가능한 회 · 해산물 저녁.",mapUrl:"https://naver.me/G65tM2lT"}
+      "12:00 - 13:00":{title:"점심 · 채석강맛집",desc:"게장 · 생선구이 · 백합찜",mapUrl:"https://map.naver.com/p/search/부안%20채석강맛집"},
+      "17:30 - 19:00":{title:"저녁 · 변산반도횟집",desc:"도보 이동 회 · 해산물",mapUrl:"https://naver.me/G65tM2lT"}
     },
     day2:{
-      "12:30 - 13:20":{title:"점심 · 바다마을식당",desc:"갯벌 후 가까이서 바지락칼국수 · 백합죽.",mapUrl:"https://map.naver.com/p/search/부안%20바다마을식당"},
-      "18:00 - 20:00":{title:"저녁 · 채석강해물전골조개찜막회",desc:"도보 약 8분 · 조개찜/해물전골과 술 한잔.",mapUrl:"https://map.naver.com/p/search/부안%20채석강해물전골조개찜막회"}
+      "12:30 - 13:20":{title:"점심 · 바다마을식당",desc:"바지락칼국수 · 백합죽.",mapUrl:"https://map.naver.com/p/search/부안%20바다마을식당"},
+      "18:00 - 20:00":{title:"저녁 · 채석강해물전골조개찜막회",desc:"도보 약 8분 · 조개찜/해물전골",mapUrl:"https://map.naver.com/p/search/부안%20채석강해물전골조개찜막회"}
     },
     day3:{
-      "11:30 - 12:20":{title:"점심 · 김인경 원조 바지락죽",desc:"체크아웃 후 차량 이동 · 귀갓길 부안 대표 바지락죽.",mapUrl:"https://map.naver.com/p/search/부안%20김인경%20원조%20바지락죽"}
+      "11:30 - 12:20":{title:"점심 · 김인경 원조 바지락죽",desc:"부안 대표 바지락죽",mapUrl:"https://map.naver.com/p/search/부안%20김인경%20원조%20바지락죽"}
     }
   };
 
