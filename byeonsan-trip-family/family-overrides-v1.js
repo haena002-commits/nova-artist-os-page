@@ -1,6 +1,34 @@
 (()=>{
   const DINNER_URL="https://naver.me/xTTVxJMX";
 
+  const LOCAL_RECOMMENDED_ORDER={
+    sashimi:[
+      "격포 어촌계회센터 B동 13호",
+      "청상어횟집",
+      "변산반도횟집"
+    ],
+    grill:[
+      "채석강키조개삼합",
+      "채석강해물전골조개찜막회",
+      "피어51"
+    ],
+    lunch:[
+      "군산식당",
+      "바다마을식당",
+      "변산명인바지락죽",
+      "김인경 원조 바지락죽",
+      "백합식당",
+      "마식당",
+      "채석강맛집"
+    ],
+    cafe:[
+      "카페909",
+      "더 테라스 카페",
+      "쇼트앤드",
+      "할리스 부안격포채석강점"
+    ]
+  };
+
   function item({time,title,desc="",icon="📍",kind="major",link=""}){
     const el=document.createElement("div");
     el.className=`item ${kind}${link?" link-item":""}`.trim();
@@ -62,5 +90,30 @@
     }
   }
 
+  function reorderRestaurantCards(){
+    const grid=document.querySelector("#restaurants #foodGuideGrid");
+    if(!grid)return;
+
+    const cards=[...grid.querySelectorAll(".food-card")];
+    const byName=new Map(cards.map(card=>[
+      card.querySelector(".food-card-name")?.textContent.trim(),
+      card
+    ]));
+    const used=new Set();
+
+    Object.values(LOCAL_RECOMMENDED_ORDER).flat().forEach(name=>{
+      const card=byName.get(name);
+      if(!card)return;
+      grid.appendChild(card);
+      used.add(card);
+    });
+
+    cards.filter(card=>!used.has(card)).forEach(card=>grid.appendChild(card));
+
+    const intro=document.querySelector("#restaurants .food-guide-intro");
+    if(intro)intro.textContent="현지 음식의 지역색과 최근 방문자 평가를 함께 보고 추천순으로 정리했어요. 카드 전체를 누르면 네이버 지도가 열립니다.";
+  }
+
   applyDay1Route();
+  reorderRestaurantCards();
 })();
